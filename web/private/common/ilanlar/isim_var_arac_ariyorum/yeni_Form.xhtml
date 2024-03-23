@@ -1,0 +1,318 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition>
+            <h:form id="m_form"  prependId="false">
+                <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/>  
+                
+                <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.param1 == null}" >
+                    <div class="profile-card mb-3 background-green">
+                        <ol class="breadcrumb"> <li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">İşim Var Araç Arıyorum</li></ol>
+                    </div>
+                </h:panelGroup>   
+                <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.param1 != null}" >       
+                    <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.param1 eq 'ekle'}" >
+                       <div class="profile-card mb-3 background-green">
+                        <ol class="breadcrumb"> <li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">İşim Var Araç Arıyorum</li></ol>
+                    </div>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.param1 ne 'ekle'}" >
+                       <div class="profile-card mb-3 background-green">
+                        <ol class="breadcrumb"> <li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">İlan Düzenle</a></li><li class="breadcrumb-item active" aria-current="page">İşim Var Araç Arıyorum</li></ol>
+                    </div>
+                    </h:panelGroup>      
+                </h:panelGroup>
+
+                <div class="profile-card mb-3">
+                    <div class="list-title d-flex align-items-center"><div class="message-title"><div class="title-bold m-0">Araç Bilgileri</div></div></div>
+                    <div class="arac-bilgi">
+                        <div class="form mt-3">
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <h:outputLabel id="adLookingForVehicleForWorkVehicleBrandOneMenuLabel" 
+                                                   class="col-form-label font-weight-bold"
+                                                   for="adLookingForVehicleForWorkVehicleBrandOneMenu">
+                                        Araç Markası
+                                    </h:outputLabel>&nbsp;&nbsp;
+                                    <h:message for="adLookingForVehicleForWorkVehicleBrandOneMenu" class="message-f"></h:message>
+                                    <style> .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger{background: none; width: 25px; } .ui-selectcheckboxmenu .ui-selectcheckboxmenu-label{padding: 0px; width: 95%; margin: 0px;} .ui-state-hover{background-color: #FFF} .ui-chkbox .ui-chkbox-box {background: none} </style>
+                                    <p:selectCheckboxMenu id="adLookingForVehicleForWorkVehicleBrandOneMenu" 
+                                                      value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_Brands}" 
+                                                      styleClass="form-control"
+                                                      updateLabel="true" 
+                                                      label="Seçiniz" 
+                                                      required="true" requiredMessage="Bu alan gereklidir"
+                                                      panelStyle="width:250px; box-shadow:none; border-color:rgb(93, 157, 224) !important;border-radius: 0px;">
+                                        <f:selectItem itemLabel="Farketmez" itemValue="0"></f:selectItem>
+                                        <f:selectItems value="#{adLookingForVehicleForWorkBean.vehicleBrandNamesListx()}" var="v" itemLabel="#{v.vehicleBrand_Name}" itemValue="#{v.vehicleBrand_Id}" ></f:selectItems>
+                                        <f:ajax event="change"  render="adLookingForVehicleForWorkVehicleModelOneMenu grfdt5er kjkjhkj3"  listener="#{adLookingForVehicleForWorkBean.vehicleModelsListx()}"> </f:ajax>
+                                    </p:selectCheckboxMenu>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <h:panelGroup id="grfdt5er" >
+                                        <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.vehicleBrandsLength==1}">
+                                            <h:outputLabel id="adLookingForVehicleForWorkVehicleModelOneMenuLabel" 
+                                                           for="adLookingForVehicleForWorkVehicleModelOneMenu"
+                                                           class="col-form-label font-weight-bold">
+                                                Model
+                                            </h:outputLabel>
+                                            <h:selectOneMenu id="adLookingForVehicleForWorkVehicleModelOneMenu" 
+                                                             value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_Model}" 
+                                                             class="form-control"
+                                                             style="height: 40px;">
+                                                <f:selectItem itemValue="Farketmez" itemLabel="Farketmez"></f:selectItem>
+                                                <f:selectItems value="#{adLookingForVehicleForWorkBean.vehicleModelsList}" var="x" itemLabel="#{x}" itemValue="#{x}" ></f:selectItems> 
+                                            </h:selectOneMenu> 
+                                            <h:message for="adLookingForVehicleForWorkVehicleModelOneMenu" style="color: red"></h:message>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.vehicleBrandsLength !=1}">
+                                            <h:outputLabel class="col-form-label font-weight-bold">Model</h:outputLabel>
+                                            <h:selectOneMenu class="form-control" disabled="true" style="height: 40px;">
+                                                <f:selectItem itemValue="Farketmez" itemLabel="Farketmez"></f:selectItem>
+                                            </h:selectOneMenu> 
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="col-form-label font-weight-bold d-flex" >
+                                        Araç Yılı
+                                        <div class="ml-auto">
+                                            <h:panelGroup id="dfrsdr4e" >
+                                                <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.vehicle.vehicle_ModelYear > 0}">
+                                                    <h:selectBooleanCheckbox id="adLookingForVehicleForWorkVehicleYearAndOverBooleanCheckbox" 
+                                                                             value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_ModelYearAndOver}" >
+                                                    </h:selectBooleanCheckbox>
+                                                    <span class="text-orange ml-auto" style="font-weight: 500;">Ve Üzeri</span>
+                                                </h:panelGroup>
+                                            </h:panelGroup> 
+                                        </div>    
+                                    </label>
+                                    <h:selectOneMenu id="adLookingForVehicleForWorkVehicleYearOneMenu" 
+                                                     disabled="#{adLookingForVehicleForWorkBean.vehicle.vehicle_ModelYearNotMatter == true}" 
+                                                     value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_ModelYear}" 
+                                                     class="form-control" style="height: 40px;">
+                                        <f:selectItem itemValue="0" itemLabel="Farketmez"></f:selectItem>
+                                        <f:selectItem itemValue="2023" itemLabel="2023"></f:selectItem>
+                                        <f:selectItem itemValue="2022" itemLabel="2022"></f:selectItem>
+                                        <f:selectItem itemValue="2021" itemLabel="2021"></f:selectItem>
+                                        <f:selectItem itemValue="2020" itemLabel="2020"></f:selectItem>
+                                        <f:selectItem itemValue="2019" itemLabel="2019"></f:selectItem>
+                                        <f:selectItem itemValue="2018" itemLabel="2018"></f:selectItem>
+                                        <f:selectItem itemValue="2017" itemLabel="2017"></f:selectItem>
+                                        <f:selectItem itemValue="2016" itemLabel="2016"></f:selectItem>
+                                        <f:selectItem itemValue="2015" itemLabel="2015"></f:selectItem>
+                                        <f:selectItem itemValue="2014" itemLabel="2014"></f:selectItem>
+                                        <f:selectItem itemValue="2013" itemLabel="2013"></f:selectItem>
+                                        <f:selectItem itemValue="2012" itemLabel="2012"></f:selectItem>
+                                        <f:selectItem itemValue="2011" itemLabel="2011"></f:selectItem>
+                                        <f:selectItem itemValue="2010" itemLabel="2010"></f:selectItem>
+                                        <f:selectItem itemValue="2009" itemLabel="2009"></f:selectItem>
+                                        <f:selectItem itemValue="2008" itemLabel="2008"></f:selectItem>
+                                        <f:selectItem itemValue="2007" itemLabel="2007"></f:selectItem>
+                                        <f:selectItem itemValue="2006" itemLabel="2006"></f:selectItem>
+                                        <f:selectItem itemValue="2005" itemLabel="2005"></f:selectItem>
+                                        <f:ajax event="change" render="dfrsdr4e fdy6r54" ></f:ajax>
+                                    </h:selectOneMenu> 
+                                    <h:message for="adLookingForVehicleForWorkVehicleYearOneMenu" style="color: red"></h:message>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <h:outputLabel id="adLookingForVehicleForWorkVehicleCapacityOneMenuLabel" 
+                                                   for="adLookingForVehicleForWorkVehicleCapacityOneMenu"
+                                                   class="col-form-label font-weight-bold">
+                                        Araç Kapasitesi
+                                    </h:outputLabel>
+                                    <h:selectOneMenu id="adLookingForVehicleForWorkVehicleCapacityOneMenu" 
+                                                     value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_NumberOfSeats}" 
+                                                     class="form-control " style="height: 40px;">
+                                        <f:selectItem itemValue="Farketmez" itemLabel="Farketmez"></f:selectItem>
+                                        <f:selectItems value="#{selectItemsBean.selectItemList('VehicleCapacity')}" var="o" itemLabel="#{o.selectItem_Label_Tr}" itemValue="#{o.selectItem_Value}" ></f:selectItems> 
+                                    </h:selectOneMenu> 
+                                    <h:message for="adLookingForVehicleForWorkVehicleCapacityOneMenu" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <h:outputLabel id="adLookingForVehicleForWorkCostInputLabel" 
+                                                   for="adLookingForVehicleForWorkCostInput"
+                                                   class="col-form-label font-weight-bold">
+                                        Ücret
+                                    </h:outputLabel>
+                                    <div class="input-group">
+                                        <style>
+                                            #adLookingForVehicleForWorkCostInput_input{border-top-right-radius: 0;border-bottom-right-radius: 0}
+                                            #costIcon{border-radius: 8px;border-left: 0;border-top-left-radius: 0; border-bottom-left-radius: 0}
+                                        </style>
+                                        <p:inputNumber id="adLookingForVehicleForWorkCostInput" 
+                                                        style="padding: 0px;width:75% " 
+                                                        binding="#{adLookingForVehicleForWorkBean.inputBox2}"
+                                                        value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Cost}" 
+                                                        padControl="false"  
+                                                        inputStyleClass="form-control" 
+                                                        placeholder="500" 
+                                                        required="true" requiredMessage="Bu alan gereklidir">
+                                            <f:event type="preRenderComponent" listener="#{adLookingForVehicleForWorkBean.preRenderInput2}" />
+                                        </p:inputNumber>
+                                        <span id="costIcon" class="input-group-text">TL</span>
+                                    </div>
+                                    <h:message for="adLookingForVehicleForWorkCostInput" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <h:outputLabel id="adLookingForVehicleForWorkKmInputLabel" 
+                                                   for="adLookingForVehicleForWorkKmInput"
+                                                   class="col-form-label font-weight-bold">
+                                        Km
+                                    </h:outputLabel>
+                                    <h:inputText id="adLookingForVehicleForWorkKmInput" 
+                                                 class="form-control"
+                                                   value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Km}"
+                                                  required="true" requiredMessage="Bu alan gereklidir">
+                                    </h:inputText>
+                                    <h:message for="adLookingForVehicleForWorkKmInput" class="message-f"></h:message>
+                                    <script>$(function(){ $('input[id$="adLookingForVehicleForWorkKmInput"]').inputmask("9999",{ "placeholder": "" }); });</script>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <style>
+                                        #adLookingForVehicleForWorkServiceTimeInput_input{border: none;height: 37px;border-radius: 0;border-top-left-radius: 8px;border-bottom-left-radius: 8px;}
+                                       #timeIcon{border-radius: 8px;border-left: 0;border-top-left-radius: 0; border-bottom-left-radius: 0}
+                                    </style>
+                                    <h:outputLabel id="adLookingForVehicleForWorkDayToWorkInputLabel" 
+                                                   for="adLookingForVehicleForWorkDayToWorkInput"
+                                                   class="col-form-label font-weight-bold">
+                                        Çalışılacak Gün
+                                    </h:outputLabel>
+                                    <div class="input-group">
+                                        <h:inputText id="adLookingForVehicleForWorkDayToWorkInput" 
+                                                       class="form-control" 
+                                                       value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_DayToWork}"
+                                                       required="true" requiredMessage="Bu alan gereklidir">
+                                        </h:inputText>
+                                        <span id="dayIcon" class="input-group-text">Gün</span>
+                                        <script>$(function(){ $('input[id$="adLookingForVehicleForWorkDayToWorkInput"]').inputmask("999",{ "placeholder": "" }); });</script>
+                                    </div>
+                                     <h:message for="adLookingForVehicleForWorkDayToWorkInput" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <h:outputLabel id="adLookingForVehicleForWorkServiceTimeInputLabel" 
+                                                   for="adLookingForVehicleForWorkServiceTimeInput"
+                                                   class="col-form-label font-weight-bold">
+                                        Servis Süresi
+                                    </h:outputLabel>
+                                    <div class="input-group">
+                                        <h:inputText id="adLookingForVehicleForWorkServiceTimeInput" 
+                                                    class="form-control" 
+                                                    value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceTime}"
+                                                    required="true" requiredMessage="Bu alan gereklidir">
+                                        </h:inputText>
+                                        <span id="timeIcon" class="input-group-text">Dak.</span>
+                                        <script>$(function(){ $('input[id$="adLookingForVehicleForWorkServiceTimeInput"]').inputmask("999",{ "placeholder": "" }); });</script>
+                                    </div>
+                                    <h:message for="adLookingForVehicleForWorkServiceTimeInput" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-12">
+                                <div class="row">
+                                    <div class="form-group col-md-3">
+                                        <h:outputLabel id="adLookingForVehicleForWorkNumberOfPassengersLabel" 
+                                                       for="adLookingForVehicleForWorkNumberOfPassengersInput"
+                                                       class="col-form-label font-weight-bold">
+                                            Araçtaki Yolcu Sayısı
+                                        </h:outputLabel>
+                                        <h:inputText  id="adLookingForVehicleForWorkNumberOfPassengersInput" 
+                                                      required="true" requiredMessage="Bu alan gereklidir"
+                                                      value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_NumberOfPassengers}"
+                                                      class="form-control">
+                                            
+                                        </h:inputText>
+                                        <h:message for="adLookingForVehicleForWorkNumberOfPassengersInput" class="message-f"></h:message>
+                                         <script>$(function(){ $('input[id$="adLookingForVehicleForWorkNumberOfPassengersInput"]').inputmask("999",{ "placeholder": "" }); });</script>
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <h:outputLabel id="serviceTypeLabel" 
+                                                       for="serviceType"
+                                                       class="col-form-label font-weight-bold">
+                                            Servis Türü
+                                        </h:outputLabel>
+                                        <style>
+                                            .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {background-color: #FFF;background-image: none;-webkit-box-shadow: none;box-shadow: none;}
+                                            .ui-chkbox .ui-chkbox-box {border: 1px solid #bdc3d4;width: 18px;height: 18px;display: inline-block;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;transition: all 0.3s;background: none;font-weight: 400;font-size: 1rem;color: #575962;}
+                                        </style>
+                                            <p:selectManyCheckbox required="true" 
+                                                                  requiredMessage="Bu alan boş geçilemez" 
+                                                                  id="serviceType" 
+                                                                  layout="responsive" 
+                                                                  columns="3" 
+                                                                  value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceTypes}">
+                                            <f:selectItems value="#{selectItemsBean.selectItemList('serviceType')}" var="o" itemLabel="#{o.selectItem_Label_Tr}" itemValue="#{o.selectItem_Value}" ></f:selectItems> 
+                                        </p:selectManyCheckbox>
+                                    </div>
+                                    
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="profile-card mb-3">
+                    <ui:insert name="routePart" ><ui:include src="routePart.xhtml" /></ui:insert>
+                </div>
+
+                <div class="profile-card">
+                    <div class="d-flex align-items-center">
+                        <div class="message-title">
+                            <div class="title-bold m-0">İlan Detayı&nbsp;&nbsp;<h:message for="adLookingForVehicleForWorkBeanadBeanadCommentInput" class="message-f"></h:message> </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 mb-0">
+                        <style>
+                            #adLookingForVehicleForWorkBeanadBeanadCommentInput_editor > div.ql-editor > p{font-size: 1.2rem}
+                        </style>
+                        <p:textEditor   height="150" 
+                                        required="true" 
+                                        requiredMessage="Bu alan gereklidir" 
+                                        id ="adLookingForVehicleForWorkBeanadBeanadCommentInput"
+                                        value="#{adLookingForVehicleForWorkBean.adBean.ad_Comment}"  
+                                        widgetVar="editor2">
+                              <f:facet name="toolbar">
+                                  <span class="ql-formats"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button><button class="ql-strike"></button></span>
+                                  <span class="ql-formats"><select class="ql-font"></select><select class="ql-size"></select></span>
+                              </f:facet>
+                        </p:textEditor>
+                    </div>              
+                </div>
+
+                <div class="text-center mt-5">
+                    <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.param1.equals('ekle')}">
+                        <p:commandLink class="btn btn-orange px-5" 
+                                       ajax="true" 
+                                        update="m_form" 
+                                       id="efse35we" 
+                                       action="#{adLookingForVehicleForWorkBean.createLookingForVehicleForWorkAd()}">
+                            <b>+</b> İlanı Kaydet ve Yayınla
+                        </p:commandLink>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.param1.equals('duzenle')}">
+                         <p:commandLink class="btn btn-orange px-5" 
+                                        ajax="true" 
+                                        update="m_form" 
+                                        id="rte4te" 
+                                        action="#{adLookingForVehicleForWorkBean.updateLookingForVehicleForWorkAd()}">
+                             Güncelle
+                         </p:commandLink>
+                    </h:panelGroup>
+                </div>
+
+
+
+            </h:form>
+
+
+
+
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"    
+      xmlns:sf="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition>
+            <h:panelGroup id="ytre54"  >
+                <script>function ltr(element){if(element.setSelectionRange){ element.setSelectionRange(0,0);}}</script>
+                <style type="text/css">
+                    .input-controls { margin-top: 10px; border: 1px solid transparent; border-radius: 2px 0 0 2px; box-sizing: border-box; -moz-box-sizing: border-box; height: 32px; outline: none;  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); width:40%;margin-top: 10px; background-color: #fff; font-family: Roboto; font-size: 15px; font-weight: 300;  margin-left: 12px; padding: 0 11px 0 13px; text-overflow: ellipsis; padding: 19px;}
+                    #searchInput:focus { border-color: #4d90fe;}
+                    .map{ width: 100%;  height: 400px;}
+                </style>
+                
+                <h:inputHidden id="SP_FORMATED_ADDRESS" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_FORMATED_ADDRESS}"/>
+                <h:inputHidden id="SP_POSTAL_CODE" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_POSTAL_CODE}"/>
+                <h:inputHidden id="SP_STREET_NUMBER" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_STREET_NUMBER_KAPINO}"/>
+                <h:inputHidden id="SP_ROUTE" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_ROUTE_SOKAK}"/>
+                <h:inputHidden id="SP_ADMINISTRATIVE_AREA_LEVEL_1" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_ADMINISTRATIVE_AREA_LEVEL_1_IL}"/>
+                <h:inputHidden id="SP_ADMINISTRATIVE_AREA_LEVEL_2" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_ADMINISTRATIVE_AREA_LEVEL_2_ILCE}"/>
+                <h:inputHidden id="SP_ADMINISTRATIVE_AREA_LEVEL_3" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_ADMINISTRATIVE_AREA_LEVEL_3_KOY}"/>
+                <h:inputHidden id="SP_ADMINISTRATIVE_AREA_LEVEL_4" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_ADMINISTRATIVE_AREA_LEVEL_4_MAHALLE}"/>
+                <h:inputHidden id="SP_COUNTRY"  value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_COUNTRY}"/> 
+                <h:inputHidden id="SP_LAT" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_latitude}"/>
+                <h:inputHidden id="SP_LNG" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_longitude}"/>   
+                <h:inputHidden id="lat" />
+                <h:inputHidden id="lng" />
+                
+                <h:inputHidden id="SP_FORMATED_ADDRESSx" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_geo_FORMATED_ADDRESS}"/>
+                <h:inputHidden id="SP_POSTAL_CODEx" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_geo_POSTAL_CODE}"/>
+                <h:inputHidden id="SP_STREET_NUMBERx" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_geo_STREET_NUMBER_KAPINO}"/>
+                <h:inputHidden id="SP_ROUTEx" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_geo_ROUTE_SOKAK}"/>
+                <h:inputHidden id="SP_ADMINISTRATIVE_AREA_LEVEL_1x" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_geo_ADMINISTRATIVE_AREA_LEVEL_1_IL}"/>
+                <h:inputHidden id="SP_ADMINISTRATIVE_AREA_LEVEL_2x" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_geo_ADMINISTRATIVE_AREA_LEVEL_2_ILCE}"/>
+                <h:inputHidden id="SP_ADMINISTRATIVE_AREA_LEVEL_3x" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_geo_ADMINISTRATIVE_AREA_LEVEL_3_KOY}"/>
+                <h:inputHidden id="SP_ADMINISTRATIVE_AREA_LEVEL_4x" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_geo_ADMINISTRATIVE_AREA_LEVEL_4_MAHALLE}"/>
+                <h:inputHidden id="SP_COUNTRYx"  value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_geo_COUNTRY}"/> 
+                <h:inputHidden id="SP_LATx" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_geo_latitude}"/>
+                <h:inputHidden id="SP_LNGx" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_geo_longitude}"/> 
+                <h:inputHidden id="lat2" />
+                <h:inputHidden id="lng2" />
+                
+                <h:inputHidden id="autocomplete_2" />
+                <h:inputHidden id="autocomplete_3" />
+                
+                <div class="d-flex align-items-center">
+                    <div class="message-title"><div class="title-bold m-0">Konum Bilgisi</div></div>
+                    <div class="small text-orange ml-2"><b>LÜTFEN AŞAĞIDA BOŞ OLDUĞUNUZ YERLERİ VE SAATLERİ EKLEYİNİZ</b></div>
+                 </div>
+                
+                <div class="konum-form">
+                    <div class="form mt-3">
+                       <!-- Add Route --> 
+                       <h:panelGroup id="routePanel" style="width: 100%">
+                           <!--mapPanelForStartPoint-->
+                           <div class="col-lg-12"  id="gfdt45er4rse"  style="display: none;  border: 1px dashed #eee;  background-color: #716aca08;  padding-top: 10px;">                               
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-lg-8" style="padding-top: 5px;">Konumseçiniz</div>
+                                    <div class="col-lg-4" style="text-align: right">
+                                        <h:panelGroup id="buttonPanel">
+                                            <label class="col-form-label font-weight-bold d-flex" style="justify-content: flex-end;cursor: pointer;" >
+                                                <style>#locationInfoFromMapxx{display: none}</style>
+                                                <h:selectBooleanCheckbox id="locationInfoFromMapxx"  
+                                                                         onclick="mapShowHide()" 
+                                                                         value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.locationInfoFromMap}">
+                                                    <p:ajax  process="@this" update="locationInfoFromMapxx locationInfoFromMap startSelectedTown selectedCity selectedNeighborhood"></p:ajax>
+                                                </h:selectBooleanCheckbox>
+                                                <span class="text-orange ">Haritayı Kapat <i class="far fa-window-close"></i></span>
+                                            </label>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>                             
+                                <input  onkeypress="if (event.keyCode == 13) { return false; }"  id="searchInput"  class="input-controls"  type="text"  placeholder="Konum Ara" > </input> 
+                                <div id="map" class="map"></div>        
+                                <div><input disabled="true" type="hidden" name="location" id="location" ></input></div>
+                                <script src="/resources/js/GoogleMapForAdRoute.js" type="text/javascript"></script>
+                                <br/>
+                                <div id="locationField" style="margin-bottom: 10px;">
+                                    <p:inputText id="autocomplete" disabled="true" onfocus="geolocate()" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_FORMATED_ADDRESS}" style="width: 100%; font-size: .8rem"></p:inputText>
+                                </div> 
+                            </div>
+                           <!--/mapPanelForStartPoint-->
+                           <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="startTime2x" class="col-form-label font-weight-bold">Başlangıç Saati</label>
+                                    <p:inputText class="form-control"  id="startTime2x" placeholder="00:00"  value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_Time}"  >
+                                        <f:convertDateTime pattern="HH:mm"></f:convertDateTime>
+                                    </p:inputText>
+                                    <script>
+                                        $(function(){ $('input[id$="startTime2x"]').inputmask("hh:mm", {placeholder: "__:__", insertMode: false,showMaskOnHover: false,hourFormat: "24"}); });
+                                    </script>
+                                   <span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-clock-o"></i></span></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="endTime2x" class="col-form-label font-weight-bold">Bitiş Saati</label>
+                                    <p:inputText class="form-control"  id="endTime2x" placeholder="00:00"  value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.endPoint_Time}" >
+                                        <f:convertDateTime pattern="HH:mm"></f:convertDateTime>
+                                    </p:inputText>
+                                    <script>
+                                        $(function(){ $('input[id$="endTime2x"]').inputmask("hh:mm", {placeholder: "__:__", insertMode: false,showMaskOnHover: false,hourFormat: "24"}); });
+                                    </script>
+                                   <span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-clock-o"></i></span></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <style>#locationInfoFromMap{display: none}</style>
+                                    <h:panelGroup id="ggferre">
+                                        <label class="col-form-label font-weight-bold d-flex"  > 
+                                            Şehir
+                                            <h:selectBooleanCheckbox disabled="true" id="locationInfoFromMap" onclick="mapShowHide()" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.locationInfoFromMap}">
+                                                <p:ajax  process="@this"  update="locationInfoFromMapxx locationInfoFromMap startSelectedTown selectedCity selectedNeighborhood"></p:ajax>
+                                            </h:selectBooleanCheckbox>
+                                            <!--<span style="cursor: pointer;"  class="text-orange small ml-auto">Konum Seç</span>-->
+                                        </label>
+                                    </h:panelGroup>
+                                    <h:inputHidden id="autocompletezzz"  value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.startPoint_geo_FORMATED_ADDRESS}" />
+                                    <h:selectOneMenu id="selectedCity"  
+                                                     style="height: 40px;" 
+                                                     disabled="#{AdHostesimIsAriyorumBean.locationInfoFromMap.locationInfoFromMap == true}"
+                                                    class="form-control"
+                                                    value="#{locationInfoFromMap.cityListsBean.selectedCityID}">
+                                        <f:selectItem itemEscaped="" itemLabel="İl Seç"></f:selectItem>
+                                       <f:selectItem itemValue="40" itemLabel="İstanbul"></f:selectItem>
+                                       <f:selectItem itemValue="52" itemLabel="Kocaeli"></f:selectItem>
+                                       <f:selectItem itemValue="66" itemLabel="Sakarya"></f:selectItem>
+                                       <f:selectItem itemValue="73" itemLabel="Tekirdağ"></f:selectItem>
+                                       <!--<f:selectItems value="#{locationInfoFromMap.cityListsBean.cityList()}"  var="c"  itemLabel="#{c.cityName}" itemValue="#{c.cityID}" > </f:selectItems>-->  
+                                       <f:ajax event="change" render="startSelectedTown" listener="#{locationInfoFromMap.cityListsBean.townListxStartPoint()}"></f:ajax>
+                                   </h:selectOneMenu> 
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="startSelectedTown" class="col-form-label font-weight-bold">İlçe</label>
+                                    <h:selectOneMenu id="startSelectedTown"  
+                                                     style="height: 40px;" 
+                                                    disabled="#{AdHostesimIsAriyorumBean.locationInfoFromMap.locationInfoFromMap == true}"
+                                                    value="#{locationInfoFromMap.cityListsBean.selectedTownId}" 
+                                                    class="form-control">
+                                       <f:selectItem itemEscaped="" itemLabel="İlçe Seç"></f:selectItem>
+                                       <f:selectItems value="#{locationInfoFromMap.cityListsBean.townListStart}"  var="t"  itemLabel="#{t.townName}"  itemValue="#{t.townID}" ></f:selectItems> 
+                                       <f:ajax event="change" render="selectedNeighborhood" listener="#{locationInfoFromMap.cityListsBean.neighborhoodListxStartPoint()}"></f:ajax>
+                                   </h:selectOneMenu> 
+                                </div>
+
+                                <div class="form-group col-12 col-md">
+                                    <label for="selectedNeighborhood" class="col-form-label font-weight-bold">Mahalle</label>
+                                    <h:selectOneMenu id="selectedNeighborhood"  
+                                                    style="height: 40px;" 
+                                                    disabled="#{AdHostesimIsAriyorumBean.locationInfoFromMap.locationInfoFromMap == true}"
+                                                    value="#{locationInfoFromMap.cityListsBean.selectedNeighborhoodId}" 
+                                                    class="form-control">
+                                       <f:selectItem itemEscaped="" itemLabel="Mahalle Seç"></f:selectItem>
+                                       <f:selectItems value="#{locationInfoFromMap.cityListsBean.neighborhoodListStart}"  var="t"  itemLabel="#{t.neighborhoodName}"  itemValue="#{t.neighborhoodID}" ></f:selectItems> 
+                                   </h:selectOneMenu>
+                                </div>
+
+                                <div class="form-group col-md-4 ml-auto d-flex align-items-end">
+                                    <h:panelGroup id="dsf43ewrf" style="width: 100%">
+                                        <h:commandLink  action="#{AdHostesimIsAriyorumBean.locationInfoFromMap.locationSave(AdHostesimIsAriyorumBean.adBean.ad_Id,1)}" 
+                                                        class="btn btn-darkblue rounded-8" style="width: 100%">
+                                            <b>+</b> Güzergahı Ekle
+                                            <f:ajax execute="ytre54" render="selectedCity startSelectedTown selectedNeighborhood growl startTime2x endTime2x dsf43ewrf ggferre autocomplete adRouteListPanel"></f:ajax>
+                                        </h:commandLink>
+                                    </h:panelGroup> 
+                                </div>
+                            </div>
+                       </h:panelGroup>
+                       <!-- /Add Route --> 
+                       
+                       
+                       <!-- Added Routes -->
+                       <h:panelGroup id="adRouteListPanel">
+                           <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.locationInfoFromMap.locationList.size()>0}">
+                                <div class="font-weight-bold mt-3">Eklenen Konumlar</div>                        
+                                <div class="guzergah-list d-block mt-3">
+                                    <ui:repeat var="x" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.locationList}">
+                                        <div class="row guzergah-item">
+                                            <div class="col-2 col-md font-weight-bold">
+                                                <div class="text-muted">Başlangıç Saati</div>
+                                                <div class="guzergah-text">
+                                                    <h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText>
+                                                </div>
+                                            </div>
+
+                                            <div class="col col-md font-weight-bold text-center">
+                                                <div class="text-muted">Konum</div>
+                                                <div class="guzergah-text">
+                                                    <h:outputText value="#{x.adRoute_StartPosition_Town}"/><br/>
+                                                    <span style="font-size: 0.8em;font-weight: 400"><h:outputText value="#{x.adRoute_StartPosition_City}"/></span>
+                                                </div>
+                                                
+                                            </div>
+                                            
+                                             <div class="col-2 col-md text-right font-weight-bold">
+                                                <div class="text-muted">Bitiş Saati</div>
+                                                <div class="guzergah-text">
+                                                    <h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-1 col-md-1 text-right">
+                                                <div class="text-muted">&nbsp;</div>
+                                                <div class="guzergah-text">
+                                                    <h:commandLink  action="#{AdHostesimIsAriyorumBean.locationInfoFromMap.deleteLocationWithAdId(x.adRoute_Id, AdHostesimIsAriyorumBean.adBean.ad_Id)}">
+                                                        <ui:include src="/resources/image/ikon_sil2.svg" />
+                                                        <f:ajax execute="adRouteListPanel" render="growl adRouteListPanel"></f:ajax>
+                                                    </h:commandLink>
+                                                </div>
+                                            </div>
+                                            
+                                          
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                           </h:panelGroup>
+                       </h:panelGroup>
+                       <!-- /Added Routes -->
+                       
+                    </div>
+                 </div>
+                
+            </h:panelGroup>
+            
+        </ui:composition>
+    </h:body>
+</html>
+

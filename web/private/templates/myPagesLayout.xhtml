@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <ui:insert name="head" ><ui:include src="../../head.xhtml" /></ui:insert>
+    </h:head>
+    <h:body>
+        <ui:insert name="header" ><ui:include src="../../header2.xhtml" /></ui:insert>
+        <main class="mt-5 mb-5">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-lg-12">
+                         <div class="login-form  " >
+                            <div class="container pt-3 pb-2 mt-3 mb-3" style="background-color: #f5f0ebbd;border-radius: 10px">
+
+                                <div class=" row ">
+                                    <style>
+                                       body > main > div > div > div.col-lg-12 > div > div > div > div > .active {background: linear-gradient(180deg, rgba(243, 148, 55, 0.81) 0%, #f39437 100%);  color: white;}
+                                    </style>
+                                    <h:panelGroup rendered="#{AccountType=='personal'}">
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/profilim" class="btn btn-home-light2  #{pagesBean.onPage eq 'profile_settings' ? 'active' : ''} ">Profilim</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'personal_my_ads' ? 'active' : ''} ">İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/araclarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'personal_my_vehicles' ? 'active' : ''} ">Araçlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/ilan-mesajlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'messages_ads' ? 'active' : ''} ">İlan Mesajları<h:panelGroup rendered="#{accountBean.isExistUserMessageNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/favori-ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'personal_my_favorites' ? 'active' : ''} ">Favori İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/destek" class="btn btn-home-light2  #{pagesBean.onPage eq 'support' ? 'active' : ''} ">Destek<h:panelGroup rendered="#{accountBean.isExistUserSupportNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>
+                                        
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{AccountType=='corporate'}">
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/profilim/s1" class="btn btn-home-light2  #{pagesBean.onPage eq 'profile_settings_s1' ? 'active' : ''}">Profilim</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'corporate_my_ads' ? 'active' : ''}">İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/araclarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'corporate_my_vehicles' ? 'active' : ''} ">Araçlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/ilan-mesajlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'messages_ads' ? 'active' : ''} ">İlan Mesajları<h:panelGroup rendered="#{accountBean.isExistUserMessageNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/favori-ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'corporate_my_favorites' ? 'active' : ''} ">Favori İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/destek" class="btn btn-home-light2  #{pagesBean.onPage eq 'support' ? 'active' : ''} ">Destek<h:panelGroup rendered="#{accountBean.isExistUserSupportNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>    
+                                       
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{AccountType=='director'}">
+                                        <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                            <a href="#" class="btn btn-home-light2 ">&nbsp;</a>
+                                        </div> 
+                                        <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                             <a href="#" class="btn btn-home-light2 ">&nbsp;</a>
+                                        </div> 
+                                        <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                            <a href="#" class="btn btn-home-light2 ">&nbsp;</a>
+                                        </div> 
+                                        <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                            <a href="/private/director/index.xhtml" class="btn btn-home-light2 ">Yönetim Paneli</a>
+                                        </div> 
+                                    </h:panelGroup>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--<ui:insert name="left_menu" ><ui:include src="../common/menu/left_menu.xhtml" /></ui:insert>-->               
+                    <div class="col-lg-12">
+                        <ui:insert name="content" ></ui:insert>   
+                    </div>     
+                </div>
+            </div>
+        </main>
+        <ui:insert name="footer" ><ui:include src="../../footer.xhtml" /></ui:insert>
+        <ui:insert name="scripts" ><ui:include src="../../scripts.xhtml" /></ui:insert>
+    </h:body>
+</html>
+

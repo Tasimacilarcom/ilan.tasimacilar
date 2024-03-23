@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition>
+
+            <style>
+                .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-list-item .ui-chkbox {top: 35% !important;}
+                #StartPositionCity > div.ui-selectcheckboxmenu-trigger.ui-state-default.ui-corner-right{ width:25px !important}
+                #EndPositionCity > div.ui-selectcheckboxmenu-trigger.ui-state-default.ui-corner-right{ width:25px !important}
+                #StartPositionTown > div.ui-selectcheckboxmenu-trigger.ui-state-default.ui-corner-right{ width:25px !important}
+                #EndPositionTown > div.ui-selectcheckboxmenu-trigger.ui-state-default.ui-corner-right{  width:25px !important }
+            </style>
+
+            <hr/>
+            <label style="margin-bottom: 10px;"><b>Nereden/Nereye - Konum</b></label>
+
+            <div style="border-radius: 4px; padding: 10px; padding-bottom: 0; border: 1px solid #eee; margin-bottom: 15px; background-color: #fdfdfd;">
+                <label for="dda">Firmaya Giriş Saati</label>
+                <div class="input-group mb-2 mr-sm-2">
+                    <p:inputMask onclick="ltr(this);" class="form-control" onkeypress="if (event.keyCode == 13) {
+                                return false;
+                            }" 
+                                 mask="99:99" title="Başlangış Saati" id="startTime2xa" placeholder="00:00" 
+                                 value="#{adBean.adSearchBean.adSearchInputEntity.fltr_AdRoute_StartTime}" 
+                                 style="font-weight: 300;font-family: Poppins;cursor: pointer;width: 30%;height: 35px;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20;padding: 3px 5px;color: #575962;margin-bottom: 10px;border-radius: 3px;" > 
+                    </p:inputMask> 
+                    <div class="input-group-prepend">  <div class="input-group-text" style="height: 35px;border-left: 0; margin-left: -2px;border-bottom-right-radius: 4px; border-top-right-radius: 4px;">ve Sonrası</div>  </div>
+                </div>
+
+                <label for="StartPositionCity">Başlangıç Yeri - İl</label>
+                <p:selectCheckboxMenu id="StartPositionCity" value="#{adBean.adSearchBean.adSearchInputEntity.fltr_AdRoute_StartPosition_City}" 
+                                      label="İl seçiniz" style=" font-size: 14px; padding: 1px; margin-bottom: 15px; width: 100%"    
+                                      filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" showHeader="false" scrollHeight="250" 
+                                      updateLabel="true"  dynamic="true" filterPlaceholder="Ara" labelSeparator=", "  >
+                    <f:selectItems   value="#{adBean.startPositionCityList()}"/>
+                    <f:ajax event="change" render="StartPositionTown EndPositionTown " listener="#{adBean.startPositionCityList()}"></f:ajax>
+                </p:selectCheckboxMenu>
+
+                <label for="StartPositionTown">Başlangıç Yeri - İlçe</label>
+                <p:selectCheckboxMenu id="StartPositionTown" value="#{adBean.adSearchBean.adSearchInputEntity.fltr_AdRoute_StartPosition_Town}" 
+                                      label="İlçe seçiniz" style=" font-size: 14px; padding: 1px; margin-bottom: 15px; width: 100%" 
+                                      filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" showHeader="false" scrollHeight="250" 
+                                      updateLabel="true"  dynamic="true" labelSeparator=", "  filterPlaceholder="Ara"  >
+                    <f:selectItems  value="#{adBean.startPositionTownList()}"/>
+                    <f:ajax event="change" render="EndPositionTown" listener="#{adBean.endPositionTownList()}"></f:ajax>
+                </p:selectCheckboxMenu>
+            </div>
+            <div style="border-radius: 4px; padding: 10px; padding-bottom: 0; border: 1px solid #eee;background-color: #fdfdfd;">
+                <label for="EndPositionCity">Bitiş Yeri - İl</label>
+                <p:selectCheckboxMenu id="EndPositionCity" value="#{adBean.adSearchBean.adSearchInputEntity.fltr_AdRoute_EndPosition_City}" 
+                                      label="İl seçiniz" style="font-size: 14px; padding: 1px; margin-bottom: 15px; width: 100%"    
+                                      filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" showHeader="false" scrollHeight="250" 
+                                      updateLabel="true"  dynamic="true" filterPlaceholder="Ara" labelSeparator=", " >
+                    <f:selectItems   value="#{adBean.endPositionCityList()}"/>
+                    <f:ajax event="change" render="StartPositionTown EndPositionTown" listener="#{adBean.endPositionCityList()}"></f:ajax>
+                </p:selectCheckboxMenu>
+
+                <label for="EndPositionTown">Bitiş Yeri - İlçe</label>
+                <p:selectCheckboxMenu id="EndPositionTown" value="#{adBean.adSearchBean.adSearchInputEntity.fltr_AdRoute_EndPosition_Town}" 
+                                      label="İlçe seçiniz" style=" font-size: 14px; padding: 1px; margin-bottom: 15px; width: 100%"  
+                                      filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" showHeader="false" scrollHeight="250" 
+                                      updateLabel="true"  dynamic="true" labelSeparator=", "  filterPlaceholder="Ara" >
+                    <f:selectItems  value="#{adBean.endPositionTownList()}"/>
+                </p:selectCheckboxMenu>
+
+                <label for="ddav">Firmadan Çıkış Saati</label>
+                <div class="input-group mb-2 mr-sm-2">
+                    <p:inputMask onclick="ltr(this);" class="form-control " onkeypress="if (event.keyCode == 13) {
+                                return false; }" 
+                                 mask="99:99" title="Başlangış Saati" id="startTime2xae" value="#{adBean.adSearchBean.adSearchInputEntity.fltr_AdRoute_EndTime}" placeholder="00:00" 
+                                 style="font-weight: 300;font-family: Poppins;cursor: pointer;width: 30%;height: 35px;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20;padding: 3px 5px;color: #575962;margin-bottom: 10px;border-radius: 3px;" >
+                    </p:inputMask>   
+                    <div class="input-group-prepend">  <div class="input-group-text" style="height: 35px;border-left: 0; margin-left: -2px;border-bottom-right-radius: 4px; border-top-right-radius: 4px;">ve Öncesi</div>  </div>
+                </div>    
+            </div>    
+        </ui:composition>
+
+    </h:body>
+
+</html>
+

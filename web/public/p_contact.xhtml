@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <!-- Start global head -->
+        <ui:insert name="head" ><ui:include src="../head.xhtml" /></ui:insert>
+        <!-- End global head -->
+    </h:head>
+    <h:body>
+        <!-- Start header -->
+        <ui:insert name="header" ><ui:include src="../header.xhtml" /></ui:insert>
+        <!-- End header -->
+        <main class="mb-3">
+            <div class="container mb-3">
+              <div class="row">
+                <div class="col">
+                  <h3>İletişim</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-sm-6">
+                 
+                  <div class="content-box mb-4">
+                      <div class="content-box-item" style=" min-height: 450px">
+                         <div class="title">
+                        <h5>Adres</h5>
+                      </div>
+                          <div class="content" >
+                        <p style="font-size: 16px !important; line-height: 24px !important;">
+                          Ihlamurdere Caddesi, Hattat Tahsin Sk. <br/>
+                          No:27 Kat:1 Beşiktaş / İSTANBUL
+                        </p>
+                      </div>
+                        <br/><br/>
+                      <div class="title">
+                        <h5>Telefon / Mail Bilgileri</h5>
+                      </div>
+                      <div class="content">
+                        <p class="mb-2" style="font-size: 16px !important; line-height: 24px !important;"><b>Destek Mail:</b> destek@tasimacilar.com</p>
+                        <p style="font-size: 16px !important; line-height: 24px !important;"><b>İletişim Maili:</b> info@tasimacilar.com</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                <!--<img src="/resources/image/map.jpg" class="img-fluid" alt="map"/>-->
+                <h:form>
+                    <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                    <p:growl id="growl" showDetail="true" life="3000"  sticky="false"/> 
+                    
+                    <div style="min-height: 450px;padding: 20px;background: linear-gradient(0deg, #f8f8f8 17.54%, rgba(255, 255, 255, 0) 105.69%); border: 1px solid #d2d3d2; border-radius: 6px;">
+                        <div class="mb-4">
+                            <h5 style="font-size: 16px; line-height: 20px; font-weight: bold;">İletişim Form'u</h5>
+                            <span style="font-size: 0.9rem">Her türlü soru, görüş, öneri ve isteklerinizi aşağıdaki form üzerinden bize iletebilirsiniz.</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="iletisimFormAd" class="form-label">Adınız</label>
+                            <h:inputText id="iletisimFormAd" class="form-control" value="#{supportBean.iletisimForm_Ad}"> </h:inputText>
+                            <h:message class="message-f" for="iletisimFormAd"> </h:message>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6  mb-3">
+                                <label for="iletisimFormEmail" class="form-label">E-Mail</label>
+                                <h:inputText id="iletisimFormEmail" 
+                                             class="form-control" 
+                                             value="#{supportBean.iletisimForm_Email}" validatorMessage="Geçersiz E-Mail adresi formatı">
+                                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                </h:inputText>
+                                <h:message class="message-f" for="iletisimFormEmail"> </h:message>
+                            </div>
+                            <div class="col-md-6  mb-3">
+                               <script>function ltr(element){if(element.setSelectionRange){ element.setSelectionRange(0,0);}}</script>
+                                <h:outputLabel for="iletisimFormTelefon" class="form-label">Telefon</h:outputLabel>
+                                <p:inputMask id="iletisimFormTelefon"  
+                                             class=" form-control" onclick="ltr(this);" 
+                                             value="#{supportBean.iletisimForm_Telefon}" 
+                                             required="true" requiredMessage="Lütfen telefon numaranızı yazınız" 
+                                             mask="0(599)-999-9999"></p:inputMask>
+                                <h:message class="message-f" for="iletisimFormTelefon" ></h:message>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="iletisimFormMesaj" class="form-label">Mesajınız</label>
+                            <p:inputTextarea id="iletisimFormMesaj" 
+                                                 class="form-control" 
+                                                 value="#{supportBean.iletisimForm_Mesaj}"
+                                                 placeholder="Lütfen buraya en fazla 500 karakter olacak şekilde mesajınızı yazınız"
+                                                 style="font-size: 12px" 
+                                                 maxlength="500"
+                                                 required="True"
+                                                 requiredMessage="Mesajınızı yazınız" 
+                                                 rows="3" 
+                                                 autoResize="false"
+                                                 onkeyup="countChar(this)">
+                            </p:inputTextarea>
+                            <h:message for="iletisimFormMesaj" class="message-f"/>
+                            <script>
+                                function countChar(val) {
+                                    var len = val.value.length;
+                                    if (len >= 801) {val.value = val.value.substring(0, 501);} 
+                                    else { $('#charNum').text(0 + len);}
+                                   };
+                            </script>
+                            <div style="font-size: small; color: #bbb">Max. karakter sayısı : 500 / Yazdığınız karakter sayısı : <span id="charNum"></span></div>                      
+                        </div>
+                        <div style="text-align: right">
+                            <h:commandLink class="btn btn-form" style="width: 200px" action="#{supportBean.createSupportMessage2()}">
+                                <span><i class="fa fa-paper-plane" aria-hidden="true"></i> <span>Gönder</span></span>                                
+                                <f:ajax execute="@form" render="@form"></f:ajax>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </h:form>
+                </div>
+              </div>
+            </div>
+          </main>
+        <!-- Start footer -->
+        <ui:insert name="footer" ><ui:include src="../footer.xhtml" /></ui:insert>
+        <!-- End footer -->
+        
+        <!-- Start global scripts -->
+        <ui:insert name="scripts" ><ui:include src="../scripts.xhtml" /></ui:insert>
+        <!-- End global scripts -->
+    </h:body>
+</html>

@@ -1,0 +1,479 @@
+/* 
+    Created on : 10.Oca.2019, 15:23:29
+    Author     : yasin.kalayci
+*/
+
+/* GLOBAL STYLES
+-------------------------------------------------- */
+body {
+  padding-top: 61px;
+  color: #5a5a5a;
+  /*background-color: #f0f1f3;*/
+  /*background-color: #e3e6ec;*/
+  background-color: #f5f5f5;
+}
+
+.text-decoration-none {
+    text-decoration: none!important;
+    color: inherit!important;
+}
+
+input[type="radio"] {
+    width: 17px;
+    height: 17px;
+}
+
+.message-f{
+    /*uyari mesajlari icin*/
+    font-size: medium  !important;
+    color: red  !important;
+    list-style-type: none  !important; 
+    padding: 0px  !important; 
+    font-family: monospace  !important;
+}
+
+
+.m-widget6 .m-widget6__body .m-widget6__item {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+
+.single-listing-images{
+}
+.single-listing-images .featured-image img, .single-listing-images .featured-image .media-box .zoom{
+	border-radius:3px 3px 0 0;
+}
+.single-listing-images .additional-images{
+	background:#eee;
+	overflow:hidden;
+	padding:10px;
+	border-radius:0 0 3px 3px;
+}
+.additional-images .owl-carousel{
+	margin-left:0;
+}
+
+.media-box{
+	position:relative;
+	display:block;
+	max-width:100%;
+            color: #28a4c9;
+
+}
+.media-box .zoom, .media-box .expand{
+	position:absolute;
+	width:100%;
+	height:100%;
+	text-align:center;
+	font-size:1.5em;
+	z-index:99;
+	left:0;
+	top:0;
+	margin:0;
+	background-color:rgba(0,0,0,.4);
+	opacity:0;
+	-webkit-transition:all 0.3s ease 0.2s;
+	-moz-transition:all 0.3s ease 0.2s;
+	-ms-transition:all 0.3s ease 0.2s;
+	-o-transition:all 0.3s ease 0.2s;
+	transition:all 0.3s ease 0.1s;
+}
+.media-box .zoom .icon, .media-box .expand .icon{
+	width:44px;
+	height:44px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	line-height:44px;
+	text-align:center;
+	color:#ffffff!important;
+	position:absolute;
+	font-size:1.2em;
+	top:50%;
+	left:50%;
+	margin:-22px 0 0 -22px;
+}
+.media-box:hover .zoom, .media-box:hover .expand{
+	opacity:1;
+	-webkit-transition: opacity .3s .2s;
+	-moz-transition: opacity .3s .2s;
+	-ms-transition: opacity .3s .2s;
+	-o-transition: opacity .3s .2s;
+	transition: opacity .3s .2s;
+}
+
+.media-box .zoom .icon, .media-box .expand .icon {
+    width: 44px;
+    height: 44px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    line-height: 44px;
+    text-align: center;
+    color: #ffffff!important;
+    position: absolute;
+    font-size: 1.2em;
+    top: 50%;
+    left: 50%;
+    margin: -22px 0 0 -22px;
+    background-color: #6666ff;
+}
+.single-listing-images .additional-images{
+	background:#eee;
+	overflow:hidden;
+	padding:10px;
+	border-radius:0 0 3px 3px;
+}
+.additional-images .owl-carousel{
+	margin-left:0;
+}
+.additional-images .owl-carousel .item-video i{
+	position:absolute;
+	z-index:9;
+	top:50%;
+	left:50%;
+	margin-top:-15px;
+	font-size:30px;
+	color:rgba(255,255,255,.9)
+}
+.additional-images .owl-carousel .item{
+	margin-left:1px;
+}
+.additional-images .owl-carousel .owl-wrapper-outer{
+	width:100%!important;
+}
+.additional-images .owl-theme .owl-controls{
+	margin-top:0;
+}
+.additional-images .owl-theme .owl-buttons div{
+	margin-top:-13px;
+}
+.additional-images .owl-theme .owl-buttons div.owl-prev{
+	left:0;
+}
+
+
+.additional-images .owl-carousel .owl-wrapper-outer {
+    width: 100%!important;
+}
+
+.owl-carousel .owl-wrapper-outer {
+    width: 101%!important;
+}
+.owl-carousel .owl-wrapper-outer {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+}
+.additional-images .owl-theme .owl-controls {
+    margin-top: 0;
+}
+.owl-theme .owl-controls {
+    margin-top: 10px;
+    text-align: center;
+    padding-left: 25px;
+}
+.owl-controls {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+.add-features-list{
+	margin:0;
+	list-style-type:none;
+}
+.add-features-list li{
+	border:1px solid #eee;
+	border-radius:20px;
+	padding:3px 10px;
+	display:inline-block;
+	margin-right:5px;
+	margin-bottom:15px;
+	font-size:13px;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.075);
+}
+
+.post-comments {
+    margin: 30px 0 0 0;
+}
+.comments {
+    margin: 0;
+    list-style-type: none;
+}
+.comments li {
+    margin-bottom: 25px;
+}
+.comments li .post-comment-block {
+    padding: 20px;
+    padding-bottom: 5px;
+    border: 1px solid #eee;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.075);
+    background: #ffffff;
+}
+.comments li .img-thumbnail {
+    float: left;
+    margin-right: 20px;
+   
+}
+
+.img-thumbnail {
+    background: #fff;
+    border-color: #eee;
+    margin-bottom: 15px;
+}
+.thumbnail, .img-thumbnail {
+    background-color: #ffffff;
+    border: 1px solid #e8e8e8;
+}
+.img-thumbnail {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.post-comment-content {
+    padding-left: 100px;
+}
+.comments li .meta-data {
+    margin-bottom: 12px;
+}
+
+.meta-data {
+    color: #999;
+    font-size: 12px;
+    line-height: normal;
+    display: block;
+    font-weight: 400;
+}
+
+.m-widget6 .m-widget6__item .m-widget6__text {
+    color: #3c3d42;
+}
+
+
+/* PRIMEFACES MESSAGE
+-------------------------------------------------- */
+.ui-messages-info, .ui-messages-warn, .ui-messages-error, .ui-messages-fatal {
+    border: 1px solid;
+    margin: 0;
+    padding: 7px;
+}
+
+.ui-messages-info {
+    color: #fff;
+    background-color: #53b0f8;
+    border-color: #45aaf8;
+}
+.ui-messages-warn {
+    color: #fff;
+    background-color: #ffc241;
+    border-color: #ffbd31;
+}
+.ui-messages-error {
+    color: #fff;
+    background-color: #f66e84;
+    border-color: #f55f78;
+}
+
+
+/* PRIMEFACES MESSAGE
+-------------------------------------------------- */
+
+
+
+/* ANASAYFA
+-------------------------------------------------- */
+
+.btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active, .show>.btn-warning.dropdown-toggle {
+    color: #4a608c !important; 
+    background-color: #e8cca4 !important; 
+    border-color: #e8cca4 !important; 
+}
+.ilanver-buton{ border-color:#e8cca4; 
+                background-color: #e8cca4; 
+                color: #4a608c;
+                font-size: 1.2rem; 
+                font-weight: 500;
+}
+.ilanver-buton2{ border-color:#e8cca4; 
+                background-color: #e8cca4; 
+                color: #4a608c;
+                /*font-size: 1.2rem;*/ 
+                /*font-weight: 500;*/
+                
+}
+.ilanver-buton:hover{ border-color:#e8cca4 !important; 
+                      background-color: #e8cca4 !important; 
+                      color: #4a608c !important; 
+                      font-size: 1.2rem !important; 
+                      font-weight: 500 !important; 
+}
+.ilanver-buton2:hover{ border-color:#e8cca4 !important; 
+                      background-color: #e8cca4 !important; 
+                      color: #4a608c !important; 
+                      /*font-size: 1.2rem !important;*/ 
+                      /*font-weight: 500 !important;*/ 
+}
+.ilanver-buton-dropdown-govde{
+    margin-top: 5px;
+    background-color: rgb(255, 254, 253);
+}
+.ilanver-buton-dropdown-govde-acc{
+    margin-top: 17px;
+    background-color: rgb(255, 254, 253);
+}
+.ilanver-buton-dropdown-govde-m{
+    margin-top: 5px;
+    background-color: rgb(255, 254, 253);
+    margin-left: -45px;
+    font-size: .9rem;
+    
+}
+.ilanver-buton-dropdown-govde-acc-m{
+    margin-top: 6px;
+    background-color: rgb(255, 254, 253);
+    margin-left: -7px;
+    font-size: .9rem;
+}
+.ilanver-buton-dropdown-govde-ucgen{
+    width:0;
+    height:0;
+    border-bottom: 10px solid #fcfcff;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    margin-top: -16px;
+    margin-left: 85px;
+}
+.ilanver-buton-dropdown-govde-ucgen-m{
+    width:0;
+    height:0;
+    border-bottom: 10px solid #fcfcff;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    margin-top: -16px;
+    margin-left: 85px;
+}
+.ilanver-buton-dropdown-govde-ucgen2{
+    width:0;
+    height:0;
+    border-bottom: 10px solid #fcfcff;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    margin-top: -16px;
+    margin-left: 1px;
+}
+.ilanver-buton-dropdown-header {
+    display: block;
+    padding: .5rem 1.5rem;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    color: #4a608c;
+    white-space: nowrap;
+}
+.ilanver-buton-dropdown-header-p {
+    display: block;
+    padding: .5rem 1.5rem;
+    margin-bottom: 0;
+    font-size: .9rem;
+    color: #4a608c;
+    white-space: nowrap;
+    line-height: 5px !important;
+}
+
+
+
+
+
+
+/* /ANASAYFA
+-------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px){
+    .m-dropdown.m-dropdown--mobile-full-width.m-dropdown--align-center>.m-dropdown__wrapper, .m-dropdown.m-dropdown--mobile-full-width>.m-dropdown__wrapper {
+        left: 0px !important;
+        right: 0px !important;
+    }
+}
+
+
+
+@media (max-width: 1024px){
+    
+    /*for main menu right button group*/
+    .m-topbar { background-color: transparent !important;
+                -webkit-box-shadow: none !important;
+                -moz-box-shadow: none !important;
+                box-shadow: none !important;
+    }   
+ 
+}
+                                
+    
+/* SM - Küçük cihazlar (yatay telefonlar, 576 piksel ve üstü) */
+@media (min-width: 576px) { 
+
+}
+/* MD- Orta boy cihazlar (tabletler, 768 piksel ve üstü)*/
+@media (min-width: 768px) { 
+    .container-main-x{padding: 10px;padding-top: 100px;}
+}
+/* LG - Büyük cihazlar (masaüstü bilgisayarlar, 992 piksel ve üstü) */
+@media (min-width: 992px) {
+    .responsive-logo-container {text-align: left; line-height: 51.8px;}
+    img.responsive-logo { max-height: 40px; width: 100%}
+    .ilan-ver-buton { display: none }
+    .ilan-ver-buton2 { display: inline-block ! important; line-height: 51.8px;}
+}
+/* XL - Ekstra büyük cihazlar (büyük masaüstü bilgisayarlar, 1200 piksel ve üstü)*/
+@media (min-width: 1200px) { 
+
+}
+
+
+/* XS - Ekstra küçük cihazlar (portre telefonlar, 576 pikselden az)*/
+@media (max-width: 575.98px) { 
+
+}
+/* SM - Küçük cihazlar (yatay telefonlar, 768 pikselden az)*/
+@media (max-width: 767.98px) {
+    .container-main-x{padding: 10px;padding-top: 120px;}
+}
+/* MD - Orta boy cihazlar (tabletler, 992 pikselden az)*/
+@media (max-width: 991.98px) {
+    .responsive-logo-container {text-align: center; line-height: 30px;}
+    img.responsive-logo { height: 30px; }
+    .ilan-ver-buton { display: block}
+    .ilan-ver-buton2 { display: none ! important;}
+    
+}
+/* LG - Büyük cihazlar (masaüstü bilgisayarlar, 1200 pikselden az)*/
+@media (max-width: 1199.98px) {    
+    
+}

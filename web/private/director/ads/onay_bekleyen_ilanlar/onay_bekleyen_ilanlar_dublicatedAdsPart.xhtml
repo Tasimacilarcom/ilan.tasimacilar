@@ -1,0 +1,522 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition>
+            <div class="col-md-12" style="padding: 0; " >
+                <h:panelGroup rendered="#{adx.ad_Category_Id == 7}">
+                    
+                    <ui:repeat var="ccc" value="#{adBean.dublicatedAds_PlakamiSatiyorum(adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateProvinceCode,adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateLatterCode,adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateNumberCode,adx.ad_OvnerAccountId )}" >
+                        <h:panelGroup rendered="#{adx.ad_Id ne ccc.ad_Id}">                                                              
+                            <div class="row  m-portlet" style=" margin: 0;  background-color: #fff3ed; color: red">
+                                <div class="col-md-2"  style="border: 1px solid #ddd; padding: 10px; text-align: center">
+                                    <div class="row">
+                                        <div class="col-lg-2" style="text-align: center;writing-mode: tb-rl; transform: rotate(-180deg);">
+                                            <span style="font-weight: 500;">BENZER İLAN</span>
+                                        </div>
+                                        <div class="col-lg-10" style="text-align: left;padding: 0">
+                                            <h:panelGroup rendered="#{ccc.ad_IsPublish == true}" style="color: green; font-size: 0.8rem">
+                                                <table>
+                                                    <tbody>
+                                                        <tr><td colspan="2" style="font-size: 1rem ; "><span style="font-weight: 500;width: 100%; border-bottom: 1px solid #00800024; color: green">BU ILAN YAYINDA</span></td></tr>
+                                                        <tr><td width="65px;">İlan Sahibi : </td><td>#{ccc.accountBean.account_FirstName}"<br/>#{ccc.accountBean.account_LastName}</td></tr>
+                                                        <tr><td>İlan Tarihi :</td><td> <h:outputText value="#{ccc.ad_CreateTime}"><f:convertDateTime pattern="dd.MM.YYYY HH:mm" /></h:outputText></td></tr>
+                                                        <tr><td>Kategori : </td><td>#{ccc.ad_Category_Name}</td></tr>
+                                                        <tr><td>İlan Id : </td><td>#{ccc.ad_Id}</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{ccc.ad_IsPublish == false}" style="color: red; font-size: 0.8rem">
+                                                <table>
+                                                    <tbody>
+                                                        <tr><td colspan="2" style="font-size: 1rem ; "><span style="font-weight: 500;width: 100%; border-bottom: 1px solid #ff000024; color: red">BU ILAN YAYINDA DEĞİL</span></td></tr>
+                                                        <tr><td width="65px;">İlan Sahibi : </td><td>#{ccc.accountBean.account_FirstName}"<br/>#{ccc.accountBean.account_LastName}</td></tr>
+                                                        <tr><td>İlan Tarihi :</td><td> <h:outputText value="#{ccc.ad_CreateTime}"><f:convertDateTime pattern="dd.MM.YYYY HH:mm" /></h:outputText></td></tr>
+                                                        <tr><td>Kategori : </td><td>#{ccc.ad_Category_Name}</td></tr>
+                                                        <tr><td>İlan Id : </td><td>#{ccc.ad_Id}</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="border: 1px solid #ddd; padding: 10px;">
+                                    <h:panelGroup rendered="#{ccc.ad_IsPublish == true}" style="color: green;">
+                                        <table cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr><td><h:outputText value="#{ccc.ad_Title}" style="font-weight: 500;font-size: 1.2em;"></h:outputText></td></tr>
+                                                <tr><td><p:scrollPanel mode="native" style="color: green; background: none; width:100%;max-height:250px; border: none" ><h:outputText value="#{ccc.ad_Comment}" escape="false" ></h:outputText></p:scrollPanel></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{ccc.ad_IsPublish == false}" style="color: green">
+                                        <table cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr><td><h:outputText value="#{ccc.ad_Title}" style="font-weight: 500;font-size: 1.2em;"></h:outputText></td></tr>
+                                                <tr><td><p:scrollPanel mode="native" style="color: red; background: none; width:100%;max-height:250px; border: none" ><h:outputText value="#{ccc.ad_Comment}" escape="false" ></h:outputText></p:scrollPanel></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="col-md-2" style="border: 1px solid #ddd; padding: 10px;font-size: 1rem">
+                                    <h:panelGroup rendered="#{ccc.ad_IsPublish == true}" style="color: green">
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('Plakamı satıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="50%"><span style="font-weight: 500">Plaka : </span></td>
+                                                        <td><h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateProvinceCode}"><f:convertNumber/></h:outputText>&nbsp;
+                                                            <h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateLatterCode}"></h:outputText>&nbsp;
+                                                            <h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateNumberCode}"></h:outputText>
+                                                        </td>
+                                                    </tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{ccc.adPlakamiSatiyorum.ad_PlakamiSatiyorum_ucret}"><f:convertNumber/></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Araçla Birlikte : </span></td><td><h:outputText value="#{ccc.adPlakamiSatiyorum.ad_PlakamiSatiyorum_AraçlaBirliktemi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Yol Belgesi Var : </span></td><td><h:outputText value="#{ccc.adPlakamiSatiyorum.ad_PlakamiSatiyorum_YolBelgesiVarmi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Noter Satışlı : </span></td><td><h:outputText value="#{ccc.adPlakamiSatiyorum.ad_PlakamiSatiyorum_NoterSatislimi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Hisseli : </span></td><td><h:outputText value="#{ccc.adPlakamiSatiyorum.ad_PlakamiSatiyorum_Hisselimi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup> 
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{ccc.ad_IsPublish == false}" style="color: red">
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('Plakamı satıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="50%"><span style="font-weight: 500">Plaka : </span></td>
+                                                        <td><h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateProvinceCode}"><f:convertNumber/></h:outputText>&nbsp;
+                                                            <h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateLatterCode}"></h:outputText>&nbsp;
+                                                            <h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateNumberCode}"></h:outputText>
+                                                        </td>
+                                                    </tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{ccc.adPlakamiSatiyorum.ad_PlakamiSatiyorum_ucret}"><f:convertNumber/></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Araçla Birlikte : </span></td><td><h:outputText value="#{ccc.adPlakamiSatiyorum.ad_PlakamiSatiyorum_AraçlaBirliktemi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Yol Belgesi Var : </span></td><td><h:outputText value="#{ccc.adPlakamiSatiyorum.ad_PlakamiSatiyorum_YolBelgesiVarmi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Noter Satışlı : </span></td><td><h:outputText value="#{ccc.adPlakamiSatiyorum.ad_PlakamiSatiyorum_NoterSatislimi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Hisseli : </span></td><td><h:outputText value="#{ccc.adPlakamiSatiyorum.ad_PlakamiSatiyorum_Hisselimi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup> 
+                                    </h:panelGroup>
+                                </div>
+                                <div class="col-md-4" style="border: 1px solid #ddd; padding-left: 10px;padding-right: 10px;">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-1"  style="border: 1px solid #ddd; padding: 10px; ">                   
+                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                            <h:panelGroup rendered="#{ccc.ad_IsPublish != true}">
+                                                <tr><td><h:commandLink class="btn btn-outline-success btn-sm" style="margin-bottom: 6px;width: 100%" action="#{adBean.adConfirmAndPublish(adx.ad_Id)}"  title="Onayla">Onayla<f:ajax execute="@form" render="dfwer3wq:dfdwfewq"></f:ajax></h:commandLink></td></tr>
+                                            </h:panelGroup>
+                                            <tr>
+                                                <td>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('Şöförüm iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg3').show()" update="dfwer3wq:i76tur">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('İşim var araç arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg4').show()" update="dfwer3wq:dsfe45">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('Aracım var iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg5').show()" update="dfwer3wq:gfdts4">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('Aracim var şöför arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg6').show()" update="dfwer3wq:xcv4w">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('Aracim var hostes arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg7').show()" update="dfwer3wq:hjkhgf5x">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('Hostesim iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg8').show()" update="dfwer3wq:dsf89d">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('İşim var araç arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/isim-var-arac-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracım var iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/aracim-var-is-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracim var şöför arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/aracim-var-sofor-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracim var hostes arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/aracim-var-hostes-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Hostesim iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/hostesim-is-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Şöförüm iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/soforum-is-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Plakamı satıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/plakami-satiyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('İşim var araç arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/isim-var-arac-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracım var iş arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/aracim-var-is-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracim var şöför arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/aracim-var-sofor-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracim var hostes arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/aracim-var-hostes-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Hostesim iş arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/hostesim-is-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Şöförüm iş arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/soforum-is-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                </td>
+                                            </tr>
+                                            <tr><td><h:commandLink class="btn btn-outline-danger btn-sm" style="margin-bottom: 6px;width: 100%" action="#{adBean.disableAd(ccc.ad_Id)}" title="Sil">Sil<f:ajax execute="@form" render="dfwer3wq:dfdwfewq"></f:ajax></h:commandLink></td></tr>
+                                        <!-- <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Aracım var iş arıyorum' }">
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Aracim var şöför arıyorum' }">
+                                           </h:panelGroup>
+                                            <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Aracim var hostes arıyorum' }">
+                                            </h:panelGroup>-->
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>                                                                 
+                        </h:panelGroup>
+                    </ui:repeat>
+                </h:panelGroup>
+                
+                <h:panelGroup rendered="#{adx.ad_Category_Id != 7}">                 
+                    <ui:repeat var="ccc" 
+                               value="#{adBean.dublicatedAds(adx.ad_Category_Id, adx.ad_OvnerAccountId, adx.adrb.adRoute_StartPosition_City, adx.adrb.adRoute_StartPosition_Town, adx.adrb.adRoute_EndPosition_City, adx.adrb.adRoute_EndPosition_Town)}" >
+                        <h:panelGroup rendered="#{adx.ad_Id ne ccc.ad_Id}">                                                              
+                            <div class="row  m-portlet" style=" margin: 0;  background-color: #fff3ed; color: red">
+                                <div class="col-md-2"  style="border: 1px solid #ddd; padding: 10px; text-align: center">
+                                    <div class="row">
+                                        <div class="col-lg-2" style="text-align: center;writing-mode: tb-rl; transform: rotate(-180deg);">
+                                            <span style="font-weight: 500;">BENZER İLAN</span>
+                                        </div>
+                                        <div class="col-lg-10" style="text-align: left;padding: 0">
+                                            <h:panelGroup rendered="#{ccc.ad_IsPublish == true}" style="color: green; font-size: 0.8rem">
+                                                <table>
+                                                    <tbody>
+                                                        <tr><td colspan="2" style="font-size: 1rem ; "><span style="font-weight: 500;width: 100%; border-bottom: 1px solid #00800024; color: green">BU ILAN YAYINDA</span></td></tr>
+                                                        <tr><td width="65px;">İlan Sahibi : </td><td>#{ccc.accountBean.account_FirstName}"<br/>#{ccc.accountBean.account_LastName}</td></tr>
+                                                        <tr><td>İlan Tarihi :</td><td> <h:outputText value="#{ccc.ad_CreateTime}"><f:convertDateTime pattern="dd.MM.YYYY HH:mm" /></h:outputText></td></tr>
+                                                        <tr><td>Kategori : </td><td>#{ccc.ad_Category_Name}</td></tr>
+                                                        <tr><td>İlan Id : </td><td>#{ccc.ad_Id}</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{ccc.ad_IsPublish == false}" style="color: red; font-size: 0.8rem">
+                                                <table>
+                                                    <tbody>
+                                                        <tr><td colspan="2" style="font-size: 1rem ; "><span style="font-weight: 500;width: 100%; border-bottom: 1px solid #ff000024; color: red">BU ILAN YAYINDA DEĞİL</span></td></tr>
+                                                        <tr><td width="65px;">İlan Sahibi : </td><td>#{ccc.accountBean.account_FirstName}"<br/>#{ccc.accountBean.account_LastName}</td></tr>
+                                                        <tr><td>İlan Tarihi :</td><td> <h:outputText value="#{ccc.ad_CreateTime}"><f:convertDateTime pattern="dd.MM.YYYY HH:mm" /></h:outputText></td></tr>
+                                                        <tr><td>Kategori : </td><td>#{ccc.ad_Category_Name}</td></tr>
+                                                        <tr><td>İlan Id : </td><td>#{ccc.ad_Id}</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3" style="border: 1px solid #ddd; padding: 10px;">
+                                    <h:panelGroup rendered="#{ccc.ad_IsPublish == true}" style="color: green;">
+                                        <table cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr><td><h:outputText value="#{ccc.ad_Title}" style="font-weight: 500;font-size: 1.2em;"></h:outputText></td></tr>
+                                                <tr><td><p:scrollPanel mode="native" style="color: green; background: none; width:100%;max-height:250px; border: none" ><h:outputText value="#{ccc.ad_Comment}" escape="false" ></h:outputText></p:scrollPanel></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{ccc.ad_IsPublish == false}" style="color: green">
+                                        <table cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr><td><h:outputText value="#{ccc.ad_Title}" style="font-weight: 500;font-size: 1.2em;"></h:outputText></td></tr>
+                                                <tr><td><p:scrollPanel mode="native" style="color: red; background: none; width:100%;max-height:250px; border: none" ><h:outputText value="#{ccc.ad_Comment}" escape="false" ></h:outputText></p:scrollPanel></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="col-md-2" style="border: 1px solid #ddd; padding: 10px;font-size: 1rem">
+                                    <h:panelGroup rendered="#{ccc.ad_IsPublish == true}" style="color: green">
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('İşim var araç arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span >Ücret : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Cost}"><f:convertNumber/></h:outputText>&nbsp;TL</td></tr>
+                                                    <tr><td width="50%"><span >Servis Süresi : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceTime}"></h:outputText>&nbsp;Dak.</td></tr>
+                                                    <tr><td width="50%"><span >Yolcu Sayısı : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_NumberOfPassengers}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span >KM : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Km}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span >Çalışılacak gün : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_DayToWork}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span >Servis Tipi : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceType.substring(1)}"></h:outputText></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('Aracım var iş arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Marka : </span></td><td><h:outputText value="#{adx.adAracimVarIsAriyorum_vehicle.vehicle_Brand}"><f:convertNumber/></h:outputText></td></tr>
+                                                    <tr>
+                                                        <td width="50%"><span style="font-weight: 500">Plaka : </span></td>
+                                                        <td><h:outputText value="#{adx.adAracimVarIsAriyorum_vehicle.vehicle_PlateProvinceCode}"><f:convertNumber/></h:outputText>&nbsp;
+                                                            <h:outputText value="#{adx.adAracimVarIsAriyorum_vehicle.vehicle_PlateLatterCode}"></h:outputText>&nbsp;
+                                                            <h:outputText value="#{adx.adAracimVarIsAriyorum_vehicle.vehicle_PlateNumberCode}"></h:outputText>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup> 
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('Aracim var şöför arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_Cost}"><f:convertNumber/></h:outputText>&nbsp;TL</td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Servis Süresi : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_ServiceTime}"></h:outputText>&nbsp;Dak.</td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Yolcu Sayısı : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_NumberOfPassengers}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">KM : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_Km}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Çalışılacak gün : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_DayToWork}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Servis Tipi : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_ServiceType.substring(1)}"></h:outputText></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('Aracim var hostes arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{ccc.adAracimVarHostesAriyorum.ad_AracimVarHostesAriyorum_Cost}"><f:convertNumber/></h:outputText>&nbsp;TL</td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Okul Adı : </span></td><td><h:outputText value="#{ccc.adAracimVarHostesAriyorum.ad_AracimVarHostesAriyorum_school}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('Şöförüm iş arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Doğum Yeri : </span></td><td><h:outputText value="#{ccc.adSoforumIsAriyorumBean.driver.driver_PlaceOfBirth}"><f:convertNumber/></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Doğum Tarihi : </span></td><td><h:outputText value="#{ccc.adSoforumIsAriyorumBean.driver.driver_BirthDate}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{ccc.adSoforumIsAriyorumBean.driver.driver_Fee}"><f:convertNumber /></h:outputText>&nbsp;TL</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Hostesim iş arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Doğum Yeri : </span></td><td><h:outputText value="#{adx.adHostesimIsAriyorumBean.hostess.hostess_PlaceOfBirth}"><f:convertNumber/></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Doğum Tarihi : </span></td><td><h:outputText value="#{adx.adHostesimIsAriyorumBean.hostess.hostess_BirthDate}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{ccc.ad_IsPublish == false}" style="color: red">
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('İşim var araç arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span >Ücret : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Cost}"><f:convertNumber/></h:outputText>&nbsp;TL</td></tr>
+                                                    <tr><td width="50%"><span >Servis Süresi : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceTime}"></h:outputText>&nbsp;Dak.</td></tr>
+                                                    <tr><td width="50%"><span >Yolcu Sayısı : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_NumberOfPassengers}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span >KM : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Km}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span >Çalışılacak gün : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_DayToWork}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span >Servis Tipi : </span></td><td><h:outputText value="#{ccc.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceType.substring(1)}"></h:outputText></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('Aracım var iş arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Marka : </span></td><td><h:outputText value="#{ccc.adAracimVarIsAriyorum_vehicle.vehicle_Brand}"><f:convertNumber/></h:outputText></td></tr>
+                                                    <tr>
+                                                        <td width="50%"><span style="font-weight: 500">Plaka : </span></td>
+                                                        <td><h:outputText value="#{ccc.adAracimVarIsAriyorum_vehicle.vehicle_PlateProvinceCode}"><f:convertNumber/></h:outputText>&nbsp;
+                                                            <h:outputText value="#{ccc.adAracimVarIsAriyorum_vehicle.vehicle_PlateLatterCode}"></h:outputText>&nbsp;
+                                                            <h:outputText value="#{ccc.adAracimVarIsAriyorum_vehicle.vehicle_PlateNumberCode}"></h:outputText>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup> 
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('Aracim var şöför arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{ccc.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_Cost}"><f:convertNumber/></h:outputText>&nbsp;TL</td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Servis Süresi : </span></td><td><h:outputText value="#{ccc.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_ServiceTime}"></h:outputText>&nbsp;Dak.</td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Yolcu Sayısı : </span></td><td><h:outputText value="#{ccc.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_NumberOfPassengers}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">KM : </span></td><td><h:outputText value="#{ccc.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_Km}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Çalışılacak gün : </span></td><td><h:outputText value="#{ccc.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_DayToWork}"></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Servis Tipi : </span></td><td><h:outputText value="#{ccc.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_ServiceType.substring(1)}"></h:outputText></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('Aracim var hostes arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{ccc.adAracimVarHostesAriyorum.ad_AracimVarHostesAriyorum_Cost}"><f:convertNumber/></h:outputText>&nbsp;TL</td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Okul Adı : </span></td><td><h:outputText value="#{ccc.adAracimVarHostesAriyorum.ad_AracimVarHostesAriyorum_school}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('Şöförüm iş arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Doğum Yeri : </span></td><td><h:outputText value="#{ccc.adSoforumIsAriyorumBean.driver.driver_PlaceOfBirth}"><f:convertNumber/></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Doğum Tarihi : </span></td><td><h:outputText value="#{ccc.adSoforumIsAriyorumBean.driver.driver_BirthDate}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{ccc.adSoforumIsAriyorumBean.driver.driver_Fee}"><f:convertNumber /></h:outputText>&nbsp;TL</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{ccc.ad_Category_Name.equals('Hostesim iş arıyorum') }">
+                                            <table cellpadding="0" cellspacing="0" width="100%">
+                                                <tbody>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Doğum Yeri : </span></td><td><h:outputText value="#{ccc.adHostesimIsAriyorumBean.hostess.hostess_PlaceOfBirth}"><f:convertNumber/></h:outputText></td></tr>
+                                                    <tr><td width="50%"><span style="font-weight: 500">Doğum Tarihi : </span></td><td><h:outputText value="#{ccc.adHostesimIsAriyorumBean.hostess.hostess_BirthDate}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></td></tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>                                       
+                                    </h:panelGroup>
+                                </div>
+                                <div class="col-md-4" style="border: 1px solid #ddd; padding-left: 10px;padding-right: 10px;">
+                                    <h:panelGroup rendered="#{ccc.ad_Category_Name eq 'Aracım var iş arıyorum' }">
+                                        <table class="table table-sm m-table m-table--head-bg-brand" style="background-color: #fff;margin-top: 10px; border: 1px solid #ccc">
+                                            <thead>
+                                                <tr>
+                                                    <th style="color: #575962;text-align: center; background: #eee;">Başlangıç Saati</th>
+                                                    <th style="color: #575962;text-align: center; background: #eee;">Aracın Boş olduğu Yer</th>
+                                                    <th style="color: #575962;text-align: center; background: #eee;">Bitiş Saati</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <ui:repeat var="x" value="#{adBean.allAdRouteList(ccc.ad_Id)}">
+                                                    <tr style="color: #434b5a">
+                                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                                        <td style="vertical-align: middle; text-align: center;"><h:outputText value="#{x.adRoute_StartPosition_City}"></h:outputText>&nbsp;-&nbsp;<h:outputText value="#{x.adRoute_StartPosition_Town}"></h:outputText><p><h:outputText value="#{x.adRoute_StartPosition_Neighborhood}"></h:outputText></p></td>
+                                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                                    </tr>
+                                                </ui:repeat>
+                                            </tbody>
+                                        </table>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{ccc.ad_Category_Name eq 'Şöförüm iş arıyorum' }">
+                                        <table class="table table-sm m-table m-table--head-bg-brand" style="background-color: #fff;margin-top: 10px; border: 1px solid #ccc">
+                                            <thead>
+                                                <tr>
+                                                    <th style="color: #575962;text-align: center; background: #eee;">Başlangıç Saati</th>
+                                                    <th style="color: #575962;text-align: center; background: #eee;">Şöförün Boş olduğu Yer</th>
+                                                    <th style="color: #575962;text-align: center; background: #eee;">Bitiş Saati</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <ui:repeat var="x" value="#{adBean.allAdRouteList(ccc.ad_Id)}">
+                                                    <tr style="color: #434b5a">
+                                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                                        <td style="vertical-align: middle; text-align: center;"><h:outputText value="#{x.adRoute_StartPosition_City}"></h:outputText>&nbsp;-&nbsp;<h:outputText value="#{x.adRoute_StartPosition_Town}"></h:outputText><p><h:outputText value="#{x.adRoute_StartPosition_Neighborhood}"></h:outputText></p></td>
+                                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                                    </tr>
+                                                </ui:repeat>
+                                            </tbody>
+                                        </table>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{ccc.ad_Category_Name eq 'Hostesim iş arıyorum' }">
+                                        <table class="table table-sm m-table m-table--head-bg-brand" style="background-color: #fff;margin-top: 10px; border: 1px solid #ccc">
+                                            <thead>
+                                                <tr>
+                                                    <th style="color: #575962;text-align: center; background: #eee;">Başlangıç Saati</th>
+                                                    <th style="color: #575962;text-align: center; background: #eee;">Hostesin Boş olduğu Yer</th>
+                                                    <th style="color: #575962;text-align: center; background: #eee;">Bitiş Saati</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <ui:repeat var="x" value="#{adBean.allAdRouteList(ccc.ad_Id)}">
+                                                    <tr style="color: #434b5a">
+                                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                                        <td style="vertical-align: middle; text-align: center;"><h:outputText value="#{x.adRoute_StartPosition_City}"></h:outputText>&nbsp;-&nbsp;<h:outputText value="#{x.adRoute_StartPosition_Town}"></h:outputText><p><h:outputText value="#{x.adRoute_StartPosition_Neighborhood}"></h:outputText></p></td>
+                                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                                    </tr>
+                                                </ui:repeat>
+                                            </tbody>
+                                        </table>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{ccc.ad_Category_Name ne 'Aracım var iş arıyorum' and ccc.ad_Category_Name ne 'Şöförüm iş arıyorum' and ccc.ad_Category_Name ne 'Hostesim iş arıyorum'  and ccc.ad_Category_Name ne 'Plakamı satıyorum' }">
+                                        <table class="table table-sm m-table m-table--head-bg-brand" style="background-color: #fff;margin-top: 10px; border: 1px solid #ccc">
+                                            <thead>
+                                                <tr>
+                                                    <th colspan="2" style="color: #575962;text-align: center; background: #eee;">Başlangıç</th>
+                                                    <th style="text-align: center; background: #eee;">&nbsp;</th>
+                                                    <th colspan="2" style="color: #575962;text-align: center; background: #eee;">Bitiş</th>
+                                                </tr>
+                                                <tr>
+                                                    <th width="22%"  style="color: #575962;text-align: center; background: #eee;">Saati</th>
+                                                    <th style="color: #575962;text-align: center; background: #eee;"> Yeri</th>
+                                                    <th style="text-align: center; background: #eee;">&nbsp;</th>
+                                                    <th style="color: #575962;text-align: center; background: #eee;">Yeri</th>
+                                                    <th width="22%"  style="color: #575962;text-align: center; background: #eee;">Saati</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <ui:repeat var="x" value="#{adBean.allAdRouteList(ccc.ad_Id)}">
+                                                    <tr style="color: #434b5a">
+                                                        <td style=" vertical-align: middle; text-align: center">
+                                                            <h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText>
+                                                        </td>
+                                                        <td style="vertical-align: middle; text-align: center;">
+                                                            <h:outputText value="#{x.adRoute_StartPosition_City}"></h:outputText>&nbsp;-&nbsp;<h:outputText value="#{x.adRoute_StartPosition_Town}"></h:outputText>
+                                                            <p><h:outputText value="#{x.adRoute_StartPosition_Neighborhood}"></h:outputText></p>
+                                                        </td>
+                                                        <td style="vertical-align: middle; text-align: center; padding:"><i style="font-size: 1rem;" class="fa fa-arrow-right"></i></td>
+                                                        <td style="vertical-align: middle; text-align: center; padding:">
+                                                            <h:outputText value="#{x.adRoute_StartPosition_City}"></h:outputText>&nbsp;-&nbsp;<h:outputText value="#{x.adRoute_EndPosition_Town}"></h:outputText>
+                                                            <p><h:outputText value="#{x.adRoute_EndPosition_Neighborhood}"></h:outputText></p>
+                                                        </td>
+                                                        <td style="vertical-align: middle; text-align: center">
+                                                            <h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText>
+                                                        </td>
+                                                    </tr>
+                                                </ui:repeat>
+                                            </tbody>
+                                        </table>
+                                    </h:panelGroup>
+
+                                </div>
+                                <div class="col-md-1"  style="border: 1px solid #ddd; padding: 10px; ">                   
+                                    <table cellpadding="0" cellspacing="0" width="100%">
+                                        <tbody>
+                                            <h:panelGroup rendered="#{ccc.ad_IsPublish != true}">
+                                                <tr><td><h:commandLink class="btn btn-outline-success btn-sm" style="margin-bottom: 6px;width: 100%" action="#{adBean.adConfirmAndPublish(adx.ad_Id)}"  title="Onayla">Onayla<f:ajax execute="@form" render="dfwer3wq:dfdwfewq"></f:ajax></h:commandLink></td></tr>
+                                            </h:panelGroup>
+                                            <tr>
+                                                <td>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('Şöförüm iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg3').show()" update="dfwer3wq:i76tur">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('İşim var araç arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg4').show()" update="dfwer3wq:dsfe45">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('Aracım var iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg5').show()" update="dfwer3wq:gfdts4">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('Aracim var şöför arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg6').show()" update="dfwer3wq:xcv4w">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('Aracim var hostes arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg7').show()" update="dfwer3wq:hjkhgf5x">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                    <p:commandLink rendered="#{ccc.ad_Category_Name.equals('Hostesim iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" oncomplete="PF('dlg8').show()" update="dfwer3wq:dsf89d">Hızlı Düzenle<f:setPropertyActionListener value="#{ccc}" target="#{adBean.selectedAd}"  /></p:commandLink>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('İşim var araç arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/isim-var-arac-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracım var iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/aracim-var-is-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracim var şöför arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/aracim-var-sofor-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracim var hostes arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/aracim-var-hostes-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Hostesim iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/hostesim-is-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Şöförüm iş arıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/soforum-is-ariyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Plakamı satıyorum') }" class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/private/director/ilanlar/plakami-satiyorum/duzenle/#{ccc.ad_Id}?aId=#{ccc.accountBean.account_Id}" title="Düzenle">Tam Düzenle</h:outputLink>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('İşim var araç arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/isim-var-arac-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracım var iş arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/aracim-var-is-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracim var şöför arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/aracim-var-sofor-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Aracim var hostes arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/aracim-var-hostes-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Hostesim iş arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/hostesim-is-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                    <h:outputLink rendered="#{adx.ad_Category_Name.equals('Şöförüm iş arıyorum') }" class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" value ="/ad/soforum-is-ariyorum/#{ccc.ad_Id}" title="İlanı Gör">Gör</h:outputLink>
+                                                </td>
+                                            </tr>
+                                            <tr><td><h:commandLink class="btn btn-outline-danger btn-sm" style="margin-bottom: 6px;width: 100%" action="#{adBean.disableAd(ccc.ad_Id)}" title="Sil">Sil<f:ajax execute="@form" render="dfwer3wq:dfdwfewq"></f:ajax></h:commandLink></td></tr>
+    <!--                                        <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Aracım var iş arıyorum' }">
+                                                <tr><td><hr/></td></tr>
+                                                <tr><td style="text-align: center;padding-bottom: 5px;"><span style="font-weight: 500">ARAÇ</span></td></tr>
+                                                <tr><td style="text-align: center;"><a class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/arac-detay/#{ccc.adAracimVarIsAriyorum_vehicle.vehicle_Id}" title="Aracı Gör">Gör</a></td></tr> 
+                                                <tr><td style="text-align: center;"><a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/vehicles/edit_vehicle_s1.xhtml?vId=#{ccc.adAracimVarIsAriyorum_vehicle.vehicle_Id}&amp;vParam2=ad" title="Araç Düzenle">Düzenle</a></td></tr> 
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Aracim var şöför arıyorum' }">
+                                                <tr><td><hr/></td></tr>
+                                                <tr><td style="text-align: center;padding-bottom: 5px;"><span style="font-weight: 500">ARAÇ</span></td></tr>
+                                                <tr><td style="text-align: center;"><a class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/arac-detay/#{ccc.adAracimVarSoforAriyorum_vehicle.vehicle_Id}" title="Aracı Gör">Gör</a></td></tr> 
+                                                <tr><td style="text-align: center;"><a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/vehicles/edit_vehicle_s1.xhtml?vId=#{ccc.adAracimVarSoforAriyorum_vehicle.vehicle_Id}&amp;vParam2=ad" title="Araç Düzenle">Düzenle</a></td></tr> 
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Aracim var hostes arıyorum' }">
+                                                <tr><td><hr/></td></tr>
+                                                <tr><td style="text-align: center;padding-bottom: 5px;"><span style="font-weight: 500">ARAÇ</span></td></tr>
+                                                <tr><td style="text-align: center;"><a class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/arac-detay/" title="Aracı Gör">Gör</a></td></tr> 
+                                                <tr><td style="text-align: center;"><a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/vehicles/edit_vehicle_s1.xhtml?vId=&amp;vParam2=ad" title="Araç Düzenle">Düzenle</a></td></tr> 
+                                            </h:panelGroup>-->
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>                                                                 
+                        </h:panelGroup>
+                    </ui:repeat>              
+                </h:panelGroup>
+                
+                
+            </div>
+        </ui:composition>
+    </h:body>
+</html>
+

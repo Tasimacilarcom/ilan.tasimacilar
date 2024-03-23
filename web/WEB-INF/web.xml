@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+<!--        <multipart-config>
+             20MB max 
+            <max-file-size>20971520</max-file-size>
+            <max-request-size>20971520</max-request-size>
+            <file-size-threshold>0</file-size-threshold>
+          </multipart-config>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            120
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.xhtml</welcome-file>
+    </welcome-file-list>
+    
+    
+     <context-param>
+        <!--primefaces-temasını-belirtir-->
+        <param-name>primefaces.THEME</param-name>
+        <param-value>bootstrap</param-value>
+    </context-param>
+     <context-param>
+        <!--primefaces-CAPTCHA-->
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6Le5NrcZAAAAAPILGEMcNM4QH1rMIX6ywjU5oXvJ</param-value>
+    </context-param>
+    <context-param>
+        <!--primefaces-CAPTCHA-->
+        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+        <param-value>6Le5NrcZAAAAAPc8RxXOzVioOGyI300wLgo_Np7j</param-value>
+    </context-param>
+    
+    
+    <!-- login islemi icin apache shiro ayarları -->
+    <listener>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+    </listener>
+    <filter>
+        <filter-name>ShiroFilter</filter-name>
+        <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ShiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
+<!--/ login islemi icin apache shiro ayarları -->  
+    
+    
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+    <!--error-page-->
+    <error-page>
+        <!--ViewExpiredException oluştuğunda home.xhtml sayfası açılacaktır-->
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/expired</location>
+    </error-page>
+<!--    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error.xhtml</location>
+    </error-page>-->
+    <error-page>
+        <error-code>401</error-code>
+        <location>/401.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.xhtml</location>
+    </error-page>
+<!--    <error-page>
+        <error-code>500</error-code>
+        <location>/500.xhtml</location>
+    </error-page> -->
+<!--/error-page--> 
+
+<!--mime-mapping -->
+    <mime-mapping>
+        <extension>xhtml</extension>
+        <mime-type>application/xhtml+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>eot</extension>
+        <mime-type>application/vnd.ms-fontobject</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>otf</extension>
+        <mime-type>font/opentype</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>ttf</extension>
+        <mime-type>application/x-font-ttf</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>woff</extension>
+        <mime-type>application/x-font-woff</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>woff2</extension>
+        <mime-type>application/x-font-woff2</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>ico</extension>
+        <mime-type>image/x-icon</mime-type>
+    </mime-mapping>
+<!--/mime-mapping-->   
+    
+</web-app>

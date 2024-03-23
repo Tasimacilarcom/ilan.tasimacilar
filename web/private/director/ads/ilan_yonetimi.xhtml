@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="../director-page-layout.xhtml">
+            <ui:define name="head-title">
+                <h3 class="m-portlet__head-text">
+                    <i class="fas fa-users-cog"></i>&nbsp;Site Yöneticisi Sayfası 
+                    <small>
+                        <i class="la la-angle-right"></i>&nbsp;İlanlar&nbsp;
+                        <i class="la la-angle-right"></i>&nbsp;İlan Yönetimi
+                    </small>
+                </h3>
+            </ui:define>
+            <ui:define name="form">
+                
+                <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd">
+                    <i style="  float:left; font-size: 2rem; margin-bottom: .5rem; font-weight: 500; line-height: 1.2; color: inherit;"  class="m-nav__link-icon la la-list-ul"></i><h2 >&nbsp;İlan Yönetimi</h2><i ></i>
+                </div>
+                <h:form id="dfwer3wq" >
+                    <h:panelGroup id="dfdwfewq">
+                        <style type="text/css">
+                            .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{color: #555;cursor: default; background-color: #ffffff; background-image: none; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);border-color: #e6e6e6 #e6e6e6 #bfbfbf; border-bottom-color: #b3b3b3;}
+                            .ui-datatable thead th, .ui-datatable tfoot td {text-align: left;}
+                            .ui-paginator.ui-paginator-bottom { border: 1px solid #ddd; border-top: 0px;}
+                            .ui-widget-header { background: none; color: #555; font-weight: normal; }
+                        </style>
+                        <p:dataTable    var="u"  id="fdsfcew" value="#{adBean.publishAdList}"  widgetVar="dataTable"
+                                        filteredValue="#{adBean.filteredPublishAdList}" style="font-size: small"  rows="10" 
+                                        rowsPerPageTemplate="10,20,50,100" paginator="true"  paginatorPosition="bottom"
+                                        emptyMessage="Aradığınız kritere uygun kayıt bulunamadı" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} ">
+
+                            <f:facet name="header">
+                                <p:outputPanel style="text-align: right">
+                                    <h:outputText value="Ara: " />
+                                    <p:inputText id="globalFilter" onkeyup="PF('dataTable').filter()" style="width:150px; border: 1px #ddd solid " />
+                                </p:outputPanel>
+                            </f:facet>
+                            <p:column headerText="Id" width="100" sortBy="#{u.ad_Id2}" filterMatchMode="contains" filterBy="#{u.ad_Id2}" filterable="false">
+                                <h:outputText value="#{u.ad_Id2}" />
+                            </p:column>
+                            <p:column headerText="Oluşturma Zamanı" width="160" sortBy="#{u.ad_CreateTime}" filterMatchMode="contains" filterBy="#{u.ad_CreateTime}" filterable="false">
+                                <h:outputText value="#{u.ad_CreateTime}" ><f:convertDateTime pattern="dd.MM.YYYY HH.mm"></f:convertDateTime></h:outputText>
+                            </p:column>
+                            <p:column headerText="Ilan Sahibi" width="200" sortBy="#{u.accountBean.account_FirstName}&nbsp;-&nbsp;#{u.accountBean.account_LastName}" filterMatchMode="contains" 
+                                      filterBy="#{u.accountBean.account_FirstName}&nbsp;-&nbsp;#{u.accountBean.account_LastName}" filterable="false">
+                                <h:outputText value="#{u.accountBean.account_FirstName}&nbsp;-&nbsp;#{u.accountBean.account_LastName}" /><br/>
+                                <h:outputText value="#{u.accountBean.account_MobilePhoneNumber}" />
+                            </p:column>
+                            <p:column headerText="Kategori" width="180" sortBy="#{u.ad_Category_Name}" filterMatchMode="contains" filterBy="#{u.ad_Category_Name}" filterable="false">
+                                <h:outputText value="#{u.ad_Category_Name}" />
+                            </p:column>    
+                            <!-- <p:column headerText="İlan Başlık"  sortBy="#{u.ad_Title}" filterMatchMode="contains" filterBy="#{u.ad_Title}" filterable="false">
+                                <h:outputText value="#{u.ad_Title}" />
+                            </p:column>  -->
+                            <p:column headerText="Yönetici Notu"  sortBy="#{u.ad_Notes}" filterMatchMode="contains" filterBy="#{u.ad_Notes}" filterable="false">
+                                 <h:outputText value="#{u.ad_Notes}" />
+                            </p:column>  
+                            <p:column headerText="Durum" width="120"  filterable="false">
+                                <h:outputText value="#{u.ad_IsActive?'Aktif (Yayında)':'Pasif (Silinmiş)'}" />
+                            </p:column>                                                                   
+                            <p:column headerText="İşlem" width="150"  filterable="false" style="text-align: center">
+                                <h:panelGroup rendered="#{u.ad_IsActive==true}">
+                                    <h:commandLink action="#{adBean.disableAd(u.ad_Id)}" title="Sil">
+                                        <i class="fa fa-trash-alt"></i>
+                                        <f:ajax execute="@form" render="dfwer3wq:fdsfcew"></f:ajax>
+                                    </h:commandLink>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{u.ad_IsActive==false}">
+                                    <h:commandLink action="#{adBean.enableAd(u.ad_Id)}" title="Geri Al">
+                                        <i class="fa fa-redo"></i>
+                                        <f:ajax execute="@form" render="dfwer3wq:fdsfcew"></f:ajax>
+                                    </h:commandLink>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup>
+
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('İşim var araç arıyorum') }">
+                                    <a target="_blank" href="/private/director/ilanlar/isim-var-arac-ariyorum/duzenle/#{u.ad_Id}?aId=#{u.ad_OvnerAccountId}" title="Düzenle"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Aracım var iş arıyorum') }">
+                                    <a target="_blank" href="/private/director/ilanlar/aracim-var-is-ariyorum/duzenle/#{u.ad_Id}?aId=#{u.ad_OvnerAccountId}" title="Düzenle"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Aracim var şöför arıyorum') }">
+                                    <a target="_blank" href="/private/director/ilanlar/aracim-var-sofor-ariyorum/duzenle/#{u.ad_Id}?aId=#{u.ad_OvnerAccountId}" title="Düzenle"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup> 
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Aracim var hostes arıyorum') }">
+                                    <a target="_blank" href="/private/director/ilanlar/aracim-var-hostes-ariyorum/duzenle/#{u.ad_Id}?aId=#{u.ad_OvnerAccountId}" title="Düzenle"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup> 
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Hostesim iş arıyorum') }">
+                                    <a target="_blank" href="/private/director/ilanlar/hostesim-is-ariyorum/duzenle/#{u.ad_Id}?aId=#{u.ad_OvnerAccountId}" title="Düzenle"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup> 
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Şöförüm iş arıyorum') }">
+                                    <a target="_blank" href="/private/director/ilanlar/soforum-is-ariyorum/duzenle/#{u.ad_Id}?aId=#{u.ad_OvnerAccountId}" title="Düzenle"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Plakamı satıyorum') }">
+                                    <a target="_blank" href="/private/director/ilanlar/plakami-satiyorum/duzenle/#{u.ad_Id}?aId=#{u.ad_OvnerAccountId}" title="Düzenle"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup>
+
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('İşim var araç arıyorum') }">
+                                    <a target="_blank" href="/ad/isim-var-arac-ariyorum/#{u.ad_Id}" title="İlanı Gör"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Aracım var iş arıyorum') }">
+                                    <a target="_blank" href="/ad/aracim-var-is-ariyorum/#{u.ad_Id}" title="İlanı Gör"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Aracim var şöför arıyorum') }">
+                                    <a target="_blank" href="/ad/aracim-var-sofor-ariyorum/#{u.ad_Id}" title="İlanı Gör"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup> 
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Aracim var hostes arıyorum') }">
+                                    <a target="_blank" href="/ad/aracim-var-hostes-ariyorum/#{u.ad_Id}" title="İlanı Gör"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup> 
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Hostesim iş arıyorum') }">
+                                    <a target="_blank" href="/ad/hostesim-is-ariyorum/#{u.ad_Id}" title="İlanı Gör"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup> 
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Şöförüm iş arıyorum') }">
+                                    <a target="_blank" href="/ad/soforum-is-ariyorum/#{u.ad_Id}" title="İlanı Gör"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup> 
+                                <h:panelGroup rendered="#{u.ad_Category_Name.equals('Plakamı satıyorum') }">
+                                    <a target="_blank" href="/ad/plakami-satiyorum/#{u.ad_Id}" title="İlanı Gör"><i class="fa fa-eye"></i></a>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                </h:panelGroup> 
+
+                                <p:commandLink action="#{adBean.selectedAdIdSet(u.ad_Id)}"  
+                                               onclick="PF('dlg2').show();"
+                                               ignoreAutoUpdate="true"
+                                               title="Yönetici Notu Ekle">
+                                    <i class="fa fa-sticky-note"></i>
+                                </p:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup>
+                                                    
+                    <p:dialog header="Yönetici Notu Ekle" widgetVar="dlg2" modal="true"  width="500">
+                        <p:ajax event="close" listener="#{adBean.handleCloseSector}" />
+                        <h:panelGroup id="fdyt45e">
+                             <p>Lütfen aşağıdaya bu ilan için almak istediğiniz notları ekleyiniz.</p>
+                        <h:inputTextarea rows="3" value="#{adBean.ad_Notes}" style="width: 100%" /><br/><br/>
+                        <h:commandButton class="btn btn-outline-primary" value="EKLE"  action="#{adBean.adAdminNotes()}"  style="width: 100%">
+                            <f:ajax execute="@form" render="dfwer3wq:fdsfcew dfwer3wq:fdyt45e"></f:ajax>
+                        </h:commandButton><br/><br/>
+                        <p:messages id="dgfrd654re" closable="true">  <p:autoUpdate /> </p:messages>
+                        </h:panelGroup>
+
+                    </p:dialog>     
+                </h:form>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition>
+
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-12">
+                    <h4>Database Ayarları&nbsp;&nbsp;<small>Bu bölümden veritabanına bağlantı için gerekli ayarlar yapılır</small></h4>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h:form id="dbSettingsForm" class="form-horizontal">
+
+                        <div class="form-group form-group-sm">
+                            <h:outputLabel for="dbTyp" 
+                                           class="col-md-3 control-label" >
+                                Veri Tabanı Türü
+                            </h:outputLabel>
+                            <div class="col-md-9 form-inline">
+                                <h:selectOneMenu id="dbTyp" class=" form-control "   
+                                                 value="#{dbBean.dbTyp}" 
+                                                 style="font-size: 16px" 
+                                                 disabled="true">
+                                    <f:selectItem id="mysql" itemValue="1" itemLabel="mysql" />
+                                    <f:selectItem id="sqlserver" itemValue="2" itemLabel="sqlserver" />
+                                    <f:selectItem id="sqlite" itemValue="3" itemLabel="sqlite" />
+                                    <f:selectItem id="postgresql" itemValue="4" itemLabel="postgresql" />
+                                    <f:selectItem id="Oracle" itemValue="5" itemLabel="Oracle" />
+                                    <f:selectItem id="db2" itemValue="6" itemLabel="db2" />
+                                    <f:selectItem id="sybase" itemValue="7" itemLabel="sybase" />
+                                </h:selectOneMenu>                                                          
+                            </div>
+                        </div>
+
+                        <div class="form-group  form-group-sm">
+                            <p:outputLabel for="serverName" 
+                                           class="col-md-3 control-label">
+                                Sunucu Ad/Ip
+                            </p:outputLabel>
+                            <div class="col-md-9">
+                                <p:inputText id="serverName" 
+                                             class="form-control" 
+                                             value="#{dbBean.serverName}" 
+                                             style="font-size: 16px" 
+                                             required="true"
+                                             requiredMessage="Bu alanı doldurmanız zorunludur">
+                                </p:inputText>
+                                <h:message for="serverName" style="color: red" />
+                            </div>
+                        </div>
+
+                        <div class="form-group  form-group-sm">
+                            <p:outputLabel  for="serverPortNo" 
+                                            class="col-md-3 control-label">
+                                Sunucu Port No
+                            </p:outputLabel>
+                            <div class="col-md-9">
+                                <p:inputText id="serverPortNo" 
+                                             class="form-control" 
+                                             value="#{dbBean.serverPort}" 
+                                             style="font-size: 16px"
+                                             required="true"
+                                             requiredMessage="Bu alanı doldurmanız zorunludur">
+                                </p:inputText>
+                                <h:message for="serverPortNo" style="color: red" />
+                            </div>
+                        </div>
+
+                        <div class="form-group  form-group-sm">
+                            <p:outputLabel  for="databaseName" 
+                                            class="col-md-3 control-label">
+                                Veri Tabanı Adı
+                            </p:outputLabel>
+                            <div class="col-md-9">
+                                <p:inputText id="databaseName" 
+                                             class="form-control" 
+                                             value="#{dbBean.dbName}" 
+                                             style="font-size: 16px"
+                                             required="true"
+                                             requiredMessage="Bu alanı doldurmanız zorunludur">
+                                </p:inputText>
+                                <h:message for="databaseName" style="color: red" />
+                            </div>
+                        </div>
+
+                        <div class="form-group  form-group-sm">
+                            <p:outputLabel for="userName" 
+                                           class="col-md-3 control-label" >
+                                Kullanıcı Adı
+                            </p:outputLabel>
+                            <div class="col-md-9">
+                                <p:inputText id="userName" 
+                                             class="form-control" 
+                                             value="#{dbBean.dbUserName}" 
+                                             style="font-size: 16px"
+                                             required="true"
+                                             requiredMessage="Bu alanı doldurmanız zorunludur">
+                                </p:inputText>
+                                <h:message for="userName" style="color: red" />
+                            </div>
+                        </div>
+
+                        <div class="form-group  form-group-sm">
+                            <p:outputLabel for="password" 
+                                           class="col-md-3 control-label">
+                                Şifre
+                            </p:outputLabel>
+                            <div class="col-md-9">
+                                <p:inputText id="password" 
+                                             class="form-control" 
+                                             value="#{dbBean.dbUserPassword}" 
+                                             style="font-size: 16px"
+                                             required="true"
+                                             requiredMessage="Bu alanı doldurmanız zorunludur">
+                                </p:inputText>
+                                <h:message for="password" style="color: red" />
+                            </div>
+                        </div>
+
+                        <br/><br/>
+
+                        <div class="form-group  form-group-sm " > 
+                            <div class="col-md-offset-3 col-md-9">
+                                <h:commandButton 
+                                    id="gonder" 
+                                    class="btn btn-default" 
+                                    value="Kaydet" 
+                                    action="#{dbBean.dbSettingsSave()}" 
+                                    style="width: 100px;">
+
+                                    <f:ajax execute="dbSettingsForm" render="dbSettingsForm" />
+                                </h:commandButton>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row col-md-12" style="margin: 0px; padding: 0px; padding-top: 15px;"> 
+                            <i style="font-size: 10px; ">(*) İşaretli alanların doldurulması zorunludur.</i>
+                        </div>
+
+                        <br/><br/>
+
+                        <div class="form-group  form-group-sm" style="margin: 0px;"> 
+                            <p:messages globalOnly="true" ><p:autoUpdate/> </p:messages>
+                        </div>
+
+                    </h:form>
+                </div>
+            </div>
+
+
+
+        </ui:composition>
+
+    </h:body>
+</html>
+

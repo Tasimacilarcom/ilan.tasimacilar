@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition>
+            <h:panelGroup id="dfdwfewq">
+                <h:panelGroup rendered="#{adBean.notPublishAdList.size() == 0}">
+                  
+                        <div class="col-lg-12 p-0">
+                            <span style="color: #ddd;line-height: 18px; font-size: 18px;"> <i class="far fa-smile-beam"></i>&nbsp;Henüz onayınızı bekleyen ilan bulunmamaktadır.</span>
+                        </div>  
+               
+                </h:panelGroup>
+                <ui:repeat var="adx" value="#{adBean.notPublishAdList}" >
+                    <div class="row  m-portlet" style="margin-left: 0; margin-right: 0;border: 2px solid #ddd;border-bottom: 6px solid #ddd">
+                        <div class="col-md-2"  style="border: 1px solid #ddd;padding: 0; ">
+                            <div style="text-align: center;width: 100%; height: 25px; background-color: #ddd"><span style="line-height: 25px;font-weight: 500"> İLAN BİLGİSİ</span></div>
+                            <div style="padding: 10px; width: 100%">
+                                <table cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <h:panelGroup rendered="#{adx.accountBean.account_MembershipType eq 'corporate'}">
+                                            <h:panelGroup rendered="#{adx.corporateAccountBean.company_LogoUrl ne ''}">
+                                                <tr><td style="text-align: center"><img style="width: 90%" src="#{adx.corporateAccountBean.company_LogoUrl}" alt="CompanyLogo"/></td></tr>
+                                                <tr><td style="text-align: center"><span style="font-weight: 500">#{adx.accountBean.account_FirstName}"&nbsp;#{adx.accountBean.account_LastName}</span></td></tr>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{adx.corporateAccountBean.company_LogoUrl eq ''}">
+                                                <tr><td style="text-align: center"><b>#{adx.corporateAccountBean.company_Name}</b></td></tr>
+                                                <tr><td style="text-align: center"><span style="font-weight: 500">#{adxx.accountBean.account_FirstName}&nbsp;#{adx.accountBean.account_LastName}</span></td></tr>
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{adx.accountBean.account_MembershipType eq 'personal'}">
+                                            <tr><td style="text-align: center"><span style="font-weight: 500">#{adx.accountBean.account_FirstName}&nbsp;#{adx.accountBean.account_LastName}</span></td></tr>
+                                        </h:panelGroup>
+                                        <tr><td style="text-align: center;padding-top: 10px;">#{adx.accountBean.account_MobilePhoneNumber}</td></tr>
+                                        <tr><td style="text-align: center;">#{adx.accountBean.account_EmailAddress}</td></tr>
+                                        <tr><td><hr/></td></tr>
+                                        <tr><td><span style="font-weight: 500">Bugünkü İlan Sayısı : </span>&nbsp;#{adx.adSize_ToDay_ForUser}&nbsp;Ad.</td></tr>
+                                        <tr><td><span style="font-weight: 500">Tüm İlanların Sayısı : </span>&nbsp;#{adx.adSize_All_ForUser}&nbsp;Ad.</td></tr>
+                                        <tr><td><hr/></td></tr>
+                                        <tr><td><span style="font-weight: 500">İlan Tarihi : </span><h:outputText value="#{adx.ad_CreateTime}"><f:convertDateTime pattern="dd.MM.YYYY HH:mm" /></h:outputText></td></tr>
+                                        <tr><td><span style="font-weight: 500">Kategori : </span>#{adx.ad_Category_Name}</td></tr>
+                                        <tr><td><span style="font-weight: 500">İlan Id : </span>#{adx.ad_Id2}</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="border: 1px solid #ddd; padding: 0px;">
+                            <div style="text-align: center;width: 100%; height: 25px; background-color: #ddd"><span style="line-height: 25px;font-weight: 500"> İLAN AÇIKLAMA</span></div>
+                            <div style="padding: 10px; width: 100%">
+                                <table cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr><td><h:outputText value="#{adx.ad_Title}" style="font-weight: 500;font-size: 1.2em;"></h:outputText></td></tr>
+                                        <tr><td><p:scrollPanel mode="native" style="margin-top: 10px;width:100%;max-height:250px; border: none" ><h:outputText value="#{adx.ad_Comment}" escape="false" ></h:outputText></p:scrollPanel></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-2" style="border: 1px solid #ddd; padding: 0px;">
+                            <div style="text-align: center;width: 100%; height: 25px; background-color: #ddd"><span style="line-height: 25px;font-weight: 500">OPSİYONLAR</span></div>
+                            <ui:insert name="optionsPart" ><ui:include src="onay_bekleyen_ilanlar_optionsPart.xhtml" /></ui:insert> 
+                        </div>
+                        <div class="col-md-4" style="border: 1px solid #ddd; padding: 0px;">
+                            <ui:insert name="routesPart" ><ui:include src="onay_bekleyen_ilanlar_routesPart.xhtml" /></ui:insert> 
+                        </div>
+                        <div class="col-md-1"  style="border: 1px solid #ddd; padding: 0px; ">
+                            <div style="text-align: center;width: 100%; height: 25px; background-color: #ddd"><span style="line-height: 25px;font-weight: 500">İŞLEMLER</span></div>
+                            <div style="padding: 10px; width: 100%">
+                                <ui:insert name="buttonsPart" ><ui:include src="onay_bekleyen_ilanlar_buttonsPart.xhtml" /></ui:insert> 
+                            </div>
+                        </div>
+                       
+                        <ui:insert name="vehicleImagesVideosPart" ><ui:include src="onay_bekleyen_ilanlar_vehicleImagesVideosPart.xhtml" /></ui:insert> 
+                        <ui:insert name="dublicatedAdsPart" ><ui:include src="onay_bekleyen_ilanlar_dublicatedAdsPart.xhtml" /></ui:insert>                     
+                    </div>
+                </ui:repeat>
+            </h:panelGroup>    
+        </ui:composition>
+    </h:body>
+</html>
+

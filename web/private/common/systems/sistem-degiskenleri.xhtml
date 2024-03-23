@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition>
+
+            <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-12">
+                    <h4>Sistem Değişkenleri&nbsp;&nbsp;<small> bölümünden sistem üzerinde kullanılan değişkenleri ve değerlerini görebilirsiniz. Bu sayfa bilgilendirme amaçlıdır, değişkenler sadece yazılım geliştirici tarafından değiştirilir aksi taktirde ciddi sorunlar yaşanabilir.</small></h4>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th width="5%">#</th>
+                                    <th width="20%">Key</th>
+                                    <th width="30%">Value</th>
+                                    <th width="45%">Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size: 0.8rem">
+                                <tr><th scope="row">0</th><td>supforceAppLicenseKey</td><td>#{SystemVariable.supforceAppLicenseKey}</td><td>Uygulamanın lisans anahtarı</td></tr>
+                                <tr><th scope="row">1</th><td>documentUploadPath</td><td>#{SystemVariable.documentUploadPath}</td><td>Sunucu üzerinde kullanıcılardan gelen resimlerin kaydedileceği yer</td></tr>
+                                <tr><th scope="row">2</th><td>googleMapApiKey</td><td>#{SystemVariable.googleMapApiKey}</td><td>Google Map Api key</td></tr>
+                                <tr><th scope="row">3</th><td>sms_kullaniciNo</td><td>#{SystemVariable.KULNO}</td><td>Vatan Sms, SMS Api bağlantı bilgisi</td></tr>
+                                <tr><th scope="row">4</th><td>sms_kullaniciAdi</td><td>#{SystemVariable.KULAD}</td><td>Vatan Sms, SMS Api bağlantı bilgisio</td></tr>
+                                <tr><th scope="row">5</th><td>sms_kullaniciSifre</td><td>#{SystemVariable.KULSIFRE}</td><td>Vatan Sms, SMS Api bağlantı bilgisi</td></tr>
+                                <tr><th scope="row">6</th><td>sms_orjinator</td><td>#{SystemVariable.ORJINATOR}</td><td>Vatan Sms, SMS Api bağlantı bilgisi</td></tr>
+                                <tr><th scope="row">7</th><td>sms_postUrl</td><td>#{SystemVariable.adres}</td><td>Vatan Sms, SMS Api bağlantı bilgisi</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </ui:composition>
+
+    </h:body>
+
+</html>
+

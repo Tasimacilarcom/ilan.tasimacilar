@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui">
+<h:body>
+<ui:composition>
+<header>
+    
+    <nav class="fixed-top " style="margin-top:0;background-color: #4a608c!important; min-height: 72px; font-size: 1.1em">
+        
+        <div class="row" style="margin: 0; padding-top: 10px;">
+            <div class="col-lg-2 responsive-logo-container" >
+                <a  href="/"><img class="responsive responsive-logo"  src="/resources/img/logo.png" alt=""/></a>
+            </div>
+            <div class="col-lg-6" style="color: #fff">
+                <div class="navbar navbar-expand-lg navbar-dark " style="padding-left: 0; padding-right: 0;">                  
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-brand ilan-ver-buton" style="margin-right: 0">
+                        <shiro:guest> 
+                            <span style="font-size: 0.9rem">
+                                <a class="text-decoration-none" href="/kayit/bireysel">Üye Ol</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                <a class="text-decoration-none" href="/login">Giriş</a>&nbsp;&nbsp;&nbsp;
+                            </span>
+                            <a href="/login"
+                               class="btn btn-sm btn-warning m-btn--pill" 
+                               style="border-color:#e8cca4; background-color: #e8cca4; color: #4a608c;">
+                               <i class="flaticon-add"></i>&nbsp;&nbsp;Ücretsiz İlan Ver
+                            </a>   
+                        </shiro:guest> 
+                        <shiro:authenticated>
+                            <h:panelGroup rendered="#{loginBean.accountIsAuthenticated()}">
+                                <shiro:user>
+                                    <div style="display: inline-flex">
+                                        <!--account-dropdown-menu-->
+                                        <div class="dropdown">                               
+                                            <a href="#" id="ilanVerButon-723847" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"  >
+                                                <span class="m-topbar__userpic"><img width="35" src="/resources/img/user.png" class="m--img-rounded m--marginless" alt="userImg"/></span>
+                                            </a>                                        
+                                            <div class="ilanver-buton-dropdown-govde-acc-m m-dropdown__wrapper dropdown-menu" aria-labelledby="dropdownMenuButton"  >
+                                                <div class="ilanver-buton-dropdown-govde-ucgen2"></div>
+                                                <div style="line-height: 15px;">&nbsp;</div>
+                                                <h6 class="ilanver-buton-dropdown-header">#{accountFirstName}&nbsp;#{accountLastName}</h6>
+                                                <h:panelGroup rendered="#{AccountType eq 'corporate'}">
+                                                    <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;Kurumsal Kullanıcı  </p>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{AccountType eq 'personal'}">
+                                                    <h:panelGroup rendered="#{accountActivityArea eq 'Şöför'}">
+                                                        <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;Sürücü-Şoför</p> 
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{accountActivityArea eq 'Hostes'}">
+                                                        <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;Rehber-Hostes</p> 
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{accountActivityArea eq 'Bireysel Taşımacı'}">
+                                                        <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;Bireysel Taşımacı</p> 
+                                                    </h:panelGroup>
+                                                </h:panelGroup>
+                                        
+                                                <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;#{accountEmailAddress}</p>
+                                                <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;#{accountMobilePhoneNumber}</p>
+                                                <div class="dropdown-divider"></div>
+                                                <h:panelGroup rendered="#{loginBean.userType().equals('director')}">
+                                                    <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/director/index.xhtml">Yönetici Paneli</a>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{AccountType.equals('corporate')}">
+                                                    <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/kurumsal/profil-ayarlari/s1">Profilim</a>
+                                                    <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/ilanlarim">İlanlarım</a>
+                                                    <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/kurumsal/araclarim">Araçlarım</a>
+                                                    <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/kurumsal/mesajlar/mesajlarim">Mesajlarım</a>
+                                                    <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/kurumsal/destek">Destek</a>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{AccountType.equals('personal')}">
+                                                    <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/bireysel/profil-ayarlari">Profilim</a>
+                                                    <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/ilanlarim">İlanlarım</a>
+                                                    <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/bireysel/araclarim">Araçlarım</a>
+                                                    <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/bireysel/mesajlar/mesajlarim">Mesajlarım</a>
+                                                    <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/bireysel/destek">Destek</a>
+                                                </h:panelGroup>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/logout"><b>Çıkış</b></a>
+                                            </div>
+                                        </div>&nbsp;&nbsp;&nbsp;
+                                        <!--/account-dropdown-menu-->
+                                        <!--ilan-ver-dropdown-menu-->
+                                        <h:panelGroup rendered="#{!blackListBean.isExistUserBlackList(accountId)}">
+                                            <h:panelGroup rendered="#{loginBean.userType().equals('corporate')}">
+                                                <div class="dropdown">
+                                                    <a href="#" id="ilanVerButon-723847" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="ilanver-buton2 btn btn-sm btn-warning m-btn--pill" >
+                                                        <i class="flaticon-add"></i>&nbsp;&nbsp;Ücretsiz İlan Ver
+                                                    </a>                                        
+                                                    <div class="ilanver-buton-dropdown-govde-m m-dropdown__wrapper dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                                                        <div class="ilanver-buton-dropdown-govde-ucgen-m"></div>
+                                                        <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/isim-var-arac-ariyorum/yeni/ekle">İşim Var Araç Arıyorum</a>
+                                                        <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/aracim-var-is-ariyorum/yeni/ekle">Aracım Var İş Arıyorum</a>
+                                                        <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/aracim-var-sofor-ariyorum/yeni/ekle">Aracım Var Şöför Arıyorum</a>
+                                                        <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/aracim-var-hostes-ariyorum/yeni/ekle">Aracım Var Hostes Arıyorum</a>
+                                                        <a style="padding: 0.5rem .9rem;line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/plakami-satiyorum/yeni/ekle">Plakamı Satıyorum</a>
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{loginBean.userType().equals('personal')}">
+                                                <div class="dropdown">
+                                                    <a href="#" id="ilanVerButon-476834" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="ilanver-buton btn btn-sm m-btn--pill btn-warning dropdown-toggle" >
+                                                        <i class="flaticon-add"></i>&nbsp;&nbsp;Ücretsiz İlan Ver
+                                                    </a>                                        
+                                                    <div class="ilanver-buton-dropdown-govde m-dropdown__wrapper dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                                                        <div class="ilanver-buton-dropdown-govde-ucgen"></div>
+                                                        <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/isim-var-arac-ariyorum/yeni/ekle">İşim Var Araç Arıyorum</a>
+                                                        <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/aracim-var-is-ariyorum/yeni/ekle">Aracım Var İş Arıyorum</a>
+                                                        <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/aracim-var-sofor-ariyorum/yeni/ekle">Aracım Var Şöför Arıyorum</a>
+                                                        <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/aracim-var-hostes-ariyorum/yeni/ekle">Aracım Var Hostes Arıyorum</a>
+                                                        <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/hostesim-is-ariyorum/yeni/ekle">Hostes'im İş Arıyorum</a>
+                                                        <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/soforum-is-ariyorum/yeni/ekle">Şöförüm İş Arıyorum</a>
+                                                        <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/plakami-satiyorum/yeni/ekle">Plakamı Satıyorum</a>
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                        <!--/ilan-ver-dropdown-menu-->
+                                    </div>
+                                </shiro:user>
+                            </h:panelGroup>  
+                        </shiro:authenticated>
+                    </div> 
+                    
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-item nav-link active" href="/">Anasayfa <span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link" href="/hakkimizda">Hakkımızda</a>
+                            <a class="nav-item nav-link" href="/s-s-s">S.S.S</a>
+                            <a class="nav-item nav-link" href="/iletisim">İletişim</a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="col-lg-4 ilan-ver-buton2" style="color: #fff; text-align: right">
+                <shiro:guest> 
+                    <span style="font-size: 1.2rem; font-weight: 500 ;" >
+                        <a class="text-decoration-none" href="/kayit/bireysel">Üye Ol</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <a class="text-decoration-none" href="/login">Giriş</a>
+                    </span>&nbsp;&nbsp;&nbsp;
+                    <a href="/login"
+                       class="btn m-btn--pill btn-warning" 
+                       style="border-color:#e8cca4; background-color: #e8cca4; color: #4a608c;font-size: 1.2rem; font-weight: 500">
+                        <i class="flaticon-add"></i>
+                        &nbsp;&nbsp;Ücretsiz İlan Ver
+                    </a> 
+                </shiro:guest> 
+                <shiro:authenticated>
+                    <h:panelGroup rendered="#{loginBean.accountIsAuthenticated()}">
+                        <shiro:user>
+                            <div style="display: inline-flex">
+                                <!--account-dropdown-menu-->
+                                <div class="dropdown">                               
+                                    <a href="#" id="ilanVerButon-723847" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"  >
+                                        <span class="m-topbar__userpic"><img width="43" src="/resources/img/user.png" class="m--img-rounded m--marginless" alt="userImg"/></span>
+                                    </a>                                        
+                                    <div class="ilanver-buton-dropdown-govde-acc m-dropdown__wrapper dropdown-menu" aria-labelledby="dropdownMenuButton"  >
+                                        <div class="ilanver-buton-dropdown-govde-ucgen2"></div>
+                                        <div style="line-height: 15px;">&nbsp;</div>
+                                        <h6 class="ilanver-buton-dropdown-header">#{accountFirstName}&nbsp;#{accountLastName}</h6>
+                                        <h:panelGroup rendered="#{AccountType eq 'corporate'}">
+                                             <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;Kurumsal Kullanıcı  </p>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{AccountType eq 'personal'}">
+                                            <h:panelGroup rendered="#{accountActivityArea eq 'Şöför'}">
+                                               <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;Sürücü-Şoför</p> 
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{accountActivityArea eq 'Hostes'}">
+                                               <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;Rehber-Hostes</p> 
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{accountActivityArea eq 'Bireysel Taşımacı'}">
+                                               <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;Bireysel Taşımacı</p> 
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                        <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;#{accountEmailAddress}</p>
+                                        <p class="ilanver-buton-dropdown-header-p"><i style="line-height: .5;font-size: .9rem;" class="fa fa-caret-right"></i>&nbsp;&nbsp;#{accountMobilePhoneNumber}</p>
+                                        <div class="dropdown-divider"></div>
+                                        <h:panelGroup rendered="#{loginBean.userType().equals('director')}">
+                                            <a style="line-height: 1.5" class="dropdown-item" href="/private/director/index.xhtml">Yönetici Paneli</a>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{AccountType.equals('corporate')}">
+                                            <a style="line-height: 1.5" class="dropdown-item" href="/private/kurumsal/profil-ayarlari/s1">Profilim</a>
+                                            <a style="line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/ilanlarim">İlanlarım</a>
+                                            <a style="line-height: 1.5" class="dropdown-item" href="/private/kurumsal/araclarim">Araçlarım</a>
+                                            <a style="line-height: 1.5" class="dropdown-item" href="/private/kurumsal/mesajlar/mesajlarim">Mesajlarım</a>
+                                            <a style="line-height: 1.5" class="dropdown-item" href="/private/kurumsal/destek">Destek</a>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{AccountType.equals('personal')}">
+                                            <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/profil-ayarlari">Profilim</a>
+                                            <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/ilanlarim">İlanlarım</a>
+                                            <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/araclarim">Araçlarım</a>
+                                            <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/mesajlar/mesajlarim">Mesajlarım</a>
+                                            <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/destek">Destek</a>
+                                        </h:panelGroup>
+                                        <a style="line-height: 1.5" class="dropdown-item" href="/logout"><b>Çıkış</b></a>
+                                    </div>
+                                </div>&nbsp;&nbsp;&nbsp;
+                                <!--/account-dropdown-menu-->
+                                <!--ilan-ver-dropdown-menu-->
+                                <h:panelGroup rendered="#{!blackListBean.isExistUserBlackList(accountId)}">
+                                    <h:panelGroup rendered="#{loginBean.userType().equals('corporate')}">
+                                        <div class="dropdown">
+                                            <a href="#" id="ilanVerButon-723847" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="ilanver-buton btn m-btn--pill btn-warning dropdown-toggle" >
+                                                <i class="flaticon-add"></i>&nbsp;&nbsp;Ücretsiz İlan Ver
+                                            </a>                                        
+                                            <div class="ilanver-buton-dropdown-govde m-dropdown__wrapper dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                                                <div class="ilanver-buton-dropdown-govde-ucgen"></div>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/isim-var-arac-ariyorum/yeni/ekle">İşim Var Araç Arıyorum</a>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/aracim-var-is-ariyorum/yeni/ekle">Aracım Var İş Arıyorum</a>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/aracim-var-sofor-ariyorum/yeni/ekle">Aracım Var Şöför Arıyorum</a>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/aracim-var-hostes-ariyorum/yeni/ekle">Aracım Var Hostes Arıyorum</a>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/kurumsal/ilanlar/plakami-satiyorum/yeni/ekle">Plakamı Satıyorum</a>
+                                            </div>
+                                        </div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{loginBean.userType().equals('personal')}">
+                                        <div class="dropdown">
+                                            <a href="#" id="ilanVerButon-476834" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="ilanver-buton btn m-btn--pill btn-warning dropdown-toggle" >
+                                                <i class="flaticon-add"></i>&nbsp;&nbsp;Ücretsiz İlan Ver
+                                            </a>                                        
+                                            <div class="ilanver-buton-dropdown-govde m-dropdown__wrapper dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                                                <div class="ilanver-buton-dropdown-govde-ucgen"></div>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/isim-var-arac-ariyorum/yeni/ekle">İşim Var Araç Arıyorum</a>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/aracim-var-is-ariyorum/yeni/ekle">Aracım Var İş Arıyorum</a>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/aracim-var-sofor-ariyorum/yeni/ekle">Aracım Var Şöför Arıyorum</a>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/aracim-var-hostes-ariyorum/yeni/ekle">Aracım Var Hostes Arıyorum</a>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/hostesim-is-ariyorum/yeni/ekle">Hostes'im İş Arıyorum</a>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/soforum-is-ariyorum/yeni/ekle">Şöförüm İş Arıyorum</a>
+                                                <a style="line-height: 1.5" class="dropdown-item" href="/private/bireysel/ilanlar/plakami-satiyorum/yeni/ekle">Plakamı Satıyorum</a>
+                                            </div>
+                                        </div>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                                <!--/ilan-ver-dropdown-menu-->
+                            </div>
+                        </shiro:user>
+                    </h:panelGroup>  
+                </shiro:authenticated>
+                
+            </div>
+        </div>
+        
+        
+        
+    </nav>
+    
+    <div class="container-fluid fixed-top" style="z-index: -1000;height: 100px;background-color: #152f61; margin-top: 70px;
+                /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+                background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2UzZWJmNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjI4JSIgc3RvcC1jb2xvcj0iIzk2YzVlYyIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjM3JSIgc3RvcC1jb2xvcj0iIzdkYjllOCIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+                background: -moz-linear-gradient(top,  rgba(227,235,247,1) 0%, rgba(150,197,236,0) 0%, rgba(125,185,232,0) 99%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(227,235,247,1)), color-stop(0%,rgba(150,197,236,0)), color-stop(37%,rgba(125,185,232,0))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top,  rgba(227,235,247,1) 0%,rgba(150,197,236,0) 0%,rgba(125,185,232,0) 99%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top,  rgba(227,235,247,1) 0%,rgba(150,197,236,0) 0%,rgba(125,185,232,0) 99%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(top,  rgba(227,235,247,1) 0%,rgba(150,197,236,0) 0%,rgba(125,185,232,0) 99%); /* IE10+ */
+                background: linear-gradient(to bottom,  rgba(227,235,247,1) 0%,rgba(240, 141, 0, 0.32) 0%,rgba(125,185,232,0) 99%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e3ebf7', endColorstr='#007db9e8',GradientType=0 ); /* IE6-8 */">   
+    </div> 
+</header>
+</ui:composition>
+</h:body>
+</html>
+

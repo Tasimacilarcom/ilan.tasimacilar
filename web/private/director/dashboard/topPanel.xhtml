@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <fieldset  style="background-color: #f0f1f33d; border-radius: 4px; border: 1px solid #ddd; padding: 15px; padding-left: 25px; padding-right: 25px; margin-bottom: 25px;">
+                                <legend style="text-align: left; font-size: 1em; font-weight: 500; padding:0;  width: auto">&nbsp;Kullanıcı Yönetimi&nbsp;</legend>
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                          <h:form id="allUsersForm" prependId="false">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p style="font-weight: 500">Yönetmek istediğiniz kullanıcıya aşağıdan telefon numarası veya Ad,Soyad 'ına göre arıyarak erişebilirsiniz</p>
+                                                        <div class="input-group input-group-lg m-input-group">
+                                                            <div class="input-group-append"><span class="input-group-text" id="basic-addon2"><i class="fa fa-at"></i></span></div>
+                                                            <p:inputText class="form-control" placeholder="E-Mail Adresi" value="#{allAccountsBean.email}"></p:inputText>&nbsp;&nbsp;
+                                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-mobile-alt"></i></span></div>
+                                                            <p:inputMask id="personalAccountMobilePhoneNumberInput"    
+                                                                         class=" form-control "
+                                                                         value="#{allAccountsBean.phone}"
+                                                                         placeholder="0(500)-000-0000"
+                                                                         mask="0(599)-999-9999">
+                                                            </p:inputMask>&nbsp;&nbsp;
+                                                            <div class="input-group-append"><span class="input-group-text" id="basic-addon2"><i class="fa fa-user"></i></span></div>
+                                                            <p:inputText class="form-control" placeholder="Ad Soyad" value="#{allAccountsBean.name}"></p:inputText>&nbsp;&nbsp;
+                                                            <div class="input-group-append">
+                                                                <h:commandLink class="btn btn-primary" 
+                                                                               action="#{allAccountsBean.searchAccountWithPhoneOrName()}">
+                                                                    ARA
+                                                                    <f:ajax execute="allUsersForm" render="dst43t5"></f:ajax>
+                                                                </h:commandLink>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-top: 50px;">
+                                                    <div class="col-md-12">
+                                                    <h:panelGroup id="dst43t5">
+                                                        <table class="table table-bordered table-hover"   >
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th style="width: 120px;background-color: #dfe3ec">Kullanıcı Id</th>
+                                                                    <th style="background-color: #dfe3ec">Kullanıcı GSM</th>
+                                                                    <th style="background-color: #dfe3ec">Kullanıcı E-Mail</th>
+                                                                    <th style="background-color: #dfe3ec">Kullanıcı Ad Soyad</th>
+                                                                    <th style="background-color: #dfe3ec">Kullanıcı Detay</th>
+                                                                </tr>
+                                                                <ui:repeat var="x" value="#{allAccountsBean.searchedAccount}">
+                                                                    <tr>
+                                                                        <th>#{x.personalAccountBean.accountBean.account_Id}</th>
+                                                                        <th>#{x.personalAccountBean.accountBean.account_MobilePhoneNumber}</th>
+                                                                        <th>#{x.personalAccountBean.accountBean.account_EmailAddress}</th>
+                                                                        <th>#{x.personalAccountBean.accountBean.account_FirstName}&nbsp;#{x.personalAccountBean.accountBean.account_LastName}</th>
+                                                                        <th><a href="/private/director/users/kullanici_detay_userInfo.xhtml?p=userInfo&amp;aId=#{x.personalAccountBean.accountBean.account_Id}" title="Detay">
+                                                                                <i class="fa fa-external-link-alt"></i>&nbsp;Detay
+                                                                            </a>
+                                                                        </th>
+                                                                    </tr>
+                                                               </ui:repeat> 
+                                                            </tbody>
+                                                        </table>
+                                                    </h:panelGroup>
+                                                    </div>
+                                                    <div class="col-md-4"></div>
+                                                </div>
+                                            </h:form>
+                                    </div>
+                                    
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <fieldset  style="border-radius: 4px; border: 1px solid #ddd; padding: 15px; padding-left: 25px; padding-right: 25px; margin-bottom: 25px;">
+                                <legend style="text-align: left; font-size: 1em; font-weight: 500; padding:0;  width: auto">&nbsp;Bekleyen Yönetici Görevleri&nbsp;</legend>
+                                <div class="row">
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <div class="shadow card text-white bg-warning o-hidden h-100">
+                                            <div class="card-body">
+                                                <div style="text-align: right; ">
+                                                    <i class="la la-list-ul" style="font-weight: 400;font-size: 3rem !important;"></i>
+                                                </div>
+                                                <div style="font-size: 3em"><h:outputText value="#{dashboardBean.bekleyenIlanlar}"/></div>
+                                                <div style="font-size: 1.1em">Onay Bekleyen İlanlar</div>
+                                            </div>
+                                            <a class="card-footer text-white clearfix small z-1" href="/private/director/ads/onay_bekleyen_ilanlar/onay_bekleyen_ilanlar.xhtml?p1=getAllNotPublishedAd">
+                                                <span class="float-left">Detaylara Bak..</span>
+                                                <span class="float-right">
+                                                    <i class="fas fa-angle-right"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <div class="card text-white bg-primary o-hidden h-100">
+                                            <div class="card-body">
+                                                <div style="text-align: right; ">
+                                                    <i class="la la-building" style="font-weight: 400;font-size: 3rem !important;"></i>
+                                                </div>
+                                                <div style="font-size: 3em"><h:outputText value="#{dashboardBean.bekleyenFirmaSayısı}"/></div>
+                                                <div style="font-size: 1.1em">Yeni Onay Bekleyen Firmalar</div>
+                                            </div>
+                                            <a class="card-footer text-white clearfix small z-1" href="/private/director/companies/onay_bekleyen_yeni_firmalar.xhtml">
+                                                <span class="float-left">Detaylara Bak..</span>
+                                                <span class="float-right">
+                                                    <i class="fas fa-angle-right"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <div class="card text-white bg-success o-hidden h-100">
+                                            <div class="card-body">
+                                                <div style="text-align: right; ">
+                                                    <i class="la la-comment-o"  style="font-weight: 400;font-size: 3rem !important;"></i>
+                                                </div>
+                                                <div style="font-size: 3em"><h:outputText value="#{dashboardBean.bekleyenYorumSayısı}"/></div>
+                                                <div style="font-size: 1.1em">Onay Bekleyen Yorumlar</div>
+                                            </div>
+                                            <a class="card-footer text-white clearfix small z-1" href="/private/director/comments/onay_bekleyen_yorumlar.xhtml">
+                                                <span class="float-left">Detaylara Bak..</span>
+                                                <span class="float-right">
+                                                    <i class="fas fa-angle-right"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-sm-6 mb-3">
+                                        <div class="card text-white bg-danger o-hidden h-100">
+                                            <div class="card-body">
+                                                <div style="text-align: right; ">
+                                                    <i class="la la-support"  style="font-weight: 400;font-size: 3rem !important;"></i>
+                                                </div>
+
+                                                <div style="font-size: 3em"><h:outputText value="#{dashboardBean.bekleyenDestekTalebiSayısı}"></h:outputText></div>
+                                                <div style="font-size: 1.1em">Yanıt Bekleyen Destek Talepleri</div>
+                                            </div>
+                                            <a class="card-footer text-white clearfix small z-1" href="/private/director/support/destek_kayitlari_yonetimi.xhtml">
+                                                <span class="float-left">Detaylara Bak..</span>
+                                                <span class="float-right">
+                                                    <i class="fas fa-angle-right"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset   style="border-radius: 4px; border: 1px solid #ddd; padding: 25px; padding-top: 15px; padding-bottom: 15px;  margin-bottom: 25px;">
+                                <legend style="text-align: left; font-size: 1em; font-weight: 500; padding:0;  width: auto">&nbsp;İlanlara Ait İstatistikler&nbsp;</legend>
+                                <table class="table table-sm table-bordered table-striped m-table " >
+                                    <tr>
+                                        <th style="font-size: 1.1rem">Kategori</th>
+                                        <th style="font-size: 1.1rem; text-align: center">Bugun Girilen İlanlar</th>
+                                        <th title="Son 3 Ay'ın ilan Sayısı" style="font-size: 1.1rem;">Yayındaki İlanlar</th>
+                                        <th title="Tüm zamanların ilan Sayısı" style="font-size: 1.1rem">Tüm İlanlar</th>
+                                    </tr>
+                                    <tr>
+                                        <td>İşim Var Araç Arıyorum</td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.bugun_isimVarAracAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.yayinda_isimVarAracAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.tum_isimVarAracAriyorum}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aracım Var İş Arıyorum</td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.bugun_aracimVarIsAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.yayinda_aracimVarIsAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.tum_aracimVarIsAriyorum}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aracim Var Şöför Arıyorum</td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.bugun_aracimVarSoforAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.yayinda_aracimVarSoforAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.tum_aracimVarSoforAriyorum}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aracim Var Hostes Arıyorum</td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.bugun_aracimVarHostesAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.yayinda_aracimVarHostesAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.tum_aracimVarHostesAriyorum}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hostesim İş Arıyorum</td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.bugun_hostesimIsAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.yayinda_hostesimIsAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.tum_hostesimIsAriyorum}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Şöförüm İş Arıyorum</td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.bugun_soforumIsAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.yayinda_soforumIsAriyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.tum_soforumIsAriyorum}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Plakamı Satıyorum</td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.bugun_plakamiSatiyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.yayinda_plakamiSatiyorum}"/></td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.tum_plakamiSatiyorum}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size: 1.1rem;text-align: right"><em>TOPLAM</em></th>
+                                        <td style="font-size: 1.1rem;text-align: center"><h:outputText value="#{dashboardBean.bugun_toplam}"/></td>
+                                        <td style="font-size: 1.1rem;text-align: center"><h:outputText value="#{dashboardBean.yayinda_toplam}"/></td>
+                                        <td style="font-size: 1.1rem;text-align: center"><h:outputText value="#{dashboardBean.tum_toplam}"/></td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div>   
+                        <div class="col-md-3"> 
+                            <fieldset  style="border-radius: 4px; border: 1px solid #ddd; padding: 25px; padding-top: 15px; padding-bottom: 15px;  margin-bottom: 25px;">
+                                <legend style="text-align: left; font-size: 1em; font-weight: 500; padding:0;  width: auto">&nbsp;Firma &amp; Kullanıcılara Ait İstatistikler&nbsp;</legend>
+                                 
+                                <table class="table table-sm table-bordered table-striped m-table " >
+                                    <tr>
+                                        <th style="font-size: 1.1rem">Toplam Aktif Firma </th>
+                                        <th style="font-size: 1.1rem; text-align: center"><em><h:outputText value="#{dashboardBean.toplamFirmaSayısı}"/></em></th>
+                                    </tr>
+                                    <tr> <td colspan="2">&nbsp;</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size: 1.1rem">Kullanıcı Türü</th>
+                                        <th style="font-size: 1.1rem; text-align: center">Kullanıcı Sayısı</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Aktif Bireysel </td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.bireyselKullaniciSayisi}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aktif Kurumsal </td>
+                                        <td style="text-align: center"><h:outputText value="#{dashboardBean.kurumsalKullaniciSayisi}"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size: 1.1rem;text-align: right"><em>TOPLAM</em></th>
+                                        <th style="font-size: 1.1rem;text-align: center"><em><h:outputText value="#{dashboardBean.toplamKullaniciSayisi}"/></em></th>
+                                    </tr>
+                                </table>
+                               
+                            </fieldset>
+                        </div>  
+                        <div class="col-md-3"> 
+                            <fieldset  style="border-radius: 4px; border: 1px solid #ddd; padding: 25px; padding-top: 15px; padding-bottom: 15px;  margin-bottom: 25px;">
+                                <legend style="text-align: left; font-size: 1em; font-weight: 500; padding:0;  width: auto">&nbsp;Diğer İstatistikler&nbsp;</legend>
+                                <table class="table table-sm table-bordered table-striped m-table " >
+                                    <tr>
+                                        <th style="font-size: 1.1rem">Toplam Yayınlanan Yorum Sayısı</th>
+                                        <th style="font-size: 1.1rem; text-align: center"><em><h:outputText value="#{dashboardBean.toplamYorumSayısı}"/></em></th>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size: 1.1rem">Toplam Destek Talebi Sayısı</th>
+                                        <th style="font-size: 1.1rem; text-align: center"><em><h:outputText value="#{dashboardBean.toplamDestekTalebiSayısı}"/></em></th>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-size: 1.1rem">Toplam Aktif Araç Sayısı</th>
+                                        <th style="font-size: 1.1rem; text-align: center"><em><h:outputText value="#{dashboardBean.toplamAracSayısı}"/></em></th>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </ui:composition>
+    </h:body>
+
+</html>
+

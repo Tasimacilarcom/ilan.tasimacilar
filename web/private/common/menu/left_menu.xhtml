@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <ui:composition>
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <div class="btn-group-vertical w-100" role="group">
+                    <h:panelGroup rendered="#{AccountType=='personal'}">
+                        <a href="/private/bireysel/profilim" class="btn btn-profile #{pagesBean.onPage eq 'profile_settings' ? 'active' : ''} "><ui:include src="/resources/image/ikon_profilim.svg" />Profilim</a>
+                        <a href="/private/bireysel/ilanlarim" class="btn btn-profile #{pagesBean.onPage eq 'personal_my_ads' ? 'active' : ''} "><ui:include src="/resources/image/ikon_ilanlarim.svg" />İlanlarım</a>
+                        <a href="/private/bireysel/araclarim" class="btn btn-profile #{pagesBean.onPage eq 'personal_my_vehicles' ? 'active' : ''} "><ui:include src="/resources/image/ikon_araclar.svg" />Araçlarım</a>
+                        <a href="/private/bireysel/ilan-mesajlarim" class="btn btn-profile #{pagesBean.onPage eq 'messages_ads' ? 'active' : ''} "><ui:include src="/resources/image/ikon_ilanMesajlari.svg" />İlan Mesajları<h:panelGroup rendered="#{accountBean.isExistUserMessageNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                        <a href="/private/bireysel/favori-ilanlarim" class="btn btn-profile #{pagesBean.onPage eq 'personal_my_favorites' ? 'active' : ''} "><ui:include src="/resources/image/ikon_favoriIlanlarim.svg" />Favori İlanlarım</a>
+                        <a href="/private/bireysel/destek" class="btn btn-profile #{pagesBean.onPage eq 'support' ? 'active' : ''} "><ui:include src="/resources/image/ikon_destek.svg" />Destek<h:panelGroup rendered="#{accountBean.isExistUserSupportNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{AccountType=='corporate'}">
+                        <a href="/private/kurumsal/profilim/s1" class="btn btn-profile #{pagesBean.onPage eq 'profile_settings_s1' ? 'active' : ''}"><ui:include src="/resources/image/ikon_profilim.svg" />Profilim</a>
+                        <a href="/private/kurumsal/ilanlarim" class="btn btn-profile #{pagesBean.onPage eq 'corporate_my_ads' ? 'active' : ''}"><ui:include src="/resources/image/ikon_ilanlarim.svg" />İlanlarım</a>
+                        <a href="/private/kurumsal/araclarim" class="btn btn-profile #{pagesBean.onPage eq 'corporate_my_vehicles' ? 'active' : ''} "><ui:include src="/resources/image/ikon_araclar.svg" />Araçlarım</a>
+                        <a href="/private/kurumsal/ilan-mesajlarim" class="btn btn-profile #{pagesBean.onPage eq 'messages_ads' ? 'active' : ''} "><ui:include src="/resources/image/ikon_ilanMesajlari.svg" />İlan Mesajları<h:panelGroup rendered="#{accountBean.isExistUserMessageNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                        <a href="/private/kurumsal/favori-ilanlarim" class="btn btn-profile #{pagesBean.onPage eq 'corporate_my_favorites' ? 'active' : ''} "><ui:include src="/resources/image/ikon_favoriIlanlarim.svg" />Favori İlanlarım</a>
+                        <a href="/private/kurumsal/destek" class="btn btn-profile #{pagesBean.onPage eq 'support' ? 'active' : ''} "><ui:include src="/resources/image/ikon_destek.svg" />Destek<h:panelGroup rendered="#{accountBean.isExistUserSupportNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                    </h:panelGroup>
+                    <a href="/logout" class="btn btn-profile"><ui:include src="/resources/image/ikon_cikis.svg" />Çıkış Yap</a>
+                </div>
+            </div>
+        </ui:composition>
+    </h:body>
+</html>
+

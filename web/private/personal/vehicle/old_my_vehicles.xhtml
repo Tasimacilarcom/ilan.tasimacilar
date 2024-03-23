@@ -1,0 +1,272 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+
+        <!-- Start global head -->
+        <ui:insert name="head" ><ui:include src="../../../head.xhtml" /></ui:insert>
+        <!-- End global head -->
+
+    </h:head>
+
+    <h:body>
+
+        <!-- Start header -->
+        <ui:insert name="header" ><ui:include src="../../../header.xhtml" /></ui:insert>
+        <!-- End header -->
+
+
+           <main role="main" >
+
+               <div class="container" style="margin-top: 20px">
+
+                <div class="m-portlet m-portlet--full-height">
+
+                    <!--begin: Portlet Head-->
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    <h:panelGroup rendered="#{accountMembershipType eq 'personal'}">
+                                        <i class="fas fa-user-alt"></i>&nbsp;Bireysel profil sayfası
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{accountMembershipType eq 'corporate'}">
+                                        <i class="fas fa-building"></i>&nbsp;Kurumsal Profil Sayfası
+                                    </h:panelGroup>
+                                    <small><i class="la la-angle-right"></i>&nbsp;Araçlar&nbsp;
+                                            <i class="la la-angle-right"></i>&nbsp;Araçlarım
+                                    </small>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                            <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item">
+                                        
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!--end: Portlet Head-->
+
+                    <!--begin: Portlet Body-->
+                    <div class="m-portlet__body m-portlet__body--no-padding">
+
+                        <!--begin: Form Wizard-->
+                        <div class="m-wizard m-wizard--3 m-wizard--brand m-wizard--step-first" id="m_wizard">
+
+                            <!--begin: Message container -->
+                            <div class="m-portlet__padding-x">
+
+                                <!-- Here you can put a message or alert -->
+                            </div>
+
+                            <!--end: Message container -->
+                            <div class="row m-row--no-padding">
+                                <div class="col-md-3">
+
+                                    <!--begin: Form Wizard Head -->
+                                    <div class="m-wizard__head" style="padding: 5rem 2rem;">
+
+                                        <!-- Start menu -->
+                                        <ui:insert name="left_menu" ><ui:include src="../../common/menu/left_menu.xhtml" /></ui:insert>
+                                        <!-- End menu -->
+
+
+
+                                    </div>
+
+                                    <!--end: Form Wizard Head -->
+                                </div>
+                                <div class=" col-md-9">
+
+                                    <!--begin: Form Wizard Form-->
+                                    <div class="m-wizard__form">
+
+                                      
+                                        <h:form class="m-form m-form--label-align-left- m-form--state-" id="m_form" >
+                                            <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                                            <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/>
+                                                        
+                                            <!--begin: Form Body -->
+                                            <div class="m-portlet__body m-portlet__body--no-padding">
+                                               
+                                                <div class="m-form__heading">
+                                                    <h4 style="margin-bottom: 50px;">Araçlarım</h4>
+                                                </div>
+                                                
+                                               
+                                                <ui:repeat value="#{vehicleBean.getVehiclesWithvehicleOvnerAccountId(accountId)}" var="a">
+                                                    <h:panelGroup id="edgdsf">
+                                                    <div class="m-portlet" style="border: 1px solid #ddd">
+                                                    <div class="m-portlet__head">
+                                                        <div class="m-portlet__head-caption">
+                                                            <div class="m-portlet__head-title">
+                                                                <a href="/arac-detay/#{a.vehicle_Id}" target="_blank" style="text-decoration: none"> 
+                                                                    <h3 class="m-portlet__head-text" style="font-size: 1.5rem;">
+                                                                    #{a.vehicle_PlateProvinceCode} - #{a.vehicle_PlateLatterCode} - #{a.vehicle_PlateNumberCode}
+                                                                    </h3>
+                                                                </a>  
+                                                            </div>
+                                                        </div>
+                                                        <div class="m-portlet__head-tools">
+                                                            <ul class="m-portlet__nav">
+                                                                <li class="m-portlet__nav-item">
+                                                                    <h:commandLink action="#{vehicleBean.selectedAdIdSet(a.vehicle_Id)}"
+                                                                                    onclick="PF('dlg2').show();" 
+                                                                                   title="Aracı SİL" 
+                                                                                   class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                                                         <i class="fa fa-trash-alt"></i>
+                                                                         <f:ajax execute="@this"></f:ajax>
+                                                                    </h:commandLink>
+                                                                </li>
+                                                                 
+                                                               
+                                                                <li class="m-portlet__nav-item">
+                                                                    <a href="/private/bireysel/arac-duzenle/s1/#{a.vehicle_Id}?vParam2=ad" 
+                                                                       title="Aracı DÜZENLE" 
+                                                                       class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                                                        <i class="fas fa-edit"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                        <div class="m-portlet__body" style="padding: 20px;">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                
+                                                                <h:panelGroup rendered="#{a.vehicleImagesBean.vehicleImage_ProfilePhotoUrl == null}">
+                                                                    <img style="width: 100%; border: 1px solid #ddd; padding: 5px; border-radius: 5px"
+                                                                         src="/resources/img/vehicleIcon.png" alt="vehiclePhoto"/>
+                                                                </h:panelGroup>
+                                                                <h:panelGroup rendered="#{a.vehicleImagesBean.vehicleImage_ProfilePhotoUrl != null}">
+                                                                    <h:panelGroup rendered="#{a.vehicleImagesBean.vehicleImage_ProfilePhotoPublish == false}">
+                                                                        <img class="img-thumbnail"  src="#{a.vehicleImagesBean.vehicleImage_ProfilePhotoUrl}" alt="vehicleProfilePhoto"/> 
+                                                                    </h:panelGroup>
+                                                                    <h:panelGroup rendered="#{a.vehicleImagesBean.vehicleImage_ProfilePhotoPublish == true}">
+                                                                        <img style="width: 100%; border: 1px solid #ddd; padding: 5px; border-radius: 5px"
+                                                                             src="/resources/img/vehicleIcon.png" alt="vehiclePhoto"/>
+                                                                    </h:panelGroup>
+                                                                </h:panelGroup>  
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <div class="row">
+                                                                    <div class="col-md-10">
+                                                                        <span style="font-size: 1.3em; font-weight: 500">#{a.vehicle_ModelYear}&nbsp;-&nbsp;#{a.vehicle_Brand} <span class="small">#{a.vehicle_Model}</span> </span><br/>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                                <hr style="border: 1px dashed #eee; margin-top: 0.5rem; margin-bottom: 0.5rem;"></hr>
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="m-widget6">
+                                                                            <div class="m-widget6__body">
+                                                                                
+                                                                                
+                                                                                <div class="m-widget6__item">
+                                                                                    <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">Şöför Bilgisi</span>
+                                                                                    <span class="m-widget6__text">#{a.vehicle_DriverInfo}</span>
+                                                                                </div> 
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="m-widget6">
+                                                                            <div class="m-widget6__body">
+                                                                                
+                                                                                
+                                                                                <div class="m-widget6__item">
+                                                                                    <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">Hostes Bilgisi </span>
+                                                                                    <span class="m-widget6__text">#{a.vehicle_HostessInfo}</span>
+                                                                                </div>  
+                                                                            </div> 
+                                                                        </div> 
+                                                                    </div>
+                                                                </div>
+                                                              <br/>
+                                                              <span style="font-size: 1.2em; padding-top: 10px;"></span> <a href="/arac-detay/#{a.vehicle_Id}" target="_blank">Araç Detayı</a>
+                                                                
+                                                                
+                                                                
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                                      </h:panelGroup>  
+                                                  
+                                                </ui:repeat>
+                                             
+                                                
+                                             
+                                                
+                                            </div>
+
+                                            <!--end: Form Body -->
+
+                                          
+                                            <p:dialog header="Araç Silme" widgetVar="dlg2" modal="true"  resizable="false" responsive="true">
+                                                <div class="row">
+                                                    <div class="col-md-12" style="margin-bottom: 25px;">
+                                                        <p style="font-size: 1.2em">
+                                                            <b>Dikkat !</b>&nbsp;Bu aracı silmek istediğinize eminmisiniz ?<br/>
+                                                            Bu aracı silerseniz bu araçla ilişkili ilanlarda silinecektir.
+                                                        </p>
+                                                    </div>
+                                                    <br/>
+                                                    <div class="col-md-6">
+                                                        <p:commandLink class="btn btn-danger" ajax="false" update="m_form:edgdsf" style="width: 100%"
+                                                                       action="#{vehicleBean.enableDisableVehicle('disable')}">
+                                                            EVET
+                                                        </p:commandLink>
+                                                    </div>
+                                                    <div class="col-md-6"><a href="#"  style="width: 100%" onclick="PF('dlg2').hide();" class="btn btn-info">HAYIR</a></div>
+                                                </div>
+                                            </p:dialog> 
+                                            
+                                            
+                                        </h:form>
+                                  
+                                         
+                                        
+                                    </div>
+
+                                    <!--end: Form Wizard Form-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--end: Form Wizard-->
+                    </div>
+
+                    <!--end: Portlet Body-->
+                </div>
+
+
+            </div>
+
+
+
+
+        </main>
+        
+        
+         <!-- Start footer -->
+        <ui:insert name="footer" ><ui:include src="../../../footer.xhtml" /></ui:insert>
+        <!-- End footer -->
+
+        <!-- Start global scripts -->
+        <ui:insert name="scripts" ><ui:include src="../../../scripts.xhtml" /></ui:insert>
+        <!-- End global scripts -->
+
+    </h:body>
+</html>
+

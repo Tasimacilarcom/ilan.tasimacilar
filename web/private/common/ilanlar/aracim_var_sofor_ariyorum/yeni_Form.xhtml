@@ -1,0 +1,397 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition>
+            <h:form  id="m_form"  prependId="false" enctype="multipart/form-data">
+                <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/>  
+                
+                <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.param1 == null}" >
+                    <div class="profile-card mb-3 background-yellow"> <ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Aracım Var Şoför Arıyorum</li></ol></div>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.param1 != null}" >       
+                    <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.param1 eq 'ekle'}" >
+                        <div class="profile-card mb-3 background-yellow"> <ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Aracım Var Şoför Arıyorum</li></ol></div>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.param1 ne 'ekle'}" >
+                       <div class="profile-card mb-3 background-yellow"> <ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">İlan Düzenle</a></li><li class="breadcrumb-item active" aria-current="page">Aracım Var Şoför Arıyorum</li></ol></div>
+                    </h:panelGroup>      
+                </h:panelGroup>
+                <div class="profile-list mb-3">
+                    <div class="list-title d-flex align-items-center">
+                        <div class="message-title"><div class="title-bold m-0">Araç bilgisi</div></div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <p:selectOneRadio id="console" value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.vehicleSelection}" unselectable="true" layout="responsive" columns="2">
+                           <f:selectItem itemLabel="Araçlarım arasından seçeceğim" itemValue="oldVehicle"/>
+                           <f:selectItem itemLabel="Tek seferlik araç bilgisi gireceğim" itemValue="newVehicle"/>
+                           <p:ajax update="dsg433w salfkmde" event="change"/>
+                        </p:selectOneRadio>   
+                    </div>
+                    <h:panelGroup id="dsg433w">
+                        <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.vehicleSelection eq 'oldVehicle'}">
+                            <hr style="margin-bottom: 0;" />
+                            <div class="list-title d-flex align-items-center">
+                                <a class="collapsed" data-toggle="collapse" data-target=".arac-list" aria-expanded="false">
+                                    <div class="message-title">
+                                        <h:panelGroup id="vbjnhgfgd">
+                                            <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.vehicle.vehicle_Id == null }">
+                                                <div class="title-bold m-0">Araç Seçin</div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.vehicle.vehicle_Id != null }">
+                                                <div class="title-bold m-0">Seçilen Araç : <span style="font-weight: 500;">#{adAracimVarSoforAriyorumBean.selectedVehicle }</span></div>
+                                            </h:panelGroup>
+                                        </h:panelGroup>    
+                                    </div>
+                                </a>
+                                <!--<button type="button" class="btn btn-orange ml-auto mt-lg-0" data-toggle="modal" data-target="#modal-arac-ekle"><b>+</b> Yeni Araç Ekle</button>-->
+                                <h:panelGroup rendered="#{AccountType=='personal'}"><a href="/private/bireysel/arac-ekle?frm=3" class="btn btn-orange ml-auto mt-3 mt-lg-0" style="padding-top: 7px;"><b>+</b> Yeni Araç Ekle</a></h:panelGroup>
+                                <h:panelGroup rendered="#{AccountType=='corporate'}"><a href="/private/kurumsal/arac-ekle?frm=3" class="btn btn-orange ml-auto mt-3 mt-lg-0" style="padding-top: 7px;"><b>+</b> Yeni Araç Ekle</a></h:panelGroup>
+
+                                <a class="btn btn-collapse collapsed" data-toggle="collapse" data-target=".arac-list" aria-expanded="false"></a>
+                            </div>
+                            <div class="arac-list collapse" style="">
+                                <div class="profile-list-title table-title row no-gutters px-20 py-3 d-none d-md-flex">
+                                    <div class="col-1">
+                                    </div>
+                                    <div class="col-2 plate">PLAKA</div>
+                                    <div class="col-3 brand">MARKA MODEL</div>
+                                    <!--<div class="col-1 km">KM</div>-->
+                                    <div class="col-1 seat">KOLTUK</div>
+                                    <div class="col-4 date">ARAÇ EKLENME TARİHİ</div>
+                                </div>
+                                <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.AId != null}">
+                                    <p:selectOneRadio   id="ITRadioGrp" value="#{adAracimVarSoforAriyorumBean.vehicle.vehicle_Id}" layout="custom"  >
+                                        <p:ajax oncomplete="showHideVehiclePanel()"  update="vbjnhgfgd salfkmde" process="@this" listener="#{adAracimVarSoforAriyorumBean.aracSecildi()}"> </p:ajax>
+                                        <f:selectItems itemValue="#{vc.vehicle_Id}" var="vc" value="#{vehicleBean.getVehiclesWithvehicleOvnerAccountId(adAracimVarSoforAriyorumBean.AId) }" />
+                                    </p:selectOneRadio>
+                                    <p:scrollPanel mode="native" style="width:100%;max-height:260px;border: none;background-color: #f8f8f9">
+                                        <ui:repeat varStatus="vIndex" var="v" value="#{vehicleBean.getVehiclesWithvehicleOvnerAccountId(adAracimVarSoforAriyorumBean.AId) }">
+                                            <div class="arac-item">
+                                                <div class="profile-list-item row no-gutters">
+                                                    <div class="col-2 col-lg-1 box"><p:radioButton for=":m_form:ITRadioGrp" itemIndex="#{vIndex.index}"/></div>
+                                                    <div class="col-4 col-lg-2 plate pr-2"><p>${v.vehicle_PlateProvinceCode} ${v.vehicle_PlateLatterCode} ${v.vehicle_PlateNumberCode}</p></div>
+                                                    <div class="col-6 col-lg-3 brand pr-2"><p>${v.vehicle_ModelYear} - ${v.vehicle_Brand}</p></div>
+                                                    <!--<div class="col-3 col-lg-1 km pr-2"><p>${v.vehicle_Km}</p></div>-->
+                                                    <div class="col-3 col-lg-1 seat pr-2"><p>${v.vehicle_NumberOfSeats}</p></div>
+                                                    <div class="col-6 col-lg-4 date"><p><h:outputText value="${v.vehicle_Created}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></p></div>
+                                                </div>
+                                            </div>
+                                        </ui:repeat>
+                                    </p:scrollPanel>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.AId == null}">
+                                    <p:selectOneRadio id="ITRadioGrp2" value="#{adAracimVarSoforAriyorumBean.vehicle.vehicle_Id}" layout="custom">
+                                        <p:ajax oncomplete="showHideVehiclePanel()" update="vbjnhgfgd salfkmde" process="@this" listener="#{adAracimVarSoforAriyorumBean.aracSecildi()}"> </p:ajax>
+                                        <f:selectItems itemValue="#{vc.vehicle_Id}" var="vc" value="#{vehicleBean.getVehiclesWithvehicleOvnerAccountId(accountId) }" />
+                                    </p:selectOneRadio>
+                                        <p:scrollPanel mode="native" style="width:100%;max-height:260px;border: none;background-color: #f8f8f9">
+                                            <ui:repeat varStatus="vIndex" var="v" value="#{vehicleBean.getVehiclesWithvehicleOvnerAccountId(accountId) }">
+                                                 <div class="arac-item">
+                                                     <div class="profile-list-item row no-gutters">
+                                                         <div class="col-2 col-lg-1 box"><p:radioButton for=":m_form:ITRadioGrp2" itemIndex="#{vIndex.index}" /></div>
+                                                         <div class="col-4 col-lg-2 plate pr-2"><p>${v.vehicle_PlateProvinceCode} ${v.vehicle_PlateLatterCode} ${v.vehicle_PlateNumberCode}</p></div>
+                                                         <div class="col-6 col-lg-3 brand pr-2"><p>${v.vehicle_ModelYear} - ${v.vehicle_Brand}</p></div>
+                                                         <!--<div class="col-3 col-lg-1 km pr-2"><p>${v.vehicle_Km}</p></div>-->
+                                                         <div class="col-3 col-lg-1 seat pr-2"><p>${v.vehicle_NumberOfSeats}</p></div>
+                                                         <div class="col-6 col-lg-4 date"><p><h:outputText value="${v.vehicle_Created}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></p></div>
+                                                     </div>
+                                                 </div>
+                                             </ui:repeat>
+                                        </p:scrollPanel>
+                                </h:panelGroup>                        
+                            </div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.vehicleSelection eq 'newVehicle'}">
+                            <hr style="margin-bottom: 0;" />
+                            <div class="list-title">
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="adAracimVarHostesAriyorumVehicleBrand" class="col-form-label font-weight-bold">Marka</label>
+                                        <h:selectOneMenu id="adAracimVarHostesAriyorumVehicleBrand" class="form-control"  style="height: 40px;"
+                                                         value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.fast_vehicle_BrandId}" 
+                                                         required="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.vehicleSelection eq 'newVehicle' ? 'true' : 'false'}" requiredMessage="Bu alan gereklidir" >
+                                            <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                            <f:selectItems value="#{adAracimVarSoforAriyorumBean.vehicleBrandNamesListx()}"  var="v"  itemLabel="#{v.vehicleBrand_Name}"   itemValue="#{v.vehicleBrand_Id}" > </f:selectItems>  
+                                            <f:ajax event="change" render="ad_AracimVarHostesAriyorumVehicleModelOneMenu" listener="#{adAracimVarSoforAriyorumBean.vehicleModelsListx()}"></f:ajax>
+                                        </h:selectOneMenu> 
+                                        <h:message for="adAracimVarHostesAriyorumVehicleBrand" class="message-f"></h:message>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="ad_AracimVarHostesAriyorumVehicleModelOneMenu" class="col-form-label font-weight-bold">Model</label>
+                                        <h:selectOneMenu id="ad_AracimVarHostesAriyorumVehicleModelOneMenu" class="form-control" style="height: 40px;"
+                                                         required="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.vehicleSelection eq 'newVehicle' ? 'true' : 'false'}"  requiredMessage="Bu alan gereklidir"
+                                                         value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.fast_vehicle_Model}"  >
+                                            <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                            <f:selectItems value="#{adAracimVarSoforAriyorumBean.vehicleModelsList}"  var="x"  itemLabel="#{x}"  itemValue="#{x}" ></f:selectItems> 
+                                        </h:selectOneMenu> 
+                                        <h:message for="ad_AracimVarHostesAriyorumVehicleModelOneMenu" class="message-f"></h:message>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="ad_AracimVarHostesAriyorumVehicleYearOneMenu" class="col-form-label font-weight-bold">Araç Yılı</label>
+                                        <h:selectOneMenu id="ad_AracimVarHostesAriyorumVehicleYearOneMenu" class="form-control" style="height: 40px;"
+                                                         required="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.vehicleSelection eq 'newVehicle' ? 'true' : 'false'}"  requiredMessage="Bu alan gereklidir"
+                                                         value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.fast_vehicle_ModelYear}" >
+                                            <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                            <f:selectItem itemValue="2023" itemLabel="2023"></f:selectItem>
+                                            <f:selectItem itemValue="2022" itemLabel="2022"></f:selectItem>
+                                            <f:selectItem itemValue="2021" itemLabel="2021"></f:selectItem>
+                                            <f:selectItem itemValue="2020" itemLabel="2020"></f:selectItem>
+                                            <f:selectItem itemValue="2019" itemLabel="2019"></f:selectItem>
+                                            <f:selectItem itemValue="2018" itemLabel="2018"></f:selectItem>
+                                            <f:selectItem itemValue="2017" itemLabel="2017"></f:selectItem>
+                                            <f:selectItem itemValue="2016" itemLabel="2016"></f:selectItem>
+                                            <f:selectItem itemValue="2015" itemLabel="2015"></f:selectItem>
+                                            <f:selectItem itemValue="2014" itemLabel="2014"></f:selectItem>
+                                            <f:selectItem itemValue="2013" itemLabel="2013"></f:selectItem>
+                                            <f:selectItem itemValue="2012" itemLabel="2012"></f:selectItem>
+                                            <f:selectItem itemValue="2011" itemLabel="2011"></f:selectItem>
+                                            <f:selectItem itemValue="2010" itemLabel="2010"></f:selectItem>
+                                            <f:selectItem itemValue="2009" itemLabel="2009"></f:selectItem>
+                                            <f:selectItem itemValue="2008" itemLabel="2008"></f:selectItem>
+                                            <f:selectItem itemValue="2007" itemLabel="2007"></f:selectItem>
+                                            <f:selectItem itemValue="2006" itemLabel="2006"></f:selectItem>
+                                            <f:selectItem itemValue="2005" itemLabel="2005"></f:selectItem>
+                                        </h:selectOneMenu> 
+                                        <h:message for="ad_AracimVarHostesAriyorumVehicleYearOneMenu" class="message-f"></h:message>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="adAracimVarHostesAriyorumVehicleCapacityOneMenu" class="col-form-label font-weight-bold">Araç Kapasitesi</label>
+                                        <h:selectOneMenu id="adAracimVarHostesAriyorumVehicleCapacityOneMenu" 
+                                                         required="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.vehicleSelection eq 'newVehicle' ? 'true' : 'false'}" requiredMessage="Bu alan gereklidir"
+                                                         value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.fast_vehicle_NumberOfSeats}" class="form-control " style="height: 40px;">
+                                            <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                            <f:selectItems value="#{selectItemsBean.selectItemList('VehicleCapacity')}"   var="o"   itemLabel="#{o.selectItem_Label_Tr}"  itemValue="#{o.selectItem_Value}" > </f:selectItems> 
+                                        </h:selectOneMenu> 
+                                        <h:message for="adAracimVarHostesAriyorumVehicleCapacityOneMenu" class="message-f"></h:message>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label class="col-form-label font-weight-bold">Servis Türü</label>
+                                        <style>
+                                            .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {background-color: #FFF;background-image: none;-webkit-box-shadow: none;box-shadow: none; }
+                                            .ui-chkbox .ui-chkbox-box {border: 1px solid #bdc3d4;width: 18px;height: 18px;display: inline-block;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;transition: all 0.3s;background: none;font-weight: 400;font-size: 1rem; color: #575962;}
+                                        </style>
+                                        <p:selectManyCheckbox id="serviceType"  layout="responsive"  columns="4" 
+                                                              required="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.vehicleSelection eq 'newVehicle' ? 'true' : 'false'}" requiredMessage="Bu alan gereklidir"
+                                                              value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_ServiceTypes}">
+                                            <f:selectItems value="#{selectItemsBean.selectItemList('serviceType')}"  var="o"   itemLabel="#{o.selectItem_Label_Tr}"  itemValue="#{o.selectItem_Value}" ></f:selectItems> 
+                                        </p:selectManyCheckbox>
+                                        <h:message for="serviceType" class="message-f"></h:message>
+                                    </div>
+                                </div>    
+                            </div>    
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </div>
+               
+                <h:panelGroup id="salfkmde" >
+                    <h:panelGroup id="gfhgfhdf" >
+                        <div class="profile-card mb-3">
+                            <div class="list-title d-flex align-items-center">
+                                <div class="message-title"><div class="title-bold m-0">İlan Detayları</div></div>
+                            </div>
+
+                            <div class="arac-bilgi ">
+
+                                <div class="form mt-3">
+                                    <div class="form-row">
+
+                                        <div class="form-group col-md-4">
+                                            <h:outputLabel id="ad_AracimVarSoforAriyorum_PaymentMethodInputLabel" 
+                                                           for="ad_AracimVarSoforAriyorum_PaymentMethodInput"
+                                                           class="col-form-label font-weight-bold">
+                                                Ödeme Şekli
+                                            </h:outputLabel>
+                                            <h:inputText id="ad_AracimVarSoforAriyorum_PaymentMethodInput" 
+                                                         class="form-control" 
+                                                         value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_PaymentMethod}" >
+                                            </h:inputText>
+                                            <h:message for="ad_AracimVarSoforAriyorum_PaymentMethodInput" style="color: red"></h:message>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="adAracimVarSoforAriyorumCostInput" class="col-form-label font-weight-bold">Ücret</label>
+                                            <div class="input-group">
+                                                <style>
+                                                    #adAracimVarSoforAriyorumCostInput_input{border-top-right-radius: 0;border-bottom-right-radius: 0}
+                                                    #costIcon{border-radius: 8px;border-left: 0;border-top-left-radius: 0; border-bottom-left-radius: 0}
+                                                </style>
+                                                <p:inputNumber id="adAracimVarSoforAriyorumCostInput" 
+                                                                style="padding: 0px;width:75% " 
+                                                                binding="#{adAracimVarSoforAriyorumBean.inputBox2}"
+                                                                value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_Cost}" 
+                                                                padControl="false"  
+                                                                inputStyleClass="form-control" 
+                                                                placeholder="500" 
+                                                                required="true" requiredMessage="Bu alan gereklidir">
+                                                    <f:event type="preRenderComponent" listener="#{adAracimVarSoforAriyorumBean.preRenderInput2}" />
+                                                </p:inputNumber>
+                                                <span id="costIcon" class="input-group-text">TL</span>
+                                            </div>
+                                            <h:message for="adAracimVarSoforAriyorumCostInput" class="message-f"></h:message>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <h:outputLabel id="adAracimVarSoforAriyorumExperienceOneMenuLabel" 
+                                                           for="adAracimVarSoforAriyorumExperienceOneMenu"
+                                                           class="col-form-label font-weight-bold">
+                                                Aranılan Tecrübe
+                                            </h:outputLabel>
+                                            <h:selectOneMenu id="adAracimVarSoforAriyorumExperienceOneMenu" 
+                                                             value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_Experience}"  
+                                                             class="form-control m-input m-input--square"
+                                                             style="height: 40px;">
+                                                <f:selectItem itemValue="farketmez" itemLabel="Farketmez"></f:selectItem>
+                                                <f:selectItem itemValue="Uzman" itemLabel="Uzman"></f:selectItem>
+                                                <f:selectItem itemValue="Orta" itemLabel="Orta"></f:selectItem>
+                                                <f:selectItem itemValue="Başlangıç" itemLabel="Başlangıç"></f:selectItem>
+                                            </h:selectOneMenu> 
+                                            <h:message for="adAracimVarSoforAriyorumExperienceOneMenu" style="color: red"></h:message>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                             <label id="adAracimVarSoforAriyorumServiceTimeInputLabel" 
+                                                   for="adAracimVarSoforAriyorumServiceTimeInput" 
+                                                   class="col-form-label font-weight-bold">
+                                                Ortalama Servis Süresi
+                                            </label>
+                                            <div class="input-group">
+                                                <style>
+                                                    #adAracimVarSoforAriyorumServiceTimeInput{border-radius: 8px;border-top-right-radius: 0;border-bottom-right-radius: 0}
+                                                    #costIcon{border-radius: 8px;border-left: 0;border-top-left-radius: 0; border-bottom-left-radius: 0}
+                                                </style>
+                                                <h:inputText id="adAracimVarSoforAriyorumServiceTimeInput" 
+                                                             class="form-control" 
+                                                             value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_ServiceTime}" >
+                                                </h:inputText>
+                                                <span id="costIcon" class="input-group-text">Dak.</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <h:outputLabel id="adAracimVarSoforAriyorumNumberOfPassengersInputLabel" 
+                                                           class="col-form-label font-weight-bold"
+                                                           for="adAracimVarSoforAriyorumNumberOfPassengersInput">
+                                                Yolcu Sayısı
+                                            </h:outputLabel>
+                                                                                        
+                                            <p:inputNumber id="adAracimVarSoforAriyorumNumberOfPassengersInput"  
+                                                            style="padding: 0px;width:75% " 
+                                                            binding="#{adAracimVarSoforAriyorumBean.inputBox}"
+                                                            value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_NumberOfPassengers}" 
+                                                            padControl="false"  
+                                                            inputStyleClass="form-control" 
+                                                            required="true" requiredMessage="Bu alan gereklidir">
+                                                <f:event type="preRenderComponent" listener="#{adAracimVarSoforAriyorumBean.preRenderInput()}" />
+                                            </p:inputNumber>
+                                            <h:message for="adAracimVarSoforAriyorumNumberOfPassengersInput" class="message-f"></h:message>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <h:outputLabel id="adAracimVarSoforAriyorumKmInputLabel" 
+                                                           for="adAracimVarSoforAriyorumKmInput"
+                                                           class="col-form-label font-weight-bold">
+                                                Km
+                                            </h:outputLabel>
+                                            <h:inputText id="adAracimVarSoforAriyorumKmInput" 
+                                                         class="form-control"
+                                                         value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_Km}"
+                                                          required="true" requiredMessage="Bu alan gereklidir">
+                                            </h:inputText>
+                                            <h:message for="adAracimVarSoforAriyorumKmInput" class="message-f"></h:message>
+                                            <script>$(function(){ $('input[id$="adAracimVarSoforAriyorumKmInput"]').inputmask("9999",{ "placeholder": "" }); });</script>
+
+
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <h:outputLabel id="adAracimVarSoforAriyorumDayToWorkInputLabel" 
+                                                           for="adAracimVarSoforAriyorumDayToWorkInput"
+                                                           class="col-form-label font-weight-bold">
+                                                Çalışılacak Gün
+                                            </h:outputLabel>                         
+                                            <div class="input-group">
+                                                <h:inputText id="adAracimVarSoforAriyorumDayToWorkInput" 
+                                                               class="form-control" 
+                                                               value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_DayToWork}"
+                                                               required="true" requiredMessage="Bu alan gereklidir">
+                                                </h:inputText>
+                                                <span id="dayIcon" class="input-group-text">Gün</span>
+                                                <script>$(function(){ $('input[id$="adAracimVarSoforAriyorumDayToWorkInput"]').inputmask("999",{ "placeholder": "" }); });</script>
+                                            </div>
+                                            <h:message for="adAracimVarSoforAriyorumDayToWorkInput" class="message-f"></h:message>                             
+                                        </div>
+
+
+                                        <div class="detay-form col-12">
+                                            <div class="message-title">
+                                                <div class="title-bold m-0">İlan Detayı</div>
+                                            </div>
+                                            <div class="form-group mt-3">
+                                                <style>
+                                                    #adAracimVarSoforAriyorumBeanadBeanadCommentInput_editor > div.ql-editor > p{font-size: 1.2rem}
+                                                </style>
+                                                <p:textEditor height="150" 
+                                                              required="true" 
+                                                              requiredMessage="Bu alan gereklidir" 
+                                                              id ="adAracimVarSoforAriyorumBeanadBeanadCommentInput"
+                                                              value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.adBean.ad_Comment}" 
+                                                              widgetVar="editor2">
+                                                    <f:facet name="toolbar">
+                                                    <span class="ql-formats"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button><button class="ql-strike"></button></span>
+                                                    <span class="ql-formats"><select class="ql-font"></select><select class="ql-size"></select></span>
+                                                    </f:facet>
+                                                </p:textEditor>
+                                                <h:message for="adAracimVarSoforAriyorumBeanadBeanadCommentInput" class="message-f"></h:message>
+                                            </div>
+                                        </div>
+
+                                        
+
+                                        <div class="form-group col-md-12">
+                                            <label class="col-form-label font-weight-bold">İstenen Yabancı Diller</label>
+                                            <style>
+                                                .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {background-color: #FFF; background-image: none; -webkit-box-shadow: none;box-shadow: none; }
+                                                .ui-chkbox .ui-chkbox-box { border: 1px solid #bdc3d4; width: 18px;height: 18px;display: inline-block;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;transition: all 0.3s; background: none;font-weight: 400;font-size: 1rem;color: #575962;}
+                                            </style>
+                                            <p:selectManyCheckbox id="foreignLanguage"  layout="responsive" columns="4" value="#{adAracimVarSoforAriyorumBean.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_ForeignLanguages}">
+                                                <f:selectItems value="#{selectItemsBean.selectItemList('ForeignLanguage')}" var="o" itemLabel="#{o.selectItem_Label_Tr}" itemValue="#{o.selectItem_Value}" ></f:selectItems> 
+                                            </p:selectManyCheckbox>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="profile-card mb-3">
+                            <ui:insert name="routePart" ><ui:include src="routePart.xhtml" /></ui:insert>
+                        </div>
+
+                        <div class="text-center mt-5">
+                            <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.param1.equals('ekle')}">
+                                <h:commandLink class="btn btn-orange px-5" 
+                                               id="dfw43" 
+                                               action="#{adAracimVarSoforAriyorumBean.createLookingForVehicleForWorkAd()}">
+                                    <b>+</b> İlanı Kaydet ve Yayınla
+                                     <f:ajax execute="m_form" render="m_form growl" ></f:ajax>
+                                </h:commandLink>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adAracimVarSoforAriyorumBean.param1.equals('duzenle')}">
+                                 <h:commandLink class="btn btn-orange px-5" 
+                                                id="dfwwq43" 
+                                                action="#{adAracimVarSoforAriyorumBean.updateLookingForVehicleForWorkAd()}">
+                                     Güncelle
+                                      <f:ajax execute="m_form" render="m_form growl" ></f:ajax>
+                                 </h:commandLink>
+                            </h:panelGroup>
+                        </div>
+                    </h:panelGroup>  
+                </h:panelGroup>     
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>
+

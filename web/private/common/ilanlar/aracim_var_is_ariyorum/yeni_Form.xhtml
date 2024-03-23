@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition>          
+            <h:form class="m-form m-form--label-align-left- m-form--state-" id="m_form"  prependId="false" enctype="multipart/form-data">
+                <style> .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" globalOnly="true" showDetail="true" life="3000"  sticky="false"/>             
+
+                <h:panelGroup rendered="#{adAracimVarIsAriyorumBean.param1 == null}" >
+                    <div class="profile-card mb-3 background-orange"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Aracım var iş arıyorum</li></ol> </div>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{adAracimVarIsAriyorumBean.param1 != null}" >       
+                    <h:panelGroup rendered="#{adAracimVarIsAriyorumBean.param1 eq 'ekle'}" >
+                        <div class="profile-card mb-3 background-orange"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Aracım var iş arıyorum</li></ol> </div>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{adAracimVarIsAriyorumBean.param1 ne 'ekle'}" >
+                        <div class="profile-card mb-3 background-orange"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">İlan Düzenle</a></li><li class="breadcrumb-item active" aria-current="page">Aracım var iş arıyorum</li></ol> </div>
+                    </h:panelGroup>      
+                </h:panelGroup>
+                
+
+                <div class="profile-list mb-3">
+                    <div class="list-title d-flex align-items-center">
+                        <a class="collapsed" data-toggle="collapse" data-target=".arac-list" aria-expanded="false">
+                            <div class="message-title">
+                                <h:panelGroup id="vbjnhgfgd">
+                                    <h:panelGroup rendered="#{adAracimVarIsAriyorumBean.vehicle.vehicle_Id == null }">
+                                        <div class="title-bold m-0">Araç Seçin</div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{adAracimVarIsAriyorumBean.vehicle.vehicle_Id != null }">
+                                        <div class="title-bold m-0">Seçilen Araç : <span style="font-weight: 500;">#{adAracimVarIsAriyorumBean.selectedVehicle }</span></div>
+                                    </h:panelGroup>
+                                </h:panelGroup>    
+                            </div>
+                        </a>
+                        <!--<button type="button" class="btn btn-orange ml-auto mt-lg-0" data-toggle="modal" data-target="#modal-arac-ekle"><b>+</b> Yeni Araç Ekle</button>-->
+                        <h:panelGroup rendered="#{AccountType=='personal'}"><a href="/private/bireysel/arac-ekle?frm=2" class="btn btn-orange ml-auto mt-3 mt-lg-0" style="padding-top: 7px;"><b>+</b> Yeni Araç Ekle</a></h:panelGroup>
+                        <h:panelGroup rendered="#{AccountType=='corporate'}"><a href="/private/kurumsal/arac-ekle?frm=2" class="btn btn-orange ml-auto mt-3 mt-lg-0" style="padding-top: 7px;"><b>+</b> Yeni Araç Ekle</a></h:panelGroup>
+            
+                        <a class="btn btn-collapse collapsed" data-toggle="collapse" data-target=".arac-list" aria-expanded="false"></a>
+                    </div>
+                    <div class="arac-list collapsed" style="">
+                        <div >
+                          
+                            
+                            <table class="table text-orange" style="margin-bottom:0;font-weight: bolder;border-bottom: 0.5px solid #ddd;">
+                                <tr>
+                                    <th width="40" >&nbsp;</th>
+                                    <th width="120">PLAKA</th>
+                                    <th width="300">MARKA MODEL</th>
+                                    <th width="120" style="text-align: center; vertical-align: middle;">KOLTUK</th>
+                                    <th style="text-align: center; vertical-align: middle;">ARAÇ EKLENME TARİHİ</th>
+                                </tr>
+                              
+                              </table>
+                            
+                        </div>
+                        <h:panelGroup rendered="#{adAracimVarIsAriyorumBean.aId != null}">
+                            <p:selectOneRadio   id="ITRadioGrp" value="#{adAracimVarIsAriyorumBean.vehicle.vehicle_Id}" layout="custom"  >
+                                <p:ajax oncomplete="showHideVehiclePanel()"  update="vbjnhgfgd salfkmde" process="@this" listener="#{adAracimVarIsAriyorumBean.aracSecildi()}"> </p:ajax>
+                                <f:selectItems itemValue="#{vc.vehicle_Id}" var="vc" value="#{vehicleBean.getVehiclesWithvehicleOvnerAccountId(adAracimVarIsAriyorumBean.aId) }" />
+                            </p:selectOneRadio>
+                            <p:scrollPanel mode="native" style="width:100%;max-height:260px;border: none;background-color: #f8f8f9">
+                                
+                                <table class="table"  >
+                                    <ui:repeat varStatus="vIndex" var="v" value="#{vehicleBean.getVehiclesWithvehicleOvnerAccountId(adAracimVarIsAriyorumBean.aId) }">
+                                        <tr>
+                                          <td width="40"><p:radioButton for=":m_form:ITRadioGrp" itemIndex="#{vIndex.index}"/></td>
+                                          <td width="120">${v.vehicle_PlateProvinceCode} ${v.vehicle_PlateLatterCode} ${v.vehicle_PlateNumberCode}</td>
+                                          <td width="300">${v.vehicle_ModelYear} - ${v.vehicle_Brand}&nbsp;<small>${v.vehicle_Model}</small></td>
+                                          <td style="text-align: center; vertical-align: middle;" width="120">${v.vehicle_NumberOfSeats}</td>
+                                          <td style="text-align: center; vertical-align: middle;"><h:outputText value="${v.vehicle_Created}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></td>
+                                        </tr>
+                                    </ui:repeat>
+                                </table>
+                                
+                            </p:scrollPanel>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{adAracimVarIsAriyorumBean.aId == null}">
+                            <p:selectOneRadio id="ITRadioGrp2" value="#{adAracimVarIsAriyorumBean.vehicle.vehicle_Id}" layout="custom">
+                                <p:ajax oncomplete="showHideVehiclePanel()" update="vbjnhgfgd salfkmde" process="@this" listener="#{adAracimVarIsAriyorumBean.aracSecildi()}"> </p:ajax>
+                                <f:selectItems itemValue="#{vc.vehicle_Id}" var="vc" value="#{vehicleBean.getVehiclesWithvehicleOvnerAccountId(accountId) }" />
+                            </p:selectOneRadio>
+                                <p:scrollPanel mode="native" style="width:100%;max-height:260px;border: none;background-color: #f8f8f9">
+                                    <table class="table" >
+                                       <ui:repeat varStatus="vIndex" var="v" value="#{vehicleBean.getVehiclesWithvehicleOvnerAccountId(accountId) }">
+                                           <tr>
+                                               <td width="40"><p:radioButton for=":m_form:ITRadioGrp2" itemIndex="#{vIndex.index}" /></td>
+                                               <td width="120">${v.vehicle_PlateProvinceCode} ${v.vehicle_PlateLatterCode} ${v.vehicle_PlateNumberCode}</td>
+                                               <td width="300">${v.vehicle_ModelYear} - ${v.vehicle_Brand}&nbsp;<small>${v.vehicle_Model}</small></td>
+                                               <td style="text-align: center; vertical-align: middle;" width="120">${v.vehicle_NumberOfSeats}</td>
+                                               <td style="text-align: center; vertical-align: middle;"><h:outputText value="${v.vehicle_Created}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></td>
+                                           </tr>
+                                        </ui:repeat>
+                                   </table>
+                                </p:scrollPanel>
+                        </h:panelGroup>                        
+                    </div>
+                </div>
+                <h:panelGroup id="salfkmde" >
+                    <h:panelGroup id="gfhgfhdf" rendered="#{adAracimVarIsAriyorumBean.vehicle.vehicle_Id != null }">
+                        <div class="profile-card mb-3">
+                             <ui:insert name="routePart" ><ui:include src="routePart.xhtml" /></ui:insert>
+                        </div>
+                        <div class="profile-card">
+                            <div class="d-flex align-items-center"><div class="message-title"><div class="title-bold m-0">İlan Detayı</div></div></div>
+                            <div class="detay-form">
+                                <div class="form">
+                                    <div class="form-group mt-3 mb-0">
+                                     <style>
+                                        #adAracimVarIsAriyorumBeanAdBeanAdCommentInput_editor > div.ql-editor > p{font-size: 1.2rem}
+                                    </style>
+                                        <p:textEditor height="200" 
+                                                    required="true" 
+                                                    requiredMessage="Bu alan gereklidir" 
+                                                    id ="adAracimVarIsAriyorumBeanAdBeanAdCommentInput"
+                                                    value="#{adAracimVarIsAriyorumBean.adBean.ad_Comment}"  
+                                                    widgetVar="editor2">
+                                          <f:facet name="toolbar">
+                                              <span class="ql-formats"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button><button class="ql-strike"></button></span>
+                                              <span class="ql-formats"><select class="ql-font"></select><select class="ql-size"></select></span>
+                                          </f:facet>
+                                      </p:textEditor>
+                                      <h:message for="adAracimVarIsAriyorumBeanAdBeanAdCommentInput" style="color: red"></h:message>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-5">
+                            <h:panelGroup rendered="#{adAracimVarIsAriyorumBean.param1.equals('ekle')}">
+                                <h:commandLink class="btn btn-orange px-5" 
+                                               id="dfre43" 
+                                               action="#{adAracimVarIsAriyorumBean.createadAracimVarIsAriyorumAd()}">
+                                    <b>+</b> İlanı Kaydet ve Yayınla
+                                    <f:ajax execute="m_form" render="m_form fgfdd"> </f:ajax>
+                                </h:commandLink>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adAracimVarIsAriyorumBean.param1.equals('duzenle')}">
+                                <p:commandLink class="btn btn-orange px-5" 
+                                               ajax="true" 
+                                               update="m_form" 
+                                               id="gtrd54" 
+                                               action="#{adAracimVarIsAriyorumBean.updateAracimVarIsAriyorumAd()}">
+                                    Güncelle
+                                </p:commandLink>
+                            </h:panelGroup>
+                        </div>
+                    </h:panelGroup>     
+                </h:panelGroup>    
+             
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+    <h:body>
+        <ui:composition>
+
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-8">
+                    <div class="box-style p-3 mb-4">
+                        <div class="title mb-3"><div class="title-bold m-0">Firma bilgileri</div></div>
+                        <div class="box-content">
+                            <div class="row">
+                                <div class="col-sm-12 ">
+                                    <div class="box-style d-flex align-items-center p-3 mb-3 ">
+                                        <div class="title-sm-orange mr-3">Firma Ticari Ünvanı</div>
+                                        <span><h:outputText value="#{corporateAccountBean.company_FullName}" /></span>
+                                    </div>
+                                </div>
+                             </div>   
+                             <div class="row">   
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="box-style d-flex align-items-center p-3 mb-3 ">
+                                        <div class="title-sm-orange mr-3">Firma Faliyet Alanı</div>
+                                        <span><h:outputText value="#{corporateAccountBean.company_ActivityArea}" /></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="box-style d-flex align-items-center p-3 mb-3 ">
+                                        <div class="title-sm-orange mr-3">İşletme Türü</div>
+                                        <span><h:outputText value="#{corporateAccountBean.company_Type}" /></span>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="row">
+                                <div class="col-sm-12 ">
+                                    <div class="box-style d-flex align-items-center p-3 mb-3 ">
+                                        <div class="title-sm-orange mr-3">Adres</div>
+                                        <span><h:outputText value="#{corporateAccountBean.address_}" /></span>
+                                    </div>
+                                </div>
+                             </div> 
+                             <div class="row">   
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="box-style d-flex align-items-center p-3 mb-3 ">
+                                        <div class="title-sm-orange mr-3">Telefon(1)</div>
+                                        <span><h:outputText value="#{corporateAccountBean.phonesBean.phone_1}" /></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="box-style d-flex align-items-center p-3 mb-3 ">
+                                        <div class="title-sm-orange mr-3">Telefon(2)</div>
+                                        <span><h:outputText value="#{corporateAccountBean.phonesBean.phone_2}" /></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">   
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="box-style d-flex align-items-center p-3 mb-3 ">
+                                        <div class="title-sm-orange mr-3">Gsm(1)</div>
+                                        <span><h:outputText value="#{corporateAccountBean.phonesBean.phone_gsm1}" /></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="box-style d-flex align-items-center p-3 mb-3 ">
+                                        <div class="title-sm-orange mr-3">Gsm(2)</div>
+                                        <span><h:outputText value="#{corporateAccountBean.phonesBean.phone_gsm2}" /></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">   
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="box-style d-flex align-items-center p-3 mb-3 ">
+                                        <div class="title-sm-orange mr-3">E-Mail</div>
+                                        <span><h:outputText value="#{corporateAccountBean.company_Email}" /></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="box-style d-flex align-items-center p-3 mb-3 ">
+                                        <div class="title-sm-orange mr-3">Web</div>
+                                        <span><h:outputText value="#{corporateAccountBean.company_Web}" /></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-style p-3 mb-3">
+                        <div class="title mb-3"><div class="title-bold m-0">Referanslar</div></div>
+                        <div class="box-content ">
+                            <style>
+                                .ui-column-title{float: left !important;}
+                            </style>
+                             <p:dataTable var="r" value="#{corporateAccountBean.companyReferencesList}" reflow="true" >
+                                <p:column headerText="Firma">
+                                    <h:outputText value="#{r.companyReferences_Company}"/>
+                                </p:column>
+
+                                <p:column headerText="Proje">
+                                    <h:outputText value="#{r.companyReferences_Project}"/>
+                                </p:column>
+
+                                <p:column headerText="Kaç Yıl Çalışıldı">
+                                    <h:outputText value="#{r.companyReferences_ProjectWorkingYear}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                    </div>
+                    
+                    <!--usersAds-->                        
+                        <div class="col-12 p-0 mt-5">
+                            <div class="home-list" style="width: 100%">
+                                <p class="mb-4" 
+                                   style="font-weight: 700; font-size: 16px; line-height: 20px; color: #212429; padding-bottom: 0.25rem;  border-bottom: 2px solid #de904e;">
+                                    #{corporateAccountBean.company_Name} <span style="font-weight: 500">firması altında oluşturulmuş en yeni ilanlar</span>
+                                </p>
+
+                                <p:scrollPanel mode="native" style="max-height:550px; padding: 20px">             
+                                    <ui:repeat var="a" value="#{corporateAccountBean.adList}">
+                                        <!--Ilan-->
+                                        <div class="home-list-item">
+                                            <!--IlanBaslık-->
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('İşim var araç arıyorum') }"><div  class="header green" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>İŞİM VAR ARAÇ ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/isim-var-arac-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracim var hostes arıyorum') }"><div  class="header purple" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>ARACIM VAR HOSTES ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/aracim-var-hostes-ariyorum/#{a.ad_Id}">&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracim var şöför arıyorum') }"><div  class="header yellow" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>ARACIM VAR ŞÖFÖR ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/aracim-var-sofor-ariyorum/#{a.ad_Id}">&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracım var iş arıyorum') }"><div  class="header orange" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>ARACIM VAR İŞ ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/aracim-var-is-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Hostesim iş arıyorum') }"><div  class="header pink" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>HOSTESİM İŞ ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/hostesim-is-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Şöförüm iş arıyorum') }"><div  class="header blue" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>ŞOFÖRÜM İŞ ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/soforum-is-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Plakamı satıyorum') }"><div class="header dark-green" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>PLAKAMI SATIYORUM</span><a style="color:#fff;font-weight: 500"  title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/plakami-satiyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>                                 
+
+                                            <!--/IlanBaslık-->
+                                            <!--IlanIcerik-->
+
+                                            <div class="content" style="cursor: inherit;padding: 15px 25px;">
+                                                <!--IlanAciklama-->
+                                                <div class="description" style="font-size: 0.9rem !important">
+                                                    <i class="fas fa-info" aria-hidden="true" style="font-size: 0.9rem !important; margin-right: 2px;vertical-align: middle;"></i>
+                                                    <span style="font-size: 1rem !important">İlan Açıklaması</span>
+                                                </div>
+                                                <div class="description-content">
+                                                    <p>
+                                                        <h:outputText class="description-content2" style="font-size: 0.95rem !important; font-weight: 500"
+                                                                      value="#{a.ad_CommentFormated.length() >= 180 ? a.ad_CommentFormated.substring(0, 180)+='&nbsp;...':a.ad_CommentFormated}" 
+                                                                      escape="false"/>
+                                                    </p>
+
+                                                </div>
+                                                <hr style="border: none;border-top: 1px solid #ddd;  margin: 0; margin-top: 15px;  margin-bottom: 15px;"/>
+                                                <!--/IlanAciklama-->
+
+
+                                                <!--IlanAltBilgi-->
+                                                    <div class="row">
+                                                        <div class="content-info-area col-6">
+                                                            <div class="item">
+                                                                <span class="title" style="font-size: 0.9rem !important">İlan Tarihi:</span>
+                                                                <span style="font-size: 0.85rem !important"><h:outputText value="#{a.ad_CreateTime}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                <!--/IlanAltBilgi-->
+
+                                            </div>
+
+                                            <!--/IlanIcerik-->
+                                        </div>
+                                        <!--Ilan-->
+                                    </ui:repeat>    
+                                </p:scrollPanel>
+                            </div>    
+                        </div>
+                    <!--/usersAds-->
+                    
+                    
+                    
+                </div>
+                <div class="col-12 col-sm-12 col-md-4">
+                    <div class="ad-owner box-style mb-2">
+                        <div class="title"><div class="title-bold text-center p-3 m-0"><h:outputText value="#{corporateAccountBean.company_Name}" /></div></div>
+
+                        <div class="other my-3 mx-4">
+                            <div class="box-style mb-2">
+                                <div class="font-weight-bold text-center p-2">
+                                    <h:panelGroup rendered="#{corporateAccountBean.company_LogoUrl == null}">
+                                        <img style="width: 100%; border: 1px solid #ddd; padding: 5px; border-radius: 5px"
+                                             src="/resources/img/logoPlaceholder.png" alt="vehiclePhoto"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{corporateAccountBean.company_LogoUrl != null}">
+                                        <img style="width: 100%" src="#{corporateAccountBean.company_LogoUrl }" alt="companyLogo"/> 
+                                    </h:panelGroup>    
+                                </div>
+                                <div class="font-weight-light text-center py-2" style="font-size: 0.8rem">
+                                    Firma Id : 
+                                    <h:outputText value="#{corporateAccountBean.company_Id}">
+                                        <f:convertDateTime pattern=" dd.MM.YYYY"></f:convertDateTime>
+                                    </h:outputText>
+                                </div>
+                                 <div class="font-weight-light text-center py-2" style="font-size: 0.8rem">
+                                    Üyelik Tarihi : 
+                                    <h:outputText value="#{corporateAccountBean.company_create_time}">
+                                        <f:convertDateTime pattern=" dd.MM.YYYY"></f:convertDateTime>
+                                    </h:outputText>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="socials mb-2">
+                            <h:panelGroup rendered="#{ corporateAccountBean.socialMediaBean.facebook_profileUrl ne '' &amp;&amp;  
+                                                        corporateAccountBean.socialMediaBean.facebook_profileUrl != null}">
+                                 <a target="_blank" 
+                                    href="https://www.facebook.com/#{corporateAccountBean.socialMediaBean.facebook_profileUrl}" 
+                                    style="text-decoration: none; ">
+                                     <i class="fab fa-facebook" aria-hidden="true"></i>
+                                 </a>
+                             </h:panelGroup>
+                             <h:panelGroup rendered="#{corporateAccountBean.socialMediaBean.facebook_profileUrl eq '' || 
+                                                       corporateAccountBean.socialMediaBean.facebook_profileUrl == null}">
+                                 <a target="_blank" 
+                                    href="https://facebook.com/" 
+                                    style="text-decoration: none; ">
+                                     <i class="fab fa-facebook" aria-hidden="true"></i>
+                                 </a>
+                            </h:panelGroup>
+                             <h:panelGroup rendered="#{ corporateAccountBean.socialMediaBean.twitter_profileUrl ne '' &amp;&amp;  
+                                                        corporateAccountBean.socialMediaBean.twitter_profileUrl != null}">
+                                 <a target="_blank" 
+                                    href="https://twitter.com/#{corporateAccountBean.socialMediaBean.twitter_profileUrl}" 
+                                    style="text-decoration: none; ">
+                                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                                 </a>
+                             </h:panelGroup>
+                             <h:panelGroup rendered="#{corporateAccountBean.socialMediaBean.twitter_profileUrl eq '' || 
+                                                       corporateAccountBean.socialMediaBean.twitter_profileUrl == null}">
+                                 <a target="_blank" 
+                                    href="https://twitter.com/" 
+                                    style="text-decoration: none; ">
+                                     <i class="fab fa-twitter" aria-hidden="true"></i>
+                                 </a>
+                             </h:panelGroup>
+                             <h:panelGroup rendered="#{ corporateAccountBean.socialMediaBean.linkedin_profileUrl ne '' &amp;&amp;  
+                                                        corporateAccountBean.socialMediaBean.linkedin_profileUrl != null}">
+                                 <a target="_blank" 
+                                    href="https://www.linkedin.com/#{corporateAccountBean.socialMediaBean.linkedin_profileUrl}" 
+                                    style="text-decoration: none; ">
+                                     <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                 </a>
+                             </h:panelGroup>
+                             <h:panelGroup rendered="#{corporateAccountBean.socialMediaBean.linkedin_profileUrl eq '' || 
+                                                       corporateAccountBean.socialMediaBean.linkedin_profileUrl == null}">
+                                 <a target="_blank" 
+                                    href="https://www.linkedin.com" 
+                                    style="text-decoration: none; ">
+                                      <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                 </a>
+                             </h:panelGroup>
+                             <h:panelGroup rendered="#{ corporateAccountBean.socialMediaBean.instagram_profileUrl ne '' &amp;&amp;  
+                                                        corporateAccountBean.socialMediaBean.instagram_profileUrl != null}">
+                                 <a target="_blank" 
+                                    href="https://www.instagram.com/#{corporateAccountBean.socialMediaBean.instagram_profileUrl}" 
+                                    style="text-decoration: none; ">
+                                     <i class="fab fa-instagram" aria-hidden="true"></i>
+                                 </a>
+                             </h:panelGroup>
+                             <h:panelGroup rendered="#{corporateAccountBean.socialMediaBean.instagram_profileUrl eq '' || 
+                                                       corporateAccountBean.socialMediaBean.instagram_profileUrl == null}">
+                                 <a target="_blank" 
+                                    href="https://www.instagram.com/" 
+                                    style="text-decoration: none;">
+                                     <i class="fab fa-instagram" aria-hidden="true"></i>
+                                 </a>
+                             </h:panelGroup>
+                            <a href="mailto:#{adAracimVarHostesAriyorumBean.accountBean.account_EmailAddress}"><i class="far fa-envelope" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </ui:composition>
+    </h:body>
+</html>
+

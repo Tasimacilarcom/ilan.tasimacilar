@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition>
+
+            <div class="ad-filters mb-3">
+                <div class="header title" style="padding: 10px;padding-left: 20px"> DETAYLI ARAMA</div>
+                <div class="content">
+                    <div class="ad-category mb-3">        
+                        
+                        <ui:insert name="ilanKategorileri" ><ui:include src="main_leftSidebar_ilanKategorileri.xhtml" /></ui:insert>
+
+                        <h:panelGroup id="srvstyp1">
+                            <h:panelGroup id="srvstyp2" rendered="#{ adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==1 || 
+                                                                     adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==3 || 
+                                                                     adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==2 }">
+                                <ui:insert name="servisTuru" ><ui:include src="main_leftSidebar_servisTuru.xhtml" /></ui:insert>
+                            </h:panelGroup>
+                        </h:panelGroup>  
+
+                        <script>function ltr(element) { if (element.setSelectionRange) { element.setSelectionRange(0, 0); } }</script>  
+                        
+                        <h:panelGroup id="nerdennereye1">
+                            <h:panelGroup id="nerdennereye2" 
+                                          rendered="#{adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==1 || 
+                                                      adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==3 || 
+                                                      adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==4}" >
+                                <ui:insert name="nerdenNereye" ><ui:include src="main_leftSidebar_nerdenNereye.xhtml" /></ui:insert>
+                            </h:panelGroup>
+                        </h:panelGroup>       
+
+                        <h:panelGroup id="aracinbosolduguyerler1">
+                            <h:panelGroup id="aracinbosolduguyerler2" rendered="#{adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==2}">
+                                <ui:insert name="aracinBosolduguYerler" ><ui:include src="main_leftSidebar_aracinBosolduguYerler.xhtml" /></ui:insert>
+                            </h:panelGroup>
+                        </h:panelGroup>                                  
+
+                        <h:panelGroup id="hostesinbosolduguyerler1">
+                            <h:panelGroup id="hostesinbosolduguyerler2" rendered="#{adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==5}">
+                                <ui:insert name="hostesinBosolduguYerler" ><ui:include src="main_leftSidebar_hostesinBosolduguYerler.xhtml" /></ui:insert>
+                            </h:panelGroup>
+                        </h:panelGroup>                                   
+
+                        <h:panelGroup id="soforunbosolduguyerler1">
+                            <h:panelGroup id="soforunbosolduguyerler2" rendered="#{adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==6 }">
+                                <ui:insert name="soforunBosolduguYerler" ><ui:include src="main_leftSidebar_soforunBosolduguYerler.xhtml" /></ui:insert>
+                            </h:panelGroup>
+                        </h:panelGroup> 
+
+                        <h:panelGroup id="plakaSehri1">
+                            <h:panelGroup id="plakaSehri2" rendered="#{adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==7}">
+                                <ui:insert name="plakaSehri" ><ui:include src="main_leftSidebar_plakaSehri.xhtml" /></ui:insert> 
+                            </h:panelGroup>  
+                        </h:panelGroup>
+
+                        <h:panelGroup id="ilanYayinZamaniPanel1" >
+                            <h:panelGroup id="ilanYayinZamaniPanel2" rendered="#{   adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==1111 }" >
+                                <hr/>                                    
+                                <ui:insert name="ilanYayinZamani" ><ui:include src="main_leftSidebar_ilanYayinZamani.xhtml" /></ui:insert>    
+                            </h:panelGroup>    
+                        </h:panelGroup>
+                       
+                        
+                        <h:panelGroup id="firmaPanel1" >
+                            <h:panelGroup id="firmaPanel2" rendered="#{   adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==1 || 
+                                                                                    adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==3 || 
+                                                                                    adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==4}" >
+                            <hr/>
+                            <ui:insert name="firma" ><ui:include src="main_leftSidebar_firma.xhtml" /></ui:insert>  
+                            
+                            </h:panelGroup>    
+                        </h:panelGroup>  
+                        
+                        <h:panelGroup id="aracPanel1" >
+                            <h:panelGroup id="aracPanel2" rendered="#{adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==1 || 
+                                                                      adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==2 || 
+                                                                      adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId==3 }">
+                                <ui:insert name="aracPanel" ><ui:include src="main_leftSidebar_aracPanel.xhtml" /></ui:insert>
+                            </h:panelGroup>
+                        </h:panelGroup>
+
+                        <hr/>            
+                        <h:commandLink style="width: 100%;color: #fff; padding: 10px;" class="btn btn-primary mt-2" 
+                                       title="Uygun İlanları Göster" action="#{adBean.filterGetAllAd()}">
+                            Uygun İlanları Göster
+                        
+                        </h:commandLink>                        
+                        <h:commandLink style="width: 100%;border-radius: 25px; border: 1px solid #ddd" 
+                                       class="btn btn-accent mt-2" title="Aramayı Temizle" action="#{adBean.clearFilter()}">
+                            Aramayı Temizle
+                        </h:commandLink>                                    
+                    </div>
+
+                </div>
+            </div>
+
+
+        </ui:composition>
+
+    </h:body>
+
+</html>
+

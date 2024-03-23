@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sf="http://xmlns.jcp.org/jsf/passthrough"
+>
+
+
+
+    <h:body>
+        <ui:composition template="/private/templates/myPagesLayout.xhtml">
+            <ui:define name="content">
+
+
+                <div class="profile-messages">
+                    <div class="row no-gutters">
+                        <div class="col-lg-6 message-list">
+                            <div class="message-title">  <div class="title-bold m-0">İlan Mesajlarınız</div></div>
+                            <h:form  id="m_form" prependId="false">
+                                <h:panelGroup id="fyert54er">
+                                    <ui:repeat var="m" value="#{messagesBean.usersMessagesList}">
+                                        <h:panelGroup rendered="#{AccountType.equals('corporate')}">
+                                            <h:outputLink style="color: #575962; text-decoration: none"  value="/private/kurumsal/mesajlar/detay/#{m.message_GroupId}/#{m.ad_Id}">
+                                                <div class="message-item #{m.message_Status eq 'Okunmadı'?'not-read':''} #{messagesBean.param2 eq m.message_GroupId?'active':''}">
+                                                    <div class="indicator #{messagesBean.param2 eq m.message_GroupId?'active':''}"></div>
+                                                    <div class="item-content">
+                                                        <div class="mb-2">
+                                                            <span>İlan ID: #{m.adBean.ad_Id}</span>
+                                                            <span class="ml-4">İlan Tarihi:  <h:outputText value="#{m.adBean.ad_CreateTime}" >  <f:convertDateTime pattern="dd.MM.YYY"></f:convertDateTime> </h:outputText> </span>
+                                                        </div>
+                                                        <!--<div class="font-weight-bold mb-2"> Mesajı Gönderen : #{m.message_FromUserId}</div>-->
+                                                        <div class="font-weight-bold text-orange small"> #{m.adBean.ad_Category_Name}</div>
+                                                    </div>
+                                                </div>
+                                                <f:param name="messageId" value="#{m.message_Id}" />
+                                            </h:outputLink>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{AccountType.equals('personal')}">
+                                            <h:outputLink style="color: #575962; text-decoration: none"  value="/private/bireysel/mesajlar/detay/#{m.message_GroupId}/#{m.ad_Id}">
+                                                 <div class="message-item #{m.message_Status eq 'Okunmadı'?'not-read':''} #{messagesBean.param2 eq m.message_GroupId?'active':''}">
+                                                    <div class="indicator #{messagesBean.param2 eq m.message_GroupId?'active':''}"></div>
+                                                    <div class="item-content">
+                                                        <div class="mb-2">
+                                                            <span>İlan ID: #{m.adBean.ad_Id}</span>
+                                                            <span class="ml-4">İlan Tarihi:  <h:outputText value="#{m.adBean.ad_CreateTime}" >  <f:convertDateTime pattern="dd.MM.YYY"></f:convertDateTime> </h:outputText> </span>
+                                                        </div>
+                                                        <!--<div class="font-weight-bold mb-2"> Mesajı Gönderen : #{m.message_FromUserId}</div>-->
+                                                        <div class="font-weight-bold text-orange small"> #{m.adBean.ad_Category_Name}</div>
+                                                    </div>
+                                                </div>
+                                                <f:param name="messageId" value="#{m.message_Id}" />
+                                            </h:outputLink>
+                                        </h:panelGroup>
+                                    </ui:repeat>
+                                </h:panelGroup>  
+                            </h:form>    
+                        </div>
+
+                        
+                        <div class="col-lg-6 message-content">
+                            <h:form id="m_form2" prependId="false">
+                                <p:poll interval="5" listener="#{messagesBean.refreshMessages()}" update="ksdfrew3" />
+                                <div class="message-title">
+                                    <style>.profile-messages .message-title svg {  margin-right: 0px !important;}</style>
+                                    <h:commandLink class="ml-auto message-title-button" action="#{messagesBean.messageUnRead(messagesBean.messId)}"><ui:include src="/resources/image/ikon_kapaliZarf.svg" />&nbsp;&nbsp;Okunmadı Olarak İşaretle<f:ajax execute="@this"></f:ajax></h:commandLink> 
+    
+                                    <h:panelGroup rendered="#{messagesBean.adBean.ad_Category_Name eq 'İşim var araç arıyorum'}"><a class="ml-auto message-title-button" target="_blank" href="/ad/isim-var-arac-ariyorum/#{messagesBean.adBean.ad_Id}" title="İlana Bak"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>
+                                    <h:panelGroup rendered="#{messagesBean.adBean.ad_Category_Name eq 'Aracım var iş arıyorum'}"><a class="ml-auto message-title-button" target="_blank" href="/ad/aracim-var-is-ariyorum/#{messagesBean.adBean.ad_Id}" title="İlana Bak"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>
+                                    <h:panelGroup rendered="#{messagesBean.adBean.ad_Category_Name eq 'Aracim var şöför arıyorum'}"><a class="ml-auto message-title-button" target="_blank" href="/ad/aracim-var-sofor-ariyorum/#{messagesBean.adBean.ad_Id}" title="İlana Bak"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>
+                                    <h:panelGroup rendered="#{messagesBean.adBean.ad_Category_Name eq 'Aracim var hostes arıyorum'}"><a class="ml-auto message-title-button" target="_blank" href="/ad/aracim-var-hostes-ariyorum/#{messagesBean.adBean.ad_Id}" title="İlana Bak"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>
+                                    <h:panelGroup rendered="#{messagesBean.adBean.ad_Category_Name eq 'Hostesim iş arıyorum'}"><a class="ml-auto message-title-button" target="_blank" href="/ad/hostesim-is-ariyorum/#{messagesBean.adBean.ad_Id}" title="İlana Bak"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>
+                                    <h:panelGroup rendered="#{messagesBean.adBean.ad_Category_Name eq 'Şöförüm iş arıyorum'}"><a class="ml-auto message-title-button" target="_blank" href="/ad/soforum-is-ariyorum/#{messagesBean.adBean.ad_Id}" title="İlana Bak"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>
+                                    <h:panelGroup rendered="#{messagesBean.adBean.ad_Category_Name eq 'Plakamı satıyorum'}"><a class="ml-auto message-title-button" target="_blank" href="/ad/plakami-satiyorum/#{messagesBean.adBean.ad_Id}" title="İlana Bak"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>
+                                    
+                                    <h:commandLink class="ml-4 text-danger message-title-button" action="#{messagesBean.messageDelete(messagesBean.messId)}" title="Mesajı Sil"><ui:include src="/resources/image/ikon_sil.svg" /> <f:ajax execute="@this"></f:ajax></h:commandLink>
+                                </div>
+                                <p:scrollPanel id="sfdsfds" mode="native" style=" width:100%;height:480px; padding: 20px;border: none">
+                                    <h:panelGroup id="ksdfrew3">
+                                        <ui:repeat var="m" value="#{messagesBean.messagesList}">
+                                          <h:panelGroup rendered="#{!m.message_FromUserId.equals(accountId)}">           
+                                              <div class="message-in" style="margin-bottom: 15px;">
+                                                  <div class="message-balloon" style="margin-bottom: 4px;">#{m.message_}</div>
+                                                  <span style="font-size: 0.8rem;color: #949494;"><h:outputText value="#{m.message_Created}"><f:convertDateTime pattern="dd.MM.YYYY&nbsp;-&nbsp;hh:mm"></f:convertDateTime></h:outputText></span>
+                                              </div>
+                                          </h:panelGroup>
+                                          <h:panelGroup rendered="#{m.message_FromUserId.equals(accountId)}">            
+                                              <div class="message-out" style="margin-bottom: 15px;">
+                                                <div class="message-balloon" style="margin-bottom: 4px;">#{m.message_}</div>
+                                                <span style="font-size: 0.8rem;color: #949494;"><h:outputText value="#{m.message_Created}"><f:convertDateTime pattern="dd.MM.YYYY&nbsp;-&nbsp;hh:mm"></f:convertDateTime></h:outputText></span>
+                                              </div>
+                                          </h:panelGroup>
+                                        </ui:repeat>
+                                    </h:panelGroup>
+                                 </p:scrollPanel>
+                                <script type="text/javascript"> var objDiv = document.getElementById("sfdsfds"); objDiv.scrollTop = objDiv.scrollHeight;</script>
+                                <div class="message-input" style="display: block;margin-bottom: 5px;">
+                                    <p:remoteCommand name="sendMessage" actionListener="#{messagesBean.createMessage()}" update="ksdfrew3" async="false"/>
+                                    <h:inputText class="outline-none"  id="dsfrefewds" style="width: 85%;" 
+                                                 value="#{messagesBean.message_}" 
+                                                 onkeypress="if (event.keyCode == 13) { sendMessage(); return false; }" 
+                                                 sf:placeholder="Mesajınızı buraya yazabilirsiniz"
+                                                 required="true"
+                                                 requiredMessage="Lütfen mesajınızı yazınız.">
+                                    </h:inputText>
+                                    <h:commandLink class="btn btn-icon btn-message" 
+                                                   style="padding: 0" title="GÖNDER" 
+                                                   action="#{messagesBean.createMessage()}">
+                                        <div style="background-color:#f39437; width: 40px; height: 40px;border-radius: 20px">
+                                            <i class="far fa-paper-plane" style="font-weight: 300;line-height: 40px;font-size: 1.2rem;color: #fff;margin-right: 3px;"></i>
+                                        </div>
+                                        <f:ajax execute="dsfrefewds" render="ksdfrew3 gfjhdf53"></f:ajax>
+                                    </h:commandLink>
+                                </div>
+                                <div style="margin-bottom: 20px;"><h:message id="gfjhdf53" for="dsfrefewds" class="message-f" style="margin-left: 50px;"></h:message></div>
+                            </h:form>
+                        </div>
+                     
+
+                    </div>
+                </div>
+
+
+            </ui:define>
+        </ui:composition>    
+
+    </h:body>
+</html>
+

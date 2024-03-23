@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+
+        <!-- Start global head -->
+        <ui:insert name="head" ><ui:include src="../../../../head_A.xhtml" /></ui:insert>
+        <!-- End global head -->
+
+    </h:head>
+
+    <h:body>
+
+        <!-- Start header -->
+        <ui:insert name="header" ><ui:include src="../../../../header_A.xhtml" /></ui:insert>
+        <!-- End header -->
+
+        <main role="main" >
+            <div class="container-fluid" style="margin-top: 30px">
+                <div class="m-portlet m-portlet--full-height">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    <i class="fas fa-users-cog"></i>&nbsp;Site Yöneticisi Sayfası 
+                                    <small><i class="la la-angle-right"></i>&nbsp;Sistem&nbsp;
+                                            <i class="la la-angle-right"></i>&nbsp;Listeler
+                                    </small>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                            <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item">
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body m-portlet__body--no-padding">
+                        <div class="m-wizard m-wizard--3 m-wizard--brand m-wizard--step-first" id="m_wizard">
+                            <div class="m-portlet__padding-x">    </div>
+                            <div class="row m-row--no-padding">
+                                <div class="col-md-2">
+                                    <div class="m-wizard__head" style="padding: 5rem 2rem;">
+                                        <!-- Start menu -->
+                                        <ui:insert name="left_menu" ><ui:include src="../../left_menu.xhtml" /></ui:insert>
+                                        <!-- End menu -->
+                                    </div>
+                                </div>
+                                <div class=" col-md-10">                                  
+                                    <!--begin: Form Wizard Form-->
+                                    <div class="m-wizard__form" style="padding: 30px;">
+
+
+                                        <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" novalidate="novalidate">
+
+                                            <!--begin: Form Body -->
+                                            <div class="m-portlet__body m-portlet__body--no-padding" style="min-height: 400px">
+
+                                                <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd">
+                                                    <i style="  float:left;
+                                                                font-size: 2rem;
+                                                                margin-bottom: .5rem;
+                                                                font-weight: 500;
+                                                                line-height: 1.2;
+                                                                color: inherit;" 
+                                                                class="m-nav__link-icon la la-cogs">
+                                                    </i>
+                                                    <h2 >&nbsp;Listeler</h2><i ></i>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-2" >
+                                                        <ui:insert name="left_menu" ><ui:include src="left_menu.xhtml" /></ui:insert>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <h:form id="dfgfdgf" prependId="false">
+                                                            <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                                                            <p:growl id="growl" showDetail="true" life="3000"  sticky="false"/> 
+                                                            <div class="row">
+                                                                <div class="col-lg-12"><strong>Yabancı Diller Listesi</strong></div>
+                                                                <div class="col-lg-12" style="margin-top: 25px;">
+                                                                    <div class="input-group m-input-group">
+                                                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-list" ></i></span></div>
+                                                                        <h:inputText id="dgfdfe3" class="form-control m-input" value="#{listsBean.selectItem_Value}"></h:inputText>
+                                                                        <div class="input-group-prepend" >
+                                                                            <h:commandLink class="btn btn-outline-metal" 
+                                                                                           action="#{listsBean.createList()}">
+                                                                                Yabancı Dil Ekle
+                                                                                <f:ajax execute="dfgfdgf"  render="dfdwfewq dgfdfe3 growl"></f:ajax>
+                                                                            </h:commandLink>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin-top: 25px;">
+                                                                <div class="col-lg-12">
+                                                                    <h:panelGroup id="dfdwfewq">
+
+                                                                        <style type="text/css">
+                                                                            .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+                                                                                color: #555;
+                                                                                cursor: default;
+                                                                                background-color: #ffffff;
+                                                                                background-image: none;
+                                                                                border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+                                                                                border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+                                                                                border-bottom-color: #b3b3b3;
+                                                                            }
+                                                                            .ui-datatable thead th, .ui-datatable tfoot td {
+                                                                                text-align: left;
+                                                                            }
+                                                                            .ui-paginator.ui-paginator-bottom {
+                                                                                border: 1px solid #ddd;
+                                                                                border-top: 0px;
+                                                                            }
+                                                                            .ui-widget-header {
+                                                                                background: none;
+                                                                                color: #555;
+                                                                                font-weight: normal;
+                                                                            }
+                                                                        </style>
+
+                                                                        <p:dataTable var="l"  
+                                                                                     id="fdsfcew"
+                                                                                     value="#{listsBean.selectItemList}" 
+                                                                                     widgetVar="dataTable"
+                                                                                     style="font-size: small" 
+                                                                                     resizableColumns="true"
+                                                                                     emptyMessage="Aradığınız kritere uygun kayıt bulunamadı"
+                                                                                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} ">
+                                                                            
+                                                                            <p:column headerText="Özellik"  width="70%">
+                                                                                <h:outputText value="#{l.selectItem_Value}" />
+                                                                            </p:column>
+                                                                            <p:column headerText="İşlem"  style="text-align: center">
+                                                                                <h:commandLink action="#{listsBean.deleteListItem(l.selectItem_Id)}">
+                                                                                    Sil
+                                                                                    <f:ajax execute="@this"  render="dfdwfewq dgfdfe3 growl"></f:ajax>
+                                                                                </h:commandLink>
+                                                                            </p:column>
+                                                                        </p:dataTable>
+                                                                    </h:panelGroup>
+
+                                                                </div>
+                                                            </div>
+                                                        </h:form>
+                                                    </div>
+                                                    <div class="col-md-6">&nbsp;</div>
+                                                </div>
+
+                                            </div>
+
+                                            <!--end: Form Body -->
+
+
+                                        </form>
+                                    </div>
+
+                                    <!--end: Form Wizard Form-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <!-- Start footer -->
+        <ui:insert name="footer" ><ui:include src="../../../../footer_A.xhtml" /></ui:insert>
+        <!-- End footer -->
+
+        <!-- Start global scripts -->
+        <ui:insert name="scripts" ><ui:include src="../../../../scripts_A.xhtml" /></ui:insert>
+        <!-- End global scripts -->
+
+    </h:body>
+</html>
+
+
+
+
+
+
+
+
+
+

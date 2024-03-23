@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <!-- Start global head -->
+        <ui:insert name="head" ><ui:include src="head.xhtml" /></ui:insert>
+        <!-- End global head -->
+        <meta http-equiv="refresh" content="3;url=#{request.contextPath}/login" />
+        <style>
+            html {
+                height: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <!-- Start header -->
+        <ui:insert name="header" ><ui:include src="header.xhtml" /></ui:insert>
+        <!-- End header -->
+        <main role="main" >
+            <div class="container" style="margin-top: 30px; padding: 20px; background-color: #fff; margin-bottom: 20px;-webkit-box-shadow: 0px 3px 11px 0 rgba(0,0,0,0.13); -moz-box-shadow: 0px 3px 11px 0 rgba(0,0,0,0.13); box-shadow: 0px 3px 11px 0 rgba(0,0,0,0.13);">
+                <div style="border-bottom:1px solid #ddd; padding-bottom: 20px;"><h2 class="post-title">Oturum süresi doldu - Session expired !!</h2></div> 
+                <div style="padding: 0px;">
+                    <div class="row" style="margin: 0; min-height: 450px;">
+                        <div class="col-md-12" style="padding: 20px;text-align: center ">
+                            <br/><br/><br/>
+                            <img src="/resources/img/session-expired.png" width="200px;" alt="session-expired"/>
+                            <br/><br/>
+                            <h4>Giriş sayfasına yönlendirileceksiniz - You will be redirected to login page</h4><br/>
+                            <p ><a style="color: #333333" href="#{request.contextPath}/login.xhtml">Yönlendirme işlemi çalışmaz veya beklemek istemezseniz burayı tıklatın</a>.</p>
+                            <p ><a style="color: #333333" href="#{request.contextPath}/login.xhtml">Click here if redirect didn't work or when you're impatient</a>.</p>  
+                            <br/><br/>
+                        </div>                                               
+                    </div>
+                </div> 
+            </div>
+        </main>
+        <!-- Start footer -->
+        <ui:insert name="footer" ><ui:include src="footer.xhtml" /></ui:insert>
+        <!-- End footer -->       
+        <!-- Start global scripts -->
+        <ui:insert name="scripts" ><ui:include src="scripts.xhtml" /></ui:insert>
+        <!-- End global scripts -->
+    </h:body>
+</html>

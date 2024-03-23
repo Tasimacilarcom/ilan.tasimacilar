@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition>
+
+           <div class="row" style="margin-bottom: 20px;">
+                <div class="col-md-12">
+                    <h4>E-Mail Ayarları&nbsp;&nbsp;<small>Bu bölümden bu site üzerinden gönderilen e-mailler için gerekli ayarlar yapılır</small></h4>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h:form id="emailSettingsForm" class="form-horizontal">
+
+
+                        <div class="form-group  form-group-sm">
+                            <p:outputLabel  for="outMailServer" 
+                                            class="col-md-2 control-label">
+                                Giden mail sunucusu
+                            </p:outputLabel>
+                            <div class="col-md-4">
+                                <p:inputText id="outMailServer" 
+                                             class="form-control" 
+                                             value="#{emailBean.serverOutgoingMailServer}" 
+                                             style="font-size: 16px"
+                                             required="true"
+                                             requiredMessage="Bu alanı doldurmanız zorunludur">
+                                </p:inputText>
+                                <h:message for="outMailServer" style="color: red" />
+                            </div>
+                            <h:outputLabel for="transportProtocol" 
+                                           class="col-md-2 control-label" >
+                                İletişim protokolü
+                            </h:outputLabel>
+                            <div class="col-md-2 form-inline">
+                                <h:selectOneMenu id="transportProtocol" 
+                                                 class=" form-control "   
+                                                 value="#{emailBean.serverEmailTyp}" 
+                                                 style="font-size: 16px" 
+                                                 disabled="true">
+                                    <f:selectItem itemValue="smtp" itemLabel="smtp" />
+                                </h:selectOneMenu>                                                          
+                            </div>
+                        </div>
+
+                        <div class="form-group  form-group-sm">
+                            <p:outputLabel  for="outMailServerPortNo" 
+                                            class="col-md-2 control-label">
+                                Giden mail sunucusu port
+                            </p:outputLabel>
+                            <div class="col-md-4">
+                                <p:inputText id="outMailServerPortNo" 
+                                             class="form-control" 
+                                             value="#{emailBean.serverOutgoingMailServerPort}" 
+                                             style="font-size: 16px"
+                                             required="true"
+                                             requiredMessage="Bu alanı doldurmanız zorunludur">
+                                </p:inputText>
+                                <h:message for="outMailServerPortNo" style="color: red" />
+                            </div>
+                            <p:outputLabel for="mineTyp" 
+                                           class="col-md-2 control-label" >
+                                Mine türü
+                            </p:outputLabel>
+                            <div class="col-md-2 form-inline">
+                                <h:selectOneMenu id="mineTyp" 
+                                                 class=" form-control "   
+                                                 value="#{emailBean.serverMineTyp}" 
+                                                 style="font-size: 16px" 
+                                                 disabled="true">
+                                    <f:selectItem itemValue="text/html" itemLabel="text &frasl; html" />
+                                </h:selectOneMenu>                                                          
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-sm">
+                            <p:outputLabel for="smtpAuth" 
+                                           class="col-md-offset-6 col-md-2 control-label" 
+                                           >
+                                Smtp otantikasyon gerektirir
+                            </p:outputLabel>
+                            <div class="col-md-2 form-inline">
+                                <h:selectBooleanCheckbox id="smtpAuth" 
+                                                         value="#{emailBean.serverOutgoingMailServerReqAuth}">
+                                </h:selectBooleanCheckbox>                                                      
+                            </div>
+                        </div>
+
+                        <br/><br/>
+
+                        <div class="form-group  form-group-sm">
+                            <p:outputLabel  for="displayName" 
+                                            class="col-md-2 control-label">
+                                Gorunen ad
+                            </p:outputLabel>
+                            <div class="col-md-4">
+                                <p:inputText id="displayName" 
+                                             class="form-control" 
+                                             value="#{emailBean.userDisplayName}" 
+                                             style="font-size: 16px"
+                                             required="true"
+                                             requiredMessage="Bu alanı doldurmanız zorunludur">
+                                </p:inputText>
+                                <h:message for="displayName" style="color: red" />
+                            </div>
+                            <p:outputLabel  for="userName" 
+                                            class="col-md-2 control-label">
+                                Kullanıcı adı
+                            </p:outputLabel>
+                            <div class="col-md-4">
+                                <h:inputText id="userName" 
+                                             class="form-control" 
+                                             value="#{emailBean.userUserName}" 
+                                             style="font-size: 16px"
+                                             required="true"
+                                             requiredMessage="Bu alanı doldurmanız zorunludur">
+                                </h:inputText>
+                                <h:message for="userName" style="color: red" />
+                            </div>
+                        </div>
+
+                        <div class="form-group  form-group-sm">
+                            <p:outputLabel for="email" 
+                                           class="col-md-2 control-label" >
+                                Giden email adresi
+                            </p:outputLabel>
+                            <div class="col-md-4">
+                                <p:inputText id="email" 
+                                             class="form-control" 
+                                             value="#{emailBean.userEmailAdres}" 
+                                             style="font-size: 16px"
+                                             required="true"
+                                             requiredMessage="Bu alanı doldurmanız zorunludur">
+                                </p:inputText>
+                                <h:message for="email" style="color: red" />
+                            </div>
+                            <p:outputLabel for="password" 
+                                           class="col-md-2 control-label" >
+                                Şifre
+                            </p:outputLabel>
+                            <div class="col-md-4">
+                                <h:inputSecret id="password" 
+                                             class="form-control" 
+                                             value="#{emailBean.userPassword}" 
+                                             style="font-size: 16px"
+                                             required="true"
+                                             requiredMessage="Bu alanı doldurmanız zorunludur">
+                                </h:inputSecret>
+                                <h:message for="password" style="color: red" />
+                            </div>
+                        </div>
+
+                        <br/><br/>
+
+                        <div class="form-group  form-group-sm " > 
+                            <div class="col-md-offset-2 col-md-10">
+                                <h:commandButton 
+                                    id="gonder" 
+                                    class="btn btn-default" 
+                                    value="Kaydet" 
+                                    action="#{emailBean.emailSettingsSave()}"
+                                    style="width: 100px;">
+
+                                    <f:ajax execute="emailSettingsForm" render="emailSettingsForm" />
+                                </h:commandButton>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row col-md-12" style="margin: 0px; padding: 0px; padding-top: 15px;"> 
+                            <i style="font-size: 10px; ">(*) İşaretli alanların doldurulması zorunludur.</i>
+                        </div>
+
+                        <br/><br/>
+
+                        <div class="form-group  form-group-sm" style="margin: 0px;"> 
+                            <p:messages globalOnly="true" ><p:autoUpdate /></p:messages>
+                        </div>
+
+                    </h:form>
+                </div>
+            </div>
+
+
+
+
+        </ui:composition>
+
+    </h:body>
+
+</html>
+

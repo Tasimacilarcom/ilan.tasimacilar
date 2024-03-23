@@ -1,0 +1,321 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition>
+            <p:dialog widgetVar="dlg1" modal="true"  resizable="false" responsive="true" fitViewport="true" dynamic="true">
+                <h:panelGroup id="uyr55" >
+                    <img class="img-thumbnail" style="max-width: 500px" src="#{adBean.selectedImagesUrl}" alt="Resim" />
+                </h:panelGroup>
+            </p:dialog> 
+            <p:dialog widgetVar="dlg2" modal="true"  resizable="false" responsive="true" fitViewport="true" dynamic="true">
+                <h:panelGroup id="gfue4" >
+                    <video width="600"  controls="controls">
+                        <source src="#{adBean.selectedVideoUrl}" type="video/mp4" />
+                    Buradaki video bu web tarayıcınız tarafından desteklenmiyor / Your browser does not support the this video
+                </video>
+                </h:panelGroup>
+            </p:dialog> 
+            <p:dialog widgetVar="dlg3" modal="true" width="800" header="Şöförüm İş Arıyorum - Hızlı İlan Düzenle" resizable="false" responsive="true" fitViewport="true" dynamic="true">
+                <h:panelGroup id="i76tur" >
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12">
+                            <h:outputLabel ><b>İlan Detay</b></h:outputLabel>
+                            <p:textEditor   height="160"
+                                            value="#{adBean.selectedAd.ad_Comment}" 
+                                            widgetVar="editor2">
+                                <f:facet name="toolbar">
+                                    <span class="ql-formats">
+                                        <button class="ql-bold"></button>
+                                        <button class="ql-italic"></button>
+                                        <button class="ql-underline"></button>
+                                        <button class="ql-strike"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <select class="ql-font"></select>
+                                        <select class="ql-size"></select>
+                                    </span>
+                                </f:facet>
+                            </p:textEditor>
+                            <h:message for="adAracimVarSoforAriyorumBeanadBeanadCommentInput" style="color: red"></h:message>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <h:outputLabel>Doğum Yeri </h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.adSoforumIsAriyorumBean.driver.driver_PlaceOfBirth}" ></h:inputText>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:outputLabel>Doğum Tarihi </h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.adSoforumIsAriyorumBean.driver.driver_BirthDate}" ><f:convertDateTime pattern="dd.MM.YYYY"></f:convertDateTime></h:inputText>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:outputLabel>Ücret </h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.adSoforumIsAriyorumBean.driver.driver_Fee}" ></h:inputText>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12" style="text-align: right">
+                            <h:commandLink class="btn btn-outline-primary"
+                                           action="#{adBean.fastEditAd()}">
+                                Güncelle
+                                <f:ajax execute="dfwer3wq:i76tur" render="dfwer3wq:dfdwfewq dfwer3wq:growl" ></f:ajax>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </h:panelGroup>
+            </p:dialog>
+            <p:dialog widgetVar="dlg4" modal="true" width="800" header="İşim var araç arıyorum - Hızlı İlan Düzenle" resizable="false" responsive="true" fitViewport="true" dynamic="true">
+                <h:panelGroup id="dsfe45" >
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12">
+                            <h:outputLabel ><b>İlan Detay</b></h:outputLabel>
+                            <p:textEditor   height="160"
+                                            value="#{adBean.selectedAd.ad_Comment}" 
+                                            widgetVar="editor2">
+                                <f:facet name="toolbar">
+                                    <span class="ql-formats">
+                                        <button class="ql-bold"></button>
+                                        <button class="ql-italic"></button>
+                                        <button class="ql-underline"></button>
+                                        <button class="ql-strike"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <select class="ql-font"></select>
+                                        <select class="ql-size"></select>
+                                    </span>
+                                </f:facet>
+                            </p:textEditor>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <h:outputLabel > Ücret </h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Cost}" ></h:inputText>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:outputLabel>Servis Süresi</h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceTime}" ></h:inputText>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:outputLabel>Yolcu Sayısı</h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_NumberOfPassengers}" ></h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <h:outputLabel>Km</h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Km}" ></h:inputText>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:outputLabel>Çalışılacak gün</h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_DayToWork}" ></h:inputText>
+                        </div>
+
+                    </div>
+                    <br/>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12" style="text-align: right">
+                            <h:commandLink class="btn btn-outline-primary"
+                                           action="#{adBean.fastEditAd()}">
+                                Güncelle
+                                <f:ajax execute="dfwer3wq:dsfe45" render="dfwer3wq:dfdwfewq dfwer3wq:growl" ></f:ajax>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </h:panelGroup>
+            </p:dialog>
+            <p:dialog widgetVar="dlg5" modal="true" width="800" header="Aracım Var İş Arıyorum - Hızlı İlan Düzenle" resizable="false" responsive="true" fitViewport="true" dynamic="true">
+                <h:panelGroup id="gfdts4" >
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12">
+                            <h:outputLabel ><b>İlan Detay</b></h:outputLabel>
+                            <p:textEditor   height="160"
+                                            value="#{adBean.selectedAd.ad_Comment}" 
+                                            widgetVar="editor2">
+                                <f:facet name="toolbar">
+                                    <span class="ql-formats">
+                                        <button class="ql-bold"></button>
+                                        <button class="ql-italic"></button>
+                                        <button class="ql-underline"></button>
+                                        <button class="ql-strike"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <select class="ql-font"></select>
+                                        <select class="ql-size"></select>
+                                    </span>
+                                </f:facet>
+                            </p:textEditor>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12" style="text-align: right">
+                            <h:commandLink class="btn btn-outline-primary"
+                                           action="#{adBean.fastEditAd()}">
+                                Güncelle
+                                <f:ajax execute="dfwer3wq:gfdts4" render="dfwer3wq:dfdwfewq dfwer3wq:growl" ></f:ajax>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </h:panelGroup>
+            </p:dialog>
+            <p:dialog widgetVar="dlg6" modal="true" width="800" header="Aracım Var Şöför Arıyorum - Hızlı İlan Düzenle" resizable="false" responsive="true" fitViewport="true" dynamic="true">
+                <h:panelGroup id="xcv4w" >
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12">
+                            <h:outputLabel ><b>İlan Detay</b></h:outputLabel>
+                            <p:textEditor   height="160"
+                                            value="#{adBean.selectedAd.ad_Comment}" 
+                                            widgetVar="editor2">
+                                <f:facet name="toolbar">
+                                    <span class="ql-formats">
+                                        <button class="ql-bold"></button>
+                                        <button class="ql-italic"></button>
+                                        <button class="ql-underline"></button>
+                                        <button class="ql-strike"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <select class="ql-font"></select>
+                                        <select class="ql-size"></select>
+                                    </span>
+                                </f:facet>
+                            </p:textEditor>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <h:outputLabel > Ücret </h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.ad_AracimVarSoforAriyorum_Cost}" ></h:inputText>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:outputLabel>Servis Süresi</h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.ad_AracimVarSoforAriyorum_ServiceTime}" ></h:inputText>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:outputLabel>Yolcu Sayısı</h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.ad_AracimVarSoforAriyorum_NumberOfPassengers}" ></h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <h:outputLabel>Km</h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.ad_AracimVarSoforAriyorum_Km}" ></h:inputText>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:outputLabel>Çalışılacak gün</h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.ad_AracimVarSoforAriyorum_DayToWork}" ></h:inputText>
+                        </div>
+
+                    </div>
+                    <br/>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12" style="text-align: right">
+                            <h:commandLink class="btn btn-outline-primary"
+                                           action="#{adBean.fastEditAd()}">
+                                Güncelle
+                                <f:ajax execute="dfwer3wq:xcv4w" render="dfwer3wq:dfdwfewq dfwer3wq:growl" ></f:ajax>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </h:panelGroup>
+            </p:dialog>
+            <p:dialog widgetVar="dlg7" modal="true" width="800" header="Aracım Var Hostes Arıyorum - Hızlı İlan Düzenle" resizable="false" responsive="true" fitViewport="true" dynamic="true">
+                <h:panelGroup id="hjkhgf5x" >
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12">
+                            <h:outputLabel ><b>İlan Detay</b></h:outputLabel>
+                            <p:textEditor   height="160"
+                                            value="#{adBean.selectedAd.ad_Comment}" 
+                                            widgetVar="editor2">
+                                <f:facet name="toolbar">
+                                    <span class="ql-formats">
+                                        <button class="ql-bold"></button>
+                                        <button class="ql-italic"></button>
+                                        <button class="ql-underline"></button>
+                                        <button class="ql-strike"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <select class="ql-font"></select>
+                                        <select class="ql-size"></select>
+                                    </span>
+                                </f:facet>
+                            </p:textEditor>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        &nbsp;
+                    </div>
+                    <br/>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12" style="text-align: right">
+                            <h:commandLink class="btn btn-outline-primary"
+                                           action="#{adBean.fastEditAd()}">
+                                Güncelle
+                                <f:ajax execute="dfwer3wq:hjkhgf5x" render="dfwer3wq:dfdwfewq dfwer3wq:growl" ></f:ajax>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </h:panelGroup>
+            </p:dialog>
+            <p:dialog widgetVar="dlg8" modal="true" width="800" header="Hostesim İş Arıyorum - Hızlı İlan Düzenle" resizable="false" responsive="true" fitViewport="true" dynamic="true">
+                <h:panelGroup id="dsf89d" >
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12">
+                            <h:outputLabel ><b>İlan Detay</b></h:outputLabel>
+                            <p:textEditor   height="160"
+                                            value="#{adBean.selectedAd.ad_Comment}" 
+                                            widgetVar="editor2">
+                                <f:facet name="toolbar">
+                                    <span class="ql-formats">
+                                        <button class="ql-bold"></button>
+                                        <button class="ql-italic"></button>
+                                        <button class="ql-underline"></button>
+                                        <button class="ql-strike"></button>
+                                    </span>
+                                    <span class="ql-formats">
+                                        <select class="ql-font"></select>
+                                        <select class="ql-size"></select>
+                                    </span>
+                                </f:facet>
+                            </p:textEditor>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            <h:outputLabel>Doğum Yeri </h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.adHostesimIsAriyorumBean.hostess.hostess_PlaceOfBirth}" ></h:inputText>
+                        </div>
+                        <div class="col-lg-4">
+                            <h:outputLabel>Doğum Tarihi </h:outputLabel>
+                            <h:inputText class="form-control m-input" value="#{adBean.selectedAd.adHostesimIsAriyorumBean.hostess.hostess_BirthDate}" ><f:convertDateTime pattern="dd.MM.YYYY"></f:convertDateTime></h:inputText>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-12" style="text-align: right">
+                            <h:commandLink class="btn btn-outline-primary"
+                                           action="#{adBean.fastEditAd()}">
+                                Güncelle
+                                <f:ajax execute="dfwer3wq:dsf89d" render="dfwer3wq:dfdwfewq dfwer3wq:growl" ></f:ajax>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                </h:panelGroup>
+            </p:dialog>
+        </ui:composition>
+    </h:body>
+</html>
+

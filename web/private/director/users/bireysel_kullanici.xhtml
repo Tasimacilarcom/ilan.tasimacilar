@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="../director-page-layout.xhtml">
+            <ui:define name="head-title">
+                <h3 class="m-portlet__head-text">
+                    <i class="fas fa-users-cog"></i>&nbsp;Site Yöneticisi Sayfası 
+                    <small> <i class="la la-angle-right"></i>&nbsp;Kullanıcılar&nbsp;
+                            <i class="la la-angle-right"></i>&nbsp;Bireysel Kullanıcı Ekle&nbsp;
+                    </small>
+                </h3>
+            </ui:define>
+            <ui:define name="form">        
+                <div class=" col-md-8">
+
+                    <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd">
+                        <i style="  float:left; font-size: 2rem; margin-bottom: .5rem; font-weight: 500; line-height: 1.2;  color: inherit;"   class="m-nav__link-icon la la-user"> </i><h2 >&nbsp;Bireysel Kullanıcı Ekle</h2><i ></i>
+                    </div>
+                    <div class="row">                                                    
+                        <div class="col-md-12" style="">
+                            <h:form id="accountForm" class="m-form m-form--label-align-left- " prependId="false" >
+                                <div class="form-group m-form__group row" >
+                                    <h:outputLabel id="accountMembershipTypeLabel"
+                                                   class="col-xl-3 col-lg-3 col-form-label">
+                                        Üyelik Tipi *
+                                    </h:outputLabel>
+                                    <div class="col-lg-9">
+                                        <div class="btn-group btn-group-sm" >
+                                            <a  class="btn btn-outline-brand active ">Bireysel Üyelik</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row" >
+                                    <h:outputLabel id="personalAccountActivityAreaselectOneMenuLabel"
+                                                   class="col-xl-3 col-lg-3 col-form-label"
+                                                   for="personalAccountActivityAreaselectOneMenu">
+                                        Faaliyet Alanı *
+                                    </h:outputLabel>
+                                    <div class="col-lg-5">
+                                        <h:selectOneMenu id="personalAccountActivityAreaselectOneMenu" 
+                                                         value="#{personalAccountBean.accountBean.account_ActivityArea}"  
+                                                         class="form-control m-input m-input--square"
+                                                         required="true"
+                                                         requiredMessage="Faliyet alanınızı seçiniz">
+                                            <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                            <f:selectItems value="#{selectItemsBean.selectItemList('personalActivityArea')}" 
+                                                           var="o" 
+                                                           itemLabel="#{o.selectItem_Label_Tr}" 
+                                                           itemValue="#{o.selectItem_Value}" >
+                                            </f:selectItems> 
+                                        </h:selectOneMenu> 
+                                        <h:message for="personalAccountActivityAreaselectOneMenu" style="color: red"></h:message>
+                                    </div>
+                                </div>                                                   
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-6">
+                                        <h:outputLabel id="personalAccountFirstNameLabel" 
+                                                       for="personalAccountFirstNameInput">
+                                            Ad *
+                                        </h:outputLabel>
+                                        <h:inputText id="personalAccountFirstNameInput"
+                                                     class="form-control m-input" 
+                                                     value="#{personalAccountBean.accountBean.account_FirstName}"
+                                                     required="true"
+                                                     requiredMessage="Lütfen adınızı yazınız">
+                                        </h:inputText>
+                                        <h:message for="personalAccountFirstNameInput" style="color: red"></h:message>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h:outputLabel id="personalAccountLastNameLabel"
+                                                       for="personalAccountLastNameInput">
+
+                                            Soyad *
+                                        </h:outputLabel>
+                                        <h:inputText id="personalAccountLastNameInput"
+                                                     class="form-control m-input" 
+                                                     value="#{personalAccountBean.accountBean.account_LastName}" 
+                                                     required="true"
+                                                     requiredMessage="Lütfen soyadınızı yazınız">
+                                        </h:inputText>
+                                        <h:message for="personalAccountLastNameInput" style="color: red"></h:message>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-6">
+                                        <h:outputLabel id="personalAccountEmailAddressLabel"
+                                                       for="personalAccountEmailAddressInput">
+                                            E-Mail Adresi 
+                                        </h:outputLabel>
+                                        <h:inputText id="personalAccountEmailAddressInput" 
+                                                     class="form-control m-input" 
+                                                     value="#{personalAccountBean.accountBean.account_EmailAddress}" 
+                                                     
+                                                     validatorMessage="Geçersiz E-Mail adresi formatı">
+                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </h:inputText>
+                                        <h:message for="personalAccountEmailAddressInput" style="color: red"></h:message>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <script>function ltr(element){if(element.setSelectionRange){ element.setSelectionRange(0,0);}}</script>
+                                        <h:outputLabel id="personalAccountMobilePhoneNumberLabel"
+                                                       for="personalAccountMobilePhoneNumberInput">
+                                            GSM Numarası *
+                                        </h:outputLabel>
+                                        <p:inputMask id="personalAccountMobilePhoneNumberInput"    
+                                                     class=" form-control m-input"
+                                                     onclick="ltr(this);"
+                                                     value="#{personalAccountBean.accountBean.account_MobilePhoneNumber}"
+                                                     required="true"
+                                                     requiredMessage="Lütfen Cep telefon numaranızı yazınız"
+                                                     mask="0(599)-999-9999">
+                                        </p:inputMask>
+                                        <h:message for="personalAccountMobilePhoneNumberInput" style="color: red"></h:message>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-6">
+                                        <h:outputLabel id="personalAccountPasswordLabel"
+                                                       for="personalAccountPassword">
+                                            Şifre *
+                                        </h:outputLabel>
+                                        <f:event listener="#{personalAccountBean.passwordMatch}" type="postValidate" />
+                                        <h:inputSecret  id="personalAccountPassword"
+                                                        class="form-control m-input"
+                                                        maxlength="12"
+                                                        value="#{personalAccountBean.accountBean.account_Password_1}"
+                                                        required="true"
+                                                        requiredMessage="Şifrenizi tekrar yazmalısınız">
+                                        </h:inputSecret>
+                                        <h:message for="personalAccountPassword" style="color: red"></h:message>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h:outputLabel id="personalAccountConfirmPasswordLabel"
+                                                       for="personalAccountConfirmPassword">
+                                            Şifre (Tekrar) *
+                                        </h:outputLabel>
+                                        <h:inputSecret  id="personalAccountConfirmPassword"
+                                                        class="form-control m-input"
+                                                        maxlength="12"
+                                                        value="#{personalAccountBean.accountBean.account_Password_2}"
+                                                        required="true"
+                                                        requiredMessage="Şifrenizi tekrar yazmalısınız">
+                                        </h:inputSecret>
+                                        <h:message for="personalAccountConfirmPassword" style="color: red"></h:message>
+                                    </div>
+                                </div>
+                                <br/><br/>                                                
+                                <div class="row">
+                                    <div class="col-lg-6 m--align-left"><p:messages globalOnly="true" closable="true"></p:messages></div>
+                                    <div class="col-lg-6 m--align-right">
+                                        <h:commandLink  id="createPersonalAccountButton" 
+                                                        class="btn btn-brand m-btn m-btn--custom m-btn--icon"
+                                                        action="#{personalAccountBean.createPersonalAccount()}">
+                                            Kaydet
+                                            <f:ajax execute="accountForm" render="accountForm"></f:ajax>
+                                        </h:commandLink>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                    
+                </div>         
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="../director-page-layout.xhtml">
+            <ui:define name="head-title">
+                <h3 class="m-portlet__head-text">
+                    <small> <i class="la la-angle-right"></i>&nbsp;Kullanıcılar&nbsp;
+                            <i class="la la-angle-right"></i>&nbsp;Kullanıcı Yönetimi
+                    </small>
+                </h3>
+            </ui:define>
+            <ui:define name="form">        
+                <div class=" col-md-12">
+
+                    <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd">
+                        <i style=" float:left; font-size: 2rem; margin-bottom: .5rem; font-weight: 500; line-height: 1.2; color: inherit;" class="m-nav__link-icon la la-user"></i><h2 >&nbsp;Kullanıcı Yönetimi</h2><i ></i>
+                    </div>
+                    <div class="row">                                                
+                        <div class="col-md-12">
+                             <h:form id="allUsersForm" prependId="false">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <p style="font-weight: 500">Yönetmek istediğiniz kullanıcıya aşağıdan telefon numarası veya Ad,Soyad 'ına göre arıyarak erişebilirsiniz</p>
+                                        <div class="input-group input-group-lg m-input-group">
+                                            <div class="input-group-append"><span class="input-group-text" id="basic-addon2"><i class="fa fa-at"></i></span></div>
+                                            <p:inputText class="form-control" placeholder="E-Mail Adresi" value="#{allAccountsBean.email}"></p:inputText>&nbsp;&nbsp;
+                                            <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-mobile-alt"></i></span></div>
+                                            <p:inputMask id="personalAccountMobilePhoneNumberInput"    
+                                                         class=" form-control "
+                                                         value="#{allAccountsBean.phone}"
+                                                         placeholder="0(500)-000-0000"
+                                                         mask="0(599)-999-9999">
+                                            </p:inputMask>&nbsp;&nbsp;
+                                            <div class="input-group-append"><span class="input-group-text" id="basic-addon2"><i class="fa fa-user"></i></span></div>
+                                            <p:inputText class="form-control" placeholder="Ad Soyad" value="#{allAccountsBean.name}"></p:inputText>&nbsp;&nbsp;
+                                            <div class="input-group-append">
+                                                <h:commandLink class="btn btn-primary" 
+                                                               action="#{allAccountsBean.searchAccountWithPhoneOrName()}">
+                                                    ARA
+                                                    <f:ajax execute="allUsersForm" render="dst43t5"></f:ajax>
+                                                </h:commandLink>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 50px;">
+                                    <div class="col-md-8">
+                                    <h:panelGroup id="dst43t5">
+                                        <table class="table table-bordered table-hover"   >
+                                            <tbody>
+                                                <tr>
+                                                    <th style="width: 120px;background-color: #dfe3ec">Kullanıcı Id</th>
+                                                    <th style="background-color: #dfe3ec">Kullanıcı GSM</th>
+                                                    <th style="background-color: #dfe3ec">Kullanıcı E-Mail</th>
+                                                    <th style="background-color: #dfe3ec">Kullanıcı Ad Soyad</th>
+                                                    <th style="background-color: #dfe3ec">Kullanıcı Detay</th>
+                                                </tr>
+                                                <ui:repeat var="x" value="#{allAccountsBean.searchedAccount}">
+                                                    <tr>
+                                                        <th>#{x.personalAccountBean.accountBean.account_Id}</th>
+                                                        <th>#{x.personalAccountBean.accountBean.account_MobilePhoneNumber}</th>
+                                                        <th>#{x.personalAccountBean.accountBean.account_EmailAddress}</th>
+                                                        <th>#{x.personalAccountBean.accountBean.account_FirstName}&nbsp;#{x.personalAccountBean.accountBean.account_LastName}</th>
+                                                        <th><a href="/private/director/users/kullanici_detay_userInfo.xhtml?p=userInfo&amp;aId=#{x.personalAccountBean.accountBean.account_Id}" title="Detay">
+                                                                <i class="fa fa-external-link-alt"></i>&nbsp;Detay
+                                                            </a>
+                                                        </th>
+                                                    </tr>
+                                               </ui:repeat> 
+                                            </tbody>
+                                        </table>
+                                    </h:panelGroup>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                    
+                </div>         
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+

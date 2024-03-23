@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition>
+
+            <div class="ad-filters mb-3">
+                <div class="header title" style="padding: 10px;padding-left: 20px">TEKİL ARAMA </div>
+                <div class="content">   
+                    <style>
+                        .ui-accordion .ui-accordion-header .ui-icon {
+                            display: block;
+                            left: unset !important;
+                            right: 0
+                        }
+                        .ui-accordion .ui-accordion-header {
+                            font-weight: 700!important;
+                            padding-left: 10px;
+                        }
+                    </style>
+                    <p:accordionPanel widgetVar="basic" activeIndex="null">
+                        <p:tab title="MARKA" >
+                            <p class="p-m-0">
+                                <ui:repeat var="c" value="#{commonBean.vehicleBransList()}">
+                                    <a href="/?pBrand=#{c}" style="text-decoration: none" ><span style="font-size: 1rem; line-height: 18px;"><i style="font-size: 0.5rem;"  class="fas fa-circle"></i>&nbsp;#{c}</span></a>
+                                </ui:repeat>   
+                            </p>
+                        </p:tab>
+                        <p:tab title="KAPASİTE">
+                            <p class="p-m-0">
+                                <ui:repeat var="c" value="#{commonBean.vehicleCapacityList()}">
+                                    <a href="/?pCapacity=#{c}" style="text-decoration: none" ><span style="font-size: 1rem; line-height: 18px;"><i style="font-size: 0.5rem;"  class="fas fa-circle"></i>&nbsp;#{c}</span></a>
+                                </ui:repeat>   
+                            </p>
+                        </p:tab>
+
+                    </p:accordionPanel>
+                </div>
+            </div>
+        </ui:composition>
+
+    </h:body>
+
+</html>
+

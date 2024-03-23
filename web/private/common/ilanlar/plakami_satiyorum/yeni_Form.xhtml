@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition>
+            <h:form id="m_form"  prependId="false">
+                <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/>  
+                
+                <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.param1 == null}" >
+                    <div class="profile-card mb-3 background-dark-green">
+                        <ol class="breadcrumb"> <li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Plakamı Satıyorum</li></ol>
+                    </div>
+                </h:panelGroup>    
+                <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.param1 != null}" >       
+                    <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.param1 eq 'ekle'}" >
+                     <div class="profile-card mb-3 background-dark-green">
+                        <ol class="breadcrumb"> <li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Plakamı Satıyorum</li></ol>
+                    </div>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.param1 ne 'ekle'}" >
+                    <div class="profile-card mb-3 background-dark-green">
+                        <ol class="breadcrumb"> <li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">İlan Düzenle</a></li><li class="breadcrumb-item active" aria-current="page">Plakamı Satıyorum</li></ol>
+                    </div> </h:panelGroup>      
+                </h:panelGroup>
+                    
+                <div class="profile-card mb-3">
+                    <div class="list-title d-flex align-items-center"><div class="message-title"><div class="title-bold m-0">&nbsp;</div></div></div>
+                    <div class="arac-bilgi">
+                        <div class="form mt-3">
+                            <div class="form-row">
+                                <div class="form-group col-md-6 mb-4">
+                                    <h:outputLabel id="vehiclePlateLabel" class="col-form-label font-weight-bold">Araç Plakası (Plakanız Gizlenecektir)</h:outputLabel>
+                                    <div class=" row" style="margin: 0px;">
+                                        <p:inputNumber id="PlateProvinceCode"
+                                                       class=" col-xl-4 col-lg-4 mb-2"
+                                                       binding="#{AdPlakamiSatiyorumBean.inputBox}"
+                                                       value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateProvinceCode}"
+                                                       style="padding: 0px;" 
+                                                       thousandSeparator=""
+                                                       padControl="false" 
+                                                       inputStyleClass="form-control "
+                                                       placeholder="34" 
+                                                       minValue="0" 
+                                                       maxValue="81" 
+                                                       required="true"
+                                                       requiredMessage="Bu alan gereklidir">
+                                            <f:event type="preRenderComponent" listener="#{AdPlakamiSatiyorumBean.preRenderInput}" />
+                                        </p:inputNumber>
+                                        <p:inputText id="PlateLatterCode"  maxlength="5"
+                                                     style="text-transform: uppercase"
+                                                     class="col-xl-4 col-lg-4 form-control m-input mb-2" 
+                                                     value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateLatterCode}"
+                                                     placeholder="LAL"
+                                                     required="true"
+                                                     requiredMessage="Bu alan gereklidir">
+                                            <p:keyFilter regEx="/[a-z_]/i"/>
+                                        </p:inputText>
+                                        <p:inputNumber id="PlateNumberCode"  
+                                                       class="col-xl-4 col-lg-4 mb-2" 
+                                                       style="padding: 0px;" 
+                                                       thousandSeparator=""
+                                                       binding="#{AdPlakamiSatiyorumBean.inputBox1}"
+                                                       value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateNumberCode}"
+                                                       padControl="false" 
+                                                       inputStyleClass="form-control"
+                                                       placeholder="454" 
+                                                       minValue="0" 
+                                                       maxValue="99999" 
+                                                       required="true" 
+                                                       requiredMessage="Bu alan gereklidir">
+                                            <f:event type="preRenderComponent" listener="#{AdPlakamiSatiyorumBean.preRenderInput1}" />
+                                        </p:inputNumber>
+                                        <h:message for="PlateProvinceCode" class="message-f"></h:message>  
+                                        <h:message for="PlateLatterCode" class="message-f"></h:message>
+                                        <h:message for="PlateNumberCode" class="message-f"></h:message>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 ">
+                                    <h:outputLabel class="col-form-label font-weight-bold" id="adPlakamiSatiyorumUcretInputLabel" for="adPlakamiSatiyorumUcretInput">Ücret</h:outputLabel>
+                                    <div class="input-group">
+                                        <style>
+                                            #adPlakamiSatiyorumUcretInput_input{border-top-right-radius: 0;border-bottom-right-radius: 0}
+                                            #costIcon{border-radius: 8px;border-left: 0;border-top-left-radius: 0; border-bottom-left-radius: 0}
+                                        </style>
+                                        <p:inputNumber  id="adPlakamiSatiyorumUcretInput" 
+                                                        binding="#{AdPlakamiSatiyorumBean.inputBox2}"
+                                                        value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_ucret}"
+                                                        style="padding: 0px;width:75% " 
+                                                        padControl="false"  
+                                                        inputStyleClass="form-control" 
+                                                        placeholder="1.000.000" maxValue="9999999" 
+                                                        required="true" requiredMessage="Bu alan gereklidir">
+                                            <f:event type="preRenderComponent" listener="#{AdPlakamiSatiyorumBean.preRenderInput2}" />
+                                         </p:inputNumber>
+                                        <span id="costIcon" class="input-group-text">TL</span>
+                                        <h:message for="adPlakamiSatiyorumUcretInput" style="color: red"></h:message>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="row" >
+                                        <div class="col-md-3">
+                                            <label><h:selectBooleanCheckbox  value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_AraçlaBirliktemi}"></h:selectBooleanCheckbox>&nbsp;&nbsp;Araçla Birlikte</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label><h:selectBooleanCheckbox  value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_YolBelgesiVarmi}"></h:selectBooleanCheckbox>&nbsp;&nbsp;Yol Belgesi Var</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label><h:selectBooleanCheckbox value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_NoterSatislimi}"> </h:selectBooleanCheckbox>&nbsp;&nbsp;Noter Satışlı</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label ><h:selectBooleanCheckbox  value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_Hisselimi}"> </h:selectBooleanCheckbox>&nbsp;&nbsp;Hisseli</label>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="profile-card">
+                    <div class="d-flex align-items-center">
+                        <div class="message-title">
+                            <div class="title-bold m-0">İlan Detayı&nbsp;&nbsp;<h:message for="adLookingForVehicleForWorkBeanadBeanadCommentInput" class="message-f"></h:message> </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 mb-0">
+                        <style>
+                            #adLookingForVehicleForWorkBeanadBeanadCommentInput_editor > div.ql-editor > p{font-size: 1.2rem}
+                        </style>
+                        <p:textEditor   height="150" 
+                                        required="true" 
+                                        requiredMessage="Bu alan gereklidir" 
+                                        id ="adLookingForVehicleForWorkBeanadBeanadCommentInput"
+                                        value="#{AdPlakamiSatiyorumBean.adBean.ad_Comment}"  
+                                        widgetVar="editor2">
+                              <f:facet name="toolbar">
+                                  <span class="ql-formats"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button><button class="ql-strike"></button></span>
+                                  <span class="ql-formats"><select class="ql-font"></select><select class="ql-size"></select></span>
+                              </f:facet>
+                        </p:textEditor>
+                    </div>              
+                </div>
+
+                <div class="text-center mt-5">
+                    <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.param1.equals('ekle')}">
+                        <p:commandLink class="btn btn-orange px-5" 
+                                       ajax="true" 
+                                        update="m_form" 
+                                       id="efse35we" 
+                                       action="#{AdPlakamiSatiyorumBean.plakamiSatiyorumIlanOlustur()}">
+                            <b>+</b> İlanı Kaydet ve Yayınla
+                        </p:commandLink>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.param1.equals('duzenle')}">
+                         <p:commandLink class="btn btn-orange px-5" 
+                                        ajax="true" 
+                                        update="m_form" 
+                                        id="rte4te" 
+                                        action="#{AdPlakamiSatiyorumBean.plakamiSatiyorumIlanDuzenle()}">
+                             Güncelle
+                         </p:commandLink>
+                    </h:panelGroup>                  
+                </div>
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition>
+            <h:form id="m_form"  prependId="false"  enctype="multipart/form-data">
+                <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/> 
+
+                <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.param1 == null}" >
+                    <div class="profile-card mb-3 background-blue"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Soförüm İş Arıyorum</li></ol></div>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.param1 != null}" >       
+                    <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.param1 eq 'ekle'}" >
+                        <div class="profile-card mb-3 background-blue"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Soförüm İş Arıyorum</li></ol></div>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.param1 ne 'ekle'}" >
+                       <div class="profile-card mb-3 background-blue"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">İlan Düzenle</a></li><li class="breadcrumb-item active" aria-current="page">Soförüm İş Arıyorum</li></ol></div>
+                    </h:panelGroup>      
+                </h:panelGroup>
+                
+                <div class="profile-card mb-3">
+                    <div class="list-title d-flex align-items-center"><div class="message-title"><div class="title-bold m-0">Ehliyet ve Araç Bilgileri</div></div></div>
+                    <div class="arac-bilgi ">
+                        <div class="form mt-3">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="driverDriversLicenseSelectOneMenu" class="col-form-label font-weight-bold">Sürücü Belgesi</label>
+                                    <style>
+                                        .ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger{background: none; width: 25px; }
+                                        .ui-selectcheckboxmenu .ui-selectcheckboxmenu-label{padding: 0px; width: 95%; margin: 0px;}
+                                        .ui-state-hover{background-color: #FFF}
+                                        .ui-chkbox .ui-chkbox-box {background: none}
+                                    </style>
+                                    <p:selectCheckboxMenu id="driverDriversLicenseSelectOneMenu" 
+                                                          class="form-control" 
+                                                         updateLabel="true" 
+                                                         required="true"
+                                                         requiredMessage="Bu alan gereklidir"
+                                                          value="#{AdSoforumIsAriyorumBean.driver.driver_DriversLicenses}"  
+                                                          label="Seçiniz" >
+                                        <f:selectItems value="#{selectItemsBean.selectItemList('DriversLicense')}" 
+                                                       var="o" 
+                                                       itemLabel="#{o.selectItem_Label_Tr}"  
+                                                       itemValue="#{o.selectItem_Value}" >
+                                        </f:selectItems>                                   
+                                    </p:selectCheckboxMenu>
+                                    <h:message id="dgrete4" for="driverDriversLicenseSelectOneMenu" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-4 mr-auto">
+                                    <label for="DriversLicenseYear" class="col-form-label font-weight-bold">Ehliyet Alınma Tarihi</label>
+                                    <p:inputNumber id="DriversLicenseYear" 
+                                                   style="padding: 0px;"  
+                                                   thousandSeparator="" 
+                                                   value="#{AdSoforumIsAriyorumBean.driver.driver_DriversLicenseYear}" 
+                                                   padControl="false"  
+                                                   inputStyleClass="form-control" 
+                                                   placeholder="1980"  
+                                                   minValue="0"   
+                                                   maxValue="2022"   >
+                                        <f:convertDateTime pattern="YYYY"></f:convertDateTime>
+                                    </p:inputNumber>
+                                    <h:message id="ffdtret4we" for="DriversLicenseYear" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <h:outputLabel class="col-form-label font-weight-bold" id="AdSoforumIsAriyorumBeandriverBeandriverFeeLabel" for="AdSoforumIsAriyorumBeandriverBeandriverFee">Ücret Beklentiniz</h:outputLabel>
+                                    <div class="input-group">
+                                        <style>
+                                            #AdSoforumIsAriyorumBeandriverBeandriverFee_input{border-top-right-radius: 0;border-bottom-right-radius: 0}
+                                            #costIcon{border-radius: 8px;border-left: 0;border-top-left-radius: 0; border-bottom-left-radius: 0}
+                                        </style>
+                                        <p:inputNumber id="AdSoforumIsAriyorumBeandriverBeandriverFee" 
+                                                        style="padding: 0px;width:75% " 
+                                                        binding="#{AdSoforumIsAriyorumBean.inputBox2}"
+                                                        value="#{AdSoforumIsAriyorumBean.driver.driver_Fee}"
+                                                        
+                                                        required="true"
+                                                        requiredMessage="Bu alan gereklidir"
+                                                        inputStyleClass="form-control" 
+                                                        placeholder="500" maxValue="99999" >
+                                            <f:event type="preRenderComponent" listener="#{AdSoforumIsAriyorumBean.preRenderInput2}" />
+                                         </p:inputNumber>
+                                        
+                                        <span id="costIcon" class="input-group-text">TL</span>
+                                    </div>
+                                    <h:message id="dfdsfew3332" for="AdSoforumIsAriyorumBeandriverBeandriverFee" class="message-f"></h:message>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="driverBirthDate" class="col-form-label font-weight-bold">Doğum Tarihi</label>
+                                    <h:inputText id="driverBirthDate" class="form-control" 
+                                                 required="true" requiredMessage="Bu alan gereklidir" value="#{AdSoforumIsAriyorumBean.driver.driver_BirthDate}"  >
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                    <h:message id="eesd322ee" for="driverBirthDate" class="message-f"></h:message>
+                                    <script>$(function(){ $('input[id$="driverBirthDate"]').inputmask("date",{ "placeholder": "_" }); });</script>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="driverPlaceOfBirthInput" class="col-form-label font-weight-bold">Doğum Yeri</label>
+                                    <h:inputText id="driverPlaceOfBirthInput"  
+                                                 class="form-control m-input" 
+                                                 required="true"
+                                                 requiredMessage="Bu alan gereklidir"
+                                                 value="#{AdSoforumIsAriyorumBean.driver.driver_PlaceOfBirth}" > 
+                                    </h:inputText>
+                                    <h:message id="fdhytu64" for="driverPlaceOfBirthInput" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    &nbsp;
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label font-weight-bold">Kullanmak İstediğiniz Araç Türü</label>
+                                    <style>
+                                        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {background-color: #FFF;background-image: none;-webkit-box-shadow: none;box-shadow: none;}
+                                        .ui-chkbox .ui-chkbox-box {border: 1px solid #bdc3d4;width: 18px;height: 18px;display: inline-block;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;transition: all 0.3s;background: none;font-weight: 400;font-size: 1rem;color: #575962;}
+                                    </style>
+                                    <p:selectManyCheckbox id="driver_VehicleTypesList"  
+                                                                  required="true"
+                                                                requiredMessage="Bu alan gereklidir"
+                                                                  layout="responsive" 
+                                                                  columns="4"
+                                                          value="#{AdSoforumIsAriyorumBean.driver.driver_VehicleTypesList}">
+                                        <f:selectItems value="#{selectItemsBean.selectItemList('VehicleType')}"  var="o" itemLabel="#{o.selectItem_Label_Tr}"  itemValue="#{o.selectItem_Value}" ></f:selectItems> 
+                                    </p:selectManyCheckbox> 
+                                    <h:message id="f5dg4fdvg" for="driver_VehicleTypesList" class="message-f"></h:message>
+                                </div>
+                                <div class="detay-form col-12">
+                                    <div class="message-title">
+                                        <div class="title-bold m-0">İlan Detayı</div>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <style>
+                                            #AdSoforumIsAriyorumBeanadBeanadCommentInput_editor > div.ql-editor > p{font-size: 1.2rem}
+                                        </style>
+                                        <p:textEditor   height="200" 
+                                                        id ="AdSoforumIsAriyorumBeanadBeanadCommentInput" 
+                                                        required="true"
+                                                        requiredMessage="Bu alan gereklidir"
+                                                        value="#{AdSoforumIsAriyorumBean.adBean.ad_Comment}"  
+                                                        widgetVar="editor2">
+                                            <f:facet name="toolbar">
+                                                <span class="ql-formats"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button><button class="ql-strike"></button></span>
+                                                <span class="ql-formats"><select class="ql-font"></select><select class="ql-size"></select></span>
+                                            </f:facet>
+                                        </p:textEditor>
+                                        <h:message id="safds65745" for="AdSoforumIsAriyorumBeanadBeanadCommentInput" class="message-f"></h:message>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-card mb-3"> <ui:insert name="routePart" ><ui:include src="routePart.xhtml" /></ui:insert> </div>
+                <div class="profile-card mb-3">
+                    <div class="d-flex align-items-center"><div class="message-title"><div class="title-bold m-0">Belgeler ve Yabancı Diller</div></div></div>
+                    <div class="profile-form ">
+                        <div class="form mt-3">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label font-weight-bold">Belgeler</label>
+                                    <style>
+                                        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { background-color: #FFF;background-image: none; -webkit-box-shadow: none;box-shadow: none; }
+                                        .ui-chkbox .ui-chkbox-box {border: 1px solid #bdc3d4; width: 18px; height: 18px; display: inline-block; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;  transition: all 0.3s;  background: none; font-weight: 400; font-size: 1rem; color: #575962;}
+                                    </style>
+                                    <p:selectManyCheckbox id="RequestedDocument"   
+                                                          layout="responsive"  
+                                                          columns="4"  
+                                                          value="#{AdSoforumIsAriyorumBean.driver.driver_RequestedDocumentesList}">
+                                        <f:selectItems value="#{selectItemsBean.selectItemList('RequestedDocument')}"  
+                                                       var="o"   
+                                                       itemLabel="#{o.selectItem_Label_Tr}"   
+                                                       itemValue="#{o.selectItem_Value}" >
+                                        </f:selectItems> 
+                                    </p:selectManyCheckbox>    
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label font-weight-bold">Bilinen Yabancı Diller</label>
+                                    <style>
+                                        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { background-color: #FFF; background-image: none;-webkit-box-shadow: none; box-shadow: none;  }
+                                        .ui-chkbox .ui-chkbox-box { border: 1px solid #bdc3d4; width: 18px;  height: 18px; display: inline-block;  -moz-border-radius: 3px;  -webkit-border-radius: 3px; border-radius: 3px; transition: all 0.3s;background: none;font-weight: 400;font-size: 1rem; color: #575962;}
+                                    </style>
+                                    <p:selectManyCheckbox id="ForeignLanguage"   
+                                                          layout="responsive"  
+                                                          columns="4"  
+                                                          value="#{AdSoforumIsAriyorumBean.driver.driver_ForeignLanguagesList}">
+                                        <f:selectItems value="#{selectItemsBean.selectItemList('ForeignLanguage')}"  
+                                                       var="o"   
+                                                       itemLabel="#{o.selectItem_Label_Tr}"   
+                                                       itemValue="#{o.selectItem_Value}" >
+                                        </f:selectItems> 
+                                    </p:selectManyCheckbox>  
+                                </div>
+                            </div>
+                            <div class="form-row mt-4">
+                                <div class="form-group col-md-6 row">
+                                    <label class="col-6 form-label font-weight-bold">Emekli misiniz?</label>
+                                    <div class="col-6">
+                                        <p:selectOneRadio  id="driverRetired"  layout="custom"
+                                                           value="#{AdSoforumIsAriyorumBean.driver.driver_Retired}"  > 
+                                            <f:selectItem itemValue = "true" itemLabel = "Evet" /> 
+                                            <f:selectItem itemValue = "false" itemLabel = "Hayır" />    
+                                        </p:selectOneRadio> 
+                                        <div class="row">
+                                            <div class="col-6" style=" padding-left: 0;">
+                                                <p:radioButton id="ref1" for="driverRetired" itemIndex="0"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref1" value="Evet"/>
+                                            </div>
+                                            <div class="col-6"  style=" padding-left: 0;">
+                                                <p:radioButton id="ref2" for="driverRetired" itemIndex="1"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref2" value="Hayır"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h:message for="driverRetired" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-6 row">
+                                    <label class="col-6 form-label font-weight-bold">Sabıka kaydı</label>
+                                    <div class="col-6">
+                                        <p:selectOneRadio  id="driverCriminalRecord"  layout="custom"
+                                                           value="#{AdSoforumIsAriyorumBean.driver.driver_CriminalRecord}"  > 
+                                            <f:selectItem itemValue = "true" itemLabel = "Var" /> 
+                                            <f:selectItem itemValue = "false" itemLabel = "Yok" />    
+                                        </p:selectOneRadio> 
+                                        <div class="row">
+                                            <div class="col-6" style=" padding-left: 0;">
+                                                <p:radioButton id="ref11" for="driverCriminalRecord" itemIndex="0"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref11" value="Var"/>
+                                            </div>
+                                            <div class="col-6" style=" padding-left: 0;">
+                                                <p:radioButton id="ref22" for="driverCriminalRecord" itemIndex="1"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref22" value="Yok"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h:message for="driverCriminalRecord" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-6 row">
+                                    <label class="col-6 form-label font-weight-bold">Mesleki Yeterlilik Belgesi</label>
+                                    <div class="col-6">
+                                        <p:selectOneRadio  id="driverCertificateOfProfessionalCompetence"  layout="custom"
+                                                           value="#{AdSoforumIsAriyorumBean.driver.driver_CertificateOfProfessionalCompetence}"  > 
+                                            <f:selectItem itemValue = "true" itemLabel = "Var" /> 
+                                            <f:selectItem itemValue = "false" itemLabel = "Yok" />    
+                                        </p:selectOneRadio> 
+                                        <div class="row">
+                                            <div class="col-6" style=" padding-left: 0;">
+                                                <p:radioButton id="ref111" for="driverCertificateOfProfessionalCompetence" itemIndex="0"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref111" value="Var"/>
+                                            </div>
+                                            <div class="col-6" style=" padding-left: 0;">
+                                                <p:radioButton id="ref222" for="driverCertificateOfProfessionalCompetence" itemIndex="1"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref222" value="Yok"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h:message for="driverCertificateOfProfessionalCompetence" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-6 row">
+                                    <label class="col-6 form-label font-weight-bold">Hostes'iniz varmı?</label>
+                                    <div class="col-6">
+                                        <p:selectOneRadio  id="driverDoYouHaveHostess"  layout="custom"
+                                                           value="#{AdSoforumIsAriyorumBean.driver.driver_DoYouHaveHostess}"  > 
+                                            <f:selectItem itemValue = "true" itemLabel = "Var" /> 
+                                            <f:selectItem itemValue = "false" itemLabel = "Yok" />    
+                                        </p:selectOneRadio> 
+                                        <div class="row">
+                                            <div class="col-6" style=" padding-left: 0;">
+                                                <p:radioButton id="ref1111" for="driverDoYouHaveHostess" itemIndex="0"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref1111" value="Var"/>
+                                            </div>
+                                            <div class="col-6" style=" padding-left: 0;">
+                                                <p:radioButton id="ref2222" for="driverDoYouHaveHostess" itemIndex="1"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref2222" value="Yok"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h:message for="driverDoYouHaveHostess" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-6 row">
+                                    <label class="col-6 form-label font-weight-bold">Servis Taşımacılığı Deneyimi?</label>
+                                    <div class="col-6">
+                                        <p:selectOneRadio  id="driverServiceTransportationExperience"  layout="custom"
+                                                           value="#{AdSoforumIsAriyorumBean.driver.driver_ServiceTransportationExperience}"  > 
+                                            <f:selectItem itemValue = "true" itemLabel = "Var" /> 
+                                            <f:selectItem itemValue = "false" itemLabel = "Yok" />    
+                                        </p:selectOneRadio> 
+                                        <div class="row">
+                                            <div class="col-6" style=" padding-left: 0;">
+                                                <p:radioButton id="ref11111" for="driverServiceTransportationExperience" itemIndex="0"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref11111" value="Var"/>
+                                            </div>
+                                            <div class="col-6" style=" padding-left: 0;">
+                                                <p:radioButton id="ref22222" for="driverServiceTransportationExperience" itemIndex="1"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref22222" value="Yok"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h:message for="driverServiceTransportationExperience" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-6 row">
+                                    <label class="col-6 form-label font-weight-bold">Ekstra işlere gider misiniz?</label>
+                                    <div class="col-6">
+                                        <p:selectOneRadio  id="driverExtraJobs"  layout="custom"
+                                                           value="#{AdSoforumIsAriyorumBean.driver.driver_ExtraJobs}"  > 
+                                            <f:selectItem itemValue = "true" itemLabel = "Evet" /> 
+                                            <f:selectItem itemValue = "false" itemLabel = "Yok" />    
+                                        </p:selectOneRadio> 
+                                        <div class="row">
+                                            <div class="col-6" style=" padding-left: 0;">
+                                                <p:radioButton id="ref111111" for="driverExtraJobs" itemIndex="0"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref111111" value="Evet"/>
+                                            </div>
+                                            <div class="col-6" style=" padding-left: 0;">
+                                                <p:radioButton id="ref222222" for="driverExtraJobs" itemIndex="1"/>
+                                                <span class="legend" />
+                                                <p:outputLabel for="ref222222" value="Hayır"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h:message for="driverExtraJobs" class="message-f"></h:message>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card mb-3">
+                    <div class="d-flex align-items-center"><div class="message-title"><div class="title-bold m-0">Profil Fotoğrafı</div></div></div>
+
+                    <div class="photo-form ">
+                        <div class="form mt-3">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <div class="arac-image">
+                                        <h:panelGroup id="llkkffkkd">
+                                            <h:panelGroup id="frsfesr43refes" rendered="#{AdSoforumIsAriyorumBean.driver.driver_ProfilePictureUrl == null}">
+                                                <div class="img-add">
+                                                    <ui:include src="/resources/image/ikon_insan2.svg" />
+                                                </div>
+                                            </h:panelGroup>
+                                            <h:panelGroup id="cxvdsfsa" rendered="#{AdSoforumIsAriyorumBean.driver.driver_ProfilePictureUrl != null}">
+                                                <div class="img-add">
+                                                    <img class="img-thumbnail" style="border: none"  id="sfdsf4tr4rf" src="#{AdSoforumIsAriyorumBean.driver.driver_ProfilePictureUrl}" alt="driverImg"/>                                          
+                                                </div>    
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-9">
+                                    <div class="aciklama" style="margin-bottom: 15px;">Maximum dosya boyutu <b>20MB</b> büyüklüğünde olmalıdır<br/>Kabul edilen formatlar; <b>JPEG, PNG, GIF</b></div>
+                                    <h:panelGroup id="fhrsfe32" >
+                                        <h:inputFile id="driverInputFile"  
+                                                     onchange="prg3()"
+                                                     value="#{AdSoforumIsAriyorumBean.driverPhotoFile}"  
+                                                     validator="#{AdSoforumIsAriyorumBean.validateFile}">
+                                            <f:ajax event="change"  listener="#{AdSoforumIsAriyorumBean.fileUpload('driver')}" 
+                                                    execute="fhrsfe32" 
+                                                    render="uploadProgress3 llkkffkkd"/>
+                                        </h:inputFile> 
+                                        <h:message for="driverInputFile" class="message-f"></h:message>
+                                        </h:panelGroup>
+                                    <div style="padding-top: 30px;">
+                                            <label class="m-checkbox"> <h:selectBooleanCheckbox id="driverProfilePicturePublishCheckbox" value="#{AdSoforumIsAriyorumBean.driver.driver_ProfilePicturePublish}"></h:selectBooleanCheckbox>Resim Sitede Yayınlanmasın<span></span></label>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: 20px;">
+                                        <h:panelGroup id="uploadProgress3" style="display:none ; height: 25px; ">
+                                            <div  class="progress  m-progress--lg" style=" height: 25px;">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated "  role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"  style="font-size: .90rem; height: 25px; width: 100%"> Lütfen bekleyiniz dosyanız yükleniyor..</div>
+                                            </div>
+                                        </h:panelGroup>
+                                        <script> function prg3() { var x = document.getElementById("uploadProgress3"); x.style.display = "block"; }; </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.param1.equals('ekle')}">
+                        <h:commandLink class="btn btn-orange px-5" action="#{AdSoforumIsAriyorumBean.createSoforumIsAriyorumAd()}">
+                            <b>+</b> İlanı Kaydet ve Yayınla
+                            <f:ajax execute="m_form" render="m_form growl" ></f:ajax>
+                        </h:commandLink>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.param1.equals('duzenle')}">
+                        <h:commandLink class="btn btn-orange px-5"  action="#{AdSoforumIsAriyorumBean.updateSoforumIsAriyorumAd()}">
+                            Güncelle
+                           <f:ajax execute="m_form" render="growl" ></f:ajax>
+                        </h:commandLink>
+                    </h:panelGroup>
+                </div>
+
+               
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>
+

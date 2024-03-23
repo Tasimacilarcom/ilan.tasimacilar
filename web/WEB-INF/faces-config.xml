@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    
+<!--/////////////////// COKLU DIL DESTEGI START ////////////////////////////-->   
+    <application>
+        <locale-config>
+            <default-locale>tr</default-locale>
+            <supported-locale>en</supported-locale>       
+        </locale-config>
+        <resource-bundle>
+            <base-name>com.tasimacilar.ilan.system.language.pagePosts</base-name>
+            <var>msg</var>
+        </resource-bundle>  
+    </application>
+<!--/////////////////// COKLU DIL DESTEGI END ///////////////////////////////-->    
+    
+    
+<!--/////////////////// YONLENDIRME KURALLARI START /////////////////////////-->    
+ <navigation-rule>
+        <description>bu kural ile login sayfasından admin sayfasına gidilir.</description>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <description>bu kural ile login sayfasından corporate sayfasına gidilir.</description>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>corporate</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <description>bu kural ile login sayfasından personal sayfasına gidilir.</description>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>personal</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <description>bu kural ile login sayfasından director sayfasına gidilir.</description>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>director</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <description>bu kural ile login sayfasından anasayfaya gidilir.</description>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>mainPage</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+    </navigation-rule>
+  
+    
+ <!-- /////////////////// YONLENDIRME KURALLARI END /////////////////////////-->
+    
+    
+    
+    
+    
+    <validator>
+        <validator-id>requiredCheckboxValidator</validator-id>
+        <validator-class>com.tasimacilar.ilan.system.RequiredCheckboxValidator</validator-class>
+    </validator>
+
+    
+    
+    
+</faces-config>

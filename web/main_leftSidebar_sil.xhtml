@@ -1,0 +1,317 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition>
+            <div class="col-12 col-sm-4 col-md-3">
+             <h:form id="detailedFilterForm" prependId="false">    
+                <!-- Ust filter banner alani-->
+                    <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('filter-ust')}"></h:outputText>
+                <!--/Ust filter banner alani-->
+                    
+               
+                <div class="ad-filters mb-3">
+                    <div class="header title"> DETAYLI ARAMA</div>
+                    <div class="content">
+                        <div class="ad-category mb-3">                         
+                            <label for=""><b>İLAN KATEGORİSİ</b></label>
+                            <style>
+                                #kategoriTablo td{padding-top: 4px;}
+                                .ui-icon { width: 21px !important; height: 21px !important;}
+                                .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { background-color: #fff !important;}
+                            </style>
+                            <p:selectOneRadio id="catg" value="#{adBean.filterCategory}" layout="custom"  >
+                                <f:selectItem itemLabel="İşim Var Araç Arıyorum" itemValue="İşim var araç arıyorum" />
+                                <f:selectItem itemLabel="Aracım Var İş Arıyorum" itemValue="Aracım var iş arıyorum" />
+                                <f:selectItem itemLabel="Aracim Var Şöför Arıyorum" itemValue="Aracim var şöför arıyorum" />
+                                <f:selectItem itemLabel="Aracim Var Hostes Arıyorum" itemValue="Aracim var hostes arıyorum" />
+                                <f:selectItem itemLabel="Hostesim İş Arıyorum" itemValue="Hostesim iş arıyorum" />
+                                <f:selectItem itemLabel="Şöförüm İş Arıyorum" itemValue="Şöförüm iş arıyorum" />
+                                <f:selectItem itemLabel="Plakamı Satıyorum" itemValue="Plakami satiyorum" />
+                                <p:ajax event="click" listener="#{adBean.catFilterListener()}"  update="plakaSehri1 srvstyp1 nerdennereye1 aracinbosolduguyerler1 hostesinbosolduguyerler1 soforunbosolduguyerler1 aracPanel1" />
+                            </p:selectOneRadio>
+                            <table id="kategoriTablo" cellpadding="0" border="0" cellspacing="0" >
+                                <tbody> 
+                                    
+                                    <tr>
+                                        <td><p:radioButton id="opt0x" for="catg" itemIndex="0" /></td>
+                                        <td><h:outputLabel for="opt0x" value="İşim Var Araç Arıyorum" style="margin: 0;cursor: pointer;"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="30px;"><p:radioButton id="opt1x" for="catg" itemIndex="1" /></td>
+                                        <td><h:outputLabel for="opt1x" value="Aracım Var İş Arıyorum" style="margin: 0;cursor: pointer;"/></td>
+                                    </tr>
+                                     <tr>
+                                        <td><p:radioButton id="opt2x" for="catg" itemIndex="2" /></td>
+                                        <td><h:outputLabel for="opt2x" value="Aracim Var Şöför Arıyorum" style="margin: 0;cursor: pointer;"/></td>
+                                    </tr>
+                                     <tr>
+                                        <td><p:radioButton id="opt3x" for="catg" itemIndex="3" /></td>
+                                        <td><h:outputLabel for="opt3x" value="Aracim Var Hostes Arıyorum" style="margin: 0;cursor: pointer;"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p:radioButton id="opt4x" for="catg" itemIndex="4" /></td>
+                                        <td><h:outputLabel for="opt4x" value="Hostesim İş Arıyorum" style="margin: 0;cursor: pointer;"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p:radioButton id="opt5x" for="catg" itemIndex="5" /></td>
+                                        <td><h:outputLabel for="opt5x" value="Şöförüm İş Arıyorum" style="margin: 0;cursor: pointer;"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p:radioButton id="opt6x" for="catg" itemIndex="6" /></td>
+                                        <td><h:outputLabel for="opt6x" value="Plakamı Satıyorum" style="margin: 0;cursor: pointer;"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h:panelGroup id="srvstyp1">
+                                <h:panelGroup id="srvstyp2" rendered="#{adBean.filterCategory_IsimVarAracAriyorum || adBean.filterCategory_AracimVarSoforAriyorum || adBean.filterCategory_AracimVarIsAriyorum}">
+                                   <hr/>  
+                                    <label for=""><b>Servis Türü</b></label>
+                                    <style>
+                                        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {background-color: #FFF;background-image: none;-webkit-box-shadow: none;box-shadow: none;}
+                                        .ui-chkbox .ui-chkbox-box {border: 1px solid #bdc3d4;width: 18px;height: 18px;display: inline-block;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;transition: all 0.3s;background: none;font-weight: 400;font-size: 1rem;color: #575962;}
+                                    </style>
+                                    <p:selectManyCheckbox id="serviceType" style="font-weight: 300;font-family:Poppins;color: #575962;font-size: 1rem;" layout="responsive" columns="1" value="#{adBean.selected_ServiceTypes}">
+                                        <f:selectItems value="#{selectItemsBean.selectItemList('serviceType')}" var="o" itemLabel="#{o.selectItem_Label_Tr}" itemValue="#{o.selectItem_Value}" ></f:selectItems> 
+                                    </p:selectManyCheckbox>
+                                </h:panelGroup>
+                            </h:panelGroup>  
+
+                            <script>function ltr(element){if(element.setSelectionRange){ element.setSelectionRange(0,0);}}</script>                                 
+                            <h:panelGroup id="nerdennereye1">
+                                <h:panelGroup id="nerdennereye2" rendered="#{adBean.filterCategory_IsimVarAracAriyorum || adBean.filterCategory_AracimVarSoforAriyorum || adBean.filterCategory_AracimVarHostesAriyorum}">
+                                    <hr/>
+                                    <label style="margin-bottom: 10px;"><b>Nereden/Nereye - Konum</b></label>
+                                    <label for="dda">Başlangıç Saati</label>
+                                    <p:inputMask onclick="ltr(this);" class="form-control" onkeypress="if (event.keyCode == 13) { return false; }" mask="99:99" title="Başlangış Saati" id="startTime2xa" placeholder="00:00" value="#{adBean.startTime}" style="font-weight: 300;font-family: Poppins;cursor: pointer;width: 100%;height: 32.59px;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20;padding: .60rem 1.10rem;color: #575962;margin-bottom: 10px;border-radius: 3px;" > </p:inputMask>
+                                    <label for="dda">Başlangıç Yeri</label>
+                                    <p:autoComplete id="dda" panelStyle="width:233px;"
+                                                    style="cursor: pointer;margin-bottom: 10px;background: none;background-color: #fff;border-radius: 0;border-color: #ebedf2;width: 100%;    "
+                                                    inputStyle="font-weight: 300;font-family: Poppins;cursor: pointer;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20; padding: .60rem 1.10rem;color: #575962;width: 100%; "
+                                                    scrollHeight="120" dropdown="true" forceSelection="true" placeholder="İlçe olarak seçin veya yazın" completeMethod="#{adBean.completeStartPositionTownList}" value="#{adBean.startPoint_geo_ADMINISTRATIVE_AREA_LEVEL_2_ILCE}">
+                                    </p:autoComplete>                                 
+                                    <label for="ddax">Bitiş Yeri</label>
+                                    <p:autoComplete id="ddax" panelStyle="width:233px;" style="cursor: pointer;margin-bottom: 10px;background: none;background-color: #fff;border-radius: 0;border-color: #ebedf2;width: 100%;    "
+                                                    inputStyle="font-weight: 300;font-family:Poppins;cursor: pointer;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20; padding: .60rem 1.10rem;color: #575962;width: 100%; "
+                                                    scrollHeight="120" dropdown="true" forceSelection="true" placeholder="İlçe olarak seçin veya yazın" completeMethod="#{adBean.completeEndPositionTownList}" value="#{adBean.endPoint_geo_ADMINISTRATIVE_AREA_LEVEL_2_ILCE}">
+                                    </p:autoComplete>
+                                    <label for="ddav">Bitiş Saati</label>
+                                    <p:inputMask onclick="ltr(this);" class="form-control " onkeypress="if (event.keyCode == 13) { return false; }" mask="99:99" title="Başlangış Saati" id="startTime2xae" value="#{adBean.endTime}" placeholder="00:00" style="font-weight: 300;font-family: Poppins;cursor: pointer;width: 100%;height: 32.59px;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20;padding: .60rem 1.10rem;color: #575962;margin-bottom: 10px;border-radius: 3px;" ></p:inputMask>    
+                                </h:panelGroup>
+                            </h:panelGroup>                                  
+                            <h:panelGroup id="aracinbosolduguyerler1">
+                                <h:panelGroup id="aracinbosolduguyerler2" rendered="#{adBean.filterCategory_AracimVarIsAriyorum}">
+                                    <hr/>
+                                    <label style="margin-bottom: 10px;"><b>Aracın boş olduğu yerler ve saatler</b></label>
+                                    <label for="dda">Başlangıç Saati</label>
+                                    <p:inputMask onclick="ltr(this);" class="form-control" onkeypress="if (event.keyCode == 13) { return false; }" mask="99:99" title="Başlangış Saati"  placeholder="00:00" value="#{adBean.startTime}" style="font-weight: 300;font-family: Poppins;cursor: pointer;width: 100%;height: 32.59px;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20;padding: .60rem 1.10rem;color: #575962;margin-bottom: 10px;border-radius: 3px;" > </p:inputMask>
+                                    <label for="dda">Aracın Boş olduğu Yer</label>
+                                    <p:autoComplete  panelStyle="width:233px;"
+                                                    style="cursor: pointer;margin-bottom: 10px;background: none;background-color: #fff;border-radius: 0;border-color: #ebedf2;width: 100%;    "
+                                                    inputStyle="font-weight: 300;font-family: Poppins;cursor: pointer;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20; padding: .60rem 1.10rem;color: #575962;width: 100%; "
+                                                    scrollHeight="120" dropdown="true" forceSelection="true" placeholder="İlçe olarak seçin veya yazın" completeMethod="#{adBean.completeStartPositionTownList}" value="#{adBean.startPoint_geo_ADMINISTRATIVE_AREA_LEVEL_2_ILCE}">
+                                    </p:autoComplete>                                 
+                                    <label for="ddav">Bitiş Saati</label>
+                                    <p:inputMask onclick="ltr(this);" class="form-control " onkeypress="if (event.keyCode == 13) { return false; }" mask="99:99" title="Başlangış Saati"  value="#{adBean.endTime}" placeholder="00:00" style="font-weight: 300;font-family: Poppins;cursor: pointer;width: 100%;height: 32.59px;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20;padding: .60rem 1.10rem;color: #575962;margin-bottom: 10px;border-radius: 3px;" ></p:inputMask>    
+                                </h:panelGroup>
+                            </h:panelGroup>                                  
+                            <h:panelGroup id="hostesinbosolduguyerler1">
+                                <h:panelGroup id="hostesinbosolduguyerler2" rendered="#{adBean.filterCategory_HostesimIsAriyorum}">
+                                    <hr/>
+                                    <label style="margin-bottom: 10px;"><b>Hostes'in boş olduğu yerler ve saatler</b></label>
+                                    <label for="dda">Başlangıç Saati</label>
+                                    <p:inputMask onclick="ltr(this);" class="form-control" onkeypress="if (event.keyCode == 13) { return false; }" mask="99:99" title="Başlangış Saati"  placeholder="00:00" value="#{adBean.startTime}" style="font-weight: 300;font-family: Poppins;cursor: pointer;width: 100%;height: 32.59px;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20;padding: .60rem 1.10rem;color: #575962;margin-bottom: 10px;border-radius: 3px;" > </p:inputMask>
+                                    <label for="dda">Hostes'in Boş olduğu Yer</label>
+                                    <p:autoComplete  panelStyle="width:233px;"
+                                                    style="cursor: pointer;margin-bottom: 10px;background: none;background-color: #fff;border-radius: 0;border-color: #ebedf2;width: 100%;    "
+                                                    inputStyle="font-weight: 300;font-family: Poppins;cursor: pointer;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20; padding: .60rem 1.10rem;color: #575962;width: 100%; "
+                                                    scrollHeight="120" dropdown="true" forceSelection="true" placeholder="İlçe olarak seçin veya yazın" completeMethod="#{adBean.completeStartPositionTownList}" value="#{adBean.startPoint_geo_ADMINISTRATIVE_AREA_LEVEL_2_ILCE}">
+                                    </p:autoComplete>                                 
+                                    <label for="ddav">Bitiş Saati</label>
+                                    <p:inputMask onclick="ltr(this);" class="form-control " onkeypress="if (event.keyCode == 13) { return false; }" mask="99:99" title="Başlangış Saati"  value="#{adBean.endTime}" placeholder="00:00" style="font-weight: 300;font-family: Poppins;cursor: pointer;width: 100%;height: 32.59px;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20;padding: .60rem 1.10rem;color: #575962;margin-bottom: 10px;border-radius: 3px;" ></p:inputMask>    
+                                </h:panelGroup>
+                            </h:panelGroup>                                   
+                            <h:panelGroup id="soforunbosolduguyerler1">
+                                <h:panelGroup id="soforunbosolduguyerler2" rendered="#{adBean.filterCategory_SoforumIsAriyorum}">
+                                    <hr/>
+                                    <label style="margin-bottom: 10px;"><b>Şöför'ün boş olduğu yerler ve saatler</b></label>
+                                    <label for="dda">Başlangıç Saati</label>
+                                    <p:inputMask onclick="ltr(this);" class="form-control" onkeypress="if (event.keyCode == 13) { return false; }" mask="99:99" title="Başlangış Saati"  placeholder="00:00" value="#{adBean.startTime}" style="font-weight: 300;font-family: Poppins;cursor: pointer;width: 100%;height: 32.59px;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20;padding: .60rem 1.10rem;color: #575962;margin-bottom: 10px;border-radius: 3px;" > </p:inputMask>
+                                    <label for="dda">Şöför'üin Boş olduğu Yer</label>
+                                    <p:autoComplete  panelStyle="width:233px;"
+                                                    style="cursor: pointer;margin-bottom: 10px;background: none;background-color: #fff;border-radius: 0;border-color: #ebedf2;width: 100%;    "
+                                                    inputStyle="font-weight: 300;font-family: Poppins;cursor: pointer;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20; padding: .60rem 1.10rem;color: #575962;width: 100%; "
+                                                    scrollHeight="120" dropdown="true" forceSelection="true" placeholder="İlçe olarak seçin veya yazın" completeMethod="#{adBean.completeStartPositionTownList}" value="#{adBean.startPoint_geo_ADMINISTRATIVE_AREA_LEVEL_2_ILCE}">
+                                    </p:autoComplete>                                 
+                                    <label for="ddav">Bitiş Saati</label>
+                                    <p:inputMask onclick="ltr(this);" class="form-control " onkeypress="if (event.keyCode == 13) { return false; }" mask="99:99" title="Başlangış Saati"  value="#{adBean.endTime}" placeholder="00:00" style="font-weight: 300;font-family: Poppins;cursor: pointer;width: 100%;height: 32.59px;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20;padding: .60rem 1.10rem;color: #575962;margin-bottom: 10px;border-radius: 3px;" ></p:inputMask>    
+                                </h:panelGroup>
+                            </h:panelGroup>   
+                            <h:panelGroup id="plakaSehri1">
+                                <h:panelGroup id="plakaSehri2" rendered="#{adBean.filterCategory_PlakamiSatiyorum}">
+<!--                                    <hr/>
+                                    <label style="margin-bottom: 10px;"><b>Plakanın Şehri</b></label>
+                                    <h:selectOneMenu  value="#{adBean.selected_cityPlateNo}" class="form-control m-input " >
+                                        <f:selectItem itemValue="farketmez" itemLabel="Farketmez" ></f:selectItem>
+                                        <f:selectItems  value="#{cityListsBean.cityList()}" var="c" itemLabel="#{c.cityName}" itemValue="#{c.cityPlateNo}"></f:selectItems>
+                                    </h:selectOneMenu> -->
+                                </h:panelGroup>  
+                            </h:panelGroup>
+                            <hr/>                                    
+                            <label for=""><b>İlan Yayınlama Zamanı</b></label>
+                            <style>
+                                .ui-icon { width: 21px !important; height: 21px !important;}
+                                .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { background-color: #fff !important;}
+                            </style>
+                            <p:selectOneRadio id="time" value="#{adBean.lastTime}" layout="custom">
+                                <f:selectItem itemLabel="Bugün" itemValue="toDay" />
+                                <f:selectItem itemLabel="Dün" itemValue="yesterday" />
+                                <f:selectItem itemLabel="Son 3 Gün" itemValue="last3Days" />
+                                <f:selectItem itemLabel="Son 7 Gün" itemValue="last7Days" />
+                            </p:selectOneRadio>
+                            <table cellpadding="0" border="0" cellspacing="0" >
+                                <tbody>                                       
+                                    <tr>
+                                        <td width="30px;"><p:radioButton id="opt1" for="time" itemIndex="0" /></td>
+                                        <td><h:outputLabel for="opt1" value="Bugün" style="margin: 0;cursor: pointer;"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p:radioButton id="opt2" for="time" itemIndex="1" /></td>
+                                        <td><h:outputLabel for="opt2" value="Dün" style="margin: 0;cursor: pointer;"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p:radioButton id="opt3" for="time" itemIndex="2" /></td>
+                                        <td><h:outputLabel for="opt3" value="Son 3 Gün" style="margin: 0;cursor: pointer;"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p:radioButton id="opt4" for="time" itemIndex="3" /></td>
+                                        <td><h:outputLabel for="opt4" value="Son 7 Gün" style="margin: 0;cursor: pointer;"/></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <hr/>
+                            <label for=""><b>Firma</b></label>
+                            <h:selectOneMenu value="#{adBean.company}" class="form-control m-input ">
+                                <f:selectItem itemValue="farketmez" itemLabel="Farketmez"></f:selectItem>
+                                <f:selectItems value="#{corporateAccountBean.allCorporateAccountWithDetail()}" var="o" itemLabel="#{o.company_Name}" itemValue="#{o.company_Name}" ></f:selectItems> 
+                            </h:selectOneMenu> 
+                            <h:panelGroup id="aracPanel1" rendered="false">
+                                <h:panelGroup id="aracPanel2" rendered="#{adBean.filterCategory_IsimVarAracAriyorum || adBean.filterCategory_AracimVarIsAriyorum || adBean.filterCategory_AracimVarSoforAriyorum}">
+                            <hr/>
+                            <label for=""><b>Araç</b></label><br/>
+                            <h:outputLabel id="BrandOneMenuLabel" for="BrandOneMenu">Araç Markası</h:outputLabel>
+                            <h:selectOneMenu id="BrandOneMenu" style="margin-bottom: 10px;border-radius: 3px;" value="#{adBean.vehicleBrandId}" class="form-control m-input m-input--square">
+                                <f:selectItem itemValue="0" itemLabel="Farketmez"></f:selectItem>
+                                <f:selectItems value="#{adBean.vehicleBrandNamesListx()}" var="v" itemLabel="#{v.vehicleBrand_Name}" itemValue="#{v.vehicleBrand_Id}" > 
+                                </f:selectItems>  
+                                <f:ajax event="change" render="ModelOneMenu" listener="#{adBean.vehicleModelsListx()}"></f:ajax>
+                            </h:selectOneMenu> 
+                            <h:outputLabel id="ModelOneMenuLabel" for="ModelOneMenu">Araç Modeli</h:outputLabel>
+                            <h:selectOneMenu id="ModelOneMenu" style="margin-bottom: 10px;border-radius: 3px;" value="#{adBean.vehicle_Model}" class="form-control m-input m-input--square">
+                                <f:selectItem itemValue="farketmez" itemLabel="Farketmez"></f:selectItem>
+                                <f:selectItems value="#{adBean.vehicleModelsList}" var="x" itemLabel="#{x}" itemValue="#{x}" ></f:selectItems> 
+                            </h:selectOneMenu> 
+                            <h:outputLabel id="ModelYearOneMenuLabel" for="ModelYearOneMenux">Araç Yılı</h:outputLabel>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <h:selectOneMenu id="ModelYearOneMenux" style="margin-bottom: 10px;border-radius: 3px;" value="#{adBean.vehicle_ModelYear}" class="form-control m-input m-input--square">
+                                        <f:selectItem itemValue="farketmez" itemLabel="Farketmez"></f:selectItem>
+                                        <f:selectItem itemValue="2020" itemLabel="2020"></f:selectItem>
+                                        <f:selectItem itemValue="2019" itemLabel="2019"></f:selectItem>
+                                        <f:selectItem itemValue="2018" itemLabel="2018"></f:selectItem>
+                                        <f:selectItem itemValue="2017" itemLabel="2017"></f:selectItem>
+                                        <f:selectItem itemValue="2016" itemLabel="2016"></f:selectItem>
+                                        <f:selectItem itemValue="2015" itemLabel="2015"></f:selectItem>
+                                        <f:selectItem itemValue="2014" itemLabel="2014"></f:selectItem>
+                                        <f:selectItem itemValue="2013" itemLabel="2013"></f:selectItem>
+                                        <f:selectItem itemValue="2012" itemLabel="2012"></f:selectItem>
+                                        <f:selectItem itemValue="2011" itemLabel="2011"></f:selectItem>
+                                        <f:selectItem itemValue="2010" itemLabel="2010"></f:selectItem>
+                                        <f:selectItem itemValue="2009" itemLabel="2009"></f:selectItem>
+                                        <f:selectItem itemValue="2008" itemLabel="2008"></f:selectItem>
+                                        <f:selectItem itemValue="2007" itemLabel="2007"></f:selectItem>
+                                        <f:selectItem itemValue="2006" itemLabel="2006"></f:selectItem>
+                                        <f:selectItem itemValue="2005" itemLabel="2005"></f:selectItem>
+                                        <f:selectItem itemValue="2004" itemLabel="2004"></f:selectItem>
+                                        <f:selectItem itemValue="2003" itemLabel="2003"></f:selectItem>
+                                        <f:selectItem itemValue="2002" itemLabel="2002"></f:selectItem>
+                                        <f:selectItem itemValue="2001" itemLabel="2001"></f:selectItem>
+                                        <f:selectItem itemValue="2000" itemLabel="2000"></f:selectItem>
+                                        <f:ajax event="change" render="dsg4ew"></f:ajax>
+                                    </h:selectOneMenu> 
+                                </div> 
+                                <div class="col-md-5" style="padding-top: 10px;">
+                                    <h:panelGroup id="dsg4ew">
+                                        <h:panelGroup rendered="#{!adBean.vehicle_ModelYear.equals('farketmez')}">
+                                            <label class="m-checkbox"><h:selectBooleanCheckbox value="#{adBean.vehicle_ModelYearAndOver}"></h:selectBooleanCheckbox>&amp; Üzeri<span></span></label>
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                            </h:panelGroup>
+                            </h:panelGroup>
+                            <hr/>            
+                            
+                            <h:commandLink style="width: 100%;color: #fff" 
+                                           class="btn btn-primary mt-2" 
+                                           title="Uygun İlanları Göster" 
+                                           action="#{adBean.filterGetAllAd}">
+                                Uygun İlanları Göster
+                            </h:commandLink>                        
+                            <h:commandLink style="width: 100%;border-radius: 25px; border: 1px solid #ddd" 
+                                           class="btn btn-accent mt-2" 
+                                           title="Aramayı Temizle" 
+                                           action="#{adBean.clearFilter()}">
+                                Aramayı Temizle
+                            </h:commandLink>                                    
+                        </div>
+
+                    </div>
+                </div>
+                
+                <!-- Orta filter banner alani-->
+                <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('filter-orta')}"></h:outputText>
+                <!--/Orta filter banner alani-->
+              
+                <div class="ad-filters mb-3">
+                    <div class="header title">TEKİL ARAMA </div>
+                    <div class="content">   
+                        <style>
+                            .ui-accordion .ui-accordion-header .ui-icon { display: block; left: unset !important; right: 0}
+                            .ui-accordion .ui-accordion-header {font-weight: 700!important; padding-left: 10px;}
+                        </style>
+                        <p:accordionPanel widgetVar="basic" activeIndex="null">
+                            <p:tab title="MARKA" >
+                                <p class="p-m-0">
+                                    <ui:repeat var="c" value="#{commonBean.vehicleBransList()}">
+                                        <a href="/?pBrand=#{c}" style="text-decoration: none" ><span style="font-size: 1rem; line-height: 18px;"><i style="font-size: 0.5rem;"  class="fas fa-circle"></i>&nbsp;#{c}</span></a>
+                                    </ui:repeat>   
+                                </p>
+                            </p:tab>
+                            <p:tab title="KAPASİTE">
+                                <p class="p-m-0">
+                                    <ui:repeat var="c" value="#{commonBean.vehicleCapacityList()}">
+                                         <a href="/?pCapacity=#{c}" style="text-decoration: none" ><span style="font-size: 1rem; line-height: 18px;"><i style="font-size: 0.5rem;"  class="fas fa-circle"></i>&nbsp;#{c}</span></a>
+                                    </ui:repeat>   
+                                </p>
+                            </p:tab>
+                            
+                        </p:accordionPanel>
+                    </div>
+                </div>
+                <!-- Alt filter banner alani-->
+                <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('filter-alt')}"></h:outputText>
+                <!--/Alt filter banner alani-->
+                
+                </h:form>   
+            </div>
+              
+        </ui:composition>
+    </h:body>
+</html>
+

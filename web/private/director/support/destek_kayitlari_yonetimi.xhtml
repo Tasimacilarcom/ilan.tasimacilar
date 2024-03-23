@@ -1,0 +1,453 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+
+        <!-- Start global head -->
+        <ui:insert name="head" ><ui:include src="../../../head_A.xhtml" /></ui:insert>
+        <!-- End global head -->
+
+    </h:head>
+
+    <h:body>
+
+        <!-- Start header -->
+        <ui:insert name="header" ><ui:include src="../../../header_A.xhtml" /></ui:insert>
+        <!-- End header -->
+
+        <main role="main" >
+            <div class="container-fluid" style="margin-top: 30px">
+                <div class="m-portlet m-portlet--full-height">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    <i class="fas fa-users-cog"></i>&nbsp;Site Yöneticisi Sayfası 
+                                    <small><i class="la la-angle-right"></i>&nbsp;Destek&nbsp;
+                                        <i class="la la-angle-right"></i>&nbsp;Destek Kayitlari Yönetimi
+                                    </small>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                            <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item">
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body m-portlet__body--no-padding">
+                        <div class="m-wizard m-wizard--3 m-wizard--brand m-wizard--step-first" id="m_wizard">
+                            <div class="m-portlet__padding-x">    </div>
+                            <div class="row m-row--no-padding">
+                                <div class="col-md-2">
+                                    <div class="m-wizard__head" style="padding: 5rem 2rem;">
+                                        <!-- Start menu -->
+                                        <ui:insert name="left_menu" ><ui:include src="../left_menu.xhtml" /></ui:insert>
+                                        <!-- End menu -->
+                                    </div>
+                                </div>
+                                <div class=" col-md-10">                                  
+                                    <!--begin: Form Wizard Form-->
+                                    <div class="m-wizard__form" style="padding: 30px;">
+
+
+                                        <h:form class="m-form m-form--label-align-left- m-form--state-" id="m_form" prependId="false">
+
+                                            <!--begin: Form Body -->
+                                            <div class="m-portlet__body m-portlet__body--no-padding" style="min-height: 400px">
+
+                                                <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd">
+                                                    <i style="  float:left;
+                                                       font-size: 2rem;
+                                                       margin-bottom: .5rem;
+                                                       font-weight: 500;
+                                                       line-height: 1.2;
+                                                       color: inherit;" 
+                                                       class="m-nav__link-icon la la-support">
+                                                    </i>
+                                                    <h2 >&nbsp;Destek Kayitlari Yönetimi</h2><i ></i>
+                                                </div>
+
+
+
+
+                                                <h:panelGroup id="dfdwfewq">
+
+                                                    <style type="text/css">
+                                                        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+                                                            color: #555;
+                                                            cursor: default;
+                                                            background-color: #ffffff;
+                                                            background-image: none;
+                                                            border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+                                                            border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+                                                            border-bottom-color: #b3b3b3;
+                                                        }
+                                                        .ui-datatable thead th, .ui-datatable tfoot td {
+                                                            text-align: left;
+                                                        }
+                                                        .ui-paginator.ui-paginator-bottom {
+                                                            border: 1px solid #ddd;
+                                                            border-top: 0px;
+                                                        }
+                                                        .ui-widget-header {
+                                                            background: none;
+                                                            color: #555;
+                                                            font-weight: normal;
+                                                        }
+                                                    </style>
+
+                                                    <p:dataTable var="s"  
+                                                                 id="fdsfcew"
+                                                                 value="#{supportBean.fromUserSupMessagesForAdmin}" 
+                                                                 widgetVar="dataTable"
+                                                                 filteredValue="#{supportBean.filteredFromUserSupMessagesForAdmin}"
+                                                                 style="font-size: small" 
+                                                                 resizableColumns="true"
+                                                                 rows="10" 
+                                                                 rowsPerPageTemplate="10,20,50,100"
+                                                                 paginator="true"
+                                                                 paginatorPosition="bottom"
+                                                                 emptyMessage="Aradığınız kritere uygun kayıt bulunamadı"
+                                                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} ">
+
+
+                                                        <f:facet name="header">
+                                                            <p:outputPanel style="text-align: right">
+                                                                <h:outputText value="Ara: " />
+                                                                <p:inputText id="globalFilter" onkeyup="PF('dataTable').filter()" style="width:150px; border: 1px #ddd solid " />
+                                                            </p:outputPanel>
+                                                        </f:facet>
+
+                                                        <p:column headerText="Durum" width="85" sortBy="#{s.support_Status}" filterMatchMode="contains" filterBy="#{s.support_Status}" filterable="false">
+                                                            <h:outputText value="#{s.support_Status.equals('Cevap Bekliyor')?'Bekliyor':'Yanıtlandı'}" />
+                                                        </p:column>
+                                                        <p:column headerText="Önem Derecesi" width="110" sortBy="#{s.support_Priority}" filterMatchMode="contains" filterBy="#{s.support_Priority}" filterable="false">
+                                                            <h:panelGroup rendered="#{s.support_Priority eq 'Acil'}">
+                                                                <b><h:outputText style="color: red" value="#{s.support_Priority}" /></b>
+                                                            </h:panelGroup>
+                                                           <h:panelGroup rendered="#{s.support_Priority eq 'Normal'}">
+                                                                <h:outputText  value="#{s.support_Priority}" />
+                                                            </h:panelGroup>
+                                                        </p:column>
+                                                        <p:column headerText="Oluşturma Zamanı" width="180" sortBy="#{s.support_Created}" filterMatchMode="contains" filterBy="#{s.support_Created}" filterable="false">
+                                                            <h:outputText value="#{s.support_Created}" >
+                                                                <f:convertDateTime pattern="dd.MM.YYYY HH:mm"></f:convertDateTime>
+                                                            </h:outputText>
+                                                        </p:column>
+                                                         <p:column headerText="Oluşturan Kullanıcı" sortBy="#{s.support_Created}" filterMatchMode="contains" filterBy="#{s.support_Created}" filterable="false">
+                                                             <h:outputText value="#{s.support_FromUserName}" >
+                                                                
+                                                            </h:outputText>
+                                                        </p:column>
+                                                        
+                                                        <p:column headerText="Cevaplama Zamanı" width="180" sortBy="#{s.support_Created}" filterMatchMode="contains" filterBy="#{s.support_Created}" filterable="false">
+                                                            <h:outputText value="#{s.support_answeredTime}" >
+                                                                <f:convertDateTime pattern="dd.MM.YYYY HH:mm"></f:convertDateTime>
+                                                            </h:outputText>
+                                                        </p:column>
+                                                        <p:column headerText="Cevaplayan Admin"  sortBy="#{s.support_Created}" filterMatchMode="contains" filterBy="#{s.support_Created}" filterable="false">
+                                                            <h:outputText value="#{s.support_answeredUserName}" >
+                                                                
+                                                            </h:outputText>
+                                                        </p:column>
+                                                        <p:column headerText="Konu"  sortBy="#{s.support_Subject}" filterMatchMode="contains" filterBy="#{s.support_Subject}" filterable="false">
+                                                            <h:outputText value="#{s.support_Subject}" />
+                                                        </p:column>    
+
+
+                                                        <p:column headerText="İşlem" width="220"  filterable="false">
+                                                            <h:panelGroup rendered="#{s.support_Status eq 'Cevap Bekliyor'}">
+                                                                <h:panelGroup rendered="#{s.support_Subject ne 'İletişim Formu Mesajı'}">
+                                                                    <p:commandLink action="#{supportBean.getMessagesWithSupportId2(s.support_Id)}" 
+                                                                                onclick="PF('dlg1').show();"  >
+                                                                    Cevapla
+                                                                    <f:ajax execute="@this" render="dsy9d87"></f:ajax>
+                                                                </p:commandLink>&nbsp;|&nbsp;
+                                                                </h:panelGroup>
+                                                            </h:panelGroup>
+                                                            <h:panelGroup rendered="#{s.support_Subject ne 'İletişim Formu Mesajı'}">
+                                                                <h:commandLink action="#{supportBean.getMessagesWithSupportId2(s.support_Id)}" 
+                                                                                onclick="PF('dlg2').show();" >
+                                                                    Soru/Cevap Gör
+                                                                    <f:ajax execute="@this" render="ty5ert4"></f:ajax>
+                                                                </h:commandLink>&nbsp;|&nbsp;
+                                                            </h:panelGroup>
+                                                            <h:panelGroup rendered="#{s.support_Subject eq 'İletişim Formu Mesajı'}">
+                                                                <h:commandLink action="#{supportBean.getMessagesWithSupportId2(s.support_Id)}" 
+                                                                                onclick="PF('dlg2').show();" >
+                                                                    Soruyu Gör
+                                                                    <f:ajax execute="@this" render="ty5ert4"></f:ajax>
+                                                                </h:commandLink>&nbsp;|&nbsp;
+                                                            </h:panelGroup>
+                                                            
+                                                           
+
+                                                            <h:commandLink action="#{supportBean.deleteMessage(s.support_Id)}">
+                                                                Sil
+                                                                <f:ajax execute="@this" render="dfdwfewq"></f:ajax>
+                                                            </h:commandLink>
+                                                        </p:column>
+
+
+                                                    </p:dataTable>
+                                                </h:panelGroup>
+
+
+
+
+
+                                            </div>
+                                            <p:dialog header="Destek Talebi Cevapla" widgetVar="dlg1" modal="true" width="800"  resizable="true" responsive="true">
+                                                <h:panelGroup id="dsy9d87">
+                                                 <div class="m-widget6">
+                                                    <div class="m-widget6__body">
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Durum
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:panelGroup rendered="#{supportBean.sx.support_Status eq 'Cevap Bekliyor'}">
+                                                                    <b style="font-size: 1.1em; color: #ff6633">
+                                                                        <h:outputText  value="#{supportBean.sx.support_Status}"></h:outputText>
+                                                                        <i class="la la-hourglass-start"></i>
+                                                                    </b>
+                                                                </h:panelGroup>
+                                                                <h:panelGroup rendered="#{supportBean.sx.support_Status eq 'Cevaplandı'}">
+                                                                    <b style="font-size: 1.1em; color: #00cc33">
+                                                                        <h:outputText  value="#{supportBean.sx.support_Status}"></h:outputText>
+                                                                        <i class="la la-check-circle"></i>
+                                                                    </b>
+                                                                </h:panelGroup>
+                                                                
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="m-widget6">
+                                                    <div class="m-widget6__body">
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Id
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.sx.support_Id}"></h:outputText>
+                                                            </span>
+                                                        </div>
+                                                       
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Zamanı
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.sx.support_Created}">
+                                                                    <f:convertDateTime pattern=" dd.MM.YYYY HH:mm"></f:convertDateTime>
+                                                                </h:outputText>
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Konusu
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.sx.support_Subject}" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Önem Derecesi
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.sx.support_Priority}" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep detayı
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.sx.support_comment}" />
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-separator m-separator--dashed m-separator--md" ></div>
+                                                <div class="m-widget6">
+                                                    <div class="m-widget6__body">
+                                                        
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Cevap
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:inputTextarea class="form-control m-input" 
+                                                                                 id="fdtrdst"
+                                                                                 value="#{supportBean.support_answer}" 
+                                                                                 rows="4"
+                                                                                 style="width: 100%">
+                                                                </h:inputTextarea>
+                                                            </span>
+                                                        </div>
+                                                
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="row">
+                                                    <div class="col-lg-8 m--align-left">
+                                                        <p:messages globalOnly="true"><p:autoUpdate/></p:messages>
+                                                    </div>
+                                                    <div class="col-lg-4 m--align-right">
+                                                        <h:commandLink class="btn btn-brand m-btn m-btn--custom m-btn--icon"
+                                                                       action="#{supportBean.answeerMessage()}">
+                                                            <span>
+                                                                <span>Cevapla</span>
+                                                            </span>
+                                                            <f:ajax execute="fdtrdst" render="dfdwfewq"></f:ajax>
+                                                        </h:commandLink>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                </h:panelGroup>
+                                            </p:dialog> 
+                                            <p:dialog header="Destek Talebi-Cevabı Görüntüle" widgetVar="dlg2" modal="true" width="800"  resizable="true" responsive="true">
+                                                <p:ajax event="close" listener="#{supportBean.handleCloseSector}" />
+                                                <h:panelGroup id="ty5ert4">
+                                                    <h:panelGroup rendered="#{supportBean.sx.support_Subject ne 'İletişim Formu Mesajı'}">
+                                                         <div class="m-widget6">
+                                                            <div class="m-widget6__body">
+                                                                <div class="m-widget6__item">
+                                                                    <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                        Durum
+                                                                    </span>
+                                                                    <span class="m-widget6__text">
+                                                                        <h:panelGroup rendered="#{supportBean.sx.support_Status eq 'Cevap Bekliyor'}">
+                                                                            <b style="font-size: 1.1em; color: #ff6633">
+                                                                                <h:outputText  value="#{supportBean.sx.support_Status}"></h:outputText>
+                                                                                <i class="la la-hourglass-start"></i>
+                                                                            </b>
+                                                                        </h:panelGroup>
+                                                                        <h:panelGroup rendered="#{supportBean.sx.support_Status eq 'Cevaplandı'}">
+                                                                            <b style="font-size: 1.1em; color: #00cc33">
+                                                                                <h:outputText  value="#{supportBean.sx.support_Status}"></h:outputText>
+                                                                                <i class="la la-check-circle"></i>
+                                                                            </b>
+                                                                        </h:panelGroup>
+
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </h:panelGroup> 
+                                                    
+                                                
+                                                <br/>
+                                                <div class="m-widget6">
+                                                    <div class="m-widget6__body">
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Id
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.sx.support_Id}"></h:outputText>
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Zamanı
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.sx.support_Created}">
+                                                                    <f:convertDateTime pattern=" dd.MM.YYYY HH:mm"></f:convertDateTime>
+                                                                </h:outputText>
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Konusu
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.sx.support_Subject}" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Önem Derecesi
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.sx.support_Priority}" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep detayı
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.sx.support_comment}" escape="false"/>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-separator m-separator--dashed m-separator--md" ></div>
+                                                    <h:panelGroup rendered="#{supportBean.sx.support_Subject ne 'İletişim Formu Mesajı'}">
+                                                    <div class="m-widget6">
+                                                        <div class="m-widget6__body">
+                                                            <div class="m-widget6__item">
+                                                                <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                   Cevap Zamanı
+                                                                </span>
+                                                                <span class="m-widget6__text">
+                                                                    <h:outputText value="#{supportBean.sx.support_answeredTime}">
+                                                                        <f:convertDateTime pattern=" dd.MM.YYYY HH:mm"></f:convertDateTime>
+                                                                    </h:outputText>
+                                                                </span>
+                                                            </div>
+                                                            <div class="m-widget6__item">
+                                                                <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                    Cevap
+                                                                </span>
+                                                                <span class="m-widget6__text">
+                                                                    <h:outputText value="#{supportBean.sx.support_answer}" />
+                                                                </span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    </h:panelGroup>    
+                                                </h:panelGroup>
+                                            </p:dialog> 
+
+                                        </h:form>
+                                    </div>
+
+                                    <!--end: Form Wizard Form-->
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <!-- Start footer -->
+        <ui:insert name="footer" ><ui:include src="../../../footer_A.xhtml" /></ui:insert>
+        <!-- End footer -->
+
+        <!-- Start global scripts -->
+        <ui:insert name="scripts" ><ui:include src="../../../scripts_A.xhtml" /></ui:insert>
+        <!-- End global scripts -->
+
+    </h:body>
+</html>
+
+
+

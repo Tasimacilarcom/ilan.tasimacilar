@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:body>
+<ui:composition>
+<style type="text/css">        
+    .bannerSticky {position: fixed;margin-top: 0px;width: 100%;}
+    .bannersMainContainer{position: fixed;top: 35px;left: 0;width: 100%;height: 100%;z-index: -100;-webkit-transition: 3s;-moz-transition: 1s;-ms-transition: 1s;-o-transition: 1s;transition: 1s;}
+    .bannersLeftContainer{z-index: -10;width: 50%;height: 100%;float: left;}
+    .bannerLeft{padding-right: 590px;text-align: right;display: block;float: right;}
+    .bannersRigtContainer{z-index: -10;width: 50%;height: 100%;float: right;}
+    .bannerRight{padding-left: 590px;text-align: left;display: block;}
+</style>           
+<div id="bannersContainerId" class="bannersMainContainer">
+    <div id="bannersLeftContainerId" class="bannersLeftContainer">
+        <div id="bannerLeftId" class="bannerLeft">
+            <!--main-left banner alani--><h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('main-left')}"></h:outputText><!--/main-left banner alani-->
+        </div>
+    </div>
+    <div id="bannersRigtContainerId" class="bannersRigtContainer">
+        <div id="bannerRightId"  class="bannerRight">
+            <!--main-right banner alani--><h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('main-right')}"></h:outputText><!--/main-right banner alani-->
+        </div>
+    </div>
+</div>          
+<script type="text/javascript">
+    window.onscroll = function () {myFunction()};
+    var banners = document.getElementById("bannersContainerId");
+    var sticky = banners.offsetTop;
+    function myFunction() {if (window.pageYOffset > sticky) {banners.classList.add("bannerSticky");} else {banners.classList.remove("bannerSticky");} }
+</script>
+</ui:composition>
+</h:body>
+</html>
+

@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="/private/templates/myPagesLayout.xhtml">
+            <ui:define name="content">
+               
+                    <div class="profile-card">
+                     
+                        <div class="btn-group">
+                            <a href="/private/kurumsal/profilim/s1" class="btn btn-outline-secondary " aria-current="page">Kullanıcı Bilgileri</a>
+                            <a href="/private/kurumsal/profilim/s2" class="btn btn-outline-secondary active">İşletme Bilgileri</a>
+                       </div>
+
+                        <br/><br/><br/>        
+                     
+                          <h:form id="addCompanyForm" class="m-form m-form--label-align-left- "  prependId="false">
+                                    <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                                    <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/>                                                                                                         
+                                    <div class="m-wizard__form-step m-wizard__form-step--current" id="m_wizard_form_step_1">
+                                        <div class="m-form__section m-form__section--first">
+                                            <div class="form-row">
+                                                <h:outputLabel id="corporateAccountCompanyTypeLabel" class="col-xl-3 col-lg-3 col-form-label" for="corporateAccountCompanyTypeRadio">İşletme Türü *</h:outputLabel>
+                                                <div class="form-group col-lg-9">
+                                                    <div class="m-radio-inline">
+                                                        <h:selectOneRadio  id="corporateAccountCompanyTypeRadio" disabled="true"  value="#{corporateAccountBean.company_Type}"  required="true" requiredMessage="Lütfen işletme türünü seçiniz"> 
+                                                            <f:selectItem itemValue = "Şahıs Şirketi" itemLabel = "&nbsp;Şahıs Şirketi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /> 
+                                                            <f:selectItem itemValue = "Limited Şirketi" itemLabel = "&nbsp;Limited Şirketi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" /> 
+                                                            <f:selectItem itemValue = "Anonim Şirketi" itemLabel = "&nbsp;Anonim Şirketi" />
+                                                        </h:selectOneRadio> 
+                                                        <h:message for="corporateAccountCompanyTypeRadio" style="color: red"></h:message>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <h:outputLabel id="companyActivityAreaSelectOneMenuLabel" class="col-xl-3 col-lg-3 col-form-label"  for="companyActivityAreaSelectOneMenu">Firma Faaliyet Alanı*</h:outputLabel>
+                                                <div class="form-group col-lg-6">
+                                                    <h:selectOneMenu id="companyActivityAreaSelectOneMenu"  value="#{corporateAccountBean.company_ActivityArea}"   disabled="true" class="form-control m-input m-input--square" required="true" requiredMessage="Faliyet alanınızı seçiniz">
+                                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                                        <f:selectItems value="#{selectItemsBean.selectItemList('corporateActivityArea')}"   var="o"   itemLabel="#{o.selectItem_Label_Tr}"   itemValue="#{o.selectItem_Value}" > </f:selectItems> 
+                                                    </h:selectOneMenu> 
+                                                    <h:message for="companyActivityAreaSelectOneMenu" style="color: red"></h:message>
+                                                </div>
+                                            </div>                                                                             
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-12">
+                                                    <h:outputLabel id="corporateAccountCommercialTitleLabel"  for="corporateAccountCommercialTitleInput">Ticari Ünvan *</h:outputLabel>
+                                                    <h:inputText id="corporateAccountCommercialTitleInput" disabled="true" class="form-control m-input"  value="#{corporateAccountBean.company_Name}" required="true"  requiredMessage="Lütfen işletmenizin ünvanını yazınız"></h:inputText>
+                                                    <h:message for="corporateAccountCommercialTitleInput" style="color: red"></h:message>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel id="corporateAccountTaxOfficeLabel" for="corporateAccountTaxOfficeInput">Vergi Dairesi *</h:outputLabel>
+                                                    <h:inputText id="corporateAccountTaxOfficeInput" disabled="true"  class="form-control m-input"  value="#{corporateAccountBean.company_TaxOffice}" required="true" requiredMessage="Lütfen vergi dairenizi yazınız"></h:inputText>
+                                                    <h:message for="corporateAccountTaxOfficeInput" style="color: red"></h:message>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel >Vergi Numarası *</h:outputLabel>
+                                                    <p:inputMask id="corporateAccountTaxNumberInput"  onclick="ltr(this);" class="form-control m-input"  disabled="true" value="#{corporateAccountBean.company_TaxNumber}" required="true" requiredMessage="Lütfen vergi numaranızı yazınız" mask="9999999999"></p:inputMask>
+                                                    <h:message for="corporateAccountTaxNumberInput" style="color: red"></h:message>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel > Telefon(1)</h:outputLabel>
+                                                    <p:inputMask id="corporateAccountTelefon1Input"  class="form-control m-input"  onclick="ltr(this);" value="#{corporateAccountBean.phonesBean.phone_1}" mask="0(999)-999-9999"></p:inputMask>
+                                                    <h:message for="corporateAccountTelefon1Input" style="color: red"></h:message>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel > Telefon(2)</h:outputLabel>
+                                                    <p:inputMask id="corporateAccountTelefon2Input"  onclick="ltr(this);" class="form-control m-input"  value="#{corporateAccountBean.phonesBean.phone_2}" mask="0(999)-999-9999"></p:inputMask>
+                                                    <h:message for="corporateAccountTelefon2Input" style="color: red"></h:message>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel > Gsm(1)</h:outputLabel>
+                                                    <p:inputMask id="corporateAccountGsm1Input"  onclick="ltr(this);"  class="form-control m-input"  value="#{corporateAccountBean.phonesBean.phone_gsm1}"  mask="0(599)-999-9999"></p:inputMask>
+                                                    <h:message for="corporateAccountGsm1Input" style="color: red"></h:message>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel >Gsm(2)</h:outputLabel>
+                                                    <p:inputMask id="corporateAccountGsm2Input"  class="form-control m-input"  onclick="ltr(this);" value="#{corporateAccountBean.phonesBean.phone_gsm2}"  mask="0(599)-999-9999"></p:inputMask>
+                                                    <h:message for="corporateAccountGsm2Input" style="color: red"></h:message>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel id="corporateAccountFaxInputLabel"  for="corporateAccountFaxInput">Fax</h:outputLabel>
+                                                    <p:inputMask id="corporateAccountFaxInput"  onclick="ltr(this);" class=" form-control m-input" value="#{corporateAccountBean.phonesBean.phone_fax1}" mask="0(999)-999-9999"></p:inputMask>
+                                                    <h:message for="corporateAccountFaxInput" style="color: red"></h:message>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel id="corporateAccountEmailInputLabel" for="corporateAccountEmailInput">E-Mail</h:outputLabel>
+                                                    <h:inputText id="corporateAccountEmailInput" class="form-control m-input"  value="#{corporateAccountBean.company_Email}"  validatorMessage="Geçersiz E-Mail adresi formatı"><f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /></h:inputText>
+                                                    <h:message for="corporateAccountEmailInput" style="color: red"></h:message>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-12">
+                                                    <h:outputLabel id="corporateAccountWebInputLabel"  for="corporateAccountWebInput">Web Sitesi</h:outputLabel>
+                                                    <h:inputText id="corporateAccountWebInput" class="form-control m-input"  value="#{corporateAccountBean.company_Web}" ></h:inputText>
+                                                    <h:message for="corporateAccountWebInput" style="color: red"></h:message>
+                                                </div>
+                                            </div>                                                                         
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-12">
+                                                    <h:outputLabel id="corporateAccountaddressLabel"   for="corporateAccountaddressInput"> Adres </h:outputLabel>
+                                                    <h:inputTextarea id="corporateAccountaddressInput" class="form-control m-input"  value="#{corporateAccountBean.addressBean.address}"  rows="2"></h:inputTextarea>
+                                                    <h:message for="corporateAccountaddressInput" style="color: red"></h:message>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel id="corporateAccountAddressCitySelectOneMenuLabel" for="corporateAccountAddressCitySelectOneMenu">  İl </h:outputLabel>
+                                                    <h:selectOneMenu id="corporateAccountAddressCitySelectOneMenu"  value="#{corporateAccountBean.addressBean.address_CityId}"   class="form-control m-input m-input--square">
+                                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                                        <f:selectItems value="#{corporateAccountBean.allCityWithDetail()}"  var="o"  itemLabel="#{o.cityName}"   itemValue="#{o.cityID}" > </f:selectItems> 
+                                                        <f:ajax event="change" render="corporateAccountAddressTownSelectOneMenu"></f:ajax>
+                                                    </h:selectOneMenu> 
+                                                    <h:message for="corporateAccountAddressCitySelectOneMenu" style="color: red"></h:message>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel id="corporateAccountAddressTownSelectOneMenuLabel" for="corporateAccountAddressTownSelectOneMenu">  İlçe </h:outputLabel>
+                                                    <h:selectOneMenu id="corporateAccountAddressTownSelectOneMenu"  value="#{corporateAccountBean.addressBean.address_TownId}"   class="form-control m-input m-input--square">
+                                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                                        <f:selectItems value="#{corporateAccountBean.allTownDetailWithCity()}"  var="o"  itemLabel="#{o.townName}"   itemValue="#{o.townID}" > </f:selectItems> 
+                                                    </h:selectOneMenu> 
+                                                    <h:message for="corporateAccountAddressTownSelectOneMenu" style="color: red"></h:message>
+                                                </div>
+                                            </div>
+                                            <div class="m-separator m-separator--dashed m-separator--lg" style="margin: 30px 0;"></div>
+                                            <div class="m-form__heading"><h3 class="m-form__heading-title">Sosyal Medya Bilgileri</h3></div>                                                                         
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel id="facebookprofileUrlInputLabel"  for="facebookprofileUrlInput">Facebook</h:outputLabel>
+                                                    <h:inputText id="facebookprofileUrlInput" class="form-control m-input"  value="#{corporateAccountBean.socialMediaBean.facebook_profileUrl}"> </h:inputText>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel id="twitterprofileUrlInputLabel"   for="twitterprofileUrlInput">Twitter</h:outputLabel>
+                                                    <h:inputText id="twitterprofileUrlInput" class="form-control m-input"  value="#{corporateAccountBean.socialMediaBean.twitter_profileUrl}"></h:inputText>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel id="linkedinprofileUrlInputLabel"  for="linkedinprofileUrlInput">Linked-in</h:outputLabel>
+                                                    <h:inputText id="linkedinprofileUrlInput"  class="form-control m-input"  value="#{corporateAccountBean.socialMediaBean.linkedin_profileUrl}"></h:inputText>
+                                                </div>
+                                                <div class="form-group col-lg-6">
+                                                    <h:outputLabel id="instagramprofileUrlInputLabel"  for="instagramprofileUrlInput">Instagram</h:outputLabel>
+                                                    <h:inputText id="instagramprofileUrlInput" class="form-control m-input"  value="#{corporateAccountBean.socialMediaBean.instagram_profileUrl}"> </h:inputText>
+                                                </div>
+                                            </div>
+                                            <div class="m-separator m-separator--dashed m-separator--lg" style="margin: 30px 0;"></div>
+                                            <div class="m-form__heading">
+                                                <h3 class="m-form__heading-title">Referanslar</h3><br/>                           
+                                                <h:form class="m-form m-form--label-align-left- m-form--state-" id="companyReferencesform2" prependId="false" >
+                                                    <h:panelGroup id="gf65y5trs">
+                                                        <div class="m-form__section">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-sm  table-bordered">
+                                                                    <thead>
+                                                                        <tr class="table-primary">
+                                                                            <th width="35%">Firma</th>
+                                                                            <th width="35%">Proje</th>
+                                                                            <th width="20%">Yıl</th>
+                                                                            <th width="10%">İşlem</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <ui:repeat var="r" value="#{corporateAccountBean.companyReferencesList}">
+                                                                            <tr>
+                                                                                <td style="min-width: 150px;"><h:outputText  value="#{r.companyReferences_Company}"/></td>
+                                                                                <td style="min-width: 150px;"><h:outputText  value="#{r.companyReferences_Project}"/></td>
+                                                                                <td style="min-width: 100px;"><h:outputText  value="#{r.companyReferences_ProjectWorkingYear}"> </h:outputText></td>
+                                                                                <td>&nbsp; </td>
+                                                                            </tr> 
+                                                                        </ui:repeat>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </h:panelGroup>
+                                                </h:form>
+                                            </div>
+                                            <div class="m-separator m-separator--dashed m-separator--lg" style="margin: 30px 0;"></div>
+                                            <div class="m-form__heading"><h3 class="m-form__heading-title">Logo</h3></div>
+                                            <h:form id="hthret4"  prependId="false"  enctype="multipart/form-data">
+                                                <div class="row" >       
+                                                    <div class="col-md-5" style="padding-top: 15px; text-align: center; ">    
+                                                        <h:panelGroup id="llkkffkkd">
+                                                            <h:panelGroup id="frsfesr43refes" rendered="#{corporateAccountBean.company_LogoUrl == null}">
+                                                                <img class="img-thumbnail" 
+                                                                     style="opacity: 0.5"
+                                                                     src="/resources/img/logoPlaceholder.png" alt="logo"/>
+                                                            </h:panelGroup>
+                                                            <h:panelGroup id="cxvdsfsa" rendered="#{corporateAccountBean.company_LogoUrl != null}">
+                                                                <img class="img-thumbnail" 
+                                                                     id="sfdsf4tr4rf"
+                                                                     src="#{corporateAccountBean.company_LogoUrl}" alt="companyLogo"/>                                          
+                                                            </h:panelGroup>
+                                                        </h:panelGroup>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="col-md-12" > 
+                                                            <br/>
+                                                            <p>Firma profil resmi(logo) yüklemek için aşağıdan resminizi seçiniz. <br/><br/>
+                                                                <b>Sadece [JPEG,PNG,GIF] formatındaki resimleri yükleyebilirsiniz.</b> </p>
+                                                        </div>
+                                                        <div class="col-md-12" style="padding-top: 15px;">
+                                                            <h:inputFile id="companyLogoInputFile"   onchange="prg2()"
+                                                                         value="#{corporateAccountBean.company_LogoFile}"  
+                                                                         validator="#{corporateAccountBean.validateFile}">
+                                                                <f:ajax event="change"  listener="#{corporateAccountBean.fileUpload()}"  execute="@this" render="uploadProgress2 llkkffkkd"/>
+                                                            </h:inputFile> 
+                                                            <h:message for="companyLogoInputFile" class="message-f"></h:message>
+                                                        </div>
+                                                        <div class="col-md-12" style="margin-top: 20px;">
+                                                            <h:panelGroup id="uploadProgress2" style="display:none ; height: 25px; ">
+                                                                <div  class="progress  m-progress--lg" style=" height: 25px;">
+                                                                    <div class="progress-bar progress-bar-striped progress-bar-animated " 
+                                                                         role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" 
+                                                                         style="font-size: .90rem; height: 25px; width: 100%">
+                                                                        Lütfen bekleyiniz dosyanız yükleniyor..
+                                                                    </div>
+                                                                </div>
+                                                            </h:panelGroup>
+                                                            <script> function prg2() {
+                                                                                var x = document.getElementById("uploadProgress2");
+                                                                                x.style.display = "block";
+                                                                            }
+                                                                            ;</script>
+                                                        </div>
+
+                                                    </div>
+                                                </div>  
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                    
+                                    <br/><br/>
+                                    <div class="m-portlet__foot m-portlet__foot--fit m--margin-top-40">
+                                        <div class="m-form__actions">
+                                            <div class="form-row">
+                                                <div class="form-group col-lg-10 m--align-left">
+                                                    <b style="font-weight: 400; color: #ff3333">! Firmanın değiştirilemeyen bilgilerini güncellemek isterseniz lüften bize bildiriniz.</b>
+                                                </div>
+                                                <div class="form-group col-lg-2 m--align-right">
+                                                    <h:commandLink  id="updateCorporateAccountButton" class="btn btn-form w-100" action="#{corporateAccountBean.updateCorporateCompany2()}"> Güncelle </h:commandLink>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><br/><br/>
+                                </h:form>
+                    </div>
+              
+            </ui:define>
+        </ui:composition>    
+    </h:body>
+</html>
+

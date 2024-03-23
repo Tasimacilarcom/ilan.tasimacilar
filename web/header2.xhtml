@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition>
+           
+                <div class="container mb-3">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <span style="background-color: #d12e1e; font-size: 0.9rem; color: #fdfdfd; padding: 4px;padding-left: 20px;padding-right: 20px; border-radius: 6px; position: absolute;right: 50px; top: 5px;">Test Yayını</span>
+                        </div>
+                        <nav class="sf-navbar  navbar navbar-expand-md navbar-dark nav" >
+                            <h:panelGroup rendered="#{AccountType=='personal'}">
+                                <a href="/private/bireysel/ilanlarim" class="btn btn-first my-2 my-sm-0 collapsed"
+                                   style="border: 1px solid; background: none;padding: 12px;">
+                                    <i class="far fa-star" aria-hidden="true"></i> Ücretsiz İlan Ver
+                                </a>
+                            </h:panelGroup>  
+                            <h:panelGroup rendered="#{AccountType=='corporate'}">
+                                <a href="/private/kurumsal/ilanlarim" class="btn btn-first my-2 my-sm-0 collapsed"
+                                   style="border: 1px solid; background: none;padding: 12px;">
+                                    <i class="far fa-star" aria-hidden="true"></i> Ücretsiz İlan Ver
+                                </a>
+                            </h:panelGroup>   
+                            <h:panelGroup rendered="#{AccountType==null or AccountType==''}">
+                                <a href="/login" class="btn btn-first my-2 my-sm-0 collapsed"
+                                   style="border: 1px solid; background: none;padding: 12px;">
+                                    <i class="far fa-star" aria-hidden="true"></i> Ücretsiz İlan Ver
+                                </a>
+                            </h:panelGroup>                          
+                            <button class="navbar-toggler collapsed" 
+                                    type="button" 
+                                    data-toggle="collapse" 
+                                    data-target="#navbarCollapse" 
+                                    aria-controls="navbarCollapse" 
+                                    aria-expanded="false" 
+                                    aria-label="Toggle navigation">
+                                <i class="fa fa-bars" aria-hidden="true" style="display: block; font-size: 26px; color: #fff; float: right;"></i>
+                            </button>
+                            <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+                                <ul class="navbar-nav mr-auto" style="font-size: 16px;font-weight: 500;">
+                                    <li class="nav-item "><a class="nav-link active" href="/">Anasayfa</a></li>
+                                    <li class="nav-item "><a class="nav-link" href="/hakkimizda">Hakkımızda</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/nasil-isliyor">Nasıl İşliyor</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/s-s-s">S.S.S</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/iletisim">İletişim</a></li>
+                                    <shiro:authenticated>
+                                        <li class="nav-item"><a class="nav-link" href="/logout" style="color: #fff">Çıkış Yap</a></li>   
+                                    </shiro:authenticated>
+                                </ul>
+
+                                <form class="form-inline mt-2 mt-md-0" style="float: right;">
+
+
+                                    <div class="user-counter">
+                                        <p class="m-0 mb-1">Sistemde Kayıtlı Kişi Sayısı</p>
+                                        <p class="m-0 font-weight-bold text-right">
+                                            <h:outputText value="#{commonBean.toplamAktifKullaniciSayisi()}" ><f:convertNumber /></h:outputText>
+                                        </p>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </nav>
+                    </div> 
+                  </div>
+                </div>
+        
+            <header class="container mb-3 p-0" style="z-index: 9000;">
+                <div class="container mb-3 ">
+                    <div class="row align-items-center">
+                        <div class="col-md-4"><div class="logo"><a href="/"><img src="/resources/image/logo.jpg" class="img-fluid" alt="Logo"/></a></div></div>
+                        <div class="col-md-8">
+                            <div class="header-image">
+                                <!--<img src="/resources/image/header.png" class="img-fluid" alt="header image"/>-->
+                                <!-- Ust yarim banner alani-->
+                                    <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('ust-yarim')}"></h:outputText>
+                                <!--/Ust yarim banner alani-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </ui:composition>
+    </h:body>
+</html>
+

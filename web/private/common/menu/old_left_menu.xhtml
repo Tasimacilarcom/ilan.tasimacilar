@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition>
+
+            <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+                <div class="m-demo__preview" style="padding: 0; border: none">
+                    <ul class="m-nav m-nav--active-bg" id="m_nav" role="tablist">
+                        <li class="m-nav__item">
+                            <a href="/" class="m-nav__link">
+                                <i class="m-nav__link-icon flaticon-home"></i>
+                                <span class="m-nav__link-text">Ana Sayfa</span>
+                            </a>
+                        </li>
+                        <h:panelGroup rendered="#{AccountType=='personal'}">
+                            <li class="m-nav__item">
+                                <a href="/private/bireysel/profil-ayarlari" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-user-settings"></i>
+                                    <span class="m-nav__link-text">Profil Ayarları</span>
+                                </a>
+                            </li>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{AccountType=='corporate'}">
+                            <li class="m-nav__item">
+                                <a href="/private/kurumsal/profil-ayarlari/s1" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-user-settings"></i>
+                                    <span class="m-nav__link-text">Profil Ayarları</span>
+                                </a>
+                            </li>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{AccountType=='personal'}">
+                            <li class="m-nav__item ">
+                            <a class="m-nav__link  collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_2" aria-expanded="  false">
+                                <i class="m-nav__link-icon flaticon-graphic-2"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">İlanlar</span>
+                                    </span>
+                                </span>
+                                <span class="m-nav__link-arrow"></span>
+                            </a>
+                            <ul class="m-nav__sub collapse" id="m_nav_sub_2" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
+                                <h:panelGroup rendered="#{!blackListBean.isExistUserBlackList(accountId)}">
+                                <li class="m-nav__item">
+                                    <a href="/private/bireysel/ilanlar/yeni" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-text">Yeni İlan Oluştur</span>
+                                    </a>
+                                </li>
+                                </h:panelGroup>
+                                <li class="m-nav__item">
+                                    <a href="/private/bireysel/ilanlar/ilanlarim" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">İlanlarım</span>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{AccountType=='corporate'}">                       
+                            <li class="m-nav__item m-nav__item--active">
+                                <a class="m-nav__link  collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_2" aria-expanded="  false">
+                                    <i class="m-nav__link-icon flaticon-graphic-2"></i>
+                                    <span class="m-nav__link-title">
+                                        <span class="m-nav__link-wrap">
+                                            <span class="m-nav__link-text">İlanlar</span>
+                                        </span>
+                                    </span>
+                                    <span class="m-nav__link-arrow"></span>
+                                </a>
+                                <ul class="m-nav__sub collapse" id="m_nav_sub_2" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
+                                    <h:panelGroup rendered="#{!blackListBean.isExistUserBlackList(accountId)}">
+                                    <li class="m-nav__item">
+                                        <a href="/private/kurumsal/ilanlar/yeni" class="m-nav__link">
+                                            <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                            <span class="m-nav__link-text">Yeni İlan Oluştur</span>
+                                        </a>
+                                    </li>
+                                    </h:panelGroup>
+                                    <li class="m-nav__item">
+                                        <a href="/private/kurumsal/ilanlar/ilanlarim" class="m-nav__link">
+                                            <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                            <span class="m-nav__link-title">
+                                                <span class="m-nav__link-wrap">
+                                                    <span class="m-nav__link-text">İlanlarım</span>
+                                                </span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>                            
+                        </h:panelGroup> 
+                        <h:panelGroup rendered="#{AccountType=='personal'}">
+                            <li class="m-nav__item ">
+                            <a class="m-nav__link  collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_22" aria-expanded="  false">
+                                <i class="m-nav__link-icon la la-car"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">Araçlar</span>
+                                    </span>
+                                </span>
+                                <span class="m-nav__link-arrow"></span>
+                            </a>
+                            <ul class="m-nav__sub collapse" id="m_nav_sub_22" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
+                                <li class="m-nav__item">
+                                    <a href="/private/bireysel/arac-ekle/s1" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-text">Yeni Araç Ekle</span>
+                                    </a>
+                                </li>
+                                <li class="m-nav__item">
+                                    <a href="/private/bireysel/araclarim" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Araçlarım</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li> 
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{AccountType=='corporate'}">
+                            <li class="m-nav__item ">
+                            <a class="m-nav__link  collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_22" aria-expanded="  false">
+                                <i class="m-nav__link-icon la la-car"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">Araçlar</span>
+                                    </span>
+                                </span>
+                                <span class="m-nav__link-arrow"></span>
+                            </a>
+                            <ul class="m-nav__sub collapse" id="m_nav_sub_22" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
+                                <li class="m-nav__item">
+                                    <a href="/private/kurumsal/arac-ekle/s1" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-text">Yeni Araç Ekle</span>
+                                    </a>
+                                </li>
+                                <li class="m-nav__item">
+                                    <a href="/private/kurumsal/araclarim" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Araçlarım</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li> 
+                        </h:panelGroup>                                            
+                        <h:panelGroup rendered="#{AccountType=='personal'}">
+                            <li class="m-nav__item">
+                                <a href="/private/bireysel/mesajlar/mesajlarim" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                    <span class="m-nav__link-text">İlan Mesajlarım</span>
+                                    <h:panelGroup rendered="#{accountBean.isExistUserMessageNotification()}">
+                                        <span class="m-menu__link-badge"><span class="m-badge m-badge--danger" ><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></span>
+                                    </h:panelGroup>
+                                </a>
+                            </li>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{AccountType=='corporate'}">
+                            <li class="m-nav__item">
+                                <a href="/private/kurumsal/mesajlar/mesajlarim" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                    <span class="m-nav__link-text">İlan Mesajlarım</span>
+                                    <h:panelGroup rendered="#{accountBean.isExistUserMessageNotification()}">
+                                        <span class="m-menu__link-badge"><span class="m-badge m-badge--danger" ><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></span>
+                                    </h:panelGroup>
+                                </a>
+                            </li>
+                        </h:panelGroup> 
+                        <h:panelGroup rendered="#{AccountType=='personal'}">
+                            <li class="m-nav__item">
+                                <a href="/private/bireysel/favori-ilanlarim" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-star"></i>
+                                    <span class="m-nav__link-text">Favori İlanlarım</span>
+                                </a>
+                            </li>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{AccountType=='corporate'}">
+                            <li class="m-nav__item">
+                                <a href="/private/kurumsal/favori-ilanlarim" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-star"></i>
+                                    <span class="m-nav__link-text">Favori İlanlarım</span>
+                                </a>
+                            </li>
+                        </h:panelGroup>                      
+                        <h:panelGroup rendered="#{AccountType=='personal'}">
+                            <li class="m-nav__item">
+                                <a href="/private/bireysel/destek" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-info"></i>
+                                    <span class="m-nav__link-text">Destek</span> 
+                                    <h:panelGroup rendered="#{accountBean.isExistUserSupportNotification()}">
+                                        <span class="m-menu__link-badge"><span class="m-badge m-badge--danger" ><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></span>
+                                    </h:panelGroup>
+                                </a>
+                            </li>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{AccountType=='corporate'}">
+                            <li class="m-nav__item">
+                                <a href="/private/kurumsal/destek" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-info"></i>
+                                    <span class="m-nav__link-text">Destek</span>
+                                    <h:panelGroup rendered="#{accountBean.isExistUserSupportNotification()}">
+                                        <span class="m-menu__link-badge"><span class="m-badge m-badge--danger" ><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></span>
+                                    </h:panelGroup>
+                                </a>
+                            </li>
+                        </h:panelGroup>                       
+                        <li class="m-nav__item">
+                            <a href="/logout" class="m-nav__link">
+                                <i class="m-nav__link-icon flaticon-logout"></i>
+                                <span class="m-nav__link-text">Güvenli Çıkış</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </ui:composition>
+    </h:body>
+    
+</html>
+

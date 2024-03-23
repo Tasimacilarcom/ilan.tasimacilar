@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="../director-page-layout.xhtml">
+            <ui:define name="head-title">
+                <h3 class="m-portlet__head-text">
+                    <i class="fas fa-users-cog"></i>&nbsp;Site Yöneticisi Sayfası 
+                    <small> <i class="la la-angle-right"></i>&nbsp;Kullanıcılar&nbsp;
+                            <i class="la la-angle-right"></i>&nbsp;Kullanıcı Kara Liste
+                    </small>
+                </h3>
+            </ui:define>
+            <ui:define name="form">        
+                <div class=" col-md-12">
+
+                    <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd">
+                        <i style="float:left; font-size: 2rem; margin-bottom: .5rem;  font-weight: 500; line-height: 1.2;  color: inherit;"  class="m-nav__link-icon la la-user"> </i><h2 >&nbsp;Kullanıcı Kara Liste</h2><i ></i>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h:form id="allUsersForm" >
+                                <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                                <p:growl id="growl" showDetail="true" life="3000"  sticky="false"/>  
+
+                                <style type="text/css">
+                                    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{ color: #555;cursor: default;background-color: #ffffff; background-image: none; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border-color: #e6e6e6 #e6e6e6 #bfbfbf; border-bottom-color: #b3b3b3; }
+                                    .ui-datatable thead th, .ui-datatable tfoot td { text-align: left; }
+                                    .ui-paginator.ui-paginator-bottom { border: 1px solid #ddd; border-top: 0px; }
+                                    .ui-widget-header { background: none; color: #555;  font-weight: normal; }
+                                </style>
+                                <p:dataTable var="b" value="#{blackListBean.blackLists}"  widgetVar="dataTable"
+                                             filteredValue="#{blackListBean.filteredBlackLists}" style="font-size: small" 
+                                             rows="25"  rowsPerPageTemplate="50,100,250,500" paginator="true" paginatorPosition="bottom"
+                                             emptyMessage="Aradığınız kritere uygun kayıt bulunamadı"
+                                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} ">
+                                    <f:facet name="header">
+                                        <p:outputPanel style="text-align: right">
+                                            <h:outputText value="Ara: " />
+                                            <p:inputText id="globalFilter" onkeyup="PF('dataTable').filter()" style="width:150px; border: 1px #ddd solid " />
+                                        </p:outputPanel>
+                                    </f:facet>
+
+                                    <p:column headerText="Id" width="110" sortBy="#{b.blackList_Id}" filterMatchMode="contains" filterBy="#{b.blackList_Id}" filterable="false">
+                                        <h:outputText value="#{b.blackList_Id}" />
+                                    </p:column>
+                                    <p:column headerText="Liste Tarihi" width="130" sortBy="#{b.blackList_Created}" filterMatchMode="contains" filterBy="#{b.blackList_Created}" filterable="false"  >
+                                        <h:outputText value="#{b.blackList_Created}" ><f:convertDateTime pattern="dd.MM.YYY HH:mm" /></h:outputText>
+                                    </p:column>
+                                    <p:column headerText="Ad Soyad" width="200" sortBy="#{b.accountBean.account_FirstName}&nbsp;#{b.accountBean.account_LastName}" filterMatchMode="contains" filterBy="#{b.accountBean.account_FirstName}&nbsp;#{b.accountBean.account_LastName}" filterable="false">
+                                        <h:outputText value="#{b.accountBean.account_FirstName}&nbsp;#{b.accountBean.account_LastName}" />
+                                    </p:column>
+
+                                    <p:column headerText="Email" width="200"  sortBy="#{b.accountBean.account_EmailAddress}" filterMatchMode="contains" filterBy="#{b.accountBean.account_EmailAddress}" filterable="false">
+                                        <h:outputText value="#{b.accountBean.account_EmailAddress}" />
+                                    </p:column>
+                                    <p:column headerText="GSM Numarası" width="140"   sortBy="#{b.accountBean.account_MobilePhoneNumber}" filterMatchMode="contains" filterBy="#{b.accountBean.account_MobilePhoneNumber}" filterable="false">
+                                        <h:outputText value="#{b.accountBean.account_MobilePhoneNumber}" />
+                                    </p:column>
+                                    <p:column headerText="Gerekçe&nbsp;(Kullanıcı Mesajı)"   sortBy="#{b.blackList_UserMessage}" filterMatchMode="contains" filterBy="#{b.blackList_UserMessage}" filterable="false">
+                                        <h:outputText value="#{b.blackList_UserMessage}" />
+                                    </p:column>
+                                    <p:column headerText="Admin Note"   sortBy="#{b.blackList_AdminNote}" filterMatchMode="contains" filterBy="#{b.blackList_AdminNote}" filterable="false">
+                                        <h:outputText value="#{b.blackList_AdminNote}" />
+                                    </p:column>
+
+                                    <p:column headerText="İşlem" width="100" style="text-align: center"  filterable="false">
+                                        <h:commandLink title="Listeden Çıkart"
+                                                       action="#{blackListBean.deleteBlackListItem2(b.blackList_TypeRelationId)}">
+                                            <i class="fa fa-times-circle"></i>
+                                            <f:ajax execute="@form" render="@form"></f:ajax>
+                                        </h:commandLink>
+                                        &nbsp;<b>|</b>&nbsp;&nbsp;
+                                        <a href="/private/director/users/kullanici_detay_userBlackList.xhtml?p=blackListAccount&amp;aId=#{b.blackList_TypeRelationId}" 
+                                           title="Düzenle">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </p:column>
+                                </p:dataTable>      
+                            </h:form>
+                        </div>
+                    </div>
+                   
+                </div>         
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

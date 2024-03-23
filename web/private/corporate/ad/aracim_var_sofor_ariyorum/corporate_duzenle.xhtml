@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:sf="http://xmlns.jcp.org/jsf/passthrough">
+    
+    <h:body>
+        <ui:composition template="/private/templates/yeni_adPageLayout.xhtml">
+            <ui:define name="formHead">
+                <h3 class="m-portlet__head-text">
+                    <h:panelGroup rendered="#{accountMembershipType eq 'personal'}">
+                        <i class="fas fa-user-alt"></i>&nbsp;Bireysel profil sayfası
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{accountMembershipType eq 'corporate'}">
+                        <i class="fas fa-building"></i>&nbsp;Kurumsal Profil Sayfası
+                    </h:panelGroup>
+                    <small><i class="la la-angle-right"></i>&nbsp;İlanlar&nbsp;
+                        <i class="la la-angle-right"></i>&nbsp;Yeni ilan oluştur&nbsp;
+                        <i class="la la-angle-right"></i>&nbsp;Aracım var şöför arıyorum
+                    </small>
+                </h3>
+            </ui:define>
+            <ui:define name="form">
+                <ui:insert name="formx" ><ui:include src="../../../common/ilanlar/aracim_var_sofor_ariyorum/yeni_Form.xhtml" /></ui:insert>                                     
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

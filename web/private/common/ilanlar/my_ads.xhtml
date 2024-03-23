@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ps="http://xmlns.jcp.org/jsf/passthrough"
+>
+
+    <h:body>
+        <ui:composition>   
+            <h:form id="myAdsForm" prependId="false">
+            <div class="profile-card d-flex align-items-center flex-wrap mb-3">
+                <style>.profile-card .divider {margin: 0 10px !important;}</style>
+         
+                    <div class="row" style="width: 100%">
+                        <div class="col-md-2">
+                            <h:commandLink title="Aşağıda seçilen ilanları sil" class="link text-danger" action="#{adBean.disableSelectedAds()}">
+                                <i class="fas fa-trash" />&nbsp;&nbsp;Seçilenleri Sil
+                                <f:ajax execute="myAdsTable" render="efesfew" > </f:ajax>
+                            </h:commandLink>
+                        </div>   
+                        <div class="col-md-3">
+                            <p:commandLink title="Aşağıda seçilen ilanları yayından kaldır" class="link text-danger" action="#{adBean.disableSelectedAds2()}" update="efesfew ">
+                               <i class="fas fa-ban" />&nbsp;&nbsp;Seçilenleri Pasif Yap
+                            </p:commandLink>
+                        </div>    
+                        <div class="col-md-5">
+                            <p:commandLink  title="Aşağıda seçilen ilanları ana sayfada'da en üst sıraya taşı (Günlük limit:5)" class="link text-danger" action="#{adBean.secilenIlanlariUsteTasi()}" update="efesfew ">
+                              <i class="fas fa-arrow-up"></i>&nbsp;&nbsp;Seçilenleri ANA SAYFA'da En Üst Sıraya Taşı
+                            </p:commandLink>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="dropdown ml-auto mt-3 mt-lg-0">
+                                <button type="button" class="btn btn-orange dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Yeni İlan Ekle</button>
+                                <div class="dropdown-menu dropdown-menu-right" style="">
+                                    <h:panelGroup rendered="#{AccountType=='personal'}">
+                                        <a class="dropdown-item" href="/private/bireysel/ilanlar/isim-var-arac-ariyorum/yeni/ekle">İşim var Araç Arıyorum</a>
+                                        <a class="dropdown-item" href="/private/bireysel/ilanlar/aracim-var-is-ariyorum/yeni/ekle">Aracım Var İş Arıyorum</a>
+                                        <a class="dropdown-item" href="/private/bireysel/ilanlar/aracim-var-sofor-ariyorum/yeni/ekle">Aracım var Şöför Arıyorum</a>
+                                        <a class="dropdown-item" href="/private/bireysel/ilanlar/aracim-var-hostes-ariyorum/yeni/ekle">Aracım Var Hostes Arıyorum</a>
+                                        <a class="dropdown-item" href="/private/bireysel/ilanlar/hostesim-is-ariyorum/yeni/ekle">Hostes’im iş Arıyorum</a>
+                                        <a class="dropdown-item" href="/private/bireysel/ilanlar/soforum-is-ariyorum/yeni/ekle">Şöförüm İş Arıyorum</a>
+                                        <a class="dropdown-item" href="/private/bireysel/ilanlar/plakami-satiyorum/yeni/ekle">Plakamı Satıyorum</a>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{AccountType=='corporate'}">
+                                        <a class="dropdown-item" href="/private/kurumsal/ilanlar/isim-var-arac-ariyorum/yeni/ekle">İşim var Araç Arıyorum</a>
+                                        <a class="dropdown-item" href="/private/kurumsal/ilanlar/aracim-var-is-ariyorum/yeni/ekle">Aracım Var İş Arıyorum</a>
+                                        <a class="dropdown-item" href="/private/kurumsal/ilanlar/aracim-var-sofor-ariyorum/yeni/ekle">Aracım var Şöför Arıyorum</a>
+                                        <a class="dropdown-item" href="/private/kurumsal/ilanlar/aracim-var-hostes-ariyorum/yeni/ekle">Aracım Var Hostes Arıyorum</a>
+                                        <a class="dropdown-item" href="/private/kurumsal/ilanlar/plakami-satiyorum/yeni/ekle">Plakamı Satıyorum</a>
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                        </div>   
+                    </div>    
+                    
+              
+                
+            </div>
+
+            <div class="profile-list-title table-title row no-gutters mx-2 my-3 d-none d-md-flex">
+                <div class="col-1 mr-3 box"> <h:selectBooleanCheckbox   ps:type="checkbox" id="selectAll" onclick="selectAll(this)"/> </div>
+                <div class="col id">DETAY</div>
+                <div class="col id">İLAN ID</div>
+                <div class="col date">İLAN TARİHİ</div>
+                <div class="col-3 cat">İLAN KATEGORİSİ</div>
+                <!--<div class="col-3 title">İLAN BAŞLIĞI</div>-->
+                <div class="col-1 status">DURUM</div>
+                <div class="col action">AKSİYONLAR</div>
+            </div>
+            <h:panelGroup id="efesfew">
+                <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" globalOnly="true" showDetail="true" life="5000"  sticky="false"/>
+
+                    <div class="profile-list list-group">
+                        <p:repeat id="myAdsTable" value="#{adBean.myAdsList}" var="ad" varStatus="vs">
+                            <div class="list-group-item">
+                                <div class="profile-list-item row no-gutters">                             
+                                    <div class="col-1 box pt-3"> <h:selectBooleanCheckbox   ps:type="checkbox" class=" item-checkbox"  value="#{adBean.checkMap[ad.ad_Id]}"/> </div>
+                                    <div class="col-2 col-lg id pt-3 pr-2"> <p:commandLink title="İlan Detay" onclick="showHidePanelFunction(#{vs.index+1})">Detay</p:commandLink></div>
+                                    <div class="col-3 col-lg id pt-3 pr-2"> <p title="İlan Id">#{ad.ad_Id2}</p></div>
+                                    <div class="col-3 col-lg date pt-3 pr-2"><p><h:outputText title="İlan Tarihi" value="#{ad.ad_CreateTime}"><f:convertDateTime pattern="dd.MM.YYYY" type="both"></f:convertDateTime></h:outputText></p></div>
+                                    <div class="col-6 col-lg-3 cat pt-3 pr-2"><p><h:outputText title="İlan Kategorisi" value="#{ad.ad_Category_Name}"></h:outputText></p></div>
+                                    <div class="col-1 status text-center pt-3">
+                                        <div class="custom-control custom-switch">
+                                            <h:panelGroup id="rewtr43">
+                                                <h:panelGroup rendered="#{ad.ad_IsPublish}">
+                                                    <h:panelGroup rendered="#{ad.ad_UserEnableDisable == false}">
+                                                        <h:commandLink class="m-portlet__nav-link m-portlet__nav-link--icon" action="#{adBean.enableDisableAdFromUser(ad.ad_Id, 'enable')}">
+                                                            <i class="fas fa-toggle-off" style="color: #ddd;font-size: 20px;" title="İlan Yayında değil"></i>
+                                                            <f:ajax execute="@this" render="myAdsForm efesfew rewtr43"></f:ajax>
+                                                        </h:commandLink>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{ad.ad_UserEnableDisable == true}">
+                                                        <h:commandLink class="m-portlet__nav-link m-portlet__nav-link--icon"  action="#{adBean.enableDisableAdFromUser(ad.ad_Id, 'disable')}">
+                                                            <i class="fas fa-toggle-on"  style="color: #f4a04d;font-size: 20px;"  title="İlan Yayında"></i>
+                                                            <f:ajax execute="@this" render="myAdsForm efesfew rewtr43"></f:ajax>
+                                                        </h:commandLink>
+                                                    </h:panelGroup>
+                                                </h:panelGroup>   
+                                                <h:panelGroup rendered="#{!ad.ad_IsPublish}">
+                                                    <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon" >
+                                                        <i class="fas fa-toggle-off" style="color: #ddd;font-size: 20px;" title="Bu ilan moderatör onayı bekliyor"></i>
+                                                    </a>
+                                                </h:panelGroup>
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
+
+                                    <div class="col action pt-3 pr-2 text-right">                                      
+                                        <h:panelGroup rendered="#{ad.ad_Category_Name.equals('İşim var araç arıyorum') }"><a class="mr-2" href="/ad/isim-var-arac-ariyorum/#{ad.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>
+                                        <h:panelGroup rendered="#{ad.ad_Category_Name.equals('Aracım var iş arıyorum') }"><a class="mr-2" href="/ad/aracim-var-is-ariyorum/#{ad.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>
+                                        <h:panelGroup rendered="#{ad.ad_Category_Name.equals('Aracim var şöför arıyorum') }"><a class="mr-2" href="/ad/aracim-var-sofor-ariyorum/#{ad.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup> 
+                                        <h:panelGroup rendered="#{ad.ad_Category_Name.equals('Aracim var hostes arıyorum') }"><a class="mr-2" href="/ad/aracim-var-hostes-ariyorum/#{ad.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup> 
+                                        <h:panelGroup rendered="#{ad.ad_Category_Name.equals('Hostesim iş arıyorum') }"><a class="mr-2" href="/ad/hostesim-is-ariyorum/#{ad.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup> 
+                                        <h:panelGroup rendered="#{ad.ad_Category_Name.equals('Şöförüm iş arıyorum') }"><a class="mr-2" href="/ad/soforum-is-ariyorum/#{ad.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup> 
+                                        <h:panelGroup rendered="#{ad.ad_Category_Name.equals('Plakamı satıyorum') }"><a class="mr-2" href="/ad/plakami-satiyorum/#{ad.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>                                     
+                                        
+                                        <h:panelGroup rendered="#{ad.ad_Type.equals('personal')}">
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==1}"><a class="mr-2" href="/private/bireysel/ilanlar/isim-var-arac-ariyorum/duzenle/#{ad.ad_Id}" title="İlanı DÜZENLE" ><ui:include src="/resources/image/ikon_edit.svg" /></a></h:panelGroup>
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==2}"><a class="mr-2" href="/private/bireysel/ilanlar/aracim-var-is-ariyorum/duzenle/#{ad.ad_Id}" title="İlanı DÜZENLE" ><ui:include src="/resources/image/ikon_edit.svg" /></a></h:panelGroup>
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==3}"><a class="mr-2" href="/private/bireysel/ilanlar/aracim-var-sofor-ariyorum/duzenle/#{ad.ad_Id}" title="İlanı DÜZENLE" ><ui:include src="/resources/image/ikon_edit.svg" /></a></h:panelGroup>
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==4}"><a class="mr-2" href="/private/bireysel/ilanlar/aracim-var-hostes-ariyorum/duzenle/#{ad.ad_Id}" title="İlanı DÜZENLE" ><ui:include src="/resources/image/ikon_edit.svg" /></a></h:panelGroup>
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==5}"><a class="mr-2" href="/private/bireysel/ilanlar/hostesim-is-ariyorum/duzenle/#{ad.ad_Id}" title="İlanı DÜZENLE" > <ui:include src="/resources/image/ikon_edit.svg" /> </a></h:panelGroup>
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==6}"><a class="mr-2" href="/private/bireysel/ilanlar/soforum-is-ariyorum/duzenle/#{ad.ad_Id}"  title="İlanı DÜZENLE" > <ui:include src="/resources/image/ikon_edit.svg" /> </a> </h:panelGroup>
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==7}"><a class="mr-2" href="/private/bireysel/ilanlar/plakami-satiyorum/duzenle/#{ad.ad_Id}"  title="İlanı DÜZENLE" ><ui:include src="/resources/image/ikon_edit.svg" /></a></h:panelGroup>
+                                        </h:panelGroup>                                                                      
+                                        <h:panelGroup rendered="#{ad.ad_Type.equals('corporate')}">
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==1}"><a class="mr-2" href="/private/kurumsal/ilanlar/isim-var-arac-ariyorum/duzenle/#{ad.ad_Id}" title="İlanı DÜZENLE" ><ui:include src="/resources/image/ikon_edit.svg" /> </a> </h:panelGroup>
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==2}"><a class="mr-2" href="/private/kurumsal/ilanlar/aracim-var-is-ariyorum/duzenle/#{ad.ad_Id}" title="İlanı DÜZENLE" ><ui:include src="/resources/image/ikon_edit.svg" /> </a> </h:panelGroup>
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==3}"><a class="mr-2" href="/private/kurumsal/ilanlar/aracim-var-sofor-ariyorum/duzenle/#{ad.ad_Id}" title="İlanı DÜZENLE" ><ui:include src="/resources/image/ikon_edit.svg" /></a></h:panelGroup>
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==4}"><a class="mr-2" href="/private/kurumsal/ilanlar/aracim-var-hostes-ariyorum/duzenle/#{ad.ad_Id}" title="İlanı DÜZENLE" > <ui:include src="/resources/image/ikon_edit.svg" /></a></h:panelGroup>
+                                            <h:panelGroup rendered="#{ad.ad_Category_Id==7}"><a class="mr-2" href="/private/kurumsal/ilanlar/plakami-satiyorum/duzenle/#{ad.ad_Id}" title="İlanı DÜZENLE" > <ui:include src="/resources/image/ikon_edit.svg" /> </a></h:panelGroup>
+                                        </h:panelGroup>
+                                        
+                                        <h:commandLink class="m-portlet__nav-link m-portlet__nav-link--icon" onclick="PF('dlg2').show();" title="İlanı SİL" >
+                                            <ui:include src="/resources/image/ikon_sil.svg" />
+                                            <f:setPropertyActionListener value="#{ad.ad_Id}" target="#{adBean.selectedAdId}" />
+                                            <f:ajax execute="@this"></f:ajax>
+                                        </h:commandLink>
+                                        
+                                    </div>
+                                    
+                                    <div class="col-12 myDIV#{vs.index+1}" style="background-color: #f8f8f9;display: none;width: 100%;border: 1px solid #ddd">
+                                        <ui:insert name="ilanDetay" ><ui:include src="my_ads_ilanDetay.xhtml" /></ui:insert>
+                                    </div>
+                                </div>
+                            </div>
+                        </p:repeat>    
+                        <p:dialog header="İlan Silme" widgetVar="dlg2" modal="true"  resizable="false" responsive="true" width="400">
+                            <div class="row">
+                                <div class="col-md-12" style="margin-bottom: 30px;"><p style="font-size: 1.2em"><b>Dikkat !</b>&nbsp;Bu ilanı silmek istediğinize eminmisiniz ?</p></div>
+                                <div class="col-md-6">
+                                    <h:commandLink class="btn btn-outline-danger" style="width: 100%" action="#{adBean.disableAd()}" title="İlanı SİL" > EVET
+                                        <f:ajax execute="myAdsForm" render="efesfew"> </f:ajax>
+                                    </h:commandLink>
+                                </div>
+                                <div class="col-md-6"><a href="#"  style="width: 100%" onclick="PF('dlg2').hide();" class="btn btn-outline-info">HAYIR</a></div>
+                            </div>
+                        </p:dialog> 
+                    </div>
+                
+            </h:panelGroup>
+            </h:form>    
+            <script>
+                function selectAll(checkbox) {
+                    console.log('select All');
+                    var items = document.querySelectorAll('.item-checkbox');
+                    items.forEach(element => {
+                        element.checked = checkbox.checked;
+                    });
+                }
+          
+            </script>
+        </ui:composition>    
+    </h:body>
+</html>
+

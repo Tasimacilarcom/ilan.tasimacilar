@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition>
+
+            <label for=""><b>İlan Yayınlama Zamanı</b></label>
+            <style>
+                .ui-icon {
+                    width: 21px !important;
+                    height: 21px !important;
+                }
+                .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+                    background-color: #fff !important;
+                }
+            </style>
+            <p:selectOneRadio id="time" value="#{adBean.adSearchBean.adSearchInputEntity.fltr_Ad_WhatTime}" layout="custom">
+                <f:selectItem itemLabel="Bugün" itemValue="toDay" />
+                <f:selectItem itemLabel="Dün" itemValue="yesterday" />
+                <f:selectItem itemLabel="Son 3 Gün" itemValue="last3Days" />
+                <f:selectItem itemLabel="Son 7 Gün" itemValue="last7Days" />
+            </p:selectOneRadio>
+            <table cellpadding="0" border="0" cellspacing="0" >
+                <tbody>                                       
+                    <tr><td width="30px;"><p:radioButton id="opt1" for="time" itemIndex="0" /></td><td><h:outputLabel for="opt1" value="Bugün" style="margin: 0;cursor: pointer;"/></td></tr>
+                    <tr><td><p:radioButton id="opt2" for="time" itemIndex="1" /></td><td><h:outputLabel for="opt2" value="Dün" style="margin: 0;cursor: pointer;"/></td></tr>
+                    <tr><td><p:radioButton id="opt3" for="time" itemIndex="2" /></td><td><h:outputLabel for="opt3" value="Son 3 Gün" style="margin: 0;cursor: pointer;"/></td></tr>
+                    <tr><td><p:radioButton id="opt4" for="time" itemIndex="3" /></td><td><h:outputLabel for="opt4" value="Son 7 Gün" style="margin: 0;cursor: pointer;"/></td></tr>
+                </tbody>
+            </table>
+
+        </ui:composition>
+
+    </h:body>
+
+</html>
+

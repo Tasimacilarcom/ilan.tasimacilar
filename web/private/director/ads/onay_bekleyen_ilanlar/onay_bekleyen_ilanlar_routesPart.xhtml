@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition>
+            <h:panelGroup rendered="#{adx.ad_Category_Name ne 'Plakamı satıyorum' }">
+                <div style="text-align: center;width: 100%; height: 25px; background-color: #ddd"><span style="line-height: 25px;font-weight: 500">KONUM BİLGİLERİ</span></div>
+                <div style="padding: 10px; width: 100%">
+                    <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Aracım var iş arıyorum' }">
+                        <table class="table table-sm m-table m-table--head-bg-brand" style="margin-top: 10px; border: 1px solid #ccc">
+                            <thead>
+                                <tr>
+                                    <th style="color: #575962;text-align: center; background: #eee;">Başlangıç Saati</th>
+                                    <th style="color: #575962;text-align: center; background: #eee;">Aracın Boş olduğu Yer</th>
+                                    <th style="color: #575962;text-align: center; background: #eee;">Bitiş Saati</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat var="x" value="#{adBean.allAdRouteList(adx.ad_Id)}">
+                                    <tr style="color: #434b5a">
+                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                        <td style="vertical-align: middle; text-align: center;"><h:outputText value="#{x.adRoute_StartPosition_City}"></h:outputText>&nbsp;-&nbsp;<h:outputText value="#{x.adRoute_StartPosition_Town}"></h:outputText><p><h:outputText value="#{x.adRoute_StartPosition_Neighborhood}"></h:outputText></p></td>
+                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                    </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>                    
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Şöförüm iş arıyorum' }">
+                        <table class="table table-sm m-table m-table--head-bg-brand" style="margin-top: 10px; border: 1px solid #ccc">
+                            <thead>
+                                <tr>
+                                    <th style="color: #575962;text-align: center; background: #eee;">Başlangıç Saati</th>
+                                    <th style="color: #575962;text-align: center; background: #eee;">Şöförün Boş olduğu Yer</th>
+                                    <th style="color: #575962;text-align: center; background: #eee;">Bitiş Saati</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat var="x" value="#{adBean.allAdRouteList(adx.ad_Id)}">
+                                    <tr style="color: #434b5a">
+                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                        <td style="vertical-align: middle; text-align: center;"><h:outputText value="#{x.adRoute_StartPosition_City}"></h:outputText>&nbsp;-&nbsp;<h:outputText value="#{x.adRoute_StartPosition_Town}"></h:outputText><p><h:outputText value="#{x.adRoute_StartPosition_Neighborhood}"></h:outputText></p></td>
+                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                    </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>                    
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Hostesim iş arıyorum' }">
+                        <table class="table table-sm m-table m-table--head-bg-brand" style="margin-top: 10px; border: 1px solid #ccc">
+                            <thead>
+                                <tr>
+                                    <th style="color: #575962;text-align: center; background: #eee;">Başlangıç Saati</th>
+                                    <th style="color: #575962;text-align: center; background: #eee;">Hostesin Boş olduğu Yer</th>
+                                    <th style="color: #575962;text-align: center; background: #eee;">Bitiş Saati</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat var="x" value="#{adBean.allAdRouteList(adx.ad_Id)}">
+                                    <tr style="color: #434b5a">
+                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                        <td style="vertical-align: middle; text-align: center;"><h:outputText value="#{x.adRoute_StartPosition_City}"></h:outputText>&nbsp;-&nbsp;<h:outputText value="#{x.adRoute_StartPosition_Town}"></h:outputText><p><h:outputText value="#{x.adRoute_StartPosition_Neighborhood}"></h:outputText></p></td>
+                                        <td style=" vertical-align: middle; text-align: center"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></td>
+                                    </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>                    
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{adx.ad_Category_Name ne 'Aracım var iş arıyorum' and adx.ad_Category_Name ne 'Şöförüm iş arıyorum' and adx.ad_Category_Name ne 'Hostesim iş arıyorum'}">
+                        <table class="table table-sm m-table m-table--head-bg-brand" style="margin-top: 10px; border: 1px solid #ccc">
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style="color: #575962;text-align: center; background: #eee;">Başlangıç</th>
+                                    <th style="text-align: center; background: #eee;">&nbsp;</th>
+                                    <th colspan="2" style="color: #575962;text-align: center; background: #eee;">Bitiş</th>
+                                </tr>
+                                <tr>
+                                    <th width="22%"  style="color: #575962;text-align: center; background: #eee;">Saati</th>
+                                    <th style="color: #575962;text-align: center; background: #eee;"> Yeri</th>
+                                    <th style="text-align: center; background: #eee;">&nbsp;</th>
+                                    <th style="color: #575962;text-align: center; background: #eee;">Yeri</th>
+                                    <th width="22%"  style="color: #575962;text-align: center; background: #eee;">Saati</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ui:repeat var="x" value="#{adBean.allAdRouteList(adx.ad_Id)}">
+                                    <tr style="color: #434b5a">
+                                        <td style=" vertical-align: middle; text-align: center">
+                                            <h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText>
+                                        </td>
+                                        <td style="vertical-align: middle; text-align: center;">
+                                            <h:outputText value="#{x.adRoute_StartPosition_City}"></h:outputText>&nbsp;-&nbsp;<h:outputText value="#{x.adRoute_StartPosition_Town}"></h:outputText>
+                                            <p><h:outputText value="#{x.adRoute_StartPosition_Neighborhood}"></h:outputText></p>
+                                        </td>
+                                        <td style="vertical-align: middle; text-align: center; padding:"><i style="font-size: 1rem;" class="fa fa-arrow-right"></i></td>
+                                        <td style="vertical-align: middle; text-align: center; padding:">
+                                            <h:outputText value="#{x.adRoute_StartPosition_City}"></h:outputText>&nbsp;-&nbsp;<h:outputText value="#{x.adRoute_EndPosition_Town}"></h:outputText>
+                                            <p><h:outputText value="#{x.adRoute_EndPosition_Neighborhood}"></h:outputText></p>
+                                        </td>
+                                        <td style="vertical-align: middle; text-align: center">
+                                            <h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </tbody>
+                        </table>
+                    </h:panelGroup>             
+                </div>
+            </h:panelGroup>
+
+        </ui:composition>
+    </h:body>
+</html>
+

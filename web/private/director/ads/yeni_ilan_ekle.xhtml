@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+
+        <!-- Start global head -->
+        <ui:insert name="head" ><ui:include src="../../../head.xhtml" /></ui:insert>
+        <!-- End global head -->
+
+    </h:head>
+
+    <h:body>
+
+        <!-- Start header -->
+        <ui:insert name="header" ><ui:include src="../../../header.xhtml" /></ui:insert>
+        <!-- End header -->
+
+
+        <main role="main" >
+
+            <div class="container-fluid" style="margin-top: 30px">
+
+                <div class="m-portlet m-portlet--full-height">
+
+                    <!--begin: Portlet Head-->
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    <i class="fas fa-users-cog"></i>&nbsp;Site Yöneticisi Sayfası 
+                                    <small><i class="la la-angle-right"></i>&nbsp;İlanlar&nbsp;
+                                            <i class="la la-angle-right"></i>&nbsp;Yeni İlan Ekle
+                                    </small>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                            <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item">
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!--end: Portlet Head-->
+
+                    <!--begin: Portlet Body-->
+                    <div class="m-portlet__body m-portlet__body--no-padding">
+
+                        <!--begin: Form Wizard-->
+                        <div class="m-wizard m-wizard--3 m-wizard--brand m-wizard--step-first" id="m_wizard">
+
+                            <!--begin: Message container -->
+                            <div class="m-portlet__padding-x">
+
+                                <!-- Here you can put a message or alert -->
+                            </div>
+
+                            <!--end: Message container -->
+                            <div class="row m-row--no-padding">
+                                <div class="col-md-2">
+
+                                    <!--begin: Form Wizard Head -->
+                                    <div class="m-wizard__head" style="padding: 5rem 2rem;">
+
+                                        <!-- Start menu -->
+                                        <ui:insert name="left_menu" ><ui:include src="../left_menu.xhtml" /></ui:insert>
+                                        <!-- End menu -->
+
+
+
+                                    </div>
+
+                                    <!--end: Form Wizard Head -->
+                                </div>
+                                <div class=" col-md-10">
+
+                                    <!--begin: Form Wizard Form-->
+                                    <div class="m-wizard__form" style="padding: 30px;">
+
+
+                                        <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" novalidate="novalidate">
+
+                                            <!--begin: Form Body -->
+                                            <div class="m-portlet__body m-portlet__body--no-padding" style="min-height: 400px">
+
+                                                <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd">
+                                                    <i style="  float:left;
+                                                                font-size: 2rem;
+                                                                margin-bottom: .5rem;
+                                                                font-weight: 500;
+                                                                line-height: 1.2;
+                                                                color: inherit;" 
+                                                        class="m-nav__link-icon la la-list-ul">
+                                                    </i>
+                                                    <h2 >&nbsp;Yeni İlan Ekle</h2><i ></i>
+                                                </div>
+
+
+                                                 
+                                                <div class="m-nav-grid">
+                                                    <div class="m-nav-grid__row">
+                                                        <a href="ad-isim-var-arac-ariyorum.xhtml?param1=ekle" 
+                                                            class="m-nav-grid__item">
+                                                            <i class="m-nav-grid__icon la la-bus" style="font-size: 3em;"></i>
+                                                            <span class="m-nav-grid__text" style="font-size: 1.2em">İşim var araç arıyorum</span>
+                                                        </a>
+                                                        <a href="ad-aracim-var-is-ariyorum.xhtml?param1=ekle" 
+                                                           class="m-nav-grid__item">
+                                                           <i class="m-nav-grid__icon la la-bus" style="font-size: 3em;"></i>
+                                                           <span class="m-nav-grid__text" style="font-size: 1.2em">Aracım var iş arıyorum</span>
+                                                        </a>
+                                                        <a href="ad-aracim-var-sofor-ariyorum.xhtml?param1=ekle" 
+                                                           class="m-nav-grid__item">
+                                                           <i class="m-nav-grid__icon la la-user" style="font-size: 3em;"></i>
+                                                           <span class="m-nav-grid__text" style="font-size: 1.2em">Aracım var şöför arıyorum</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="m-nav-grid__row">
+                                                        <a href="ad-soforum-is-ariyorum.xhtml?param1=ekle" class="m-nav-grid__item">
+                                                           <i class="m-nav-grid__icon la la-user" style="font-size: 3em;"></i>
+                                                           <span class="m-nav-grid__text" style="font-size: 1.2em">Şöförüm iş arıyorum</span>
+                                                        </a>
+                                                        <a href="ad-hostesim-is-ariyorum.xhtml?param1=ekle" class="m-nav-grid__item">
+                                                           <i class="m-nav-grid__icon flaticon-profile-1" style="font-size: 3em;"></i>
+                                                           <span class="m-nav-grid__text" style="font-size: 1.2em">Hostesim iş arıyorum</span>
+                                                        </a>
+                                                        <a href="ad-aracim-var-hostes-ariyorum.xhtml?param1=ekle" 
+                                                           class="m-nav-grid__item">
+                                                           <i class="m-nav-grid__icon flaticon-profile-1" style="font-size: 3em"></i>
+                                                           <span class="m-nav-grid__text" style="font-size: 1.2em">Aracım var hostes arıyorum</span>
+                                                        </a>
+                                                    </div>
+                                                  
+                                                </div>
+                                                
+                                                
+                                                
+                                                
+                                                
+
+                                            </div>
+
+                                            <!--end: Form Body -->
+
+
+                                        </form>
+                                    </div>
+
+                                    <!--end: Form Wizard Form-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--end: Form Wizard-->
+                    </div>
+
+                    <!--end: Portlet Body-->
+                </div>
+
+
+            </div>
+
+
+
+
+        </main>
+
+
+        <!-- Start footer -->
+        <ui:insert name="footer" ><ui:include src="../../../footer.xhtml" /></ui:insert>
+        <!-- End footer -->
+
+        <!-- Start global scripts -->
+        <ui:insert name="scripts" ><ui:include src="../../../scripts.xhtml" /></ui:insert>
+        <!-- End global scripts -->
+
+    </h:body>
+</html>
+

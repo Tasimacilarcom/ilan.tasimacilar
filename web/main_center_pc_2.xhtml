@@ -1,0 +1,406 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        
+        <ui:composition>  
+            <style>
+                .title2{font-weight: bold;font-size: 1rem;line-height: 20px;color: rgba(33, 36, 41, 0.4);}
+                .text2{font-weight: 700;font-size: 1rem; color: #212429;}
+                .description-content2 {font-size: 1rem;line-height: 20px;;color: #212429; font-weight: 400;}
+            </style>
+            
+
+                
+                <h:panelGroup id="dsfgfdgdsvfdsa2">
+                    <!--TumIlanlar-->    
+                    <div class="home-list">
+
+                        <!-- List üst banner alani-->
+                        <div class="home-list-item" style="border: 1px solid #d2d3d2; border-radius: 8px;padding: 3px;">
+                            <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('list-ust')}"></h:outputText>
+                        </div>
+                        <!--/ List üst banner alani-->
+
+                        <ui:repeat var="a" value="#{adBean.paginatorForMobile.model}">
+                            <!--Ilan-->
+                            <div class="home-list-item" style="margin-bottom: 10px;">
+                                <!--IlanBaslık-->
+                                <h:panelGroup rendered="#{a.ad_Category_Name.equals('İşim var araç arıyorum') }"><div class="header green" style="padding: 6px 15px;display: flex;justify-content: space-between;"><span style="font-size: 12px;">İŞİM VAR ARAÇ ARIYORUM</span><a style="color:#fff;" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/isim-var-arac-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracim var hostes arıyorum') }"><div class="header purple" style="padding: 6px 15px;display: flex;justify-content: space-between;"><span style="font-size: 12px;">ARACIM VAR HOSTES ARIYORUM</span><a style="color:#fff;" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/aracim-var-hostes-ariyorum/#{a.ad_Id}">&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracim var şöför arıyorum') }"><div class="header yellow" style="padding: 6px 15px;display: flex;justify-content: space-between;"><span style="font-size: 12px;">ARACIM VAR ŞÖFÖR ARIYORUM</span><a style="color:#fff;" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/aracim-var-sofor-ariyorum/#{a.ad_Id}">&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracım var iş arıyorum') }"><div class="header orange" style="padding: 6px 15px;display: flex;justify-content: space-between;"><span style="font-size: 12px;">ARACIM VAR İŞ ARIYORUM</span><a style="color:#fff;" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/aracim-var-is-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Hostesim iş arıyorum') }"><div class="header pink" style="padding: 6px 15px;display: flex;justify-content: space-between;"><span style="font-size: 12px;">HOSTESİM İŞ ARIYORUM</span><a style="color:#fff;" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/hostesim-is-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Şöförüm iş arıyorum') }"><div class="header blue" style="padding: 6px 15px;display: flex;justify-content: space-between;"><span style="font-size: 12px;">ŞOFÖRÜM İŞ ARIYORUM</span><a style="color:#fff;" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/soforum-is-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Plakamı satıyorum') }"><div class="header dark-green" style="padding: 6px 15px;display: flex;justify-content: space-between;"><span style="font-size: 12px;">PLAKAMI SATIYORUM</span><a style="color:#fff;"  title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/plakami-satiyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>                                 
+                                <!--<h:panelGroup rendered="#{a.ad_Category_Name.equals('reklam') }"><div class="header border" style="border-bottom: none;display: flex;justify-content: space-between;"><span style="color: #ddd">REKLAM</span></div></h:panelGroup>-->                                 
+
+                                <!--/IlanBaslık-->
+                                <!--IlanIcerik-->
+                                <h:panelGroup rendered="#{a.ad_Category_Name.equals('reklam') }">
+
+                                    <h:panelGroup rendered="#{a.ad_Id.equals('rek1') and !bannersBean.getBannerCodeWithLocation('list-rek1').equals('') }">
+                                            <div class="content" style="padding: 10px;cursor: inherit; background: none;border-radius: 8px;">
+                                                <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('list-rek1')}"></h:outputText>
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{a.ad_Id.equals('rek2') and !bannersBean.getBannerCodeWithLocation('list-rek2').equals('')}">
+                                            <div class="content" style="padding: 10px;cursor: inherit; background: none;border-radius: 8px;">
+                                                <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('list-rek2')}"></h:outputText>
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{a.ad_Id.equals('rek3') and !bannersBean.getBannerCodeWithLocation('list-rek3').equals('')}">
+                                            <div class="content" style="padding: 10px;cursor: inherit; background: none;border-radius: 8px;">
+                                                <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('list-rek3')}"></h:outputText>
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{a.ad_Id.equals('rek4') and !bannersBean.getBannerCodeWithLocation('list-rek4').equals('')}">
+                                            <div class="content" style="padding: 10px;cursor: inherit; background: none;border-radius: 8px;">
+                                                <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('list-rek4')}"></h:outputText>
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{a.ad_Id.equals('rek5') and !bannersBean.getBannerCodeWithLocation('list-rek5').equals('')}">
+                                            <div class="content" style="padding: 10px;cursor: inherit; background: none;border-radius: 8px;">
+                                                <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('list-rek5')}"></h:outputText>
+                                            </div>
+                                        </h:panelGroup>
+
+                                </h:panelGroup>
+
+                                <h:panelGroup rendered="#{!a.ad_Category_Name.equals('reklam')}">
+                                <div class="content" style="cursor: inherit; padding: 15px 15px;">
+                                    <!--IlanAciklama-->
+                                    <div class="description-content">
+                                        <p:scrollPanel mode="native" class="adComment" style="margin-bottom: 15px;border: none">
+                                            <p style="margin-bottom:0;"><h:outputText class="description-content2" value="#{a.ad_CommentFormated.length() >= 180 ? a.ad_CommentFormated.substring(0, 180)+='&nbsp;...':a.ad_CommentFormated}" escape="false"/></p>
+                                        </p:scrollPanel>
+                                    </div>
+                                    <hr style="margin-top: 10px; margin-bottom: 10px;"/>
+                                    <!--/IlanAciklama-->
+                                    <!--IlanKonumVeSaat-->
+                                    <h:panelGroup rendered="#{ a.ad_Category_Name.equals('İşim var araç arıyorum') or 
+                                                               a.ad_Category_Name.equals('Aracim var şöför arıyorum') or 
+                                                               a.ad_Category_Name.equals('Aracim var hostes arıyorum')}">
+                                        <div class="table-responsive">
+                                            <style>
+                                               #rt544re > thead > tr > th{padding-top: 0}
+                                               #rt544re > tbody > tr > td{padding: 7px}
+                                            </style>
+                                            <table id="rt544re" class="table " style="margin-bottom: 0 !important;">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="20%" style="text-align: center; border-style: none;"><span class="title2" >Giriş Saati</span></th>
+                                                        <th style="text-align: center; border-style: none;"><span class="title2"  >Nerden</span></th>
+                                                        <th style="text-align: center; border-style: none;"><span class="title2"  >Nereye</span></th>
+                                                        <th width="20%" style="text-align: center;  border-style: none;"><span class="title2" >Çıkış Saati</span></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <ui:repeat var="x" value="#{adBean.allAdRouteList(a.ad_Id)}">
+                                                        <tr style="color: #434b5a">
+                                                           <td style=" vertical-align: middle; text-align: center"><span class="text2"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                                           <td style="vertical-align: middle; text-align: center;">
+                                                                <div class="text2" >
+                                                                    <h:outputText  value="#{x.adRoute_StartPosition_Neighborhood.substring(0,x.adRoute_StartPosition_Neighborhood.length()-3)}" style="display: block"></h:outputText>
+                                                                    <h:outputText  value="#{x.adRoute_StartPosition_Town}" style="display: block; font-size: 80%;font-weight: 500;line-height: 22px;" ></h:outputText>
+                                                                    <h:outputText  value="#{x.adRoute_StartPosition_City}" style="display: block; font-size: 60%;font-weight: 400;line-height: 20px;" ></h:outputText>
+                                                                </div>
+                                                            </td>
+                                                           <td style="vertical-align: middle; text-align: center;">
+                                                                <div class="text2">
+                                                                    <h:outputText  value="#{x.adRoute_EndPosition_Neighborhood.substring(0,x.adRoute_EndPosition_Neighborhood.length()-3)}" style="display: block"></h:outputText>
+                                                                    <h:outputText value="#{x.adRoute_EndPosition_Town}" style="display: block; font-size: 80%;font-weight: 500;line-height: 22px;" ></h:outputText>
+                                                                    <h:outputText  value="#{x.adRoute_EndPosition_City}" style="display: block; font-size: 60%;font-weight: 400;line-height: 20px;" ></h:outputText>
+                                                                </div>
+                                                            </td>
+                                                            <td style=" vertical-align: middle; text-align: center"><span class="text2"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                                        </tr>
+                                                    </ui:repeat>     
+                                                </tbody>
+                                            </table>     
+                                        </div>   
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracım var iş arıyorum')}">
+                                        <div class="table-responsive">
+                                            <style>
+                                               #f4eg432 > thead > tr > th{padding-top: 0}
+                                               #f4eg432 > tbody > tr > td{padding: 7px}
+                                            </style>
+                                            <table id="f4eg432" class="table " style="margin-bottom: 0 !important;" >
+                                             <thead>
+                                                 <tr>
+                                                     <th width="22%" style="text-align: center; border-style: none;"><span class="title2" >Saat</span></th>
+                                                     <th style="text-align: center;  border-style: none;"><span class="title2" >Boş Olduğu Semt</span></th>
+                                                     <th width="22%" style="text-align: center;  border-style: none;"><span class="title2"  >Saat</span></th>
+                                                 </tr>
+                                             </thead>
+                                             <tbody>
+                                                 <ui:repeat var="x" value="#{adBean.allAdRouteList(a.ad_Id)}" >
+                                                     <tr style="color: #434b5a">
+                                                        <td style=" vertical-align: middle; text-align: center"><span class="text2"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                                        <td style="vertical-align: middle; text-align: center;">
+                                                             <div class="text2">
+                                                                 <h:outputText value="#{x.adRoute_StartPosition_Neighborhood.substring(0,x.adRoute_StartPosition_Neighborhood.length()-3)}" style="display: block"></h:outputText>
+                                                                 <h:outputText value="#{x.adRoute_StartPosition_Town}" style="display: block; font-size: 80%;font-weight: 500;line-height: 22px;" ></h:outputText>
+                                                                 <h:outputText value="#{x.adRoute_StartPosition_City}" style="display: block; font-size: 60%;font-weight: 400;line-height: 20px;" ></h:outputText>
+                                                                 <h:panelGroup rendered="#{x.adRoute_destinationTown != null and !x.adRoute_destinationTown.equals('')}">
+                                                                     <span style="display: block; font-size: 70%;font-weight: 400;line-height: 20px;"><b>İstenen İstikamet:</b>&nbsp;<h:outputText  value="#{x.adRoute_destinationTown}"  ></h:outputText> </span>
+                                                                 </h:panelGroup>
+
+
+                                                             </div>
+                                                         </td>
+                                                         <td style=" vertical-align: middle; text-align: center"><span class="text2"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                                     </tr>
+                                                 </ui:repeat>     
+                                             </tbody>
+                                         </table>     
+                                         </div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{a.ad_Category_Name.equals('Hostesim iş arıyorum')}">
+                                       <div class="table-responsive">
+                                            <style>
+                                               #dewr56 > thead > tr > th{padding-top: 0}
+                                               #dewr56 > tbody > tr > td{padding: 7px}
+                                            </style>
+                                            <table id="dewr56" class="table " style="margin-bottom: 0 !important;" >
+                                             <thead>
+                                                 <tr>
+                                                     <th width="22%" style="text-align: center;  border-style: none;"><span class="title2"  >Başlangıç Saati</span></th>
+                                                     <th style="text-align: center;  border-style: none;"><span class="title2"  >Hostes'in Boş olduğu Yer</span></th>
+                                                     <th width="22%" style="text-align: center; border-style: none;"><span class="title2"  >Bitiş Saati</span></th>
+                                                 </tr>
+                                             </thead>
+                                             <tbody>
+                                                 <ui:repeat var="x" value="#{adBean.allAdRouteList(a.ad_Id)}" >
+                                                     <tr style="color: #434b5a">
+                                                        <td style=" vertical-align: middle; text-align: center"><span class="text2"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                                        <td style="vertical-align: middle; text-align: center;">
+                                                             <div class="text2">
+                                                                 <h:outputText value="#{x.adRoute_StartPosition_Neighborhood.substring(0,x.adRoute_StartPosition_Neighborhood.length()-3)}" style="display: block"></h:outputText>
+                                                                 <h:outputText value="#{x.adRoute_StartPosition_Town}" style="display: block; font-size: 80%;font-weight: 500;line-height: 22px;" ></h:outputText>
+                                                                 <h:outputText value="#{x.adRoute_StartPosition_City}" style="display: block; font-size: 60%;font-weight: 400;line-height: 20px;" ></h:outputText>
+                                                             </div>
+                                                         </td>
+                                                         <td style=" vertical-align: middle; text-align: center"><span class="text2"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                                     </tr>
+                                                 </ui:repeat>     
+                                             </tbody>
+                                         </table>   
+                                         </div>    
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{a.ad_Category_Name.equals('Şöförüm iş arıyorum')}">
+                                        <div class="table-responsive">
+                                            <style>
+                                               #uy676f > thead > tr > th{padding-top: 0}
+                                               #uy676f > tbody > tr > td{padding: 7px}
+                                            </style>
+                                            <table id="uy676f" class="table "  style="margin-bottom: 0 !important;" >
+                                              <thead>
+                                                  <tr>
+                                                      <th width="22%" style="text-align: center; border-style: none;"><span class="title2"  >Başlangıç Saati</span></th>
+                                                      <th style="text-align: center;  border-style: none;"><span class="title2" >Şoför'ün Boş olduğu Yer</span></th>
+                                                      <th width="22%" style="text-align: center;  border-style: none;"><span class="title2" >Bitiş Saati</span></th>
+                                                  </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <ui:repeat var="x" value="#{adBean.allAdRouteList(a.ad_Id)}" >
+                                                      <tr style="color: #434b5a">
+                                                         <td style=" vertical-align: middle; text-align: center"><span class="text2"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                                         <td style="vertical-align: middle; text-align: center;">
+                                                              <div class="text2">
+                                                                  <h:outputText value="#{x.adRoute_StartPosition_Neighborhood.substring(0,x.adRoute_StartPosition_Neighborhood.length()-3)}" style="display: block"></h:outputText>
+                                                                  <h:outputText value="#{x.adRoute_StartPosition_Town}" style="display: block; font-size: 80%;font-weight: 500;line-height: 22px;" ></h:outputText>
+                                                                  <h:outputText value="#{x.adRoute_StartPosition_City}" style="display: block; font-size: 60%;font-weight: 400;line-height: 20px;" ></h:outputText>
+                                                              </div>
+                                                          </td>
+                                                          <td style=" vertical-align: middle; text-align: center"><span class="text2"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                                      </tr>
+                                                  </ui:repeat>     
+                                              </tbody>
+                                          </table>
+                                          </div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{a.ad_Category_Name.equals('Plakamı satıyorum')}">
+                                        <div class="time-info justify-content-start">
+                                            <div class="time-info-item"><div class="title2">Plaka</div><div class="text2" >#{a.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateProvinceCode}&nbsp;#{a.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateLatterCode.toUpperCase()}&nbsp;***</div></div>
+                                            <div class="time-info-item"><div class="title2">Ücret</div><div class="text2" ><h:outputText value="#{a.adPlakamiSatiyorum.ad_PlakamiSatiyorum_ucret}"></h:outputText> TL</div></div>
+                                        </div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{!a.ad_Category_Name.equals('reklam') }">
+                                        <hr style="margin-top: 0px ; margin-bottom: 10px;"/>
+                                    </h:panelGroup>
+
+                                    <!--/IlanKonumVeSaat-->
+
+                                    <!--IlanAltBilgi-->
+                                    <style>
+                                        .title{font-size: 0.8rem !important;}
+                                        .text{font-size: 0.8rem !important;font-weight: 500 !important;}
+                                    </style>
+                                    <h:panelGroup rendered="#{a.ad_Category_Name.equals('reklam') }"></h:panelGroup>
+                                     <h:panelGroup rendered="#{!a.ad_Category_Name.equals('reklam') }">
+                                       
+                                        <div class="row"> 
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('İşim var araç arıyorum') }">
+                                                <div class="content-info-area col-lg-6 col-sm-12">
+                                                    <div class="item">
+                                                        <span class="title">İlan Veren : </span> 
+                                                        <span class="text">
+                                                            <h:panelGroup rendered="#{a.accountBean.account_MembershipType eq 'corporate'}"><h:outputText value="#{a.corporateAccountBean.company_Name}"/></h:panelGroup>
+                                                            <h:panelGroup rendered="#{a.accountBean.account_MembershipType eq 'personal'}">
+                                                                <h:panelGroup rendered="#{a.accountBean.account_ActivityArea eq null}"><span >Bireysel çalışan</span></h:panelGroup>
+                                                                <h:panelGroup rendered="#{a.accountBean.account_ActivityArea ne null}"><span >#{a.accountBean.account_ActivityArea}</span></h:panelGroup>
+
+                                                            </h:panelGroup>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="content-info-area col-lg-6 col-sm-12 ">
+                                                    <div class="item">
+                                                        <span class="title">Servis Türü: </span>
+                                                        <span class="text"><h:outputText value="#{a.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceType.substring(1)}"/></span>
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup> 
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracım var iş arıyorum') }">
+                                                <div class="content-info-area col-lg-6 col-sm-12">
+                                                    <div class="item">
+                                                        <span class="title">İlan Veren : </span> 
+                                                        <span class="text">
+                                                            <h:panelGroup rendered="#{a.accountBean.account_MembershipType eq 'corporate'}"><h:outputText value="#{a.corporateAccountBean.company_Name}"/></h:panelGroup>
+                                                            <h:panelGroup rendered="#{a.accountBean.account_MembershipType eq 'personal'}">
+                                                                <h:panelGroup rendered="#{a.accountBean.account_ActivityArea eq null}"><span >Bireysel çalışan</span></h:panelGroup>
+                                                                <h:panelGroup rendered="#{a.accountBean.account_ActivityArea ne null}"><span >#{a.accountBean.account_ActivityArea}</span></h:panelGroup>
+
+                                                            </h:panelGroup>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="content-info-area col-lg-6 col-sm-12  ">
+                                                    <div class="item">
+                                                        <span class="title">Servis Türü: </span>
+                                                        <span class="text"><h:outputText value="#{a.adAracimVarIsAriyorum_vehicle.vehicle_ServiceTypes.substring(1)}"/></span>
+                                                    </div>
+                                                </div>
+                                                <div class="content-info-area col-lg-6 col-sm-12 ">
+                                                    <div class="item">
+                                                        <span class="title">Araç: </span>
+                                                        <span class="text">#{a.adAracimVarIsAriyorum_vehicle.vehicle_ModelYear==0?'':a.adAracimVarIsAriyorum_vehicle.vehicle_ModelYear}&nbsp;
+                                                                            #{a.adAracimVarIsAriyorum_vehicle.vehicle_Brand}</span>&nbsp;
+                                                                            <h:panelGroup rendered="#{a.adAracimVarIsAriyorum_vehicle.vehicle_Model eq 'Diğer Model'}"></h:panelGroup>
+                                                                            <h:panelGroup rendered="#{a.adAracimVarIsAriyorum_vehicle.vehicle_Model ne 'Diğer Model'}"><span class="text">#{a.adAracimVarIsAriyorum_vehicle.vehicle_Model}</span></h:panelGroup>
+
+                                                    </div>    
+                                                </div>
+                                            </h:panelGroup> 
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracim var şöför arıyorum') }">
+                                                <div class="content-info-area col-lg-6 col-sm-12">
+                                                    <div class="item">
+                                                        <span class="title">İlan Veren : </span> 
+                                                        <span class="text">
+                                                            <h:panelGroup rendered="#{a.accountBean.account_MembershipType eq 'corporate'}"><h:outputText value="#{a.corporateAccountBean.company_Name}"/></h:panelGroup>
+                                                            <h:panelGroup rendered="#{a.accountBean.account_MembershipType eq 'personal'}">
+                                                                <h:panelGroup rendered="#{a.accountBean.account_ActivityArea eq null}"><span >Bireysel çalışan</span></h:panelGroup>
+                                                                <h:panelGroup rendered="#{a.accountBean.account_ActivityArea ne null}"><span >#{a.accountBean.account_ActivityArea}</span></h:panelGroup>
+
+                                                            </h:panelGroup>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </h:panelGroup> 
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracim var hostes arıyorum') }">
+                                                <div class="content-info-area col-lg-6 col-sm-12">
+                                                    <div class="item">
+                                                        <span class="title">İlan Veren : </span> 
+                                                        <span class="text">
+                                                            <h:panelGroup rendered="#{a.accountBean.account_MembershipType eq 'corporate'}"><h:outputText value="#{a.corporateAccountBean.company_Name}"/></h:panelGroup>
+                                                            <h:panelGroup rendered="#{a.accountBean.account_MembershipType eq 'personal'}">
+                                                                <h:panelGroup rendered="#{a.accountBean.account_ActivityArea eq null}"><span >Bireysel çalışan</span></h:panelGroup>
+                                                                <h:panelGroup rendered="#{a.accountBean.account_ActivityArea ne null}"><span >#{a.accountBean.account_ActivityArea}</span></h:panelGroup>
+
+                                                            </h:panelGroup>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </h:panelGroup> 
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Hostesim iş arıyorum') }">
+                                                
+                                                <div class="content-info-area col-lg-6 col-sm-12  ">
+                                                    <div class="item">
+                                                        <h:panelGroup rendered="#{a.adHostesimIsAriyorumBean.hostess.hostess_yasi == 0}"></h:panelGroup>
+                                                        <h:panelGroup rendered="#{a.adHostesimIsAriyorumBean.hostess.hostess_yasi != 0}">
+                                                            <span class="title">Yaşı </span>
+                                                            <span class="text">#{a.adHostesimIsAriyorumBean.hostess.hostess_yasi}</span>
+                                                        </h:panelGroup>
+
+
+                                                    </div>
+                                                </div>    
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Şöförüm iş arıyorum') }">
+                                                <div class="content-info-area col-lg-6 col-sm-12  ">
+                                                    <div class="item">
+                                                        <h:panelGroup rendered="#{a.adSoforumIsAriyorumBean.driver.driver_yasi == 0}"></h:panelGroup>
+                                                        <h:panelGroup rendered="#{a.adSoforumIsAriyorumBean.driver.driver_yasi != 0}">
+                                                            <span class="title">Yaşı </span>
+                                                            <span class="text">#{a.adSoforumIsAriyorumBean.driver.driver_yasi}</span>
+                                                        </h:panelGroup>
+
+
+                                                    </div>
+                                                </div>    
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{a.ad_Category_Name.equals('Plakamı satıyorum') }">
+                                                <div class="content-info-area col-lg-6 col-sm-12">
+                                                    <div class="item">
+                                                        <span class="title">İlan Veren : </span> 
+                                                        <span class="text">
+                                                            <h:panelGroup rendered="#{a.accountBean.account_MembershipType eq 'corporate'}"><h:outputText value="#{a.corporateAccountBean.company_Name}"/></h:panelGroup>
+                                                            <h:panelGroup rendered="#{a.accountBean.account_MembershipType eq 'personal'}">
+                                                                <h:panelGroup rendered="#{a.accountBean.account_ActivityArea eq null}"><span >Bireysel çalışan</span></h:panelGroup>
+                                                                <h:panelGroup rendered="#{a.accountBean.account_ActivityArea ne null}"><span >#{a.accountBean.account_ActivityArea}</span></h:panelGroup>
+
+                                                            </h:panelGroup>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </h:panelGroup> 
+                                        </div>     
+                                     </h:panelGroup>     
+
+                                    <!--/IlanAltBilgi-->
+
+                                </div>
+                                </h:panelGroup>
+                                <!--/IlanIcerik-->
+                            </div>
+                            <!--Ilan-->
+                        </ui:repeat>    
+                    </div>
+                    <!--/TumIlanlar-->   
+                    <!--paginatorBolumu-->
+                        <div class="col-md-12" style="text-align:center;margin-top: 30px;">
+                            <span style="font-weight: 600;color: #616161">Toplam <h:outputText value="#{adBean.paginatorForMobile.recordsTotal}"></h:outputText> Adet ilan bulundu</span><br/>
+                            <div class="btn-group" role="group" aria-label="Basic" style="margin-top: 10px;border: 1px solid #30384621;">
+                                <h:commandButton class="btn btn-accent" value="&lt; Önceki Sayfa" action="#{adBean.paginatorForMobile.prev}"/>
+                                <h:commandButton class="btn btn-accent" value="#{adBean.paginatorForMobile.pageIndex} / #{adBean.paginatorForMobile.pages}" disabled="true"/>
+                                <h:commandButton class="btn btn-accent" value="Sonraki Sayfa &gt;" action="#{adBean.paginatorForMobile.next}"/>
+                                <h:inputHidden value="#{adBean.paginatorForMobile.pageIndex}"/>
+                            </div>
+                        </div>
+                        <!--/paginatorBolumu-->
+                </h:panelGroup>            
+
+           
+        </ui:composition>
+    </h:body>
+</html>
+

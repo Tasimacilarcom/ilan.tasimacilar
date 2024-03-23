@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <ui:composition template="/public/templates/adPageLayout.xhtml">
+            <ui:define name="ad_main">
+                <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.adBean.ad_IsActive eq false or AdSoforumIsAriyorumBean.accountBean == null or AdSoforumIsAriyorumBean.accountBean.account_IsActive eq false}">
+                    <ui:insert name="adAvailabilityAlert" ><ui:include src="../../templates/adAvailabilityAlert.xhtml" /></ui:insert>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.adBean.ad_IsActive eq true and AdSoforumIsAriyorumBean.accountBean != null and AdSoforumIsAriyorumBean.accountBean.account_IsActive eq true}">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-8">
+                            <div class="profile-card background-blue mb-3 py-3 px-1">
+                                <div class="d-flex ad-detail-header">
+                                    <div class="col"><div class="title">İlan Tarihi</div><p><h:outputText value="#{AdSoforumIsAriyorumBean.adBean.ad_CreateTime}"><f:convertDateTime pattern=" dd.MM.YYYY HH:mm"></f:convertDateTime></h:outputText></p></div>
+                                    <div class="col"><div class="title">İlan No</div><p>#{AdSoforumIsAriyorumBean.adBean.ad_Id2}</p></div>
+                                </div>
+                            </div>
+                            <div class="box-style p-3 mb-4">
+                                <div class="box-content">
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="box-style d-flex align-items-center p- mb-3 ">
+                                                <div class="title-sm-orange mr-3">Doğum Yeri &amp; Tarihi</div>
+                                                <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_PlaceOfBirth}" />&nbsp;-&nbsp;
+                                                <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_BirthDate}" ><f:convertDateTime pattern="dd.MM.YYYY"></f:convertDateTime></h:outputText>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="box-style d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Sürücü Belgesi &amp; Yılı</div>
+                                                <ui:repeat value="#{AdSoforumIsAriyorumBean.driver.driver_DriversLicenses}" varStatus="vs" var="">
+                                                    <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_DriversLicenses[vs.index]}&nbsp;" /> 
+                                                </ui:repeat>&nbsp;-&nbsp;
+                                                <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_DriversLicenseYear}" >
+                                                    <f:convertDateTime pattern="YYYY"></f:convertDateTime>
+                                                </h:outputText>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="box-style d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Belgeler</div>
+                                                <ui:repeat varStatus="vs" var="" value="#{AdSoforumIsAriyorumBean.driver.driver_RequestedDocumentesList}">
+                                                    <span class="tag mr-2 mb-2" style="padding: 0 !important"><h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_RequestedDocumentesList[vs.index]}" /></span>
+                                                </ui:repeat>
+                                            </div>
+                                        </div>    
+                                    </div>    
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="box-style d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Bilinen Yabancı Diller</div>
+                                                <ui:repeat varStatus="vs" var="" value="#{AdSoforumIsAriyorumBean.driver.driver_ForeignLanguagesList}">
+                                                    <span class="tag mr-2 mb-2" ><h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_ForeignLanguagesList[vs.index]}&nbsp;" /> </span>
+                                                </ui:repeat>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="box-style d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Kullanmak İstediği Araç</div>
+                                                <ui:repeat varStatus="vs" var="" value="#{AdSoforumIsAriyorumBean.driver.driver_VehicleTypesList}">
+                                                    <span class="tag mr-2 mb-2" style="padding: 0 !important"> <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_VehicleTypesList[vs.index]}&nbsp;" /> </span>
+                                                </ui:repeat>
+                                            </div>
+                                        </div>    
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="box-style d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Mesleki Yeterlilik Belgesi Var Mı?</div> 
+                                                <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_CertificateOfProfessionalCompetence?'Evet':'Hayır'}" />
+                                            </div>
+                                        </div>    
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <div class="box-style d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Deneyimi Var Mı?</div> 
+                                                <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_ServiceTransportationExperience?'Evet':'Hayır'}" />
+                                            </div>
+                                        </div>  
+                                     
+                                        <div class="col-6 ">
+                                            <div class="box-style d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Ücret beklentisi</div> 
+                                                <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_Fee}" />
+                                            </div>
+                                        </div>  
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Emekli mi?</div> 
+                                                <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_Retired?'Evet':'Hayır'}" />
+                                            </div>    
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Sabıka Kaydı Var Mı?</div> 
+                                                <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_CriminalRecord?'Evet':'Hayır'}" />
+                                            </div>
+                                        </div>
+                                    </div> 
+                                     <div class="row">
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Hostesi Varmı?</div> 
+                                                <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_DoYouHaveHostess?'Evet':'Hayır'}" />
+                                            </div>    
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Ekstra İşlere Gİder mi?</div> 
+                                                <h:outputText value="#{AdSoforumIsAriyorumBean.driver.driver_ExtraJobs?'Evet':'Hayır'}" />
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                            
+                         
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4">
+                            <div class="ad-owner box-style mb-2">
+                                
+                                <div class="image" style="padding: 20px;padding-bottom: 0;padding-top: 0">
+                                    <h:panelGroup rendered="#{!AdSoforumIsAriyorumBean.driver.driver_ProfilePicturePublish}">
+                                        <h:panelGroup id="frsfesr43refes" rendered="#{AdSoforumIsAriyorumBean.driver.driver_ProfilePictureUrl == null}">
+                                            <img class="img-fluid" style="width: 100%" src="/resources/img/user.png" alt="userImg"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup id="cxvdsfsa" rendered="#{AdSoforumIsAriyorumBean.driver.driver_ProfilePictureUrl != null}">
+                                            <img class="img-fluid" style="width: 100%; border-radius: 10px;" id="sfdsf4tr4rf" src="#{AdSoforumIsAriyorumBean.driver.driver_ProfilePictureUrl}" alt="driverImg"/>                                          
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.driver.driver_ProfilePicturePublish}">
+                                        <img class="img-fluid" style="width: 100%" src="/resources/img/user.png" alt="userImg"/>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="other my-3 mx-4">
+                                    <div class="box-style mb-2">
+                                        <div class="font-weight-bold text-center py-2">
+                                            <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.accountBean.account_MembershipType eq 'corporate'}">
+                                                <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.corporateAccountBean.company_LogoUrl ne ''}">
+                                                    <div><img style="width: 80%" src="#{AdSoforumIsAriyorumBean.corporateAccountBean.company_LogoUrl}" alt=""/></div>
+                                                    <div style="padding-top: 5px;"><span style="font-size: 1.4em; font-weight: 500">#{AdSoforumIsAriyorumBean.corporateAccountBean.company_Name}</span></div>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.corporateAccountBean.company_LogoUrl eq ''}">
+                                                    <div style="padding-top: 5px;"><span style="font-size: 1.4em; font-weight: 500">#{AdSoforumIsAriyorumBean.corporateAccountBean.company_Name}</span></div>
+                                                </h:panelGroup>
+                                                <span style="font-size: 1.1em; font-weight: 400">#{AdSoforumIsAriyorumBean.accountBean.account_FirstName}&nbsp;#{AdSoforumIsAriyorumBean.accountBean.account_LastName}</span><br/>
+                                                <span ><em>#{AdSoforumIsAriyorumBean.corporateAccountBean.company_ActivityArea}</em></span>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{AdSoforumIsAriyorumBean.accountBean.account_MembershipType eq 'personal'}">
+                                                #{AdSoforumIsAriyorumBean.accountBean.account_FirstName}&nbsp;#{AdSoforumIsAriyorumBean.accountBean.account_LastName}
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="font-weight-light text-center py-2" style="font-size: 0.8rem">
+                                            Üyelik Tarihi : 
+                                            <h:outputText value="#{AdSoforumIsAriyorumBean.accountBean.account_CreateTime}">
+                                                <f:convertDateTime pattern="dd.MM.YYYY"></f:convertDateTime>
+                                            </h:outputText> 
+                                        </div>
+                                    </div>
+
+                                    <div class="box-style mb-2">
+                                        <div class="text-center py-2"><h:outputText style="font-size: 1.8rem" value="#{AdSoforumIsAriyorumBean.accountBean.account_MobilePhoneNumber}"/></div>
+                                    </div>
+                                </div>
+                           
+                            </div>
+                            <div class="box-style mb-2">
+                                <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/login"> 
+                                        <div class="title-orange text-center p-1 m-0">İlan sahibine soru sor</div>
+                                    </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'corporate'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/private/kurumsal/mesajlar/detay/yeni/#{AdSoforumIsAriyorumBean.adBean.ad_Id}"> 
+                                        <div class="title-orange text-center p-1 m-0">İlan sahibine soru sor</div>
+                                    </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/private/bireysel/mesajlar/detay/yeni/#{AdSoforumIsAriyorumBean.adBean.ad_Id}">
+                                        <div class="title-orange text-center p-1 m-0">İlan sahibine soru sor</div>
+                                    </a>
+                                </h:panelGroup>
+                            </div>
+
+                            <div class="box-style mb-2">
+                                <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/login"> 
+                                        <div class="title-orange text-center p-1 m-0">Favorilere Ekle <i class="far fa-heart" aria-hidden="true"></i></div>
+                                    </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'corporate' or accountMembershipType eq 'personal'}">
+                                    <h:form id="sfdsfdsf" prependId="false">
+                                        <style>  .ui-growl-item {
+                                            margin-top: 100px;
+                                        }  </style>
+                                        <p:growl id="growl" showDetail="true" life="2000"  sticky="false"/>  
+                                        <h:commandLink action="#{AdSoforumIsAriyorumBean.createFavoritesAd()}" class="link" title="Bu İlanı Favorilerime Ekle">
+                                            <div class="title-orange text-center p-1 m-0">Favorilere Ekle <i class="far fa-heart" aria-hidden="true"></i></div>
+                                            <f:ajax execute="sfdsfdsf" render="sfdsfdsf"></f:ajax>
+                                        </h:commandLink>
+                                    </h:form>
+                                </h:panelGroup>    
+                            </div>
+
+                            <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                <div class="box-style mb-2">
+                                    <a href="/login" class="link" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-1 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{accountMembershipType eq 'personal'}">
+                                <div class="box-style mb-2">
+                                    <a href="/private/bireysel/destek" class="link" target="_blank" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-1 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{accountMembershipType eq 'corporate'}">
+                                <div class="box-style mb-2">
+                                    <a href="/private/kurumsal/destek" class="link" target="_blank" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-1 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                            <div class="box-style mb-2 p-1 text-center" style="color: #f39437;">
+                                <h:form id="counterForm" prependId="false">
+                                    <p:remoteCommand name="myRemote" update="adViewCountX" actionListener="#{adCountersBean.execute()}"/>
+                                </h:form>
+                                <script>window.onload = function() {myRemote(); };</script>
+                                Bu ilan <b><h:outputText id="adViewCountX" value="#{adCountersBean.ad_ViewCount}" /></b>  kere görüntülendi
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="guzergah-list p-3 route-wrap d-block mb-3">   
+                                <div class="table-responsive">
+                                    <table class="table " >
+                                        <thead>
+                                            <tr>
+                                                <th width="22%" style="text-align: center; background: #f3f3f3d1; border-style: none;"><span class="title" style="color: #e19c73;" >Başlangıç Saati</span></th>
+                                                <th style="text-align: center; background: #f3f3f3d1; border-style: none;"><span class="title"  style="color: #e19c73;">Şoför'ün Boş olduğu Yer</span></th>
+                                                <th width="22%" style="text-align: center; background: #f3f3f3d1; border-style: none;"><span class="title"  style="color: #e19c73;">Bitiş Saati</span></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ui:repeat var="x" value="#{AdSoforumIsAriyorumBean.locationInfoFromMap.locationList}">
+                                                <tr style="color: #434b5a">
+                                                    <td style=" vertical-align: middle; text-align: center"><span class="text"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                                    <td style="vertical-align: middle; text-align: center;">
+                                                        <div class="text">
+                                                            <h:outputText value="#{x.adRoute_StartPosition_Neighborhood}" style="display: block"></h:outputText>
+                                                            <h:outputText value="#{x.adRoute_StartPosition_Town}" style="display: block; font-size: 80%;font-weight: 500;line-height: 22px;" ></h:outputText>
+                                                            <h:outputText value="#{x.adRoute_StartPosition_City}" style="display: block; font-size: 60%;font-weight: 400;line-height: 20px;" ></h:outputText>
+                                                        </div>
+                                                    </td>
+                                                    <td style=" vertical-align: middle; text-align: center"><span class="text"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                                </tr>
+                                            </ui:repeat>     
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="box-style">
+                                <div class="box-content p-3">
+                                    <div class="title-sm-orange mb-2">Açıklama</div>
+                                    <h:outputText style="font-size: 1.2rem" value="#{AdSoforumIsAriyorumBean.adBean.ad_Comment}" escape="false"/>
+                                </div>
+                            </div>
+                            
+                            <!--usersAds-->                        
+                            <div class="col-12 p-0 mt-5">
+                                <div class="home-list" style="width: 100%">
+                                    <p class="mb-4" 
+                                       style="font-weight: 700; font-size: 16px; line-height: 20px; color: #212429; padding-bottom: 0.25rem;  border-bottom: 2px solid #de904e;">
+                                        #{AdSoforumIsAriyorumBean.accountBean.account_FirstName}&nbsp;#{AdSoforumIsAriyorumBean.accountBean.account_LastName} <span style="font-weight: 500">tarafından oluşturulmuş en yeni ilanlar</span>
+                                    </p>
+
+                                    <p:scrollPanel mode="native" style="max-height:360px; padding: 20px">             
+                                        <ui:repeat var="a" value="#{AdSoforumIsAriyorumBean.adList}">
+                                            <!--Ilan-->
+                                                 <ui:insert name="usersAds" ><ui:include src="../common/usersAds.xhtml" /></ui:insert>
+                                            <!--Ilan-->
+                                        </ui:repeat>    
+                                    </p:scrollPanel>
+                                </div>    
+                            </div>
+                            <!--/usersAds-->
+                            
+                        </div>
+                    </div>
+                </h:panelGroup>    
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <ui:composition template="../../public/templates/wehiclePageLayout.xhtml">
+            <ui:define name="ad_main">
+                
+                 <h:panelGroup rendered="#{vehicleBean.vehicle.vehicle_IsActive != true}">
+                    <div class="col-md-12" style="padding: 30px; text-align: center; color: #ccc">
+                        <h2><i style="font-size: 2rem" class="fa fa-meh-rolling-eyes"></i>&nbsp;&nbsp;Üzgünüz herhangi bir kayıda ulaşamadık</h2>
+                    </div>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{vehicleBean.vehicle.vehicle_IsActive == true}">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-8">
+                            <div class="profile-card background-orange mb-3 py-3 px-1">
+                                <div class="d-flex ad-detail-header">
+                                    <div class="col">
+                                        <div class="title">
+                                            <h:outputText value="#{vehicleBean.vehicle.vehicle_PlateProvinceCode} #{vehicleBean.vehicle.vehicle_PlateLatterCode} #{vehicleBean.vehicle.vehicle_PlateNumberCode}** - Araç Detayı"></h:outputText> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-style p-3 mb-3">
+                                <div class="title mb-3"><div class="title-bold m-0"><!--<i class="fas fa-bus"></i> Title Comes here-->&nbsp;</div>
+                                    <div class="box-content">
+                                        <div class="box-style d-flex align-items-center p-3 mb-3">
+                                          <div class="title-sm-orange mr-3">Araç Markası - Modeli - Yılı</div>
+                                          <span><h:outputText value="#{vehicleBean.vehicle.vehicle_Brand} - #{vehicleBean.vehicle.vehicle_Model} - #{vehicleBean.vehicle.vehicle_ModelYear}" /></span>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="box-style d-flex align-items-center p-3 mr-3">
+                                              <div class="title-sm-orange mr-3">Araç Koltuk Sayısı</div>
+                                              <span><h:outputText value="#{vehicleBean.vehicle.vehicle_NumberOfSeats}" /></span>
+                                            </div>
+                                            <div class="box-style d-flex align-items-center p-3">
+                                                <div class="title-sm-orange mr-3">Servis Türü</div>
+                                                <div class="d-flex flex-wrap">
+                                                    <ui:repeat varStatus="vs" var="" value="#{vehicleBean.vehicle.vehicle_ServiceTypesList}">
+                                                        <span class="tag mr-2 mb-2">
+                                                            <h:outputText value="#{vehicleBean.vehicle.vehicle_ServiceTypesList[vs.index]}&nbsp;" /> 
+                                                        </span>
+                                                    </ui:repeat>
+                                                </div>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-menu">
+                                <ul class="nav nav-tabs mb-3">
+                                  <li><a data-toggle="tab" href="#ek-bilgiler" class="active">Ek Bilgiler</a></li>
+                                  <li><a data-toggle="tab" href="#photo-video">Araç Fotoğrafları</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="ek-bilgiler" class="tab-pane fade in show active">
+                                        <div class="box-style p-3 mb-3">
+                                            <div class="box-content">
+                                                <div class="d-flex mb-3">
+                                                    <div class="box-style d-flex align-items-center p-3 mr-3">
+                                                        <div class="title-sm-orange mr-3">Hostes Bilgisi</div>
+                                                        <span><h:outputText value="#{vehicleBean.vehicle.vehicle_HostessInfo}" /></span>
+                                                    </div>
+                                                    <div class="box-style d-flex align-items-center p-3">
+                                                      <div class="title-sm-orange mr-3">Sürücü Bilgisi</div>
+                                                      <span><h:outputText value="#{vehicleBean.vehicle.vehicle_DriverInfo}" /></span>
+                                                    </div>
+                                                </div>
+                                                <div class="box-style d-flex align-items-center p-3 mr-3">
+                                                    <div class="title-sm-orange mr-3">Araç Özellikleri</div>
+                                                    <div class="d-flex flex-wrap">
+                                                        <ui:repeat varStatus="vs" var="" value="#{vehicleBean.vehicle.vehicle_VehiclePropertiesList}">
+                                                            <span class="tag mr-2 mb-2" >
+                                                                <h:outputText value="#{vehicleBean.vehicle.vehicle_VehiclePropertiesList[vs.index]}&nbsp;" /> 
+                                                            </span>
+                                                        </ui:repeat>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="photo-video" class="tab-pane fade">
+                                        <div class="box-style p-3 mb-3">                                 
+                                            <div class="image-gallery d-flex flex-wrap">
+                                                <h:panelGroup rendered="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_1_Url != null}">
+                                                     <a class="fancybox-thumbs" data-fancybox-group="thumb" href="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_1_Url}">
+                                                        <img src="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_1_Url}" alt="" />
+                                                      </a>
+                                                </h:panelGroup>  
+                                                <h:panelGroup rendered="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_2_Url != null}">
+                                                    <a class="fancybox-thumbs" data-fancybox-group="thumb" href="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_2_Url}">
+                                                        <img src="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_2_Url}" alt="" />
+                                                      </a>
+                                                </h:panelGroup> 
+                                                <h:panelGroup rendered="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_3_Url != null}">
+                                                    <a class="fancybox-thumbs" data-fancybox-group="thumb" href="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_3_Url}">
+                                                        <img src="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_3_Url}" alt="" />
+                                                      </a>
+                                                </h:panelGroup> 
+                                                <h:panelGroup rendered="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_4_Url != null}">
+                                                     <a class="fancybox-thumbs" data-fancybox-group="thumb" href="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_4_Url}">
+                                                        <img src="#{vehicleBean.vehicle.vehicleImages.vehicleImage_GalleryPtoho_4_Url}" alt="" />
+                                                      </a>
+                                                </h:panelGroup> 
+                                                
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4">
+                            <div class="ad-owner box-style mb-2">
+                                <div class=" mb-2 " style="padding: 15px;">
+                                      <h:panelGroup rendered="#{vehicleBean.vehicle.vehicleImages.vehicleImage_ProfilePhotoUrl == null}">
+                                            <img style="width: 100%;" src="/resources/img/vehicleIcon.png" alt="vehiclePhoto"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{vehicleBean.vehicle.vehicleImages.vehicleImage_ProfilePhotoUrl != null}">
+                                            <h:panelGroup  rendered="#{vehicleBean.vehicle.vehicleImages.vehicleImage_ProfilePhotoPublish == false}">
+                                                <img style="width: 100%"  src="#{vehicleBean.vehicle.vehicleImages.vehicleImage_ProfilePhotoUrl}" alt="vehicleProfilePhoto"/> 
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{vehicleBean.vehicle.vehicleImages.vehicleImage_ProfilePhotoPublish == true}">
+                                                <img style="width: 100%; " src="/resources/img/vehicleIcon.png" alt="vehiclePhoto"/>
+                                            </h:panelGroup>
+                                        </h:panelGroup> 
+                                  </div>                              
+                                <div class="other my-3 mx-4">
+                                    <div class="title"><div class="title-bold text-center p-3 m-0">ARAÇ SAHİBİ</div></div>
+                                    <div class="box-style mb-2">
+                                        <div class="font-weight-bold text-center py-2">
+                                            <h:panelGroup rendered="#{vehicleBean.accountBean.account_MembershipType eq 'corporate'}">
+                                                <div style="text-align: center">
+                                                    <h:panelGroup rendered="#{vehicleBean.corporateAccountBean.company_LogoUrl ne ''}">
+                                                        <div><img style="width: 80%" src="#{vehicleBean.corporateAccountBean.company_LogoUrl}" alt=""/></div>
+                                                        <div><span style="font-size: 1.4em; font-weight: 500">#{vehicleBean.accountBean.account_FirstName}&nbsp;#{vehicleBean.accountBean.account_LastName}</span></div>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{vehicleBean.corporateAccountBean.company_LogoUrl eq ''}">
+                                                       <h:outputText value="#{vehicleBean.corporateAccountBean.company_Name}"/>
+                                                        <div><span style="font-size: 1.4em; font-weight: 500">#{vehicleBean.accountBean.account_FirstName}&nbsp;#{vehicleBean.accountBean.account_LastName}</span></div>
+                                                    </h:panelGroup>
+                                                </div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{vehicleBean.accountBean.account_MembershipType eq 'personal'}">
+                                                <div style="text-align: center">
+                                                    <div>#{vehicleBean.accountBean.account_FirstName}&nbsp;#{vehicleBean.accountBean.account_LastName}</div>
+                                                </div>
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="socials mb-2">
+                                    <a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                                    <a href="mailto:#{accountBean.account_EmailAddress}"><i class="far fa-envelope" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:panelGroup>    
+	    </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

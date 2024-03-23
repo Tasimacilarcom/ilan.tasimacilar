@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition>
+
+            <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+                <div class="m-demo__preview" style="padding: 0; border: none">
+                    <ul class="m-nav m-nav--active-bg" id="m_nav" role="tablist">
+                        <li class="m-nav__item">
+                            <a href="/" class="m-nav__link">
+                                <i class="m-nav__link-icon flaticon-home"></i>
+                                <span class="m-nav__link-text">Site Ana Sayfa</span>
+                            </a>
+                        </li>
+                        <li class="m-nav__item">
+                            <a href="/private/director/index.xhtml" class="m-nav__link">
+                                <i class="m-nav__link-icon flaticon-dashboard"></i>
+                                <span class="m-nav__link-text">Kontrol Paneli</span>
+                            </a>
+                        </li>
+                       
+                      
+                                            
+                        <li class="m-nav__item ">
+                            <a class="m-nav__link  collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_22" aria-expanded="  false">
+                                <i class="m-nav__link-icon la la-user"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">Kullanıcılar</span>
+                                    </span>
+                                </span>
+                                <span class="m-nav__link-arrow"></span>
+                            </a>
+                            <ul class="m-nav__sub collapse" id="m_nav_sub_22" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
+                                <li class="m-nav__item">
+                                    <a href="/private/director/users/bireysel_kullanici.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-text">Yeni Bireysel Kullanıcı Ekle</span>
+                                    </a>
+                                </li>
+                                <li class="m-nav__item">
+                                    <a href="/private/director/users/kurumsal_kullanici.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-text">Yeni Kurumsal Kullanıcı Ekle</span>
+                                    </a>
+                                </li>
+                                <li class="m-nav__item">
+                                    <a href="/private/director/users/kullanici_yonetimi.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Kullanıcı Yönetimi</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                 <li class="m-nav__item">
+                                    <a href="/private/director/users/kullanici_karaListe.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Kullanıcı Kara Liste</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="m-nav__item">
+                                    <a href="/private/director/users/profilim.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Profilim</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>     
+                         <li class="m-nav__item ">
+                            <a class="m-nav__link  collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_222" aria-expanded="  false">
+                                <i class="m-nav__link-icon la la-building"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">Firmalar</span>
+                                    </span>
+                                </span>
+                                <span class="m-nav__link-arrow"></span>
+                            </a>
+                            <ul class="m-nav__sub collapse" id="m_nav_sub_222" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
+                                <li class="m-nav__item">
+                                    <a href="/private/director/companies/firma_ekle.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-text">Firma Ekle</span>
+                                    </a>
+                                </li>
+                                 <li class="m-nav__item">
+                                     <a href="/private/director/companies/onay_bekleyen_firmalar.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Onay Bekleyen Firmalar</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="m-nav__item">
+                                    <a href="/private/director/companies/firma_yonetimi.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Firma Yönetimi</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>   
+                        <li class="m-nav__item ">
+                            <a class="m-nav__link  collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_333" aria-expanded="  false">
+                                
+                                <i class="m-nav__link-icon la la-list-ul"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">İlanlar</span>
+                                    </span>
+                                </span>
+                                <span class="m-nav__link-arrow"></span>
+                            </a>
+                            <ul class="m-nav__sub collapse" id="m_nav_sub_333" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
+                                
+                                 <li class="m-nav__item">
+                                     <a href="/private/director/ads/onay_bekleyen_ilanlar/onay_bekleyen_ilanlar.xhtml?p1=getAllNotPublishedAd" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Onay Bekleyen İlanlar</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="m-nav__item">
+                                    <a href="/private/director/ads/ilan_yonetimi.xhtml?p2=getAllPublishedAd" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">İlan Yönetimi</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>  
+                       
+                        <li class="m-nav__item ">
+                            <a class="m-nav__link  collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_4444" aria-expanded="  false">
+                                
+                             <i class="m-nav__link-icon la la-comment-o"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">Yorumlar</span>
+                                    </span>
+                                </span>
+                                <span class="m-nav__link-arrow"></span>
+                            </a>
+                            <ul class="m-nav__sub collapse" id="m_nav_sub_4444" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
+                                <li class="m-nav__item">
+                                    <a href="/private/director/comments/yorum_yonetimi.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-text">Yorum Yönetimi</span>
+                                    </a>
+                                </li>
+                                 <li class="m-nav__item">
+                                     <a href="/private/director/comments/onay_bekleyen_yorumlar.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Onay Bekleyen Yorumlar</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                          
+
+                            </ul>
+                        </li> 
+                        <li class="m-nav__item ">
+                            <a class="m-nav__link  collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_555" aria-expanded="  false">
+                                
+                                <i class="m-nav__link-icon la la-bus"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">Araçlar</span>
+                                    </span>
+                                </span>
+                                <span class="m-nav__link-arrow"></span>
+                            </a>
+                            <ul class="m-nav__sub collapse" id="m_nav_sub_555" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
+                                                              
+                                <li class="m-nav__item">
+                                    <a href="/private/director/vehicles/arac_yonetimi.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Araç Yönetimi</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li> 
+
+                         <li class="m-nav__item ">
+                            <a class="m-nav__link  collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_666" aria-expanded="  false">
+                                
+                                <i class="m-nav__link-icon la la-support"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">Destek</span>
+                                    </span>
+                                </span>
+                                <span class="m-nav__link-arrow"></span>
+                            </a>
+                            <ul class="m-nav__sub collapse" id="m_nav_sub_666" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
+                                <li class="m-nav__item">
+                                    <a href="/private/director/support/yeni_destek_kaydi_ekle.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-text">Yeni Destek Kaydı Ekle</span>
+                                    </a>
+                                </li>
+                               
+                                <li class="m-nav__item">
+                                    <a href="/private/director/support/destek_kayitlari_yonetimi.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Destek Kayıtları Yönetimi</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li> 
+                        <li class="m-nav__item">
+                            <a href="/private/director/favorites/favori_ilanlarim.xhtml" class="m-nav__link">
+                                <i class="m-nav__link-icon la la-star"></i>
+                                <span class="m-nav__link-text">Favori İlanlarım</span>
+                            </a>
+                        </li>
+                        <li class="m-nav__item">
+                            <a href="/private/director/banners/banners.xhtml" class="m-nav__link">
+                                <i class="m-nav__link-icon la la-columns"></i>
+                                <span class="m-nav__link-text">Banner Yönetimi</span>
+                            </a>
+                        </li>
+                      
+                        <li class="m-nav__item ">
+                            <a class="m-nav__link  collapsed" role="tab" id="m_nav_link_2" data-toggle="collapse" href="#m_nav_sub_444" aria-expanded="  false">
+                                
+                                <i class="m-nav__link-icon la la-cogs"></i>
+                                <span class="m-nav__link-title">
+                                    <span class="m-nav__link-wrap">
+                                        <span class="m-nav__link-text">Sistem</span>
+                                    </span>
+                                </span>
+                                <span class="m-nav__link-arrow"></span>
+                            </a>
+                            <ul class="m-nav__sub collapse" id="m_nav_sub_444" role="tabpanel" aria-labelledby="m_nav_link_2" data-parent="#m_nav">
+                                <li class="m-nav__item">
+                                    <a href="/private/director/system/settings/ayarlar.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-text">Ayarlar</span>
+                                    </a>
+                                </li>
+                                <li class="m-nav__item">
+                                    <a href="/private/director/system/lists/listeler.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-text">Listeler</span>
+                                    </a>
+                                </li>
+                                 <li class="m-nav__item">
+                                     <a href="/private/director/system/logs/loglar.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Loglar</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="m-nav__item">
+                                     <a href="/private/director/system/changelogs/surum-loglari.xhtml" class="m-nav__link">
+                                        <span class="m-nav__link-bullet m-nav__link-bullet--line"><span></span></span>
+                                        <span class="m-nav__link-title">
+                                            <span class="m-nav__link-wrap">
+                                                <span class="m-nav__link-text">Sürüm Logları</span>
+
+                                            </span>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>   
+                                           
+                        <li class="m-nav__item">
+                            <a href="/logout" class="m-nav__link">
+                                <i class="m-nav__link-icon flaticon-logout"></i>
+                                <span class="m-nav__link-text">Güvenli Çıkış</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </ui:composition>
+    </h:body>
+    
+</html>
+

@@ -1,0 +1,337 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+
+    <h:body>
+
+        <ui:composition>
+            <h:form class="m-form m-form--label-align-left- m-form--state-" id="m_form" prependId="false" enctype="multipart/form-data">
+                <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" showDetail="true" life="3000"  sticky="false" globalOnly="true"/> 
+                
+                <h:panelGroup rendered="#{vehicleBean.getvParam2() == null}">
+                    <div class="profile-card mb-3 background-orange">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Araçlarım</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Yeni Araç Ekle</li>
+                        </ol>
+                    </div>
+                </h:panelGroup>    
+                <h:panelGroup rendered="#{vehicleBean.getvParam2() != null}">
+                    <div class="profile-card mb-3 background-orange">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Araçlarım</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Araç Düzenle</li>
+                        </ol>
+                    </div>
+                </h:panelGroup>
+                
+                <div class="modal-content">
+                  
+                    <div class="modal-body">
+                        <div class="form">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label font-weight-bold">Plaka</label>
+                                    <div class="row gutter-10">
+                                        <div class="col-lg-4 mb-2">
+                                            <style>#PlateProvinceCode{border: none}</style>
+                                            <p:inputNumber id="PlateProvinceCode" value="#{vehicleBean.vehicle.vehicle_PlateProvinceCode}"
+                                                           style="padding: 0px;" thousandSeparator="" padControl="false" inputStyleClass="form-control" placeholder="34" minValue="0" maxValue="81" 
+                                                           required="true" requiredMessage="Bu alan gereklidir">
+                                                
+                                            </p:inputNumber>
+                                        </div>
+                                        <div class="col-lg-4 mb-2">
+                                            <p:inputText id="PlateLatterCode"  maxlength="5" style="text-transform: uppercase" class="form-control" 
+                                                         value="#{vehicleBean.vehicle.vehicle_PlateLatterCode}" placeholder="LAL"
+                                                         required="true"  requiredMessage="Bu alan gereklidir">
+                                                <p:keyFilter regEx="/[a-z_]/i"/>
+                                            </p:inputText>
+                                        </div>
+                                        <div class="col-lg-4 mb-2">
+                                            <p:inputNumber id="PlateNumberCode" style="padding: 0px;" thousandSeparator=""
+                                                           value="#{vehicleBean.vehicle.vehicle_PlateNumberCode}"
+                                                           padControl="false" inputStyleClass="form-control" placeholder="454" minValue="0" maxValue="99999" 
+                                                           required="true" requiredMessage="Bu alan gereklidir">
+                                            </p:inputNumber>
+                                        </div>
+                                        <div class="col-lg-4"><h:message for="PlateProvinceCode" class="message-f"></h:message>  </div>
+                                        <div class="col-lg-4"><h:message for="PlateLatterCode" class="message-f"></h:message></div>
+                                        <div class="col-lg-4"><h:message for="PlateNumberCode" class="message-f"></h:message></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label font-weight-bold">Servis Türü (Aracınızın paketini işaretleyiniz)</label>
+                                    <div class="row gutter-10">
+                                        <style>
+                                            .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {background-color: #FFF;background-image: none;-webkit-box-shadow: none;box-shadow: none; }
+                                            .ui-chkbox .ui-chkbox-box {border: 1px solid #bdc3d4;width: 18px;height: 18px;display: inline-block;-moz-border-radius: 3px;-webkit-border-radius: 3px; border-radius: 3px; transition: all 0.3s;background: none;font-weight: 400;font-size: 1rem;color: #575962;}
+                                        </style>
+                                        <p:selectManyCheckbox id="serviceType" layout="responsive" columns="4" required="true" requiredMessage="Bu alan gereklidir"
+                                                              value="#{vehicleBean.vehicle.vehicle_ServiceTypesList}" >
+                                            <f:selectItems value="#{selectItemsBean.selectItemList('serviceType')}" var="o" 
+                                                           itemLabel="#{o.selectItem_Label_Tr}" itemValue="#{o.selectItem_Value}" >
+                                            </f:selectItems> 
+                                        </p:selectManyCheckbox>
+                                        <h:message for="serviceType" class="message-f"></h:message>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="adAracimVarHostesAriyorumVehicleBrand" class="col-form-label font-weight-bold">Marka</label>
+                                    <h:selectOneMenu id="adAracimVarHostesAriyorumVehicleBrand" class="form-control"  style="height: 40px;"
+                                                     value="#{vehicleBean.vehicle.vehicle_BrandId}" 
+                                                     required="true" requiredMessage="Bu alan gereklidir" >
+                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                        <f:selectItems value="#{vehicleBean.vehicleBrandNamesListx()}"  var="v"  itemLabel="#{v.vehicleBrand_Name}"   itemValue="#{v.vehicleBrand_Id}" > </f:selectItems>  
+                                        <f:ajax event="change" render="ad_AracimVarHostesAriyorumVehicleModelOneMenu" listener="#{vehicleBean.vehicleModelsListx()}"></f:ajax>
+                                    </h:selectOneMenu> 
+                                    <h:message for="adAracimVarHostesAriyorumVehicleBrand" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="ad_AracimVarHostesAriyorumVehicleModelOneMenu" class="col-form-label font-weight-bold">Model</label>
+                                    <h:selectOneMenu id="ad_AracimVarHostesAriyorumVehicleModelOneMenu" class="form-control" style="height: 40px;"
+                                                     required="true"  requiredMessage="Bu alan gereklidir"
+                                                     value="#{vehicleBean.vehicle.vehicle_Model}"  >
+                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                        <f:selectItems value="#{vehicleBean.vehicleModelsList}"  var="x"  itemLabel="#{x}"  itemValue="#{x}" ></f:selectItems> 
+                                    </h:selectOneMenu> 
+                                    <h:message for="ad_AracimVarHostesAriyorumVehicleModelOneMenu" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="ad_AracimVarHostesAriyorumVehicleYearOneMenu" class="col-form-label font-weight-bold">Araç Yılı</label>
+                                    <h:selectOneMenu id="ad_AracimVarHostesAriyorumVehicleYearOneMenu" class="form-control" style="height: 40px;"
+                                                     required="true"  requiredMessage="Bu alan gereklidir"
+                                                     value="#{vehicleBean.vehicle.vehicle_ModelYear}" >
+                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                        <f:selectItem itemValue="2023" itemLabel="2023"></f:selectItem>
+                                        <f:selectItem itemValue="2022" itemLabel="2022"></f:selectItem>
+                                        <f:selectItem itemValue="2021" itemLabel="2021"></f:selectItem>
+                                        <f:selectItem itemValue="2020" itemLabel="2020"></f:selectItem>
+                                        <f:selectItem itemValue="2019" itemLabel="2019"></f:selectItem>
+                                        <f:selectItem itemValue="2018" itemLabel="2018"></f:selectItem>
+                                        <f:selectItem itemValue="2017" itemLabel="2017"></f:selectItem>
+                                        <f:selectItem itemValue="2016" itemLabel="2016"></f:selectItem>
+                                        <f:selectItem itemValue="2015" itemLabel="2015"></f:selectItem>
+                                        <f:selectItem itemValue="2014" itemLabel="2014"></f:selectItem>
+                                        <f:selectItem itemValue="2013" itemLabel="2013"></f:selectItem>
+                                        <f:selectItem itemValue="2012" itemLabel="2012"></f:selectItem>
+                                        <f:selectItem itemValue="2011" itemLabel="2011"></f:selectItem>
+                                        <f:selectItem itemValue="2010" itemLabel="2010"></f:selectItem>
+                                        <f:selectItem itemValue="2009" itemLabel="2009"></f:selectItem>
+                                        <f:selectItem itemValue="2008" itemLabel="2008"></f:selectItem>
+                                        <f:selectItem itemValue="2007" itemLabel="2007"></f:selectItem>
+                                        <f:selectItem itemValue="2006" itemLabel="2006"></f:selectItem>
+                                        <f:selectItem itemValue="2005" itemLabel="2005"></f:selectItem>
+                                    </h:selectOneMenu> 
+                                    <h:message for="ad_AracimVarHostesAriyorumVehicleYearOneMenu" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="ad_AracimVarIsAriyorum_vehicleHostessInfo" class="col-form-label font-weight-bold">Hostes Bilgisi</label>
+                                    <h:selectOneMenu id="ad_AracimVarIsAriyorum_vehicleHostessInfo" class="form-control" style="height: 40px;"
+                                                     value="#{vehicleBean.vehicle.vehicle_HostessInfo}" 
+                                                     required="true" requiredMessage="Bu alan gereklidir">
+                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                        <f:selectItem itemValue = "hostes-var" itemLabel = "Hostes Var" /> 
+                                        <f:selectItem itemValue = "hostes-yok" itemLabel = "Hostes Yok" />    
+                                    </h:selectOneMenu> 
+                                    <h:message for="ad_AracimVarIsAriyorum_vehicleHostessInfo" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="ad_AracimVarIsAriyorum_vehicleDriverInfo" class="col-form-label font-weight-bold">Sürücü Bilgisi</label>
+                                    <h:selectOneMenu id="ad_AracimVarIsAriyorum_vehicleDriverInfo" class="form-control" style="height: 40px;" 
+                                                     value="#{vehicleBean.vehicle.vehicle_DriverInfo}" 
+                                                     required="true"  requiredMessage="Bu alan gereklidir">
+                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                        <f:selectItem itemValue = "kendim-kullaniyorum" itemLabel = "Aracı Kendim Kullanıyorum" /> 
+                                        <f:selectItem itemValue = "sofor-kullaniyor" itemLabel = "Aracı Şöför Kullanıyor" />       
+                                        <f:selectItem itemValue = "sofor-yok" itemLabel = "Şöförü Yok" />  
+                                    </h:selectOneMenu> 
+                                    <h:message for="ad_AracimVarIsAriyorum_vehicleDriverInfo" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="adAracimVarHostesAriyorumVehicleCapacityOneMenu" class="col-form-label font-weight-bold">Araç Kapasitesi</label>
+                                    <h:selectOneMenu id="adAracimVarHostesAriyorumVehicleCapacityOneMenu" required="true" requiredMessage="Bu alan gereklidir"
+                                                     value="#{vehicleBean.vehicle.vehicle_NumberOfSeats}" class="form-control " style="height: 40px;">
+                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                        <f:selectItems value="#{selectItemsBean.selectItemList('VehicleCapacity')}"   var="o"   itemLabel="#{o.selectItem_Label_Tr}"  itemValue="#{o.selectItem_Value}" > </f:selectItems> 
+                                    </h:selectOneMenu> 
+                                    <h:message for="adAracimVarHostesAriyorumVehicleCapacityOneMenu" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label font-weight-bold">Özellikler</label>
+                                    <div class="row gutter-10 flex-wrap">
+                                        <style>
+                                            .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { background-color: #FFF; background-image: none; -webkit-box-shadow: none; box-shadow: none;  }
+                                            .ui-chkbox .ui-chkbox-box { border: 1px solid #bdc3d4; width: 18px; height: 18px; display: inline-block; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; transition: all 0.3s; background: none; font-weight: 400; font-size: 1rem; color: #575962;}
+                                        </style>
+                                        <p:selectManyCheckbox id="VehicleProperties"  layout="responsive" columns="4" 
+                                                              value="#{vehicleBean.vehicle.vehicle_VehiclePropertiesList}">
+                                            <f:selectItems value="#{selectItemsBean.selectItemList('VehicleProperties')}"  var="o"  
+                                                           itemLabel="#{o.selectItem_Label_Tr}"   itemValue="#{o.selectItem_Value}" >
+                                            </f:selectItems> 
+                                        </p:selectManyCheckbox>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label font-weight-bold">Fotoğraflar</label><br/>
+                                    <div class="row">
+                                        <div class="col-lg-10 mb-2 ">
+                                            <h:inputFile id="ef43rfewd" onchange="prg()" validator="#{vehicleBean.vehicleImagesBean.validateFile}">
+                                                <f:passThroughAttribute name="multiple" value="true"/>
+                                                <f:ajax event="change"  listener="#{vehicleBean.vehicleImagesBean.filesUpload()}" execute="@this" render="growl wer543 uploaded-images fdst4er kjkj453"/>
+                                            </h:inputFile>                        
+                                        </div>
+                                        <div class="col-xl-2 col-lg-2 m--align-right  mb-2">
+                                            <h:commandLink action="#{vehicleBean.vehicleImagesBean.deleteVehiclegalleryImages()}" 
+                                                           class="btn btn-outline-danger btn-sm" value="Tümünü SİL">
+                                                <f:ajax execute="@this" render="uploaded-images wer543"/>
+                                            </h:commandLink>
+                                        </div> 
+                                        <div class="col-lg-12" style="margin-top: 20px;">
+                                            <h:panelGroup id="uploadProgress" style="display:none ; height: 25px; ">
+                                                <div  class="progress  m-progress--lg" style=" height: 25px;">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated " 
+                                                         role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" 
+                                                         style="font-size: .90rem; height: 25px; width: 100%">
+                                                        Lütfen bekleyiniz dosyanız yükleniyor..
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>
+                                            <script> function prg() {
+                                                            var x = document.getElementById("uploadProgress");
+                                                            x.style.display = "block";
+                                                        }
+                                                        ;</script>
+                                        </div>
+                                    </div>                                
+                                </div>
+                            </div>
+                            <h:panelGroup id="uploaded-images" class="form-row" layout="block">
+                                <div class="form-group col-md-3">
+                                    <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_1_Url == null}">
+                                        <div class="arac-image"><div class="img-add"><ui:include src="/resources/image/ikon_aracEkle.svg" /></div></div>
+                                        <div class="arac-buton d-flex h-middle mt-1"><a class="btn-car-select">Profil Fotosu</a></div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_1_Url != null}">
+                                        <div class="arac-image">
+                                            <div class="img-add"><img class="img-item"  src="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_1_Url}" alt="Resim-1" /></div>
+                                            <h:commandLink action="#{vehicleBean.vehicleImagesBean.deleteVehiclegalleryImage(1)}" title="Sil" class="img-delete"><f:ajax execute="@this" render="uploaded-images "/></h:commandLink>
+                                        </div>
+                                        <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_ProfilePhotoUrl ne vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_1_Url}">
+                                            <div class="arac-buton d-flex h-middle mt-1">
+                                                <h:commandLink action="#{vehicleBean.vehicleImagesBean.vehicleProfileImageSet(1)}" title="Profil Resmi Yap" class="btn-car-select ">
+                                                    Profil Fotosu
+                                                    <f:ajax execute="@this" render="uploaded-images "/>
+                                                </h:commandLink>
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_ProfilePhotoUrl eq vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_1_Url}">
+                                            <div class="arac-buton d-flex h-middle mt-1"><a href="#" class="btn-car-select active">Profil Fotosu</a></div>
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_2_Url == null}">
+                                        <div class="arac-image"><div class="img-add"><ui:include src="/resources/image/ikon_aracEkle.svg" /></div></div>
+                                        <div class="arac-buton d-flex h-middle mt-1"><a class="btn-car-select">Profil Fotosu</a></div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_2_Url != null}">
+                                        <div class="arac-image">
+                                            <div class="img-add"><img class="img-item"  src="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_2_Url}" alt="Resim-2" /></div>
+                                            <h:commandLink action="#{vehicleBean.vehicleImagesBean.deleteVehiclegalleryImage(2)}" title="Sil" class="img-delete"><f:ajax execute="@this" render="uploaded-images "/></h:commandLink>
+                                        </div>
+                                        <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_ProfilePhotoUrl ne vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_2_Url}">
+                                            <div class="arac-buton d-flex h-middle mt-1">
+                                                <h:commandLink action="#{vehicleBean.vehicleImagesBean.vehicleProfileImageSet(2)}" title="Profil Resmi Yap" class="btn-car-select ">
+                                                    Profil Fotosu
+                                                    <f:ajax execute="@this" render="uploaded-images "/>
+                                                </h:commandLink>
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_ProfilePhotoUrl eq vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_2_Url}">
+                                            <div class="arac-buton d-flex h-middle mt-1"><a href="#" class="btn-car-select active">Profil Fotosu</a></div>
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_3_Url == null}">
+                                        <div class="arac-image"><div class="img-add"><ui:include src="/resources/image/ikon_aracEkle.svg" /></div></div>
+                                        <div class="arac-buton d-flex h-middle mt-1"><a class="btn-car-select">Profil Fotosu</a></div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_3_Url != null}">
+                                        <div class="arac-image">
+                                            <div class="img-add"><img class="img-item"  src="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_3_Url}" alt="Resim-3" /></div>
+                                            <h:commandLink action="#{vehicleBean.vehicleImagesBean.deleteVehiclegalleryImage(3)}" title="Sil" class="img-delete"><f:ajax execute="@this" render="uploaded-images "/></h:commandLink>
+                                        </div>
+                                        <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_ProfilePhotoUrl ne vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_3_Url}">
+                                            <div class="arac-buton d-flex h-middle mt-1">
+                                                <h:commandLink action="#{vehicleBean.vehicleImagesBean.vehicleProfileImageSet(3)}" title="Profil Resmi Yap" class="btn-car-select ">
+                                                    Profil Fotosu
+                                                    <f:ajax execute="@this" render="uploaded-images "/>
+                                                </h:commandLink>
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_ProfilePhotoUrl eq vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_3_Url}">
+                                            <div class="arac-buton d-flex h-middle mt-1"><a href="#" class="btn-car-select active">Profil Fotosu</a></div>
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_4_Url == null}">
+                                        <div class="arac-image"><div class="img-add"><ui:include src="/resources/image/ikon_aracEkle.svg" /></div></div>
+                                        <div class="arac-buton d-flex h-middle mt-1"><a class="btn-car-select">Profil Fotosu</a></div>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_4_Url != null}">
+                                        <div class="arac-image">
+                                            <div class="img-add"><img class="img-item"  src="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_4_Url}" alt="Resim-4" /></div>
+                                            <h:commandLink action="#{vehicleBean.vehicleImagesBean.deleteVehiclegalleryImage(4)}" title="Sil" class="img-delete"><f:ajax execute="@this" render="uploaded-images "/></h:commandLink>
+                                        </div>
+                                        <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_ProfilePhotoUrl ne vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_4_Url}">
+                                            <div class="arac-buton d-flex h-middle mt-1">
+                                                <h:commandLink action="#{vehicleBean.vehicleImagesBean.vehicleProfileImageSet(4)}" title="Profil Resmi Yap" class="btn-car-select ">
+                                                    Profil Fotosu
+                                                    <f:ajax execute="@this" render="uploaded-images "/>
+                                                </h:commandLink>
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_ProfilePhotoUrl eq vehicleBean.vehicleImagesBean.vehicleImages.vehicleImage_GalleryPtoho_4_Url}">
+                                            <div class="arac-buton d-flex h-middle mt-1"><a href="#" class="btn-car-select active">Profil Fotosu</a></div>
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+                                </div>
+                            </h:panelGroup>                  
+                            <div class="aciklama my-3">Maximum dosya boyutu <b>20MB</b> büyüklüğünde olmalıdır<br/>Kabul edilen formatlar; <b>JPEG, PNG, GIF</b></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer modal-footer-fixed">
+                        
+                        <h:panelGroup rendered="#{vehicleBean.getvParam2() != null}">
+                            <h:commandLink class="btn btn-primary" action="#{vehicleBean.updateFastVehicle()}" >
+                                Aracı Düzenle
+                                <f:ajax execute="m_form" render="m_form"></f:ajax>
+                            </h:commandLink>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{vehicleBean.getvParam2() == null}">
+                            <h:commandLink class="btn btn-primary" action="#{vehicleBean.createVehicle()}">
+                                Aracı Ekle
+                                 <f:ajax execute="m_form" render="m_form"></f:ajax>
+                            </h:commandLink>
+                        </h:panelGroup>
+                        
+                        
+                        
+                    </div>
+                </div>
+            </h:form>
+        </ui:composition>
+
+    </h:body>
+</html>
+

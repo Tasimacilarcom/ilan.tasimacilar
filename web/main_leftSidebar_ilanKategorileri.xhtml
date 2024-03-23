@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition>
+
+            <label for=""><b>İLAN KATEGORİSİ</b></label>
+            <style>
+                #kategoriTablo td{
+                    padding-top: 4px;
+                }
+                .ui-icon {
+                    width: 21px !important;
+                    height: 21px !important;
+                }
+                .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+                    background-color: #fff !important;
+                }
+            </style>
+            <p:selectOneRadio id="catg" value="#{adBean.adSearchBean.adSearchInputEntity.fltr_Ad_CategoryId}" layout="custom"  >
+                <f:selectItem itemLabel="İşim Var Araç Arıyorum" itemValue="1" />
+                <f:selectItem itemLabel="Aracım Var İş Arıyorum" itemValue="2" />
+                <f:selectItem itemLabel="Aracim Var Şöför Arıyorum" itemValue="3" />
+                <f:selectItem itemLabel="Aracim Var Hostes Arıyorum" itemValue="4" />
+                <f:selectItem itemLabel="Hostesim İş Arıyorum" itemValue="5" />
+                <f:selectItem itemLabel="Şöförüm İş Arıyorum" itemValue="6" />
+                <f:selectItem itemLabel="Plakamı Satıyorum" itemValue="7" />
+                <p:ajax event="click" listener="#{adBean.catFilterListener()}"  update="ilanYayinZamaniPanel1 firmaPanel1 Kapasite plakaSehri1 srvstyp1 nerdennereye1 aracinbosolduguyerler1 hostesinbosolduguyerler1 soforunbosolduguyerler1 aracPanel1" />
+            </p:selectOneRadio>
+            <table id="kategoriTablo" cellpadding="0" border="0" cellspacing="0" >
+                <tbody> 
+                    <tr><td><p:radioButton id="opt0x" for="catg" itemIndex="0" /></td><td><h:outputLabel for="opt0x" value="İşim Var Araç Arıyorum" style="margin: 0;cursor: pointer;"/></td></tr>
+                    <tr><td width="30px;"><p:radioButton id="opt1x" for="catg" itemIndex="1" /></td><td><h:outputLabel for="opt1x" value="Aracım Var İş Arıyorum" style="margin: 0;cursor: pointer;"/></td></tr>
+                    <tr><td><p:radioButton id="opt2x" for="catg" itemIndex="2" /></td><td><h:outputLabel for="opt2x" value="Aracim Var Şöför Arıyorum" style="margin: 0;cursor: pointer;"/></td> </tr>
+                    <tr><td><p:radioButton id="opt3x" for="catg" itemIndex="3" /></td><td><h:outputLabel for="opt3x" value="Aracim Var Hostes Arıyorum" style="margin: 0;cursor: pointer;"/></td></tr>
+                    <tr><td><p:radioButton id="opt4x" for="catg" itemIndex="4" /></td><td><h:outputLabel for="opt4x" value="Hostesim İş Arıyorum" style="margin: 0;cursor: pointer;"/></td></tr>
+                    <tr><td><p:radioButton id="opt5x" for="catg" itemIndex="5" /></td><td><h:outputLabel for="opt5x" value="Şöförüm İş Arıyorum" style="margin: 0;cursor: pointer;"/></td></tr>
+                    <tr><td><p:radioButton id="opt6x" for="catg" itemIndex="6" /></td><td><h:outputLabel for="opt6x" value="Plakamı Satıyorum" style="margin: 0;cursor: pointer;"/></td></tr>
+                </tbody>
+            </table>
+
+        </ui:composition>
+
+    </h:body>
+
+</html>
+

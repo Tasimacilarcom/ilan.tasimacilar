@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition>           
+            <h:form class="m-form m-form--label-align-left- m-form--state-" id="m_form"  prependId="false">
+                <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/>  
+
+                <h:panelGroup rendered="#{adAracimVarHostesAriyorumBean.param1 == null}" >
+                    <div class="profile-card mb-3 background-purple"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Aracım Var Hostes Arıyorum</li></ol></div>
+                </h:panelGroup> 
+                <h:panelGroup rendered="#{adAracimVarHostesAriyorumBean.param1  != null}" >       
+                    <h:panelGroup rendered="#{adAracimVarHostesAriyorumBean.param1 eq 'ekle'}" >
+                        <div class="profile-card mb-3 background-purple"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Aracım Var Hostes Arıyorum</li></ol></div>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{adAracimVarHostesAriyorumBean.param1 ne 'ekle'}" >
+                        <div class="profile-card mb-3 background-purple"><ol class="breadcrumb" ><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">İlan Düzenle</a></li><li class="breadcrumb-item active" aria-current="page">Aracım Var Hostes Arıyorum</li></ol></div>
+                    </h:panelGroup>      
+                </h:panelGroup>
+
+                <div class="profile-card mb-3">
+
+                    <div class="list-title d-flex align-items-center"><div class="message-title"><div class="title-bold m-0">İlan Detayları</div></div></div>
+
+                    <div class="arac-bilgi ">
+
+                        <div class="form mt-3">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-3">
+                                    <label for="adAracimVarHostesAriyorumCostInput" class="col-form-label font-weight-bold">Ücret</label>
+                                    <div class="input-group">
+                                        <style>
+                                            #adAracimVarHostesAriyorumCostInput_input{border-top-right-radius: 0;border-bottom-right-radius: 0}
+                                            #costIcon{border-radius: 8px;border-left: 0;border-top-left-radius: 0; border-bottom-left-radius: 0}
+                                        </style>
+                                        <p:inputNumber  id="adAracimVarHostesAriyorumCostInput" 
+                                                        style="padding: 0px;width:75% "
+                                                        binding="#{adAracimVarHostesAriyorumBean.inputBox2}"
+                                                        value="#{adAracimVarHostesAriyorumBean.adAracimVarHostesAriyorum.ad_AracimVarHostesAriyorum_Cost}"
+                                                        padControl="false"  
+                                                        inputStyleClass="form-control" 
+                                                        placeholder="500" maxValue="99999" 
+                                                        required="true" requiredMessage="Bu alan gereklidir">
+                                            <f:event type="preRenderComponent" listener="#{adAracimVarHostesAriyorumBean.preRenderInput2}" />
+                                         </p:inputNumber>
+                                        <span id="costIcon" class="input-group-text">TL</span>
+                                    </div>
+                                    <h:message for="adAracimVarHostesAriyorumCostInput" style="color: red"></h:message>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <h:outputLabel id="adAracimVarHostesAriyorumschoolInputLabel" 
+                                                   for="adAracimVarHostesAriyorumschoolInput" 
+                                                   class="col-form-label font-weight-bold">
+                                        Çalışılacak Okul
+                                    </h:outputLabel>
+                                    <h:inputText id="adAracimVarHostesAriyorumschoolInput" 
+                                                 class="form-control" 
+                                                 value="#{adAracimVarHostesAriyorumBean.adAracimVarHostesAriyorum.ad_AracimVarHostesAriyorum_school}" >
+                                    </h:inputText>
+                                    <h:message for="adAracimVarHostesAriyorumschoolInput" style="color: red"></h:message>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <h:outputLabel id="adAracimVarHostesAriyorumExperienceOneMenuLabel" 
+                                                   for="adAracimVarHostesAriyorumExperienceOneMenu"
+                                                   class="col-form-label font-weight-bold">
+                                        Aranılan Tecrübe
+                                    </h:outputLabel>
+                                    <h:selectOneMenu id="adAracimVarHostesAriyorumExperienceOneMenu" 
+                                                     value="#{adAracimVarHostesAriyorumBean.adAracimVarHostesAriyorum.ad_AracimVarHostesAriyorum_Experience}"  
+                                                     class="form-control" style="height: 40px;">
+                                        <f:selectItem itemValue="farketmez" itemLabel="Farketmez"></f:selectItem>
+                                        <f:selectItem itemValue="Uzman" itemLabel="Uzman"></f:selectItem>
+                                        <f:selectItem itemValue="Orta" itemLabel="Orta"></f:selectItem>
+                                        <f:selectItem itemValue="Başlangıç" itemLabel="Başlangıç"></f:selectItem>
+                                    </h:selectOneMenu> 
+                                    <h:message for="adAracimVarHostesAriyorumExperienceOneMenu" style="color: red"></h:message>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label font-weight-bold">Çalışılacak Okul Türü</label>
+                                    <div class="row gutter-10">
+                                        <p:selectOneRadio id="schoolType" value="#{adAracimVarHostesAriyorumBean.adAracimVarHostesAriyorum.ad_AracimVarHostesAriyorum_schoolType}" >
+                                            <f:selectItem itemLabel="Anaokulu Kreş&nbsp;&nbsp;" itemValue="okul1"/>
+                                            <f:selectItem itemLabel="İlk Öğretim&nbsp;&nbsp;" itemValue="okul2"/>
+                                            <f:selectItem itemLabel="Lise&nbsp;&nbsp;" itemValue="okul3"/>
+                                        </p:selectOneRadio>
+                                        
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label font-weight-bold">Bilinen Yabancı Diller</label>
+                                    <style>
+                                        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { background-color: #FFF;background-image: none; -webkit-box-shadow: none; box-shadow: none; }
+                                        .ui-chkbox .ui-chkbox-box {border: 1px solid #bdc3d4;width: 18px;height: 18px;display: inline-block;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;transition: all 0.3s;background: none;font-weight: 400;font-size: 1rem;color: #575962;}
+                                    </style>
+                                        <p:selectManyCheckbox id="foreignLanguage"  layout="responsive"   columns="3"  value="#{adAracimVarHostesAriyorumBean.adAracimVarHostesAriyorum.ad_AracimVarHostesAriyorum_ForeignLanguages}">
+                                        <f:selectItems value="#{selectItemsBean.selectItemList('ForeignLanguage')}" var="o" itemLabel="#{o.selectItem_Label_Tr}"  itemValue="#{o.selectItem_Value}" ></f:selectItems> 
+                                    </p:selectManyCheckbox>
+                                </div>
+
+                                <div class="detay-form col-12">
+                                    <div class="message-title">
+                                        <div class="title-bold m-0">*İlan Detayı <h:message for="adAracimVarHostesAriyorumBeanadBeanadCommentInput" class="message-f"></h:message></div>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <style>
+                                            #adAracimVarHostesAriyorumBeanadBeanadCommentInput_editor > div.ql-editor > p{font-size: 1.2rem}
+                                        </style>
+                                        <p:textEditor height="150" 
+                                                    required="true" 
+                                                    requiredMessage="[Bu alan gereklidir, boş geçilemez.]" 
+                                                    id ="adAracimVarHostesAriyorumBeanadBeanadCommentInput" 
+                                                    value="#{adAracimVarHostesAriyorumBean.adBean.ad_Comment}" 
+                                                    widgetVar="editor2">
+                                            <f:facet name="toolbar">
+                                                <span class="ql-formats"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button><button class="ql-strike"></button></span>
+                                                <span class="ql-formats"><select class="ql-font"></select><select class="ql-size"></select></span>
+                                            </f:facet>
+                                        </p:textEditor>
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                 <div class="profile-card mb-3">
+                    <ui:insert name="routePart" ><ui:include src="routePart.xhtml" /></ui:insert>
+                </div>
+
+                <div class="text-center mt-5">
+                    <h:panelGroup rendered="#{adAracimVarHostesAriyorumBean.param1.equals('ekle')}">
+                        <h:commandLink class="btn btn-orange px-5" 
+                                       id="df43" 
+                                       action="#{adAracimVarHostesAriyorumBean.createLookingForVehicleForWorkAd()}">
+                            <b>+</b> İlanı Kaydet ve Yayınla
+                        </h:commandLink>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{adAracimVarHostesAriyorumBean.param1.equals('duzenle')}">
+                        <h:commandLink class="btn btn-orange px-5" action="#{adAracimVarHostesAriyorumBean.updateLookingForVehicleForWorkAd()}">Güncelle</h:commandLink>
+                    </h:panelGroup>
+                </div>
+
+
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>
+

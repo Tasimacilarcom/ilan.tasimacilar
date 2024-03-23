@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <ui:composition template="/public/templates/adPageLayout.xhtml">
+            <ui:define name="ad_main">
+                <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.adBean.ad_IsActive eq false  or AdPlakamiSatiyorumBean.accountBean == null or AdPlakamiSatiyorumBean.accountBean.account_IsActive eq false}">
+                    <ui:insert name="adAvailabilityAlert" ><ui:include src="../../templates/adAvailabilityAlert.xhtml" /></ui:insert>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.adBean.ad_IsActive eq true and AdPlakamiSatiyorumBean.accountBean != null and AdPlakamiSatiyorumBean.accountBean.account_IsActive eq true}">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-8">
+                            <div class="profile-card background-dark-green mb-3 py-3 px-1">
+                                <div class="d-flex ad-detail-header">
+                                    <div class="col-5"><div class="title">İlan Kategorisi</div><p>Plakamı Satıyorum</p></div>
+                                    <div class="col"><div class="title">İlan Tarihi</div><p><h:outputText value="#{AdPlakamiSatiyorumBean.adBean.ad_CreateTime}"><f:convertDateTime pattern=" dd.MM.YYYY HH:mm"></f:convertDateTime></h:outputText></p></div>
+                                    <div class="col"><div class="title">İlan No</div><p>#{AdPlakamiSatiyorumBean.adBean.ad_Id2}</p></div>
+                                </div>
+                            </div>                      
+                            <div class="box-style p-3 mb-3">
+                                <div class="title mb-3"><div class="title-bold m-0"><!--<i class="fas fa-bus"></i> &nbsp;--></div></div>
+
+                                <div class="box-content ">
+                                     <div class="row">
+                                         <div class="col-sm-12 col-md-6  ">
+                                             <div class="box-style w-auto d-flex align-items-center p-3 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Plaka</div>
+                                                <span>
+                                                    <h:outputText value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateProvinceCode}"/>&nbsp;
+                                                    <h:outputText value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateLatterCode.toUpperCase()}"/>&nbsp;
+                                                    <h:outputText value="***"/>
+                                                </span>
+                                            </div>
+                                         </div>
+                                         <div class="col-sm-12 col-md-6 ">
+                                             <div class="box-style w-auto d-flex align-items-center p-3 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Ücret</div>
+                                                <span><b><h:outputText value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_ucret}" />&nbsp;TL</b></span>
+                                            </div>
+                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-3 mb-3">
+                                                <div class="title-sm-orange mr-3">Araçla Birlikte mi?</div>
+                                                <span><h:outputText value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_AraçlaBirliktemi==true?'Evet':'Hayır'}"/></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 ">
+                                             <div class="box-style w-auto d-flex align-items-center p-3 mb-3">
+                                                <div class="title-sm-orange mr-3">Yol Belgesi Var</div>
+                                                <span><h:outputText value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_YolBelgesiVarmi == true?'Evet':'Hayır'}"/></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-3 mb-3">
+                                                <div class="title-sm-orange mr-3">Noter Satışlı</div>
+                                                <span><h:outputText value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_NoterSatislimi == true?'Evet':'Hayır'}"/></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-3">
+                                                <div class="title-sm-orange mr-3">Hisseli</div>
+                                                <span><h:outputText value="#{AdPlakamiSatiyorumBean.adPlakamiSatiyorum.ad_PlakamiSatiyorum_Hisselimi == true?'Evet':'Hayır'}"/></span>
+                                            </div> 
+                                        </div>
+                                    </div>
+                               </div>
+                            </div>
+                            <div class="box-style p-3 mb-3">
+                                <div class="box-content ">
+                                    <div class="title-sm-orange mb-2">Açıklama</div>
+                                    <h:outputText style="font-size: 1.2rem" value="#{AdPlakamiSatiyorumBean.adBean.ad_Comment}"  escape="false"/>
+                                </div>
+                            </div>      
+                            
+                           
+                           
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4">
+                            <div class="ad-owner box-style mb-2">
+                                <div class="title"><div class="title-bold text-center p-3 m-0">İLAN SAHİBİ</div></div>                            
+                                <div class="other my-3 mx-4">
+                                    <div class="box-style mb-2">
+                                        <div class="font-weight-bold text-center py-2">
+                                            <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.accountBean.account_MembershipType eq 'corporate'}">
+                                                <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.corporateAccountBean.company_LogoUrl ne ''}">
+                                                    <div>
+                                                        <a href="/firma/companyName=#{AdPlakamiSatiyorumBean.corporateAccountBean.company_UrlName}">
+                                                            <img style="width: 80%" src="#{AdPlakamiSatiyorumBean.corporateAccountBean.company_LogoUrl}" alt=""/>
+                                                        </a>
+                                                    </div>
+                                                    <div style="padding-top: 5px;padding-bottom: 5px;">
+                                                        <a href="/firma/companyName=#{AdPlakamiSatiyorumBean.corporateAccountBean.company_UrlName}">
+                                                            <span style="font-size: 1.4em; font-weight: 500">#{AdPlakamiSatiyorumBean.corporateAccountBean.company_Name}</span>
+                                                        </a>
+                                                    </div>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.corporateAccountBean.company_LogoUrl eq ''}">
+                                                    <div style="padding-top: 5px;padding-bottom: 10px;">
+                                                        <a href="/firma/companyName=#{AdPlakamiSatiyorumBean.corporateAccountBean.company_UrlName}">
+                                                            <span style="font-size: 1.4em; font-weight: 500">#{AdPlakamiSatiyorumBean.corporateAccountBean.company_Name}</span>
+                                                        </a>    
+                                                    </div>
+                                                </h:panelGroup>
+                                                <span style="font-size: 1.1em; font-weight: 400">#{AdPlakamiSatiyorumBean.accountBean.account_FirstName}&nbsp;#{AdPlakamiSatiyorumBean.accountBean.account_LastName}</span><br/>
+                                                <span ><em>#{AdPlakamiSatiyorumBean.corporateAccountBean.company_ActivityArea}</em></span>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{AdPlakamiSatiyorumBean.accountBean.account_MembershipType eq 'personal'}">
+                                               #{AdPlakamiSatiyorumBean.accountBean.account_FirstName}&nbsp;#{AdPlakamiSatiyorumBean.accountBean.account_LastName}
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="font-weight-light text-center py-2" style="font-size: 0.8rem">
+                                        Üyelik Tarihi : 
+                                        <h:outputText value="#{AdPlakamiSatiyorumBean.accountBean.account_CreateTime}">
+                                            <f:convertDateTime pattern="dd.MM.YYYY"></f:convertDateTime>
+                                        </h:outputText> 
+                                    </div>
+                                    </div>                               
+                                    <div class="box-style mb-2">
+                                        <div class="text-center py-2"><h:outputText style="font-size: 1.2rem" value="#{AdPlakamiSatiyorumBean.accountBean.account_MobilePhoneNumber}"/></div>
+                                    </div>
+                                </div>
+                                <div class="socials mb-2">
+                                    <a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                                    <a href="mailto:#{AdPlakamiSatiyorumBean.accountBean.account_EmailAddress}"><i class="far fa-envelope" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-style mb-2">
+                                <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/login"> 
+                                        <div class="title-orange text-center p-3 m-0">İlan sahibine soru sor</div>
+                                    </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'corporate'}">
+                                     <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/private/kurumsal/mesajlar/detay/yeni/#{AdPlakamiSatiyorumBean.adBean.ad_Id}"> 
+                                         <div class="title-orange text-center p-3 m-0">İlan sahibine soru sor</div>
+                                     </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/private/bireysel/mesajlar/detay/yeni/#{AdPlakamiSatiyorumBean.adBean.ad_Id}">
+                                        <div class="title-orange text-center p-3 m-0">İlan sahibine soru sor</div>
+                                    </a>
+                                </h:panelGroup>
+                            </div>                         
+                            <div class="box-style mb-2">
+                                <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/login"> 
+                                        <div class="title-orange text-center p-3 m-0">Favorilere Ekle <i class="far fa-heart" aria-hidden="true"></i></div>
+                                    </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'corporate' or accountMembershipType eq 'personal'}">
+                                    <h:form id="sfdsfdsf" prependId="false">
+                                        <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                                        <p:growl id="growl" showDetail="true" life="2000"  sticky="false"/>  
+                                        <h:commandLink action="#{AdPlakamiSatiyorumBean.createFavoritesAd()}" class="link" title="Bu İlanı Favorilerime Ekle">
+                                            <div class="title-orange text-center p-3 m-0">Favorilere Ekle <i class="far fa-heart" aria-hidden="true"></i></div>
+                                            <f:ajax execute="sfdsfdsf" render="sfdsfdsf"></f:ajax>
+                                        </h:commandLink>
+                                    </h:form>
+                                </h:panelGroup>    
+                            </div>                          
+                            <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                <div class="box-style mb-2">
+                                    <a href="/login" class="link" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-3 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{accountMembershipType eq 'personal'}">
+                                <div class="box-style mb-2">
+                                    <a href="/private/bireysel/destek" class="link" target="_blank" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-3 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{accountMembershipType eq 'corporate'}">
+                                <div class="box-style mb-2">
+                                    <a href="/private/kurumsal/destek" class="link" target="_blank" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-3 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                            <div class="box-style mb-2 p-3 text-center" style="color: #f39437;">
+                                <h:form id="counterForm" prependId="false">
+                                    <p:remoteCommand name="myRemote" update="adViewCountX" actionListener="#{adCountersBean.execute()}"/>
+                                </h:form>
+                                <script>window.onload = function() {myRemote(); };</script>
+                                Bu ilan <b><h:outputText id="adViewCountX" value="#{adCountersBean.ad_ViewCount}" /></b>  kere görüntülendi
+                            </div>
+                        </div>   
+                         <!--usersAds-->                        
+                            <div class="col-12 mt-5">
+                                <div class="home-list" style="width: 100%">
+                                    <p class="mb-4" 
+                                       style="font-weight: 700; font-size: 16px; line-height: 20px; color: #212429; padding-bottom: 0.25rem;  border-bottom: 2px solid #de904e;">
+                                        #{AdPlakamiSatiyorumBean.accountBean.account_FirstName}&nbsp;#{AdPlakamiSatiyorumBean.accountBean.account_LastName} <span style="font-weight: 500">tarafından oluşturulmuş en yeni ilanlar</span>
+                                    </p>
+
+                                    <p:scrollPanel mode="native" style="max-height:360px; padding: 20px">             
+                                        <ui:repeat var="a" value="#{AdPlakamiSatiyorumBean.adList}">
+                                            <!--Ilan-->
+                                                 <ui:insert name="usersAds" ><ui:include src="../common/usersAds.xhtml" /></ui:insert>
+                                            <!--Ilan-->
+                                        </ui:repeat>    
+                                    </p:scrollPanel>
+                                </div>    
+                            </div>
+                            <!--/usersAds-->
+                    </div>
+                </h:panelGroup>    
+	    </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

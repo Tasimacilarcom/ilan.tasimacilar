@@ -1,0 +1,236 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition>
+
+            <div class="container mb-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <span style="background-color: #d12e1e; font-size: 0.9rem; color: #fdfdfd; padding: 4px;padding-left: 20px;padding-right: 20px; border-radius: 6px; position: absolute;right: 50px; top: 5px;">Test Yayını</span>
+                        </div>
+                        <nav class="sf-navbar  navbar navbar-expand-md navbar-dark nav" >
+                            <h:panelGroup rendered="#{AccountType=='personal'}">
+                                <a href="/private/bireysel/ilanlarim" class="btn btn-first my-2 my-sm-0 collapsed"
+                                   style="border: 1px solid; background: none;padding: 12px;">
+                                    <i class="far fa-star" aria-hidden="true"></i> Ücretsiz İlan Ver
+                                </a>
+                            </h:panelGroup>  
+                            <h:panelGroup rendered="#{AccountType=='corporate'}">
+                                <a href="/private/kurumsal/ilanlarim" class="btn btn-first my-2 my-sm-0 collapsed"
+                                   style="border: 1px solid; background: none;padding: 12px;">
+                                    <i class="far fa-star" aria-hidden="true"></i> Ücretsiz İlan Ver
+                                </a>
+                            </h:panelGroup>   
+                            <h:panelGroup rendered="#{AccountType==null or AccountType==''}">
+                                <a href="/login" class="btn btn-first my-2 my-sm-0 collapsed"
+                                   style="border: 1px solid; background: none;padding: 12px;">
+                                    <i class="far fa-star" aria-hidden="true"></i> Ücretsiz İlan Ver
+                                </a>
+                            </h:panelGroup> 
+                          
+                            <button class="navbar-toggler collapsed" 
+                                    type="button" 
+                                    data-toggle="collapse" 
+                                    data-target="#navbarCollapse" 
+                                    aria-controls="navbarCollapse" 
+                                    aria-expanded="false" 
+                                    aria-label="Toggle navigation">
+                                <i class="fa fa-bars" aria-hidden="true" style="display: block; font-size: 26px; color: #fff; float: right;"></i>
+                            </button>
+                            <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+                                <ul class="navbar-nav mr-auto" style="font-size: 16px;font-weight: 500;">
+                                    <li class="nav-item "><a class="nav-link active" href="/">Anasayfa</a></li>
+                                    <li class="nav-item "><a class="nav-link" href="/hakkimizda">Hakkımızda</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/nasil-isliyor">Nasıl İşliyor</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/s-s-s">S.S.S</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/iletisim">İletişim</a></li>
+                                    <shiro:authenticated>
+                                        <li class="nav-item"><a class="nav-link" href="/logout" style="color: #fff">Çıkış Yap</a></li>   
+                                    </shiro:authenticated>
+                                    
+                                </ul>
+
+                                <form class="form-inline mt-2 mt-md-0" style="float: right;">
+                                    <div class="user-counter">
+                                        <p class="m-0 mb-1">Sistemde Kayıtlı Kişi Sayısı</p>
+                                        <p class="m-0 font-weight-bold text-right">
+                                            <h:outputText value="#{commonBean.toplamAktifKullaniciSayisi()}" ><f:convertNumber /></h:outputText>
+                                        </p>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </nav>
+                    </div> 
+                </div>
+            </div>    
+
+            <header class="container  p-0" style="z-index: 9000;">
+                <div class="container  ">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 mb-3">
+                           
+                            <div class="logo">
+                               
+                                <a href="/"><img src="/resources/image/logo.jpg" class="img-fluid" alt="Logo"/></a>
+                               
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-8 ">
+                            <div class="header-image">
+                                <!--<img src="/resources/image/header.png" class="img-fluid" alt="header image"/>-->
+                                <!-- Ust yarim banner alani-->
+                                <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('ust-yarim')}"></h:outputText>
+                               
+                                <!--/Ust yarim banner alani-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <shiro:guest> 
+                    <h:form id="loginFormX" class="form-signin" prependId="false" style="padding-left: 15px; padding-right: 15px;">
+                        <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                        <p:growl id="growl123" showDetail="true" life="5000" globalOnly="true"  sticky="false" escape="false" />  
+                        <div class="login-form pt-2 pb-2 mt-3 mb-3" style="background-color: #f5f0ebbd; border-radius: 10px">
+                            <div class="container" style="padding-top: 6px;">
+                                <div class="row">
+                                    
+                                    <div class="col-lg-3 ">
+                                        <div class="input-group  input-group-lg mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="loginMobilePhoneNumberInputXLabel">Gsm</span>
+                                            </div>
+                                            <script>function ltr(element) {if (element.setSelectionRange) {element.setSelectionRange(0, 0);}}</script>
+                                            <p:inputMask id="loginMobilePhoneNumberInputX"    
+                                                         class=" form-control "
+                                                         onclick="ltr(this);"
+                                                         value="#{loginBean.account_MobilePhoneNumber}"
+                                                         required="true"
+                                                         requiredMessage="Lütfen Cep telefon numaranızı yazınız"
+                                                         placeholder="GSM numaranızı yazınız"
+                                                         mask="0(599)-999-9999">
+                                            </p:inputMask>
+                                            <h:messages for="loginMobilePhoneNumberInputX" class="message-f"></h:messages>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <div class="input-group  input-group-lg mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="loginPasswordInputXLabel">Şifre</span>
+                                            </div>
+                                            <p:password  id="loginPasswordInputX"
+                                                         class=" form-control"
+                                                         value="#{loginBean.account_Password}"
+                                                         placeholder="Lütfen şifrenizi yazınız"
+                                                         required="true"
+                                                         requiredMessage="Lüften şifrenizi yazınız">
+                                            </p:password>
+                                            <h:messages for="loginPasswordInputX" class="message-f" ></h:messages>
+                                        </div>   
+                                    </div>
+                                    <div class="col-lg-2" style="padding-top: 10px;">
+                                        <input class="styled-checkbox" id="RememberMe-1X" type="checkbox" value="value1"/>
+                                        <label for="RememberMe-1X">Beni Hatırla</label>
+                                    </div>
+                                    <div class="col-lg-2">
+                                         <div class="button mb-2">
+                                            <h:commandLink id="loginButtonX"
+                                                           class="btn btn-first btn-login"
+                                                           style="height: 45px; width: 100%; line-height: 45px;padding: 0;font-size: 20px;"
+                                                           action="#{loginBean.login()}">
+                                                Giriş
+                                            </h:commandLink>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <a href="/reset-password" class="mb-1" style="margin-top:5px;display: block;text-decoration: none;font-size: 14px;"><i class="fas fa-caret-right"></i>&nbsp;Şifremi Unuttum</a>
+                                        <a href="/kayit/bireysel" style="text-decoration: none;font-size: 14px;"><i class="fas fa-caret-right"></i>&nbsp;Kayıt Ol</a>
+                                    </div>
+                                    
+                                
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>    
+                </shiro:guest> 
+                <shiro:authenticated>
+                    <div class="login-form  " style=" padding-left: 15px; padding-right: 15px;">
+                        <div class="container pt-3 pb-2 mt-3 mb-3" style="background-color: #f5f0ebbd;border-radius: 10px">
+                            
+                            <div class=" row ">
+                               <h:panelGroup rendered="#{AccountType=='personal'}">
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/profilim" class="btn btn-home-light2  #{pagesBean.onPage eq 'profile_settings' ? 'active' : ''} ">Profilim</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'personal_my_ads' ? 'active' : ''} ">İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/araclarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'personal_my_vehicles' ? 'active' : ''} ">Araçlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/ilan-mesajlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'messages_ads' ? 'active' : ''} ">İlan Mesajları<h:panelGroup rendered="#{accountBean.isExistUserMessageNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/favori-ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'personal_my_favorites' ? 'active' : ''} ">Favori İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/destek" class="btn btn-home-light2  #{pagesBean.onPage eq 'support' ? 'active' : ''} ">Destek<h:panelGroup rendered="#{accountBean.isExistUserSupportNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>
+                                        
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{AccountType=='corporate'}">
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/profilim/s1" class="btn btn-home-light2  #{pagesBean.onPage eq 'profile_settings_s1' ? 'active' : ''}">Profilim</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'corporate_my_ads' ? 'active' : ''}">İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/araclarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'corporate_my_vehicles' ? 'active' : ''} ">Araçlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/ilan-mesajlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'messages_ads' ? 'active' : ''} ">İlan Mesajları<h:panelGroup rendered="#{accountBean.isExistUserMessageNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/favori-ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'corporate_my_favorites' ? 'active' : ''} ">Favori İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/destek" class="btn btn-home-light2  #{pagesBean.onPage eq 'support' ? 'active' : ''} ">Destek<h:panelGroup rendered="#{accountBean.isExistUserSupportNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>    
+                                       
+                                    </h:panelGroup>
+                                <h:panelGroup rendered="#{AccountType=='director'}">
+                                    <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                        <a href="#" class="btn btn-home-light2 ">&nbsp;</a>
+                                    </div> 
+                                    <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                         <a href="#" class="btn btn-home-light2 ">&nbsp;</a>
+                                    </div> 
+                                    <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                        <a href="#" class="btn btn-home-light2 ">&nbsp;</a>
+                                    </div> 
+                                    <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                        <a href="/private/director/index.xhtml" class="btn btn-home-light2 ">Yönetim Paneli</a>
+                                    </div> 
+                                </h:panelGroup>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </shiro:authenticated>
+            </header>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <!-- Start global head -->
+        <ui:insert name="head" ><ui:include src="../../head.xhtml" /></ui:insert>    
+        <!-- End global head -->
+    </h:head>
+    <h:body >
+        <!-- Start header -->
+        <ui:insert name="header" ><ui:include src="../../header.xhtml" /></ui:insert>
+        <!-- End header -->
+        
+        
+        <!-- MAIN CONTENT SECTION -->
+        <main class="mb-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-3">
+                        
+                        <!-- Ad banner alani-->
+                        <div style="margin-top: 20px;">
+                            <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('ad')}"></h:outputText>
+                        </div>
+                         <!--/ Ad banner alani-->
+                       
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-9">
+                        <ui:insert name="ad_main" ></ui:insert>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+       
+        <!-- End main -->
+        <!-- Start global footer -->
+        <ui:insert name="footer" ><ui:include src="../../footer.xhtml" /></ui:insert>
+        <!-- End global footer -->
+        <!-- Start global scripts -->
+        <ui:insert name="scripts" ><ui:include src="../../scripts.xhtml" /></ui:insert>
+        <!-- End global scripts 
+         <script defer="defer"  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6vPNP3SNe0SQC8yM-9Si_hcxRypKdRMQ&amp;callback=initMap"></script>-->
+       
+    </h:body>
+</html>
+

@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition>
+            <h:form prependId="false">
+                <div style="border: 1px solid #eee; border-radius: 4px; padding: 15px;text-align: center; margin-bottom: 15px">
+                    <b><h3><h:outputText value="#{allAccountsBean.personalAccountBean.accountBean.account_FirstName}&nbsp;#{allAccountsBean.personalAccountBean.accountBean.account_LastName}"></h:outputText></h3></b>
+                    <p><i class="fa fa-mobile-alt"></i>&nbsp;&nbsp;<h:outputText style="font-size: 1.2rem" value="#{allAccountsBean.personalAccountBean.accountBean.account_MobilePhoneNumber}"/></p>
+                </div>
+                <div style="border: 1px solid #eee; border-radius: 4px; padding: 15px;margin-bottom: 15px; padding-top: 0; text-align: center">
+                     <img style="width: 60%; " src="/resources/img/user.png" alt=""/>
+                   
+                </div>
+                <div class="btn-group-vertical" role="group" style=" width: 100%; margin-bottom: 30px;">
+
+                    <style type="text/css"> .aktif {  background: #e3e6ef !important; font-weight: bold !important; } </style>
+
+                    <h:commandLink action="#{allAccountsBean.pageName('userInfo')}"
+                                   class="btn btn-secondary #{allAccountsBean.page eq 'userInfo'?'aktif':''}" 
+                                   style="text-align: left; padding: .50rem 1rem; ">
+                        Kullanıcı Bilgileri
+                        <f:ajax execute="@this" render="@form"></f:ajax>
+                    </h:commandLink>
+                    <h:commandLink action="#{allAccountsBean.pageName('userInfoEdit')}"
+                                   class="btn btn-secondary  #{allAccountsBean.page eq 'userInfoEdit'?'aktif':''}" 
+                                   style="text-align: left; padding: .50rem 1rem;">
+                        Kullanıcının  Bilgilerini Düzenle
+                        <f:ajax execute="@this" render="@form"></f:ajax>
+                    </h:commandLink>
+                    <h:panelGroup rendered="#{allAccountsBean.personalAccountBean.accountBean.account_MembershipType.equals('corporate')}">
+                        <h:commandLink action="#{allAccountsBean.pageName('conpanyInfoEdit')}"
+                                       class="btn btn-secondary  #{allAccountsBean.page eq 'conpanyInfoEdit'?'aktif':''}" 
+                                       target="_blank"
+                                       style="text-align: left; padding: .50rem 1rem;">
+                            Kullanıcının Firma Bilgilerini Düzenle
+                            <f:ajax execute="@this" render="userDetailForm"></f:ajax>
+                        </h:commandLink>
+                    </h:panelGroup>
+                    <h:commandLink action="#{allAccountsBean.pageName('userActivation')}"
+                                   class="btn btn-secondary  #{allAccountsBean.page eq 'userActivation'?'aktif':''}" 
+                                   style="text-align: left; padding: .50rem 1rem;">
+                        E-Mail &amp; GSM Aktivasyonu Yap
+                        <f:ajax execute="@this" render="userDetailForm"></f:ajax>
+                    </h:commandLink>
+                    <h:commandLink action="#{allAccountsBean.pageName('disableAccount')}"
+                                   class="btn btn-secondary  #{allAccountsBean.page eq 'disableAccount'?'aktif':''}" 
+                                   style="text-align: left; padding: .50rem 1rem;">
+                        Kullanıcıyı Sil Veya Aktif/Pasif Yap
+                        <f:ajax execute="@this" render="userDetailForm"></f:ajax>
+                    </h:commandLink>
+                    <h:commandLink action="#{allAccountsBean.pageName('blackListAccount')}"
+                                   class="btn btn-secondary  #{allAccountsBean.page eq 'blackListAccount'?'aktif':''}" 
+                                   style="text-align: left; padding: .50rem 1rem;">
+                        Kullanıcıyı Kara Listeye Al/Çıkart
+                        <f:ajax execute="@this" render="userDetailForm"></f:ajax>
+                    </h:commandLink>
+                    <h:commandLink action="#{allAccountsBean.pageName('addVehicle_s1')}"
+                                   class="btn btn-secondary  #{allAccountsBean.page eq 'addVehicle_s1'?'aktif':''}" 
+                                   style="text-align: left; padding: .50rem 1rem;">
+                        Kullanıcı İçin Araç Oluştur
+                        <f:ajax execute="@this" render="userDetailForm"></f:ajax>
+                    </h:commandLink>
+                    <h:commandLink action="#{allAccountsBean.pageName('userVehicle')}"
+                                   class="btn btn-secondary  #{allAccountsBean.page eq 'userVehicle'?'aktif':''}" 
+                                   style="text-align: left; padding: .50rem 1rem;">
+                        Kullanıcının Araçları
+                        <f:ajax execute="@this" render="userDetailForm"></f:ajax>
+                    </h:commandLink>
+                    <h:commandLink action="#{allAccountsBean.pageName('addAd')}"
+                                   class="btn btn-secondary  #{allAccountsBean.page eq 'addAd'?'aktif':''}" 
+                                   style="text-align: left; padding: .50rem 1rem;">
+                        Kullanıcı İçin İlan Oluştur
+                        <f:ajax execute="@this" render="userDetailForm"></f:ajax>
+                    </h:commandLink>
+                    <h:commandLink action="#{allAccountsBean.pageName('userAds')}"
+                                   class="btn btn-secondary  #{allAccountsBean.page eq 'userAds'?'aktif':''}" 
+                                   style="text-align: left; padding: .50rem 1rem;">
+                        Kullanıcının İlanları
+                        <f:ajax execute="@this" render="userDetailForm"></f:ajax>
+                    </h:commandLink>
+                    <h:commandLink action="#{allAccountsBean.pageName('userComments')}"
+                                   class="btn btn-secondary  #{allAccountsBean.page eq 'userComments'?'aktif':''}" 
+                                   style="text-align: left; padding: .50rem 1rem;">
+                        Kullanıcının Yorumları
+                        <f:ajax execute="@this" render="userDetailForm"></f:ajax>
+                    </h:commandLink>
+
+                </div> 
+            </h:form>
+        </ui:composition>
+    </h:body>
+
+</html>
+

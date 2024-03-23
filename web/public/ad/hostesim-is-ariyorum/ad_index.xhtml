@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <ui:composition template="/public/templates/adPageLayout.xhtml">
+            <ui:define name="ad_main">
+                <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.adBean.ad_IsActive eq false or AdHostesimIsAriyorumBean.accountBean == null or AdHostesimIsAriyorumBean.accountBean.account_IsActive eq false}">
+                    <ui:insert name="adAvailabilityAlert" ><ui:include src="../../templates/adAvailabilityAlert.xhtml" /></ui:insert>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.adBean.ad_IsActive eq true and AdHostesimIsAriyorumBean.accountBean != null and AdHostesimIsAriyorumBean.accountBean.account_IsActive eq true}">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-8">
+                            <div class="profile-card background-pink mb-3 py-3 px-1">
+                                <div class="d-flex ad-detail-header">
+                                    <div class="col-5"><div class="title">İlan Kategorisi</div><p>Hostesim iş arıyorum</p></div>
+                                    <div class="col"><div class="title">İlan Tarihi</div><p><h:outputText value="#{AdHostesimIsAriyorumBean.adBean.ad_CreateTime}"><f:convertDateTime pattern=" dd.MM.YYYY HH:mm"></f:convertDateTime></h:outputText></p></div>
+                                    <div class="col"><div class="title">İlan No</div><p>#{AdHostesimIsAriyorumBean.adBean.ad_Id2}</p></div>
+                                </div>
+                            </div>
+                          
+                            <div class="box-style p-3 mb-3">
+                                <div class="title mb-3"> <div class="title-bold m-0"> <!--<i class="fas fa-bus"></i>&nbsp;--> </div></div>
+                                <div class="box-content">
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-3 mb-3">
+                                                <div class="title-sm-orange mr-3">Doğum Yeri &amp; Tarihi</div>
+                                                <span class="tag"><h:outputText value="#{AdHostesimIsAriyorumBean.hostess.hostess_PlaceOfBirth}" />&nbsp;-&nbsp;<h:outputText value="#{AdHostesimIsAriyorumBean.hostess.hostess_BirthDate}" ><f:convertDateTime pattern="dd.MM.YYYY"></f:convertDateTime></h:outputText></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-3 mb-3">
+                                                <div class="title-sm-orange mr-3">Eğitim Durumu</div>
+                                                <span class="tag"><h:outputText value="#{AdHostesimIsAriyorumBean.hostess.hostess_Education}" /></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-3 mb-3">
+                                                <div class="title-sm-orange mr-3">Deneyimi Var Mı?</div>
+                                                <span class="tag"><h:outputText value="#{AdHostesimIsAriyorumBean.hostess.hostess_ServiceTransportationExperience?'Evet':'Hayır'}" /></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-3">
+                                                <div class="title-sm-orange mr-3">Bilinen Yabancı Diller</div>
+                                                <ui:repeat varStatus="vs" var="" value="#{AdHostesimIsAriyorumBean.hostess.hostess_ForeignLanguagesList}">
+                                                    <span class="tag mr-2"><h:outputText value="#{AdHostesimIsAriyorumBean.hostess.hostess_ForeignLanguagesList[vs.index]}&nbsp;" /> </span>
+                                                </ui:repeat>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                   
+                                </div>
+                            </div>
+                            
+                            <div class="box-style p-3 mb-3">
+                                <div class="title mb-3"><div class="title-bold m-0"><i class="fas fa-bus"></i> Referanslar</div></div>
+                                <div class="box-content ">
+                                    <style>
+                                        .ui-column-title{float: left !important;}
+                                    </style>
+                                     <p:dataTable var="r" value="#{AdHostesimIsAriyorumBean.hostessReferencesList}" reflow="true" >
+                                        <p:column headerText="Firma">
+                                            <h:outputText value="#{r.hostessReferences_Company}"/>
+                                        </p:column>
+
+                                        <p:column headerText="Okul">
+                                            <h:outputText value="#{r.hostessReferences_Project}"/>
+                                        </p:column>
+
+                                        <p:column headerText="Kaç Yıl Çalışıldı">
+                                            <h:outputText value="#{r.hostessReferences_ProjectWorkingYear}"/>
+                                        </p:column>
+                                    </p:dataTable>
+                                </div>
+                              </div>
+                            
+                            <div class="tab-menu">
+                                <ul class="nav nav-tabs mb-3">
+                                  <li><a data-toggle="tab" href="#comment" class="active">Yorumlar</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                
+                                  <div id="comment" class="tab-pane fade in show active">
+                                    <div class="box-style p-3 mb-3">
+                                        <ui:repeat var="c" value="#{AdHostesimIsAriyorumBean.adCommentsList}">
+                                            <div style="padding: 15px;border-radius: 5px; border: 1px solid #eee;margin-bottom: 0.3rem;">
+                                                <div style="width: 100%;display: flex;flex-direction: row;margin-bottom: 15px;">
+                                                    <div style="font-weight: 600;line-height: 20px;width: 60%"><h:outputText value="#{c.accountBean.account_FirstName}&nbsp;#{c.accountBean.account_LastName}"></h:outputText> </div>
+                                                    <div style="font-size: 10px; line-height: 20px;width: 40%;text-align: end;"><h:outputText value="#{c.adComment_Created}"><f:convertDateTime pattern=" dd.MM.YYYY HH:mm"></f:convertDateTime></h:outputText></div>
+                                                </div>
+                                                <div class="m-portlet__body" ><h:outputText value="#{c.adComment_Comment}"></h:outputText></div>
+                                            </div>
+                                        </ui:repeat>                                           
+                                        <h:panelGroup rendered="#{accountId ne null}">
+                                            <div style="margin-top: 30px;">
+                                                <div class="title-sm-orange">Yorum Ekle</div>
+                                                <h:form id="kokjh32u" prependId="false">
+                                                    <p:growl id="growlx" showDetail="true" life="2000"  sticky="false"/> 
+                                                    <p:inputTextarea id="question" 
+                                                                     class="form-control"  
+                                                                     value="#{AdHostesimIsAriyorumBean.adComment}" 
+                                                                     placeholder="Lütfen buraya en fazla 300 karakter olacak şekilde yorumunuzu yazınız" 
+                                                                     style="font-size: 14px"  
+                                                                     maxlength="300" 
+                                                                     required="True" 
+                                                                     requiredMessage="Mesajınızı yazınız"  
+                                                                     rows="3"  
+                                                                     autoResize="false" 
+                                                                     onkeyup="countChar(this)">
+                                                    </p:inputTextarea>
+                                                    <h:message for="question" class="message-f"/>
+                                                    <script> function countChar(val) { var len = val.value.length; if (len >= 301) {val.value = val.value.substring(0, 301);}  else { $('#charNum').text(0 + len);} };</script>
+                                                    <div style="font-size: small; color: #bbb">Max. karakter sayısı : 300 / Yazdığınız karakter sayısı : <span id="charNum"></span></div>
+                                                    <div class="col-lg-12 m--align-right" style="padding:0;">
+                                                        <br/>
+                                                        <h:commandLink class="btn btn-sm btn-outline-info" action="#{AdHostesimIsAriyorumBean.createAdComment()}">
+                                                            Kaydet
+                                                            <f:ajax execute="kokjh32u" render="kokjh32u "></f:ajax>
+                                                        </h:commandLink>
+                                                    </div>
+                                                </h:form>
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{accountId eq null}">
+                                            <div style="margin-top: 30px;">
+                                                
+                                                <div style="margin-top: 10px;">Yorum eklemek için <a href="/login" class="title-sm-orange">üye girişi </a>yapmanız gerekmektedir.</div>
+                                            </div>
+                                        </h:panelGroup>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4">
+                            <div class="ad-owner box-style mb-2">
+                                <div class="title"><div class="title-bold text-center p-3 m-0">İLAN SAHİBİ</div></div>
+                                <div class="image" style="padding: 20px;padding-bottom: 0;padding-top: 0">
+                                  <h:panelGroup rendered="#{!AdHostesimIsAriyorumBean.hostess.hostess_ProfilePicturePublish}">
+                                      <h:panelGroup id="frsfesr43refes" rendered="#{AdHostesimIsAriyorumBean.hostess.hostess_ProfilePictureUrl == null}">
+                                        <img class="img-fluid" style="width: 100%" src="/resources/img/user.png" alt="userImg"/>
+                                    </h:panelGroup>
+                                    <h:panelGroup id="cxvdsfsa"  rendered="#{AdHostesimIsAriyorumBean.hostess.hostess_ProfilePictureUrl != null}">
+                                        <img class="img-fluid" style="width: 100%; border-radius: 10px;" id="sfdsf4tr4rf" src="#{AdHostesimIsAriyorumBean.hostess.hostess_ProfilePictureUrl}" alt="driverImg"/>                                          
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.hostess.hostess_ProfilePicturePublish}">
+                                     <img class="img-fluid" style="width: 100%" src="/resources/img/user.png" alt="userImg"/>
+                                </h:panelGroup>
+                              </div>
+                              <div class="other my-3 mx-4">
+                                <div class="box-style mb-2">
+                                    <div class="font-weight-bold text-center py-2">
+                                        <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.accountBean.account_MembershipType eq 'corporate'}">
+                                            <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.corporateAccountBean.company_LogoUrl ne ''}">
+                                                <div><img style="width: 80%" src="#{AdHostesimIsAriyorumBean.corporateAccountBean.company_LogoUrl}" alt=""/></div>
+                                                <div style="padding-top: 5px;"><span style="font-size: 1.4em; font-weight: 500">#{AdHostesimIsAriyorumBean.corporateAccountBean.company_Name}</span></div>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.corporateAccountBean.company_LogoUrl eq ''}">
+                                                <div style="padding-top: 5px;"><span style="font-size: 1.4em; font-weight: 500">#{AdHostesimIsAriyorumBean.corporateAccountBean.company_Name}</span></div>
+                                            </h:panelGroup>
+                                            <span style="font-size: 1.1em; font-weight: 400">#{AdHostesimIsAriyorumBean.accountBean.account_FirstName}&nbsp;#{AdHostesimIsAriyorumBean.accountBean.account_LastName}</span><br/>
+                                            <span ><em>#{AdHostesimIsAriyorumBean.corporateAccountBean.company_ActivityArea}</em></span>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.accountBean.account_MembershipType eq 'personal'}">
+                                           #{AdHostesimIsAriyorumBean.accountBean.account_FirstName}&nbsp;#{AdHostesimIsAriyorumBean.accountBean.account_LastName}
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="font-weight-light text-center py-2" style="font-size: 0.8rem">
+                                        Üyelik Tarihi : 
+                                        <h:outputText value="#{AdHostesimIsAriyorumBean.accountBean.account_CreateTime}">
+                                            <f:convertDateTime pattern="dd.MM.YYYY"></f:convertDateTime>
+                                        </h:outputText> 
+                                    </div>
+                                </div>
+                                
+                                <div class="box-style mb-2">
+                                  <div class="text-center py-2"><h:outputText style="font-size: 1.2rem" value="#{AdHostesimIsAriyorumBean.accountBean.account_MobilePhoneNumber}"/></div>
+                                </div>
+                              </div>
+                                <div class="socials mb-2">
+                                    <a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                                    <a href="mailto:#{AdHostesimIsAriyorumBean.accountBean.account_EmailAddress}"><i class="far fa-envelope" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-style mb-2">
+                                <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/login"> 
+                                        <div class="title-orange text-center p-3 m-0">İlan sahibine soru sor</div>
+                                    </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'corporate'}">
+                                     <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/private/kurumsal/mesajlar/detay/yeni/#{AdHostesimIsAriyorumBean.adBean.ad_Id}"> 
+                                         <div class="title-orange text-center p-3 m-0">İlan sahibine soru sor</div>
+                                     </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/private/bireysel/mesajlar/detay/yeni/#{AdHostesimIsAriyorumBean.adBean.ad_Id}">
+                                        <div class="title-orange text-center p-3 m-0">İlan sahibine soru sor</div>
+                                    </a>
+                                </h:panelGroup>
+                            </div>
+                            <div class="box-style mb-2">
+                                <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/login"> 
+                                        <div class="title-orange text-center p-3 m-0">Favorilere Ekle <i class="far fa-heart" aria-hidden="true"></i></div>
+                                    </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'corporate' or accountMembershipType eq 'personal'}">
+                                    <h:form id="sfdsfdsf" prependId="false">
+                                        <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                                        <p:growl id="growl" showDetail="true" life="2000"  sticky="false"/>  
+                                        <h:commandLink action="#{AdHostesimIsAriyorumBean.createFavoritesAd()}" class="link" title="Bu İlanı Favorilerime Ekle">
+                                            <div class="title-orange text-center p-3 m-0">Favorilere Ekle <i class="far fa-heart" aria-hidden="true"></i></div>
+                                            <f:ajax execute="sfdsfdsf" render="sfdsfdsf"></f:ajax>
+                                        </h:commandLink>
+                                    </h:form>
+                                </h:panelGroup>    
+                            </div>
+                            
+                            
+                            <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                <div class="box-style mb-2">
+                                    <a href="/login" class="link" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-3 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                             <h:panelGroup rendered="#{accountMembershipType eq 'personal'}">
+                                <div class="box-style mb-2">
+                                    <a href="/private/bireysel/destek" class="link" target="_blank" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-3 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{accountMembershipType eq 'corporate'}">
+                                <div class="box-style mb-2">
+                                    <a href="/private/kurumsal/destek" class="link" target="_blank" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-3 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                           <div class="box-style mb-2 p-3 text-center" style="color: #f39437;">
+                                <h:form id="counterForm" prependId="false">
+                                    <p:remoteCommand name="myRemote" update="adViewCountX" actionListener="#{adCountersBean.execute()}"/>
+                                </h:form>
+                                <script>window.onload = function() {myRemote(); };</script>
+                                Bu ilan <b><h:outputText id="adViewCountX" value="#{adCountersBean.ad_ViewCount}" /></b>  kere görüntülendi
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="guzergah-list p-4 route-wrap d-block mb-3">      
+                                <div class="table-responsive">
+                                <table class="table " >
+                                    <thead>
+                                        <tr>
+                                            <th width="22%" style="text-align: center; background: #f3f3f3d1; border-style: none;"><span class="title" style="color: #e19c73;" >Başlangıç Saati</span></th>
+                                            <th style="text-align: center; background: #f3f3f3d1; border-style: none;"><span class="title"  style="color: #e19c73;">Hostes'in Boş olduğu Yer</span></th>
+                                            <th width="22%" style="text-align: center; background: #f3f3f3d1; border-style: none;"><span class="title"  style="color: #e19c73;">Bitiş Saati</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat var="x" value="#{AdHostesimIsAriyorumBean.locationInfoFromMap.locationList}">
+                                            <tr style="color: #434b5a">
+                                               <td style=" vertical-align: middle; text-align: center"><span class="text"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                               <td style="vertical-align: middle; text-align: center;">
+                                                    <div class="text">
+                                                        <h:outputText value="#{x.adRoute_StartPosition_Neighborhood}" style="display: block"></h:outputText>
+                                                        <h:outputText value="#{x.adRoute_StartPosition_Town}" style="display: block; font-size: 80%;font-weight: 500;line-height: 22px;" ></h:outputText>
+                                                        <h:outputText value="#{x.adRoute_StartPosition_City}" style="display: block; font-size: 60%;font-weight: 400;line-height: 20px;" ></h:outputText>
+                                                    </div>
+                                                </td>
+                                                <td style=" vertical-align: middle; text-align: center"><span class="text"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                            </tr>
+                                        </ui:repeat>     
+                                    </tbody>
+                                </table>   
+                                </div>    
+                            </div>
+                            <div class="box-style">
+                                <div class="box-content p-3">
+                                    <div class="title-sm-orange mb-2">Açıklama</div>
+                                    <h:outputText style="font-size: 1.2rem" value="#{AdHostesimIsAriyorumBean.adBean.ad_Comment}" escape="false"/>
+                                </div>
+                            </div>
+                            
+                            <!--usersAds-->                        
+                            <div class="col-12 p-0 mt-5">
+                                <div class="home-list" style="width: 100%">
+                                    <p class="mb-4" 
+                                       style="font-weight: 700; font-size: 16px; line-height: 20px; color: #212429; padding-bottom: 0.25rem;  border-bottom: 2px solid #de904e;">
+                                        #{AdHostesimIsAriyorumBean.accountBean.account_FirstName}&nbsp;#{AdHostesimIsAriyorumBean.accountBean.account_LastName} <span style="font-weight: 500">tarafından oluşturulmuş en yeni ilanlar</span>
+                                    </p>
+
+                                    <p:scrollPanel mode="native" style="max-height:360px; padding: 20px">             
+                                        <ui:repeat var="a" value="#{AdHostesimIsAriyorumBean.adList}">
+                                            <!--Ilan-->
+                                                 <ui:insert name="usersAds" ><ui:include src="../common/usersAds.xhtml" /></ui:insert>
+                                            <!--Ilan-->
+                                        </ui:repeat>    
+                                    </p:scrollPanel>
+                                </div>    
+                            </div>
+                            <!--/usersAds-->
+                            
+                        </div>
+                    </div>
+                </h:panelGroup>    
+	    </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

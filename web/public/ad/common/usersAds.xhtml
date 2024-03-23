@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        
+        <ui:composition>  
+           
+       
+            <!--Ilan-->
+            <div class="home-list-item">
+                <!--IlanBaslık-->
+                <h:panelGroup rendered="#{a.ad_Category_Name.equals('İşim var araç arıyorum') }"><div  class="header green" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>İŞİM VAR ARAÇ ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/isim-var-arac-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracim var hostes arıyorum') }"><div  class="header purple" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>ARACIM VAR HOSTES ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/aracim-var-hostes-ariyorum/#{a.ad_Id}">&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracim var şöför arıyorum') }"><div  class="header yellow" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>ARACIM VAR ŞÖFÖR ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/aracim-var-sofor-ariyorum/#{a.ad_Id}">&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Aracım var iş arıyorum') }"><div  class="header orange" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>ARACIM VAR İŞ ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/aracim-var-is-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Hostesim iş arıyorum') }"><div  class="header pink" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>HOSTESİM İŞ ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/hostesim-is-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Şöförüm iş arıyorum') }"><div  class="header blue" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>ŞOFÖRÜM İŞ ARIYORUM</span><a style="color:#fff;font-weight: 500" title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/soforum-is-ariyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>
+                <h:panelGroup rendered="#{a.ad_Category_Name.equals('Plakamı satıyorum') }"><div class="header dark-green" style="padding: 10px 25px;display: flex;justify-content: space-between;"><span>PLAKAMI SATIYORUM</span><a style="color:#fff;font-weight: 500"  title="İlanın Detayı İçin Tıklatınız" class="text-decoration-none " href="/ad/plakami-satiyorum/#{a.ad_Id}" >&nbsp;&nbsp; İlan Detayı</a></div></h:panelGroup>                                 
+
+                <!--/IlanBaslık-->
+                <!--IlanIcerik-->
+
+                <div class="content" style="cursor: inherit;padding: 15px 25px;">
+                    <!--IlanAciklama-->
+                    <div class="description" style="font-size: 0.9rem !important">
+                        <i class="fas fa-info" aria-hidden="true" style="font-size: 0.9rem !important; margin-right: 2px;vertical-align: middle;"></i>
+                        <span style="font-size: 1rem !important">İlan Açıklaması</span>
+                    </div>
+                    <div class="description-content">
+                        <p>
+                            <h:outputText class="description-content2" style="font-size: 0.95rem !important; font-weight: 500"
+                                          value="#{a.ad_CommentFormated.length() >= 180 ? a.ad_CommentFormated.substring(0, 180)+='&nbsp;...':a.ad_CommentFormated}" 
+                                          escape="false"/>
+                        </p>
+
+                    </div>
+                    <hr style="border: none;border-top: 1px solid #ddd;  margin: 0; margin-top: 15px;  margin-bottom: 15px;"/>
+                    <!--/IlanAciklama-->
+
+
+                    <!--IlanAltBilgi-->
+                        <div class="row">
+                            <div class="content-info-area col-6">
+                                <div class="item">
+                                    <span class="title" style="font-size: 0.9rem !important">İlan Tarihi:</span>
+                                    <span style="font-size: 0.85rem !important"><h:outputText value="#{a.ad_CreateTime}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    <!--/IlanAltBilgi-->
+
+                </div>
+
+                <!--/IlanIcerik-->
+            </div>
+            <!--Ilan-->
+         
+        </ui:composition>
+    </h:body>
+</html>
+

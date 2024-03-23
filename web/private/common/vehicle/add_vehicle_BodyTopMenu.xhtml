@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:body>
+        <ui:composition>
+            
+            <div class="m-wizard__head m-portlet__padding-x" style="margin: 0; padding-bottom: 0">
+                
+                <h:panelGroup rendered="#{vehicleBean.getvParam2().equals('ad')}">
+                    <h4 style="margin-bottom: 50px;">Araç Düzenle</h4>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{!vehicleBean.getvParam2().equals('ad')}">
+                    <h4 style="margin-bottom: 50px;">Yeni araç ekle</h4>
+                </h:panelGroup>
+                
+                <!-- Wizard Progress -->
+                <div class="m-wizard__progress">
+                    <div class="progress">
+                        <div class="progress-bar" 
+                             role="progressbar" 
+                             aria-valuenow="100" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100" 
+                             style="width:  #{vehicleBean.pageNo.equals('s1')?'25%':''}
+                             #{vehicleBean.pageNo.equals('s2')?'50%':''}
+                             #{vehicleBean.pageNo.equals('s3')?'75%':''}
+                             #{vehicleBean.pageNo.equals('s4')?'100%':''};">
+                        </div>
+                    </div>
+                </div>
+                <!-- /Wizard Progress -->
+                <div class="m-wizard__nav">
+                    <div class="m-wizard__steps">
+                        <div class="m-wizard__step
+                             #{vehicleBean.pageNo=='s1'?'m-wizard__step--current':''}
+                             #{vehicleBean.pageNo=='s2'?'m-wizard__step--done':''}
+                             #{vehicleBean.pageNo=='s3'?'m-wizard__step--done':''}
+                             #{vehicleBean.pageNo=='s4'?'m-wizard__step--done':''}
+                             " m-wizard-target="m_wizard_form_step_1"> 
+                            <div class="m-wizard__step-info">
+                                <a href="#{vehicleBean.goUrl1()}" class="m-wizard__step-number"><span><span>1</span></span></a>
+                                <div class="m-wizard__step-line"><span style="width: 1rem"></span></div>
+                                <div class="m-wizard__step-label">Araç Bilgileri</div>
+                            </div>
+                        </div>
+                        <div class="m-wizard__step
+                             #{vehicleBean.pageNo=='s1'?'':''}
+                             #{vehicleBean.pageNo=='s2'?'m-wizard__step--current':''}
+                             #{vehicleBean.pageNo=='s3'?'m-wizard__step--done':''}
+                             #{vehicleBean.pageNo=='s4'?'m-wizard__step--done':''}
+                             " m-wizard-target="m_wizard_form_step_2">
+                            <div class="m-wizard__step-info">
+                                <a href="#{vehicleBean.goUrl2()}" class="m-wizard__step-number"><span><span>2</span></span></a>
+                                <div class="m-wizard__step-line"><span style="width: 1rem"></span></div>
+                                <div class="m-wizard__step-label">Referanslar</div>
+                            </div>
+                        </div>
+                        <div class="m-wizard__step
+                             #{vehicleBean.pageNo=='s1'?'':''}
+                             #{vehicleBean.pageNo=='s2'?'':''}
+                             #{vehicleBean.pageNo=='s3'?'m-wizard__step--current':''}
+                             #{vehicleBean.pageNo=='s4'?'m-wizard__step--done':''}
+                             " m-wizard-target="m_wizard_form_step_3">
+                            <div class="m-wizard__step-info">
+                                <a href="#{vehicleBean.goUrl3()}" class="m-wizard__step-number"><span><span>3</span></span></a>
+                                <div class="m-wizard__step-line"><span style="width: 1rem"></span></div>
+                                <div class="m-wizard__step-label">Sürücü &amp; Hostes Bilgileri</div>
+                            </div>
+                        </div>
+                        <div class="m-wizard__step
+                             #{vehicleBean.pageNo=='s1'?'':''}
+                             #{vehicleBean.pageNo=='s2'?'':''}
+                             #{vehicleBean.pageNo=='s3'?'':''}
+                             #{vehicleBean.pageNo=='s4'?'m-wizard__step--current':''}
+                             " m-wizard-target="m_wizard_form_step_4">
+                            <div class="m-wizard__step-info">
+                                <a href="#{vehicleBean.goUrl4()}" class="m-wizard__step-number"><span><span>4</span></span></a>
+                                <div class="m-wizard__step-line"><span style="width: 1rem"></span></div>
+                                <div class="m-wizard__step-label">Resim</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ui:composition>
+    </h:body>
+</html>
+

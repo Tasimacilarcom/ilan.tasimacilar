@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+
+        <!-- Start global head -->
+        <ui:insert name="head" ><ui:include src="../../../../head_A.xhtml" /></ui:insert>
+        <!-- End global head -->
+
+    </h:head>
+
+    <h:body>
+
+        <!-- Start header -->
+        <ui:insert name="header" ><ui:include src="../../../../header_A.xhtml" /></ui:insert>
+        <!-- End header -->
+
+        <main role="main" >
+            <div class="container-fluid" style="margin-top: 30px">
+                <div class="m-portlet m-portlet--full-height">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                 <h3 class="m-portlet__head-text">
+                                    <i class="fas fa-users-cog"></i>&nbsp;Site Yöneticisi Sayfası 
+                                    <small><i class="la la-angle-right"></i>&nbsp;Sistem&nbsp;
+                                            <i class="la la-angle-right"></i>&nbsp;Yazılım sürüm logları
+                                    </small>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                            <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item">
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body m-portlet__body--no-padding">
+                        <div class="m-wizard m-wizard--3 m-wizard--brand m-wizard--step-first" id="m_wizard">
+                            <div class="m-portlet__padding-x">    </div>
+                            <div class="row m-row--no-padding">
+                                <div class="col-md-2">
+                                    <div class="m-wizard__head" style="padding: 5rem 2rem;">
+                                        <!-- Start menu -->
+                                        <ui:insert name="left_menu" ><ui:include src="../../left_menu.xhtml" /></ui:insert>
+                                        <!-- End menu -->
+                                    </div>
+                                </div>
+                                <div class=" col-md-10">                                  
+                                     <!--begin: Form Wizard Form-->
+                                    <div class="m-wizard__form" style="padding: 30px;">
+
+
+                                        <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" novalidate="novalidate">
+
+                                            <!--begin: Form Body -->
+                                            <div class="m-portlet__body m-portlet__body--no-padding" style="min-height: 400px">
+
+                                                <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd">
+                                                    <i style="  float:left;
+                                                                font-size: 2rem;
+                                                                margin-bottom: .5rem;
+                                                                font-weight: 500;
+                                                                line-height: 1.2;
+                                                                color: inherit;" 
+                                                        class="m-nav__link-icon la la-cogs">
+                                                    </i>
+                                                    <h2 >&nbsp;Yazılım sürüm logları</h2><i ></i>
+                                                </div>
+
+                                                <p >Bu bölümden yazılım üzerinde gerçekleşen değişiklik, düzeltme, güncelleme gibi 
+                                                    tüm işlemlerin loglandıgı yazılım sürüm logları na ulaşılır.</p>
+                                                
+                                                <table class="table table-sm table-bordered" style="width: 100%">
+                                                    <thead class="table-secondary">
+                                                        <tr>
+                                                            <th width="130"><b>Sürüm Numarası</b></th>
+                                                            <th width="120"><b>Sürüm Tarihi</b></th>
+                                                            <th><b>Sürüm detayı</b> </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr><td>1.10.8</td><td>21.06.2023</td><td>işim var arac ariyorum ve aracim var sofor ariyorum ilanlarında boş geçilen ücretler 99.999 seklinde gözüküyordu buradaki sorun giderildi.</td></tr>
+                                                        <tr><td>1.10.7</td><td>20.06.2023</td><td>Anasayfada ilan filtrelemesinde araç filtrelemede araç markası, araç modeli, araç yılı, araç kapasitesi varsayılan olarak “Farketmez ” gelecek şekilde ayarlandı. </td></tr>
+                                                        <tr><td>1.10.6</td><td>16.06.2023</td><td> - Siteye Mobilden girildiğinde ilanlarda ilan tarihi gizlendi.<br/>
+                                                                                                   - Mobilde Logo küçültüldü ve logo şeridinin yüksekliği düşürülerek yer kazanıldı.<br/>
+                                                                                                   - Siteye pc den girildiğinde ilanların başlangıç ve bitiş saati yerine mobil görünümdeki gibi giriş saati çıkış saati yazıldı.<br/>
+                                                                                                   - “Aracım var hostes arıyorum” kategori ismi “Hostes arıyorum”,  “Aracım var şöför arıyorum” kategori ismi “Şöför arıyorum”olarak değiştirildi.<br/> 
+                                                                                                   - Araç marka listesi sık kullanılan araçlara göre yeniden listelendi. </td></tr>
+                                                        <tr><td>1.10.5</td><td>12.06.2023</td><td>Mobil cihazlarda anasayfadaki ilanlar 30 adet olarak sayfalandırıldı.</td></tr>
+                                                        <tr><td>1.10.4</td><td>09.06.2023</td><td>Mobil cihazlarda anasayfadaki arama menüsünü göster gizle özelliği konuldu.</td></tr>
+                                                        <tr><td>1.10.3</td><td>06.06.2023</td><td>Bir kullanıcının aracları arasına aynı plakadan birden fazla arac eklemesi kısıtlandı</td></tr>
+                                                        <tr><td>1.10.2</td><td>01.05.2023</td><td>Anasayfada mobile özgü ilan listemele devreye alındı.</td></tr>
+                                                        <tr><td>1.10.1</td><td>25.04.2023</td><td>Şifre değiştirme sıfırlama aşamasındaki sms onay kodu sorunu gıederıldı.</td></tr>
+                                                        <tr><td>1.10.0</td><td>13.04.2023</td><td>Ana sayfada ilan listelemeleri için cihaza gore otomatik yonlenen ve pc lerde kutu modeli görünüm mobilde liste modeli gorunum yapısı geliştirildi.</td></tr>
+                                                        <tr><td>1.9.19</td><td>11.04.2023</td><td>Ana sayfada leftSidebar(detaylı arama menüsü) da tasarım değişikliği yapıldı. İlan yayınlama tarihine göre filtre kaldırıldı. Firmaya göre arama bazı kategorilerde kaldırıldı.</td></tr>
+                                                        <tr><td>1.9.18</td><td>09.04.2023</td><td> Admin > Firmalar > Onay Bekleyen Firmalar > Bilgi Değişikliği Olan firmalar menusundeki sorunlar giderildi. Kayıt silme özelliği eklendi.</td></tr>
+                                                        <tr><td>1.9.17</td><td>07.04.2023</td><td>İlanların gösterildiği sayfa tasarımında mobile daha uygun olacak şekilde değişiklikler yapıldı.</td></tr>
+                                                        <tr><td>1.9.16</td><td>05.04.2023</td><td>İşim var arac arıyorum ilan olusturma formunda arac model yılı 2005-2023 olacak sekilde ayarlandi.</td></tr>
+                                                        <tr><td>1.9.15</td><td>04.04.2023</td><td>Aramalarda ilan sonuçları 1 Ay geriye dönük olarak gözükecek şekilde düzenleme yapıldı.</td></tr>
+                                                        <tr><td>1.9.14&nbsp;&nbsp;#b878d60</td><td>02.04.2023</td><td>Parola sıfırlama işlemi sırasında gonderilen sms onay kodu sorunları giderildi.</td></tr>
+                                                        <tr><td>1.9.13</td><td>01.04.2023</td><td>Html-Css tasarım düzenleme işi<br/>
+                                                                                                    - Anasayfa da üst kısmında bulunan renkli 6 adet kategori butonu sadeleştirilecek ve yer kazanımı elde edildi<br/>
+                                                                                                    - Anasayfa da üst kısmında bulunan renkli 6 adet kategori butonu login olmuş kişilerde hiç gözükmeyecek şekilde ayarlandı.<br/>
+                                                                                                    - Login olmuş kişilere özel solda bulunan Profilim,ilanlarım.. menusu sadeleşecek ve logonun hemen altında tam genişlikte olacak şekilde ayarlandı.<br/>
+                                                                                                    - Login olmuş kişilere özel solda bulunan Profilim,ilanlarım.. menusu bulunduğu yerden kalkacağı için Profilim,ilanlarım.. vb sayfalar tam genişlikte olacak sekilde ayarlandı.<br/>
+                                                                                                    - Ana sayfada ilan listelemelerinde ilanların açıklama font size da küçültme yapıldı.</td></tr>
+                                                        <tr><td>1.9.12</td><td>30.03.2023</td><td>Admin sayfasınadaki kullanıcı yonetimi modulunde ve kontrol paneli üzerinden kullanıcının ismine gore aramadaki sorun giderildi.</td></tr>
+                                                        <tr><td>1.9.11</td><td>30.03.2023</td><td>Kullanıcılarda ilanlarım sayfasında, ilanların üstündeki menude gorsel değişiklik yapıldı.</td></tr>
+                                                        <tr><td>1.9.10</td><td>29.03.2023</td><td>Admin sayfasınadaki araçlar modulundeki aracları ekleme sorunu giderildi.Liste içi aramada iyileştirme yapıldı.</td></tr>
+                                                        <tr><td>1.9.1</td><td>27.03.2023</td><td>Asırı ram kullanımı nedenıyle session oturum sonlanma süresi 180Dak.(3saat)den 120Dak.(2saat)e Dusuruldu.</td></tr>
+                                                        <tr><td>1.9.0</td><td>27.03.2023</td><td>Kullanıcıların ilanlarım sayfasında secili ilanları üst sıraya alma modulu geliştirildi.</td></tr>
+                                                        <tr><td>1.8.8</td><td>26.03.2023</td><td>Asırı ram kullanımı nedenıyle session oturum sonlanma süresi 240Dak.(4saat)den 180Dak.(3saat)e Dusuruldu.</td></tr>
+                                                        <tr><td>1.8.7&nbsp;&nbsp;#ad23a38</td><td>25.03.2023</td><td>Detaylı aramada araç bilgisi bulunan kategorilerde araç kapasitesine gore arama kısmı eklendı.</td></tr>
+                                                        <tr><td>1.8.6</td><td>24.03.2023</td><td>Asırı ram kullanımı nedenıyle session oturum sonlanma süresi 360Dak. (6saat) den, 240Dak.(4saat)e Dusuruldu.</td></tr>
+                                                        <tr><td>1.8.5</td><td>23.03.2023</td><td>mysql storage prosedure de arama prosedurlerınde AND a.ad_EndTime >= CURDATE() iptal edildi. 7 gunden sonraki ilanlar guncellense bıle gozukmuyordu. </td></tr>
+                                                        <tr><td>1.8.4</td><td>23.03.2023</td><td>asırı ram kullanımı nedenıyle session oturum sonlanma süresi 1440dak. (1 gun) den, 360Dak. (6saat) Dusuruldu.</td></tr>
+                                                        <tr><td>1.8.3&nbsp;&nbsp;#21046bb</td><td>22.03.2023</td><td>Sitede session oturum sonlanma süresi 30 dak. dan 1440dak. (1 gun) e çıkarıldı</td></tr>
+                                                        <tr><td>1.8.2</td><td>22.03.2023</td><td>- Siteden google maps apı bağlantı script i kaldırıldı
+                                                                                                 - ilanların gosterildigi formlardan ilan konum ve yolcu konumları kaldırıldı.
+                                                                                                 - ilan oluşturma formlarındaki yolcu ekleme modullerı kaldırıldı</td></tr>
+                                                        <tr><td>1.8.1</td><td>21.03.2023</td><td>Detaylı aramada başlangıc ilçesi olarak anadolu ve avrupayakası secilince, bitiş konumundaki ilçeler gelmiyordu buradaki sorun giderildi.</td></tr>
+                                                        <tr><td>1.8.0</td><td>20.03.2023</td><td>- IDE output konsolda tr karakter sorunları için StartupBean e System.setOut(new PrintStream(System.out, true, "utf-8")) eklendi.<br/>
+                                                                                            - aracim_var_sofor_ariyorum ilan olusturma formundaki servis tipleri hızlı arac olusturma kısmının altına tasındı.<br/>
+                                                                                            - arac olusturma formuda arac yılları arasına 2023 yılı eklendi.<br/>
+                                                                                            - mysql içinde Ad_AracimVarSoforAriyorum_ServiceTypes kolonu fast_vehicle_ServiceTypes olarak değişti.en son kolona alındı.<br/>
+                                                                                            - mysql içinde pro_ad_AracimVarSoforAriyorum storage prosedure de in servis tipi parametresi prm_vehicle_ServiceTypes olarak değiştirildi.<br/>
+                                                                                            - mysql içinde pro_ad_AracimVarSoforAriyorum storage prosedure de insert içinde fast_vehicle_ServiceTypes ve prm_vehicle_ServiceTypes yapıldı.<br/>
+                                                                                            - mysql içinde pro_ad_AracimVarSoforAriyorum storage prosedure de update içinde fast_vehicle_ServiceTypes ve prm_vehicle_ServiceTypes yapıldı.<br/>
+                                                                                            - Telik aramada kapasite ve markaya ait ilanlarda listeleme limititi verildi. En yeni 500 Adet ilan listeleniyor<br/>
+                                                                                            - Ana sayfadaki detaylı arama sonuçları son 7 gun luk ılanları getirecek sekılde limit konuldu
+                                                                                            - Detaylı arama modulunde, başlangıç ve bitiş konumlarına il secebilme kısmı eklendi. illerin çoklu secilme imkanı yapıldı.<br/>
+                                                                                            - Detaylı arama modulunde, başlangıç ve bitiş konumlarına çoklu ilçe sece bilme opsiyunu eklendi.<br/>
+                                                                                            - Detaylı arama modulunde, başlangıç ve bitiş konumlarında istanbul ili secilirse anadolu ve avrupa yakası diye ilçe gruplama eklendi.<br/>
+                                                                                            - Detaylı arama modulunde, başlangıç ilçesi seçilinde bitiş ilçesi ilanlardaki başlangıç ilçesine gore getiriliyor.<br/>
+                                                                                            - Detaylı arama da bitiş ve Başlagıç saatlerinindeki sorunlar giderildi.<br/>
+                                                                                            - Detaylı arama modulunde, araca gore filtrelemedeki sorunlar giderildi.<br/>
+                                                                                            - Detaylı arama modulunde, araca gore filtrelemede kısmında çoklu arac ekleme imkanı getirildi.<br/>
+                                                                                            - Detaylı arama modulunde, aramayı temizle kısmındaki sorunlar giderildi.<br/>
+                                                                                            - Anasayfadaki menu altındaki 6 adet kategoriye gore ilanları listeleme kutusu url leri seo uyumlu hale getirildi.</td></tr>
+                                                        <tr><td>1.7.6</td><td>17.03.2023</td><td>Anasayfada ilan listemelerinde ilan bilgisi kutularındaki ilan detayı link ine visited ozelliği eklendi.</td></tr>
+                                                        <tr><td>1.7.5&nbsp;&nbsp;#023d896</td><td>15.03.2023</td><td>Anasayfada varsayılan olarak son 7 gunun ılanları son 3 gunun ılanları olarak getirilecek sekilde düzenlendi.</td></tr>
+                                                        <tr><td>1.7.4</td><td>15.03.2023</td><td>BannnersDao içindeki bannerleri getirme hatası düzeltildi.</td></tr>
+                                                        <tr><td>1.7.3</td><td>15.03.2023</td><td>Mysql iniden sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION" olarak ayarlandı.</td></tr>
+                                                        <tr><td>1.7.2</td><td>15.03.2023</td><td>Eski sunucudan yeni sunucuya datalar aktarıldı ve yeni sunucu yayına alındı.</td></tr>
+                                                        <tr><td>1.7.1</td><td>15.03.2023</td><td>İlanlarım ->  Aracım Var iş arıyorum -> Araç seçiniz formundaki araç secme akordiyonu varsayılan olarak açık olarak ayarlandı.</td></tr>
+                                                        <tr><td>1.7.0</td><td>14.03.2023</td><td>Yazılım için yeni sunucu kurulumu yapıldı.<br/>
+                                                                                                - işletim sistemi windows server 2016 st. dan server 2019 st a yukseltildi.<br/>
+                                                                                                - mysql server 8.0.31 den 	mysql server 8.0.32 yukseltıldı	<br/>
+                                                                                                - apache tomcat 8.5.43 den 8.5.87 ye yukseltıldı.<br/>
+                                                                                                - diğer yardımcı tool lar yuklendi<br/>
+                                                                                                - windows firewall port yapılandırıldı. 80 nolu port public e acıldı</td></tr>													
+                                                        <tr><td>1.6.4</td><td>13.03.2023</td><td>Ana sayfadaki tekil aramadan yapılan marka ve kapasite aramaları sonuçları ılan onaylama tarihine gore yeniden eskiye doğru sıralandı.</td></tr>
+                                                        <tr><td>1.6.3</td><td>13.03.2023</td><td>Kullanıcı ilanlarım sayfasında seçili ilanı enüste taşı düğmesi kaldırıldı.</td></tr>
+                                                        <tr><td>1.6.2</td><td>13.03.2023</td><td>Parola sınırlama esnasında yanlış işlem sonucu parola değişrimeyi kilitleme sınırı 10 yanlış denemeye yukseltıldı.</td></tr>
+                                                        <tr><td>1.6.1</td><td>13.03.2023</td><td>Ana sayfada detaylı aramada araç kapasitesine gore aramadaki sorun giderildi.</td></tr>	
+                                                        <tr><td>1.6.0&nbsp;&nbsp;#9d802c4</td><td>12.03.2023</td><td>- Ana sayfadaki tepedeki 6 adet renkli kategori butonlarının isimleri ve linkleri gidecekleri kategoriye gore yeniden duzenlendi.<br/>
+                                                                                                 - Ana sayfadaki tepedeki 6 adet renkli kategori butonlarının isimleri değişince buton/kutu tasarımı yeniden yapıldı. Padding düşürüldü.<br/>
+                                                                                                 - Ana sayfadaki detaylı arama bolumunun basındaki kategori aramadaki çapraz kategori gerirme duzeltıldı. Kategori ismi ile çağrılan kategori aynı yapıldı. <br/>
+                                                                                                 - Ana sayfadaki detaylı arama bolumunundeki arama yapılınca seçimlerin sıfırlanması özelliği kaldırıldı. </td></tr>
+                                                        <tr><td>1.5.3</td><td>11.03.2023</td><td>Araç ekleme formundaki bazı h:message larda  eski sitiller vardı, görüntü sorunu nu kaldırmak için sorunlu elemanlara class="message-f" verildi</td></tr>
+                                                        <tr><td>1.5.2</td><td>11.03.2023</td><td>Araç ekleme formundaki servis tipi alanı zorunlu hale getirildi. Boş geçildiğinde hata oluyordu.</td></tr>
+                                                        <tr><td>1.5.1</td><td>10.03.2023</td><td>Ana sayfadaki detaylı arama modülündeki bitiş tarihleri kaldırıldı</td></tr>
+                                                        <tr><td>1.5.0</td><td>10.03.2023</td><td>"cql4sb6587ik"  id li  "Sürücü - Şöför"  firması altındaki  765 adet kurumsal kullanıcı bireysel kullanıcıya çavirilmiştir. Faliyet alanı olarak şöför tanımlaması yapılmıştır. </td></tr>
+                                                        <tr><td>1.4.1</td><td>10.03.2023</td><td>İletişim sayfasında telefon bilgisi komple kaldırıldı.</td></tr>
+                                                        <tr><td>1.4.1</td><td>09.03.2023</td><td>İletişim sayfasında telefon bilgisi komple kaldırıldı.</td></tr>
+                                                        <tr><td>1.4.0</td><td>09.03.2023</td><td>Ana sayfada ilan listelemede ilanlar default olarak onay zamanına gore yeniden eskiye gore yeniden sırandı.	</td></tr>
+                                                        <tr><td>1.3.0</td><td>09.03.2023</td><td>Windows server registery sinde duzenleme yapıldı. HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\ Services\TCPIP\Parameters icerisine REG_DWORD olarak TcpTimedWaitDelay = 30 eklendi. </td></tr>
+                                                        <tr><td>1.2.0</td><td>09.03.2023</td><td>ConnectionManager.java içerinde sql connection string e allowPublicKeyRetrieval=true parametresi eklendi.</td></tr>
+                                                        <tr><td>1.1.0</td><td>09.03.2023</td><td>mysql-connector-java-8.0.20.jar dan mysql-connector-j-8.0.31.jar a guncellendi.</td></tr>
+                                                        <tr><td>1.0.2</td><td>09.03.2023</td><td>İletişim sayfasında telefon bilgilerinde değişiklik yapıldı</td></tr>
+                                                        <tr><td>1.0.1</td><td>09.03.2023</td><td>İşim var araç arıyorum ılan olusturma formunda Araçtaki Yolcu Sayısı	inputtex alanı zorunlu kılındı. Bu alan boş gecilince sorun oluyordu</td></tr>
+                                                        <tr><td>1.0.0&nbsp;&nbsp;#8963c4f</td><td>08.03.2023</td><td>Proje canlıya çıktı</td></tr>
+                                                    </tbody>
+                                                </table>    
+
+                                            </div>
+
+                                            <!--end: Form Body -->
+
+
+                                        </form>
+                                    </div>
+
+                                    <!--end: Form Wizard Form-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <!-- Start footer -->
+        <ui:insert name="footer" ><ui:include src="../../../../footer_A.xhtml" /></ui:insert>
+        <!-- End footer -->
+
+        <!-- Start global scripts -->
+        <ui:insert name="scripts" ><ui:include src="../../../../scripts_A.xhtml" /></ui:insert>
+        <!-- End global scripts -->
+
+    </h:body>
+</html>
+
+

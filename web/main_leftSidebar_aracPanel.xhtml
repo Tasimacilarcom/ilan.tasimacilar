@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition>
+
+            <hr/>
+            <label for=""><b>Araç</b></label><br/>
+            
+            <h:outputLabel id="BrandOneMenuLabel" for="BrandOneMenu">Araç Markası</h:outputLabel>
+            <style>
+                #BrandOneMenu > div.ui-selectcheckboxmenu-trigger.ui-state-default.ui-corner-right{  width:25px !important }
+                #ModelOneMenu > div.ui-selectcheckboxmenu-trigger.ui-state-default.ui-corner-right{  width:25px !important }
+            </style>
+            <p:selectCheckboxMenu   id="BrandOneMenu" value="#{adBean.adSearchBean.adSearchInputEntity.fltr_Vehicle_BrandIds}" 
+                                    label=""  style=" font-size: 14px; padding: 1px; margin-bottom: 15px; width: 100%"    
+                                    filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" showHeader="false" scrollHeight="250" 
+                                    updateLabel="true"  dynamic="true" filterPlaceholder="Ara" labelSeparator=", "  >
+                <f:selectItem itemValue="0" itemLabel="Farketmez"></f:selectItem>
+                <f:selectItems value="#{adBean.vehicleBrandNamesListx()}" var="v" itemLabel="#{v.vehicleBrand_Name}" itemValue="#{v.vehicleBrand_Id}" /> 
+                <f:ajax event="change" render="ModelOneMenu fdg5ters" listener="#{adBean.vehicleModelsListx()}"></f:ajax>
+            </p:selectCheckboxMenu>
+
+            <h:panelGroup id="fdg5ters">
+                <h:panelGroup rendered="#{adBean.vehicleModelsList.size()>1}">
+                    <h:outputLabel id="ModelOneMenuLabel" for="ModelOneMenu">Araç Modeli</h:outputLabel>
+                    <p:selectCheckboxMenu   id="ModelOneMenu" value="#{adBean.adSearchBean.adSearchInputEntity.fltr_Vehicle_Model}" 
+                                            label="Model seçiniz" style=" font-size: 14px; padding: 1px; margin-bottom: 15px; width: 100%"    
+                                            filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" showHeader="false" scrollHeight="250" 
+                                            updateLabel="true"  dynamic="true" filterPlaceholder="Ara" labelSeparator=", "  >
+                        <f:selectItem itemValue="Farketmez" itemLabel="Farketmez"></f:selectItem>
+                        <f:selectItems value="#{adBean.vehicleModelsList}" var="x" itemLabel="#{x}" itemValue="#{x}" ></f:selectItems> 
+                    </p:selectCheckboxMenu>
+                </h:panelGroup> 
+            </h:panelGroup>
+           
+            
+            
+            
+            
+            <h:outputLabel id="ModelYearOneMenuLabel" for="ModelYearOneMenux">Araç Yılı</h:outputLabel> 
+            <div class="row"> 
+                <div class="col-md-7" style="padding-right: 5px;">
+                    <h:selectOneMenu id="ModelYearOneMenux" 
+                                     style="margin-bottom: 10px;border-radius: 3px;" value="#{adBean.adSearchBean.adSearchInputEntity.fltr_Vehicle_ModelYear}" 
+                                     class="form-control m-input m-input--square">
+                       
+                        <f:selectItem itemValue="farketmez" itemLabel="Farketmez"></f:selectItem>
+                        <f:selectItem itemValue="2023" itemLabel="2023"></f:selectItem>
+                        <f:selectItem itemValue="2022" itemLabel="2022"></f:selectItem>
+                        <f:selectItem itemValue="2021" itemLabel="2021"></f:selectItem>
+                        <f:selectItem itemValue="2020" itemLabel="2020"></f:selectItem>
+                        <f:selectItem itemValue="2019" itemLabel="2019"></f:selectItem>
+                        <f:selectItem itemValue="2018" itemLabel="2018"></f:selectItem>
+                        <f:selectItem itemValue="2017" itemLabel="2017"></f:selectItem>
+                        <f:selectItem itemValue="2016" itemLabel="2016"></f:selectItem>
+                        <f:selectItem itemValue="2015" itemLabel="2015"></f:selectItem>
+                        <f:selectItem itemValue="2014" itemLabel="2014"></f:selectItem>
+                        <f:selectItem itemValue="2013" itemLabel="2013"></f:selectItem>
+                        <f:selectItem itemValue="2012" itemLabel="2012"></f:selectItem>
+                        <f:selectItem itemValue="2011" itemLabel="2011"></f:selectItem>
+                        <f:selectItem itemValue="2010" itemLabel="2010"></f:selectItem>
+                        <f:selectItem itemValue="2009" itemLabel="2009"></f:selectItem>
+                        <f:selectItem itemValue="2008" itemLabel="2008"></f:selectItem>
+                        <f:selectItem itemValue="2007" itemLabel="2007"></f:selectItem>
+                        <f:selectItem itemValue="2006" itemLabel="2006"></f:selectItem>
+                        <f:selectItem itemValue="2005" itemLabel="2005"></f:selectItem>
+                        <f:selectItem itemValue="2004" itemLabel="2004"></f:selectItem>
+                        <f:selectItem itemValue="2003" itemLabel="2003"></f:selectItem>
+                        <f:selectItem itemValue="2002" itemLabel="2002"></f:selectItem>
+                        <f:selectItem itemValue="2001" itemLabel="2001"></f:selectItem>
+                        <f:selectItem itemValue="2000" itemLabel="2000"></f:selectItem>
+                        <f:ajax event="change" render="dsg4ew"></f:ajax>
+                    </h:selectOneMenu> 
+                </div> 
+                
+                <div class="col-md-5" style="padding-top: 10px;padding-left: 5px;">
+                    <h:panelGroup id="dsg4ew">
+                        <h:panelGroup rendered="#{!adBean.adSearchBean.adSearchInputEntity.fltr_Vehicle_ModelYear.equals('farketmez')}">
+                            <label class="m-checkbox">
+                                <h:selectBooleanCheckbox value="#{adBean.adSearchBean.adSearchInputEntity.fltr_Vehicle_ModelYearAndOver}"/>
+                               &nbsp;&amp;&nbsp;Üzeri<span></span>
+                            </label>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </div>
+             
+            </div>
+            
+            <h:outputLabel id="KapasiteLabel" for="Kapasite" style="margin-top: 5px">Araç Kapasitesi</h:outputLabel>
+            <style>
+                #Kapasite > div.ui-selectcheckboxmenu-trigger.ui-state-default.ui-corner-right{  width:25px !important }
+            </style>
+            <p:selectCheckboxMenu   id="Kapasite" value="#{adBean.adSearchBean.adSearchInputEntity.fltr_Vehicle_NumberOfSeats}" 
+                                    label="Kapasite seçiniz" style=" font-size: 14px; padding: 1px; margin-bottom: 15px; width: 100%"    
+                                    filter="true" filterMatchMode="startsWith" panelStyle="width: 15rem" showHeader="false" scrollHeight="250" 
+                                    updateLabel="true"  dynamic="true" filterPlaceholder="Ara" labelSeparator=", "  >
+               
+                <f:selectItems value="#{adBean.vehicleCapasityNamesListx()}" var="x" itemLabel="#{x}" itemValue="#{x}" ></f:selectItems> 
+            </p:selectCheckboxMenu>
+            
+            
+        </ui:composition>
+
+    </h:body>
+
+</html>
+

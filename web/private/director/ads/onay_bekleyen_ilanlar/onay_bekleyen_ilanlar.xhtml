@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="../../director-page-layout.xhtml">
+            <ui:define name="head-title">
+                <h3 class="m-portlet__head-text">
+                    <i class="fas fa-users-cog"></i>&nbsp;Site Yöneticisi Sayfası 
+                    <small>
+                        <i class="la la-angle-right"></i>&nbsp;İlanlar&nbsp;
+                        <i class="la la-angle-right"></i>&nbsp;Onay Bekleyen İlanlar
+                    </small>
+                </h3>
+            </ui:define>
+            <ui:define name="form">
+                
+                <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd"> <i style="  float:left; font-size: 2rem; margin-bottom: .5rem; font-weight: 500; line-height: 1.2;  color: inherit;" class="m-nav__link-icon la la-list-ul"></i><h2 >&nbsp;Onay Bekleyen İlanlar</h2><i ></i></div>                                              
+                <h:form id="dfwer3wq" > 
+                    <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                    <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/>  
+                    <ui:insert name="adListPart" ><ui:include src="onay_bekleyen_ilanlar_adListPart.xhtml" /></ui:insert>                                           
+                    <ui:insert name="dialogWindowsPart" ><ui:include src="onay_bekleyen_ilanlar_dialogWindowsPart.xhtml" /></ui:insert>
+                </h:form> 
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <main>
+            <!--topSearchMenu-->
+            <ui:insert name="main_topSearchMenu" ><ui:include src="main_topSearchMenu.xhtml" /></ui:insert>
+            <!--/topSearchMenu-->
+
+            <!--main_top_category_filter-->
+            <ui:insert name="main_top_category_filter" ><ui:include src="main_top_category_filter.xhtml" /></ui:insert>
+            <!--/main_top_category_filter-->
+
+            <div class="list-content">
+                <div class="container">
+                    <div class="row">
+                        <!--Left Sidebar-->
+                        <ui:insert name="main_leftSidebar" ><ui:include src="main_leftSidebar.xhtml" /></ui:insert>
+                        <!--/Left Sidebar-->
+                        
+                        <!--Center-->
+                        <div class="col-12 col-sm-8 col-md-9">
+                            <h:form prependId="false">
+                                <div class="list-order mb-3">
+                                    <div class="form-group d-flex justify-content-end mb-2">
+                                        <label for="listOrder" class="col-form-label mr-2">Sırala</label>
+                                        <div class="">
+                                            <h:selectOneMenu id="sortselectOneMenu" class="form-control" value="#{adBean.adSortType}">
+                                                <f:selectItem itemValue="DESC"  itemLabel="İlan Tarihine göre (Önce En Yeni)"></f:selectItem>
+                                                <f:selectItem itemValue="ASC"  itemLabel="İlan Tarihine göre (Önce En Eski"></f:selectItem>
+                                                <f:ajax event="change" render="dsfgfdgdsvfdsa" listener="#{adBean.sortAdList()}"></f:ajax>
+                                            </h:selectOneMenu>          
+                                        </div>
+                                    </div>
+                                </div>
+                                <h:panelGroup rendered="#{redirectBean.redirect() eq 'pc' }">
+                                    <ui:insert name="main_center_pc_2" ><ui:include src="main_center_pc.xhtml" /></ui:insert>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{redirectBean.redirect() eq 'mobil' }">
+                                    <ui:insert name="main_center_pc_2" ><ui:include src="main_center_pc_2.xhtml" /></ui:insert>
+                                    
+                                </h:panelGroup>
+                            </h:form>      
+                        </div>
+                        <!--/Center-->
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </h:body>
+</html>
+

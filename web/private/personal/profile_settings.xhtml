@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="/private/templates/myPagesLayout.xhtml">
+            <ui:define name="content">
+                <h:form class="m-form m-form--label-align-left- m-form--state-" id="personalAccountForm" prependId="false">
+                    <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                    <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/>  
+                    <div class="profile-card">
+                        <div class="title-bold">Profil Bilgileriniz</div>
+                        <div class="form">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label id="personalAccountFirstNameLabel"  for="personalAccountFirstNameInput" class="col-form-label font-weight-bold">Adınız</label>
+                                    <h:inputText id="personalAccountFirstNameInput" class="form-control"  value="#{personalAccountBean.accountBean.account_FirstName}" required="true" requiredMessage="Lütfen adınızı yazınız"></h:inputText>
+                                    <h:message class="message-f" for="personalAccountFirstNameInput" ></h:message>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label id="personalAccountLastNameLabel" for="personalAccountLastNameInput" class="col-form-label font-weight-bold">Soyadınız</label>
+                                    <h:inputText id="personalAccountLastNameInput" class="form-control"  value="#{personalAccountBean.accountBean.account_LastName}"  required="true" requiredMessage="Lütfen soyadınızı yazınız"></h:inputText>
+                                    <h:message class="message-f" for="personalAccountLastNameInput" ></h:message>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label id="personalAccountEmailAddressLabel" for="personalAccountEmailAddressInput" class="col-form-label font-weight-bold">Email Adresiniz</label>
+                                    <div class="input-group ">
+                                        <div class="input-group-prepend">
+                                            <h:panelGroup rendered="#{personalAccountBean.accountBean.account_EmailAddressActivated}">
+                                                <span class="input-group-text" title="Doğrulanmış E-Mail Adresi" ><i style="font-size: 1.4rem; color: green" class="far fa-check-circle"></i></span>
+                                            </h:panelGroup>
+                                            <h:panelGroup rendered="#{personalAccountBean.accountBean.account_EmailAddressActivated==false}">
+                                                <span class="input-group-text" title="Doğrulanmamış E-Mail Adresi" ><i style="font-size: 1.4rem; color: orange" class="fas fa-minus-circle"></i></span>
+                                            </h:panelGroup>
+                                        </div>
+                                        <h:inputText id="personalAccountEmailAddressInput"  class="form-control"  value="#{personalAccountBean.accountBean.account_EmailAddress}"  validatorMessage="Geçersiz E-Mail adresi formatı"><f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /></h:inputText>
+                                        <h:panelGroup rendered="#{personalAccountBean.accountBean.account_EmailAddressActivated==false}">
+                                            <div class="input-group-append"><h:commandLink class="btn btn-secondary" style="width:100%;line-height: 28px;" onclick="PF('dlg3').show();" title="E-Mail Adresini Doğrula" >Doğrula<f:ajax execute="@this" ></f:ajax></h:commandLink></div>
+                                        </h:panelGroup>
+                                        <h:message class="message-f" for="personalAccountEmailAddressInput" style="color: red"></h:message>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <script>function ltr(element) {
+                                                        if (element.setSelectionRange) {
+                                                            element.setSelectionRange(0, 0);
+                                                        }
+                                                    }</script>
+                                    <label  id="personalAccountMobilePhoneNumberLabel" for="personalAccountMobilePhoneNumberInput" class="col-form-label font-weight-bold">Gsm Numaranız</label>
+                                    <div class="input-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" title="Doğrulanmış GSM Numarası" ><i style="font-size: 1.4rem; color: green" class="far fa-check-circle"></i></span>
+                                        </div>
+                                        <p:inputMask id="personalAccountMobilePhoneNumberInput"  class=" form-control m-input"  onclick="ltr(this);"  value="#{personalAccountBean.accountBean.account_MobilePhoneNumber}" required="true" requiredMessage="Lütfen Cep telefon numaranızı yazınız" mask="0(599)-999-9999"> </p:inputMask>
+                                        <h:message class="message-f" for="personalAccountMobilePhoneNumberInput"></h:message>
+                                    </div>              
+                                </div>
+                                <div class="form-group col-12">
+                                    <label  id="personalAccountAddressLabel"  for="personalAccountAddressInput" class="col-form-label font-weight-bold">Adres</label>
+                                    <h:inputTextarea id="personalAccountAddressInput"  class="form-control m-input"  rows="3"  value="#{personalAccountBean.addressBean.address}"> </h:inputTextarea>
+                                    <h:message class="message-f" for="personalAccountAddressInput" ></h:message>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label id="personalAccountAddressCitySelectOneMenuLabel" for="personalAccountAddressCitySelectOneMenu" class="col-form-label font-weight-bold">İl</label>
+                                    <h:selectOneMenu id="personalAccountAddressCitySelectOneMenu" value="#{personalAccountBean.addressBean.address_CityId}" class="form-control" style="height: 40px;">
+                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                        <f:selectItems value="#{personalAccountBean.allCityWithDetail()}"  var="o"  itemLabel="#{o.cityName}"   itemValue="#{o.cityID}" > </f:selectItems> 
+                                        <p:ajax event="change" update="personalAccountAddressTownSelectOneMenu"></p:ajax>
+                                    </h:selectOneMenu> 
+                                    <h:message class="message-f" for="personalAccountAddressCitySelectOneMenu" ></h:message>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label  id="personalAccountAddressTownSelectOneMenuLabel" for="personalAccountAddressTownSelectOneMenu" class="col-form-label font-weight-bold">İlçe</label>
+                                    <h:selectOneMenu id="personalAccountAddressTownSelectOneMenu" value="#{personalAccountBean.addressBean.address_TownId}" class="form-control" style="height: 40px;">
+                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                        <f:selectItems value="#{personalAccountBean.allTownDetailWithCity()}" var="o"  itemLabel="#{o.townName}"  itemValue="#{o.townID}" ></f:selectItems> 
+                                    </h:selectOneMenu> 
+                                    <h:message class="message-f" for="personalAccountAddressTownSelectOneMenu" ></h:message>
+                                </div>
+                               
+                                <h:panelGroup  id="alertPanelxx" rendered="#{personalAccountBean.accountBean.account_passwordNotChange}" style="width: 100%;">
+                                    <div class="form-row" style="padding: 5px;">
+<!--                                        <div class="form-group col-md-6">
+                                            <label id="personalAccountOldPasswordLabelx" for="personalAccountOldPasswordx" class="col-form-label font-weight-bold">Eski Şifreniz</label>
+                                            <h:inputSecret  id="personalAccountOldPasswordx" class="form-control" disabled="true"  maxlength="12" value="#{personalAccountBean.accountBean.account_oldPassword}"> </h:inputSecret>
+                                            <h:message class="message-f"  for="personalAccountOldPasswordx" ></h:message>
+                                        </div>-->
+                                        <div class="form-group col-md-6">
+                                            <label id="personalAccountNewPasswordLabelx" for="personalAccountNewPasswordx" class="col-form-label font-weight-bold">Yeni Şifreniz</label>
+                                            <h:inputSecret  id="personalAccountNewPasswordx" class="form-control m-input" disabled="true" maxlength="12" value="#{personalAccountBean.accountBean.account_newPassword}"></h:inputSecret>
+                                            <h:message class="message-f" for="personalAccountNewPasswordx" ></h:message>
+                                        </div>
+                                        <div class="form-group col-lg-12" style="margin-top: 15px; margin-bottom: 0; ">
+                                            <p><b style="color: red; font-size: 1.3rem">!</b>&nbsp;&nbsp;<em style="font-size: 1rem; color: #cc6600">Şifrenizi değiştirmeniz sistem tarafından engellenmiştir.</em></p>  
+                                        </div>
+                                    </div>    
+                                </h:panelGroup>
+                                <h:panelGroup  id="alertPanelxxx" rendered="#{!personalAccountBean.accountBean.account_passwordNotChange}" style="width: 100%;">
+                                    <div class="form-row" style="padding: 5px;">
+<!--                                        <div class="form-group col-md-6">
+                                            <label  id="personalAccountOldPasswordLabel" for="personalAccountOldPassword" class="col-form-label font-weight-bold">Eski Şifreniz</label>
+                                            <h:inputSecret  id="personalAccountOldPassword" class="form-control m-input"  maxlength="12" value="#{personalAccountBean.accountBean.account_oldPassword}"> </h:inputSecret>
+                                            <h:message class="message-f" for="personalAccountOldPassword"></h:message>
+                                        </div>-->
+                                        <div class="form-group col-md-4">
+                                            <label  id="personalAccountNewPasswordLabel" for="personalAccountNewPassword" class="col-form-label font-weight-bold">Yeni Şifreniz</label>
+                                            <h:inputText  id="personalAccountNewPassword" class="form-control m-input" maxlength="12"  value="#{personalAccountBean.accountBean.account_newPassword}"></h:inputText>
+                                            <h:message class="message-f" for="personalAccountNewPassword"></h:message>
+                                        </div>
+                                        <div class="form-group col-md-8" style="margin-top: 15px; margin-bottom: 0; ">
+                                            <label class="col-form-label font-weight-bold">&nbsp;</label>
+                                            <p><b style="color: red; font-size: 1.3rem">!</b>&nbsp;&nbsp;<em style="font-size: 1rem; color: #cc6600">
+                                                    <!--Eğer şifrenizi değiştirmek isterseniz ilgili alanlara mevcut ve yeni şifrenizi mutlaka yazmalısınız.<br/>-->
+                                                     Şifrenizi değiştirmek istemiyorsanız bu alanı boş bırakınız.</em></p>  
+                                        </div>
+                                    </div>    
+                                </h:panelGroup>
+                                <div class="form-group col-lg-12">
+                                    <h:panelGroup id="alertPanel" rendered="#{personalAccountBean.gsmChanged}">
+                                        <div style="background-color: #fff1e5;padding: 25px;border-radius: 10px;">
+                                            <div>
+                                                <h5><strong>Dikkat!</strong> GSM Numaranız BAŞARILI bir şekilde değişmiştir.</h5>
+                                                GSM numarası değişikliği yeniden GSM aktivasyonu işlemi gerektirir. Yeni GSM numaranıza aktivasyon kodunuz gönderilmiştir. Yandaki "Aktivasyon" düğmesine tıklatarak gerekli aktivasyon işlemini yapınız.<br/><br/>
+                                                <strong style="color: red">Yeni aktivasyon işlemine kadar hesabınız kilitlenmiştir.</strong> 
+                                            </div>
+                                            <div style="width: 300px;margin-top: 30px;">
+                                                <a href="/activation" class="btn btn-warning" style="color: #a50f0f; font-weight: 800; ">Aktivasyon Yap</a>
+                                            </div>
+                                        </div>    
+                                    </h:panelGroup>
+                                    <h:panelGroup id="alertPanel2" rendered="#{personalAccountBean.emailChanged}">
+                                        <div style="background-color: #fff1e5;padding: 25px;border-radius: 10px;">
+                                            <div >
+                                                <h5><strong>Dikkat!</strong> E-Mail adresiniz BAŞARILI bir şekilde değişmiştir.</h5>
+                                                E-Mail değişikliği yeniden E-Mail aktivasyonu işlemi gerektirir. Yeni E-Mail adresinize aktivasyon kodunuz gönderilmiştir. Yandaki "Aktivasyon" düğmesine tıklatarak gerekli aktivasyon işlemini yapınız.<br/><br/>
+                                            </div>
+                                            <div style="width: 300px;margin-top: 30px;">
+                                                <a href="/email-activation" class="btn btn-warning" style="color: #a50f0f; font-weight: 800; ">Aktivasyon Yap</a>
+                                            </div>
+                                        </div>
+                                    </h:panelGroup>
+                                </div><br/><br/>
+                                <div class="form-group col-md-6 mt-3">
+                                    <h:commandLink class="btn btn-outline-danger " onclick="PF('dlg2').show();" title="Hesabı Kullanıma Kapat" ><i class="far fa-times-circle"></i>&nbsp;&nbsp;Kullanıcı hesabını kapat<f:ajax execute="@this"></f:ajax></h:commandLink>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <h:commandLink class="btn btn-form w-100" title="Bigileri Güncelle"  action="#{personalAccountBean.updateAccount()}">Bigileri Güncelle</h:commandLink>
+                                </div>
+                                <p:dialog header="Hesap Kapatma" widgetVar="dlg2" modal="true"  resizable="false" responsive="true" style="max-width: 550px;">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12" style="margin-bottom: 25px;"><p style="font-size: 1.2em"><b>Dikkat !</b>&nbsp;Hesabınızı kullanıma kapatmak istediğinize eminmisiniz ?</p></div>
+                                        <br/>
+                                        <div class="form-group col-md-6">
+                                            <h:commandLink class="btn btn-danger" style="width: 100%" action="#{personalAccountBean.disableAccout()}"  title="Hesabı Kullanıma Kapat" >EVET<f:ajax execute="personalAccountForm" render="personalAccountForm"> </f:ajax></h:commandLink>
+                                        </div>
+                                        <div class="form-group col-md-6"><a href="#"  style="width: 100%" onclick="PF('dlg2').hide();" class="btn btn-info">HAYIR</a></div>
+                                    </div>
+                                </p:dialog> 
+                                <p:dialog header="E-Mail Doğrulama" widgetVar="dlg3" modal="true"  resizable="false" responsive="true" style="max-width: 600px;">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12" style="margin-bottom: 25px;">
+                                            <p style="font-size: 1.2em"><b>Dikkat !</b>&nbsp;Girmiş olduğunuz E-Mail adresinin kullanılabilmesi için E-Mail doğrulanması gerekmektedir. 
+                                                <br/><br/>
+                                                <p:commandLink update="dfdsf" action="#{personalAccountBean.emailChange()}" style="color: red">Burayı</p:commandLink> tıkladıgınızda E-Mail adresinize doğrulama kodu gönderilecektir. 
+                                                <br/><br/>Gönderilen doğrulama kodunu aşağıdaki alana girerek E-Mail adresinizi doğrulatabilirsiniz.
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h:outputLabel id="accountEmailActivationIdLabel" for="accountEmailActivationIdInput"> E-Mail Aktivasyon Kodu </h:outputLabel>
+                                            <div class="input-group">
+                                                <p:inputText id="accountEmailActivationIdInput"   value="#{personalAccountBean.account_EmailActivationId}"> </p:inputText>
+                                                <div class="input-group-append" >
+                                                    <h:commandLink id="accountEmailActivationIdButton" action="#{personalAccountBean.emailActivationIdCheck()}" class="btn btn-success">Onay <f:ajax execute="personalAccountForm" render="personalAccountForm"></f:ajax></h:commandLink>
+                                                </div>
+                                            </div>
+                                            <h:message for="accountEmailActivationIdInput" style="color: red"></h:message>
+                                        </div>
+                                        <div class="col-md-6" >
+                                            <h:outputLabel >&nbsp;</h:outputLabel>
+                                            <div class="input-group" style="padding-left: 10px;"><a href="#" onclick="PF('dlg3').hide();" class="btn btn-warning">Vazgeç</a> </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top: 25px; margin-bottom: 25px;">
+                                            <p:messages id="dfdsf" globalOnly="false" showDetail="true" closable="true"><p:autoUpdate /></p:messages>
+                                        </div>
+                                    </div>
+                                </p:dialog> 
+
+                            </div>
+                        </div>
+                    </div>
+                </h:form> 
+            </ui:define>
+        </ui:composition>    
+    </h:body>
+</html>
+

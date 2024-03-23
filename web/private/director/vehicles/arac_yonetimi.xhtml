@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="../director-page-layout.xhtml">
+            <ui:define name="head-title">
+                <h3 class="m-portlet__head-text">
+                    <i class="fas fa-users-cog"></i>&nbsp;Site Yöneticisi Sayfası 
+                    <small><i class="la la-angle-right"></i>&nbsp;Araçlar&nbsp;
+                            <i class="la la-angle-right"></i>&nbsp;Araç Yönetimi
+                    </small>
+                </h3>
+            </ui:define>
+            <ui:define name="form">        
+                <div class=" col-md-12">
+
+                    <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd">
+                        <i style="  float:left; font-size: 2rem;   margin-bottom: .5rem; font-weight: 500; line-height: 1.2; color: inherit;"  class="m-nav__link-icon la la-bus"> </i><h2 >&nbsp;Araç Yönetimi</h2><i ></i>
+                    </div>                                            
+                    <h:form id="dfwer3wq" >
+                        <h:panelGroup id="dfdwfewq">
+                            <style type="text/css">
+                                .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{ color: #555; cursor: default; background-color: #ffffff; background-image: none; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border-color: #e6e6e6 #e6e6e6 #bfbfbf;  border-bottom-color: #b3b3b3; }
+                                .ui-datatable thead th, .ui-datatable tfoot td { text-align: left; }
+                                .ui-paginator.ui-paginator-bottom { border: 1px solid #ddd; border-top: 0px; }
+                                .ui-widget-header {  background: none; color: #555; font-weight: normal;  }
+                            </style>
+                            <p:dataTable var="v"  id="fdsfcew" value="#{vehicleBean.vehicleList}" 
+                                     widgetVar="dataTable" filteredValue="#{vehicleBean.filteredvehicleList}"
+                                     style="font-size: small"  rows="10"  rowsPerPageTemplate="10,20,50,100"
+                                     paginator="true" paginatorPosition="bottom"
+                                     emptyMessage="Aradığınız kritere uygun kayıt bulunamadı"
+                                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} ">                                                                                                  
+                                <f:facet name="header">
+                                    <p:outputPanel style="text-align: right">
+                                        <h:outputText value="Ara: " />
+                                        <p:inputText id="globalFilter" onkeyup="PF('dataTable').filter()" style="width:150px; border: 1px #ddd solid " />
+                                    </p:outputPanel>
+                                </f:facet>
+                                <p:column headerText="Id" width="120" sortBy="#{v.vehicle.vehicle_Id}" filterMatchMode="contains" filterBy="#{v.vehicle.vehicle_Id}" filterable="false">
+                                    <h:outputText value="#{v.vehicle.vehicle_Id}" />
+                                </p:column>
+                                <p:column headerText="Oluşturma Zamanı" width="160" sortBy="#{v.vehicle.vehicle_Created}" filterMatchMode="contains" filterBy="#{v.vehicle.vehicle_Created}" filterable="false">
+                                    <h:outputText value="#{v.vehicle.vehicle_Created}" >
+                                        <f:convertDateTime pattern="dd.MM.YYYY HH:mm"></f:convertDateTime>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Araç Plakası" width="160" sortBy="#{v.vehicle.vehicle_PlateProvinceCode}&nbsp;-&nbsp;#{v.vehicle.vehicle_PlateLatterCode}&nbsp;-&nbsp;#{v.vehicle.vehicle_PlateNumberCode}" filterMatchMode="contains" filterBy="#{v.vehicle.vehicle_PlateProvinceCode}&nbsp;-&nbsp;#{v.vehicle.vehicle_PlateLatterCode}&nbsp;-&nbsp;#{v.vehicle.vehicle_PlateNumberCode}" filterable="false">
+                                    <h:outputText value="#{v.vehicle.vehicle_PlateProvinceCode}&nbsp;-&nbsp;#{v.vehicle.vehicle_PlateLatterCode}&nbsp;-&nbsp;#{v.vehicle.vehicle_PlateNumberCode}" />
+                                </p:column>
+                                <p:column headerText="Araç Sahibi" sortBy="#{v.accountBean.account_FirstName}&nbsp;-&nbsp;#{v.accountBean.account_LastName}" filterMatchMode="contains" filterBy="#{v.accountBean.account_FirstName}&nbsp;#{v.accountBean.account_LastName}&nbsp;#{v.accountBean.account_MobilePhoneNumber}" filterable="false">
+                                    <h:outputText value="#{v.accountBean.account_FirstName}&nbsp;#{v.accountBean.account_LastName}" />&nbsp;
+                                    <h:outputText value="#{v.accountBean.account_MobilePhoneNumber}" />
+                                </p:column>
+                                <p:column headerText="Araç Marka-Model"  sortBy="#{v.vehicle.vehicle_Brand}&nbsp;-&nbsp;#{v.vehicle.vehicle_Model}" filterMatchMode="contains" filterBy="#{v.vehicle.vehicle_Brand}&nbsp;-&nbsp;#{v.vehicle.vehicle_Model}" filterable="false">
+                                    <h:outputText value="#{v.vehicle.vehicle_Brand}&nbsp;-&nbsp;#{v.vehicle.vehicle_Model}" />
+                                </p:column>    
+                                <p:column headerText="Durum" width="120"  filterable="false">
+                                    <h:outputText value="#{v.vehicle.vehicle_IsActive?'Aktif (Yayında)':'Pasif (Silinmiş)'}" />
+                                </p:column>                                                                   
+                                <p:column headerText="İşlem" width="120"  filterable="false" style="text-align: center">
+                                    <h:panelGroup rendered="#{v.vehicle.vehicle_IsActive==true}">
+                                        <h:commandLink action="#{vehicleBean.enableDisableVehicle2('disable',v.vehicle.vehicle_Id)}" title="Sil">
+                                            <i class="fa fa-trash-alt"></i>
+                                            <f:ajax execute="@form" render="dfwer3wq:fdsfcew"></f:ajax>
+                                        </h:commandLink>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{v.vehicle.vehicle_IsActive==false}">
+                                        <h:commandLink action="#{vehicleBean.enableDisableVehicle2('enable',v.vehicle.vehicle_Id)}" title="Geri Al">
+                                            <i class="fa fa-redo"></i>
+                                            <f:ajax execute="@form" render="dfwer3wq:fdsfcew"></f:ajax>
+                                        </h:commandLink>&nbsp;&nbsp;<b>|</b>&nbsp;
+                                    </h:panelGroup>
+                                    <a href="/private/director/vehicles/edit_vehicle_s1.xhtml?vParam3=ad3&amp;vParam2=ad&amp;vId=#{v.vehicle.vehicle_Id}"
+                                       title="Düzenle">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    &nbsp;&nbsp;<b>|</b>&nbsp;
+                                    <a target="_blank" 
+                                       href="/arac-detay/#{v.vehicle.vehicle_Id}"
+                                       title="Aracı Gör">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </p:column>
+                            </p:dataTable>
+                        </h:panelGroup>                                                  
+                    </h:form>
+                    
+                </div>         
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

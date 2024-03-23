@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ps="http://xmlns.jcp.org/jsf/passthrough">
+    
+    <h:body>
+        <ui:composition>      
+            <h:form id="m_form" prependId="false">
+             
+                 <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" globalOnly="true" showDetail="true" life="3000"  sticky="false"/>
+                
+            <div class="profile-card d-flex align-items-center flex-wrap mb-3">
+                
+                <h:commandLink  class="link text-danger" onclick="PF('dlg22').show();">
+                    <ui:include src="/resources/image/ikon_sil.svg" />Seçilenleri Sil
+                    <f:ajax execute="myAdsTable" render="efesfew" > </f:ajax>
+                 </h:commandLink>
+                
+                <h:panelGroup rendered="#{AccountType=='personal'}"><a href="/private/bireysel/arac-ekle" class="btn btn-orange ml-auto mt-3 mt-lg-0" style="padding-top: 7px;"><b>+</b> Yeni Araç Ekle</a></h:panelGroup>
+                <h:panelGroup rendered="#{AccountType=='corporate'}"><a href="/private/kurumsal/arac-ekle" class="btn btn-orange ml-auto mt-3 mt-lg-0" style="padding-top: 7px;"><b>+</b> Yeni Araç Ekle</a></h:panelGroup>
+            </div>
+         
+                <div style="white-space: nowrap;overflow: auto;">    
+            <div  style="min-width: max-content;">    
+                <table class="table text-orange w-100" style="margin-bottom:0;font-weight: bolder;">
+                    <tr>
+                        <th width="30" style="border-top: none;"><h:selectBooleanCheckbox ps:type="checkbox" id="selectAll" onclick="select_All(this)"/></th>
+                        <th width="120" style="border-top: none;">PLAKA</th>
+                        <th style="border-top: none;">MARKA MODEL</th>
+                        <th width="80" style="border-top: none;text-align: center; vertical-align: middle;">SOFÖR</th>
+                        <th width="80" style="border-top: none;text-align: center; vertical-align: middle;">HOSTES</th>
+                        <th width="140"   style="border-top: none;text-align: center; vertical-align: middle;">FOTOĞRAF</th>
+                        <th width="110" style="border-top: none;text-align: center; vertical-align: middle;">AKSİYONLAR</th>
+                    </tr>
+                </table>
+            </div>    
+                    <style>
+                       .list-group2 > table > tbody > tr:nth-child(1) > td{border-top: none;}
+                    </style>
+                    <div class="list-group2" style="min-width: max-content;border: 2px solid #d2d3d2;border-radius: 12px;">
+                <table class="table " >
+                     <p:repeat value="#{vehicleBean.getVehiclesWithvehicleOvnerAccountId(accountId)}" var="a">
+                        <tr>
+                            <td width="30" style=" vertical-align: middle;" ><h:selectBooleanCheckbox   ps:type="checkbox" class="item-checkbox"  value="#{vehicleBean.checkMap[a.vehicle_Id]}"/> </td>
+                            <td width="120" style=" vertical-align: middle;" >#{a.vehicle_PlateProvinceCode}&nbsp;&nbsp;#{a.vehicle_PlateLatterCode}&nbsp;&nbsp;#{a.vehicle_PlateNumberCode}</td>
+                            <td style=" vertical-align: middle;" > 
+                                <span style="font-weight: 500">#{a.vehicle_ModelYear}&nbsp;-&nbsp;#{a.vehicle_Brand}<br/></span>
+                                <span style="font-size: 80%;"> #{a.vehicle_Model}</span>
+                            </td>
+                            <td width="80" style="text-align: center; vertical-align: middle;">#{a.vehicle_DriverInfo eq 'kendim-kullaniyorum' ? 'Kendim' : 'Var'}</td>
+                            <td width="80" style="text-align: center; vertical-align: middle;">#{a.vehicle_HostessInfo eq 'hostes-var' ? 'Var' : 'Yok'}</td>
+                            <td  width="140" style="text-align: center; vertical-align: middle;">
+                                <h:panelGroup rendered="#{a.vehicleImages.vehicleImage_ProfilePhotoUrl == null}"> <img style="max-height: 70px;opacity: 0.2;" src="/resources/img/vehicleIcon.png" alt="vehiclePhoto"/></h:panelGroup>
+                                <h:panelGroup rendered="#{a.vehicleImages.vehicleImage_ProfilePhotoUrl != null}">
+                                    <h:panelGroup rendered="#{a.vehicleImages.vehicleImage_ProfilePhotoPublish == false}"><img style="max-height: 70px" src="#{a.vehicleImages.vehicleImage_ProfilePhotoUrl}" alt="vehicleProfilePhoto"/> </h:panelGroup>
+                                    <h:panelGroup rendered="#{a.vehicleImages.vehicleImage_ProfilePhotoPublish == true}"><img style="max-height: 70px;opacity: 0.2;" src="/resources/img/vehicleIcon.png" alt="vehiclePhoto"/></h:panelGroup>
+                                </h:panelGroup> 
+                            </td>
+                            <td width="110" style="text-align: center; vertical-align: middle;">
+                                <a href="/arac-detay/#{a.vehicle_Id}" class="mr-2"><ui:include src="/resources/image/ikon_gor.svg" /></a>
+                                <h:panelGroup rendered="#{AccountType=='personal'}"><a href="/private/bireysel/arac-duzenle/#{a.vehicle_Id}?vParam2=ad" title="Aracı DÜZENLE" class="mr-2"><ui:include src="/resources/image/ikon_edit.svg" /></a></h:panelGroup>
+                                <h:panelGroup rendered="#{AccountType=='corporate'}"><a href="/private/kurumsal/arac-duzenle/#{a.vehicle_Id}?vParam2=ad" title="Aracı DÜZENLE" class="mr-2"><ui:include src="/resources/image/ikon_edit.svg" /></a></h:panelGroup>
+                                <h:commandLink action="#{vehicleBean.selectedAdIdSet(a.vehicle_Id)}" onclick="PF('dlg2').show();"  title="Aracı SİL"  class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                    <ui:include src="/resources/image/ikon_sil.svg" />
+                                    <f:ajax execute="@this"></f:ajax>
+                                </h:commandLink>
+                            </td>
+                        </tr>
+                     </p:repeat>     
+                </table>
+
+
+
+            </div>
+                </div>
+                
+                <p:dialog header="Araç Silme" widgetVar="dlg2" modal="true"  resizable="false" responsive="true" width="500">
+                    <div class="row">
+                        <div class="col-md-12" style="margin-bottom: 35px;">
+                            <p style="font-size: 1.2em"> <b>Dikkat !</b>&nbsp;Bu aracı silmek istediğinize eminmisiniz ?<br/>Bu aracı silerseniz bu araçla ilişkili ilanlarda silinecektir.</p>
+                        </div>
+                        <div class="col-md-6"> <p:commandLink class="btn btn-outline-danger" ajax="false" update="m_form:edgdsf" style="width: 100%" action="#{vehicleBean.enableDisableVehicle('disable')}"> EVET</p:commandLink></div>
+                        <div class="col-md-6"><a href="#"  style="width: 100%" onclick="PF('dlg2').hide();" class="btn btn-outline-info">HAYIR</a></div>
+                    </div>
+                </p:dialog> 
+                <p:dialog header="Toplu Araç Silme" widgetVar="dlg22" modal="true"  resizable="false" responsive="true" width="500">
+                    <div class="row">
+                        <div class="col-md-12" style="margin-bottom: 35px;">
+                            <p style="font-size: 1.2em"> <b>Dikkat !</b>&nbsp;Seçilen araçları silmek istediğinize eminmisiniz ?<br/>Seçilen araçları silerseniz bu araçla ilişkili ilanlarda silinecektir.</p>
+                        </div>
+                        <div class="col-md-6"> <p:commandLink class="btn btn-outline-danger" ajax="false" update="m_form:edgdsf" style="width: 100%" action="#{vehicleBean.disableSelectedVehicle()}"> EVET</p:commandLink></div>
+                        <div class="col-md-6"><a href="#"  style="width: 100%" onclick="PF('dlg22').hide();" class="btn btn-outline-info">HAYIR</a></div>
+                    </div>
+                </p:dialog> 
+
+            </h:form>
+            <script type="text/javascript" >
+                function select_All(checkbox) {
+                    console.log('select All');
+                    var items = document.querySelectorAll('.item-checkbox');
+                    items.forEach(element => {
+                        element.checked = checkbox.checked;
+                    });
+                }
+            </script>
+        </ui:composition>
+    </h:body>
+</html>
+

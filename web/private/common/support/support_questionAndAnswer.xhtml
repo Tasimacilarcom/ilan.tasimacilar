@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+
+        <!-- Start global head -->
+        <ui:insert name="head" ><ui:include src="../../../head.xhtml" /></ui:insert>
+        <!-- End global head -->
+
+    </h:head>
+
+    <h:body>
+
+        <!-- Start header -->
+        <ui:insert name="header" ><ui:include src="../../../header.xhtml" /></ui:insert>
+        <!-- End header -->
+
+        <main role="main" >               
+            <div class="container" style="margin-top: 20px">
+                <div class="m-portlet m-portlet--full-height">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    <h:panelGroup rendered="#{accountMembershipType eq 'personal'}">
+                                        <i class="fas fa-user-alt"></i>&nbsp;Bireysel profil sayfası
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{accountMembershipType eq 'corporate'}">
+                                        <i class="fas fa-building"></i>&nbsp;Kurumsal Profil Sayfası
+                                    </h:panelGroup>
+                                    <small><i class="la la-angle-right"></i>&nbsp;Destek
+                                    </small>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                            <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item">
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body m-portlet__body--no-padding">
+                        <div class="m-wizard m-wizard--3 m-wizard--brand m-wizard--step-first" id="m_wizard">
+                            <div class="m-portlet__padding-x">
+                                <!-- Here you can put a message or alert -->
+                            </div>
+
+                            <div class="row m-row--no-padding">
+                                <div class="col-md-3">
+                                    <div class="m-wizard__head" style="padding: 5rem 2rem;">
+                                        <!-- Start menu -->
+                                        <ui:insert name="left_menu" ><ui:include src="../../common/menu/left_menu.xhtml" /></ui:insert>
+                                        <!-- End menu -->
+                                    </div>
+                                </div>
+                                <div class=" col-md-9">
+
+                                    <div class="m-wizard__form">
+                                        <h:form class="m-form m-form--label-align-left- m-form--state-" id="m_form" prependId="false">
+                                            <div class="m-portlet__body m-portlet__body--no-padding">
+                                                <div class="m-form__heading">
+                                                    <h4 class="m-form__heading-title">Destek Taleplerim</h4>
+                                                </div>
+                                                <br/>
+                                                <br/>
+                                                <div class="m-widget6">
+                                                    <div class="m-widget6__body">
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Durum
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:panelGroup rendered="#{supportBean.support_Status eq 'Cevap Bekliyor'}">
+                                                                    <b style="font-size: 1.1em; color: #ff6633">
+                                                                        <h:outputText  value="#{supportBean.support_Status}"></h:outputText>
+                                                                        <i class="la la-hourglass-start"></i>
+                                                                    </b>
+                                                                </h:panelGroup>
+                                                                <h:panelGroup rendered="#{supportBean.support_Status eq 'Cevaplandı'}">
+                                                                    <b style="font-size: 1.1em; color: #00cc33">
+                                                                        <h:outputText  value="#{supportBean.support_Status}"></h:outputText>
+                                                                        <i class="la la-check-circle"></i>
+                                                                    </b>
+                                                                </h:panelGroup>
+                                                                
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="m-widget6">
+                                                    <div class="m-widget6__body">
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Id
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.support_Id}"></h:outputText>
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Zamanı
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.support_Created}">
+                                                                    <f:convertDateTime pattern=" dd.MM.YYYY HH:mm"></f:convertDateTime>
+                                                                </h:outputText>
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Konusu
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.support_Subject}" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep Önem Derecesi
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.support_Priority}" />
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Talep detayı
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.support_comment}" />
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-separator m-separator--dashed m-separator--md" ></div>
+                                                <div class="m-widget6">
+                                                    <div class="m-widget6__body">
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                               Cevap Zamanı
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.support_answeredTime}">
+                                                                    <f:convertDateTime pattern=" dd.MM.YYYY HH:mm"></f:convertDateTime>
+                                                                </h:outputText>
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-widget6__item">
+                                                            <span class="m-widget6__text m--align-left m--font-boldest m--font-brand">
+                                                                Cevap
+                                                            </span>
+                                                            <span class="m-widget6__text">
+                                                                <h:outputText value="#{supportBean.support_answer}" />
+                                                            </span>
+                                                        </div>
+                                                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+        <!-- Start footer -->
+        <ui:insert name="footer" ><ui:include src="../../../footer.xhtml" /></ui:insert>
+        <!-- End footer -->
+
+        <!-- Start global scripts -->
+        <ui:insert name="scripts" ><ui:include src="../../../scripts.xhtml" /></ui:insert>
+        <!-- End global scripts -->
+
+    </h:body>
+</html>
+

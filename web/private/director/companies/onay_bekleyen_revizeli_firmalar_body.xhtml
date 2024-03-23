@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition>
+
+            <h:form id="dfwer3wq" >
+                <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/> 
+                
+                <h:panelGroup id="dfdwfewq">
+
+                    <style type="text/css">
+                        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+                            color: #555;
+                            cursor: default;
+                            background-color: #ffffff;
+                            background-image: none;
+                            border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+                            border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+                            border-bottom-color: #b3b3b3;
+                        }
+                        .ui-datatable thead th, .ui-datatable tfoot td {
+                            text-align: left;
+                        }
+                        .ui-paginator.ui-paginator-bottom {
+                            border: 1px solid #ddd;
+                            border-top: 0px;
+                        }
+                        .ui-widget-header {
+                            background: none;
+                            color: #555;
+                            font-weight: normal;
+                        }
+                    </style>
+
+                    <p:dataTable var="v"  id="fdsfcew"
+                                 value="#{corporateAccountBean.waitChangedCompanyList}" 
+                                 widgetVar="dataTable"
+                                 filteredValue="#{corporateAccountBean.waitChangedFilteredCompanyList}"
+                                 style="font-size: small" 
+                                 rows="10" 
+                                 rowsPerPageTemplate="10,20,50,100"
+                                 paginator="true"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="Aradığınız kritere uygun kayıt bulunamadı"
+                                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} ">
+
+
+
+                        <f:facet name="header">
+                            <p:outputPanel style="text-align: right">
+                                <h:outputText value="Ara: " />
+                                <p:inputText id="globalFilter" onkeyup="PF('dataTable').filter()" style="width:150px; border: 1px #ddd solid " />
+                            </p:outputPanel>
+                        </f:facet>
+
+                        <p:column headerText="Ver. Id" width="80"  filterMatchMode="contains" filterBy="#{v.company_tmp_Version}" filterable="false">
+                            <h:outputText value="#{v.company_tmp_Version}" />
+                        </p:column>
+                        
+                        <p:column headerText="Vergi Dairesi" width="150" sortBy="#{v.company_TaxOffice}" filterMatchMode="contains" filterBy="#{v.company_TaxOffice}" filterable="false">
+                            <h:outputText value="#{v.company_TaxOffice}" />
+                        </p:column> 
+                        <p:column headerText="Vergi Numarası" width="150" sortBy="#{v.company_TaxNumber}" filterMatchMode="contains" filterBy="#{v.company_TaxNumber}" filterable="false">
+                            <h:outputText value="#{v.company_TaxNumber}" />
+                        </p:column> 
+                        <p:column headerText="Ticari Ünvan"  sortBy="#{v.company_Name}" filterMatchMode="contains" filterBy="#{v.company_Name}" filterable="false">
+                            <h:outputText value="#{v.company_Name}" />
+                        </p:column>
+                        <p:column headerText="Onay Talep Zamanı" width="160" sortBy="#{v.company_tmp_last_change_time}" filterMatchMode="contains" filterBy="#{v.company_tmp_last_change_time}" filterable="false">
+                            <h:outputText value="#{v.company_tmp_last_change_time}" >
+                                <f:convertDateTime pattern="dd.MM.YYYY HH:mm"></f:convertDateTime>
+                            </h:outputText>
+                        </p:column>
+                            
+                        <p:column headerText="İşlem" width="200"  filterable="false" style="text-align: center">
+                            
+                            <a href="/private/director/companies/firma_detay-ve-onay.xhtml?CompId=#{v.company_Id}&amp;TmpCompId=#{v.company_tmp_Id}" 
+                               title="Firma detaylarını gör ve Onayla">
+                                Detay &amp; Onay
+                            </a>
+                            &nbsp;|&nbsp;
+                            <h:commandLink action="#{corporateAccountBean.disableTmpCompany(v.company_tmp_Id)}">
+                                Sil
+                                <f:ajax execute="dfwer3wq" render="dfwer3wq"></f:ajax>
+                            </h:commandLink>
+                           
+                        </p:column>
+                       
+
+                    </p:dataTable>
+                </h:panelGroup>
+
+
+
+            </h:form>
+
+
+
+        </ui:composition>
+
+
+    </h:body>
+
+
+</html>

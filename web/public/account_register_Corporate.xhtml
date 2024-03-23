@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <!-- Start global head -->
+        <ui:insert name="head" ><ui:include src="../head.xhtml" /></ui:insert>
+        <!-- End global head -->
+    </h:head>
+    <h:body>
+        <!-- Start header -->
+        <ui:insert name="header" ><ui:include src="../header.xhtml" /></ui:insert>
+        <!-- End header -->
+        <main class="mt-5 mb-5">
+            <h:form id="accountForm"  prependId="false">
+                <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" globalOnly="true" showDetail="true" life="3000"  sticky="false" escape="false"/>   
+                <div class="container">
+                    <div class="row"><div class="col"><h3 class="mb-4">Yeni Üyelik</h3></div></div>
+                    <div class="row">
+                        <div class="col-12 col-md-8 mb-5 mb-md-0">
+                            <div class="login-wrap" style="padding: 30px;">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <div class="d-flex">
+                                            <label class="radio radio-before mr-5"><span class="radio__input"><input type="radio" NAME="registerLinkNm" value="individual" onclick="registerLink('bireysel')"/><span class="radio__control"></span></span><span class="radio__label">Bireysel Üyelik</span></label>
+                                            <label class="radio radio-before"><span class="radio__input"><input type="radio" checked="" value="corporate" NAME="registerLinkNm" onclick="registerLink('kurumsal')"/><span class="radio__control"></span></span><span class="radio__label">Kurumsal Üyelik</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-9 mb-3">
+                                        <style>
+                                            #companyIdSelectOneMenu > button{background: none;border: none;}
+                                            .ui-autocomplete{width: 100% !important;}
+                                        </style>
+                                        <label for="listCorporate" class="col-form-label font-weight-bold">Firmanız</label>
+                                        <p:autoComplete id="companyIdSelectOneMenu" 
+                                                        converter="corporateAccountBeanConverter"
+                                                        value="#{corporateAccountBean.selectedCompany}"
+                                                        disabled="#{corporateAccountBean.addCompany==true? 'true' : 'false'}"
+                                                        inputStyle="height:40px;border-radius:8px;cursor: pointer;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20; padding: .60rem 1.10rem;color: #575962;width: 100%; "
+                                                        scrollHeight="120" dropdown="true"
+                                                        completeMethod="#{corporateAccountBean.allCorporateAccountWithDetailForAutoComplete}"
+                                                        var="o" itemLabel="#{o.company_Name}" itemValue="#{o}"
+                                                        placeholder="Firma seçin veya yazın"  >
+                                        </p:autoComplete>
+                                        <h:message  class="message-f" for="companyIdSelectOneMenu" ></h:message>
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 mb-3">
+                                        <label for="listCorporate" class="col-form-label font-weight-bold">Veya&nbsp;&nbsp;</label>
+                                        <h:commandLink disabled="#{corporateAccountBean.addCompany eq 'true'}" 
+                                                       class="btn btn-first btn-in-form"
+                                                       style="padding: 0; padding: 10px;"
+                                                       action="#{corporateAccountBean.addCompanyStatusChange(true)}"  
+                                                       value="Yeni Firma Ekle"   immediate="true">
+                                            <f:ajax render="df5g4564f"></f:ajax>
+                                        </h:commandLink>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h:outputLabel id="corporateAccountFirstNameLabel"  for="corporateAccountFirstNameInput" class="col-form-label font-weight-bold">Adınız</h:outputLabel>
+                                        <h:inputText id="corporateAccountFirstNameInput" class="form-control"  value="#{corporateAccountBean.accountBean.account_FirstName}" required="true" requiredMessage="Lütfen adınızı yazınız"></h:inputText>
+                                        <h:message class="message-f" for="corporateAccountFirstNameInput" ></h:message>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h:outputLabel id="corporateAccountLastNameLabel" for="corporateAccountLastNameInput" class="col-form-label font-weight-bold">Soyadınız</h:outputLabel>
+                                        <h:inputText id="corporateAccountLastNameInput" class="form-control"  value="#{corporateAccountBean.accountBean.account_LastName}"  required="true"  requiredMessage="Lütfen soyadınızı yazınız"></h:inputText>
+                                        <h:message class="message-f" for="corporateAccountLastNameInput" ></h:message>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h:outputLabel id="corporateAccountEmailAddressLabel"  for="corporateAccountEmailAddressInput" class="col-form-label font-weight-bold">E-Mail Adresiniz</h:outputLabel>
+                                        <h:inputText id="corporateAccountEmailAddressInput"  class="form-control"  value="#{corporateAccountBean.accountBean.account_EmailAddress}"  validatorMessage="Geçersiz E-Mail adresi formatı"><f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /></h:inputText>
+                                        <h:message class="message-f" for="corporateAccountEmailAddressInput"> </h:message>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h:outputLabel id="corporateAccountMobilePhoneNumberLabel" for="corporateAccountMobilePhoneNumberInput" class="col-form-label font-weight-bold">GSM Numaranız</h:outputLabel>
+                                        <p:inputMask id="corporateAccountMobilePhoneNumberInput"    class=" form-control" value="#{corporateAccountBean.accountBean.account_MobilePhoneNumber}" required="true"  onclick="ltr(this);"  requiredMessage="Lütfen Cep telefon numaranızı yazınız"  mask="0(599)-999-9999"> </p:inputMask>
+                                        <h:message class="message-f" for="corporateAccountMobilePhoneNumberInput" ></h:message>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h:outputLabel id="corporateAccountPasswordLabel" for="corporateAccountPassword" class="col-form-label font-weight-bold">Şifre</h:outputLabel>
+                                        <f:event listener="#{corporateAccountBean.passwordMatch}" type="postValidate" />
+                                        <h:inputSecret  id="corporateAccountPassword" class="form-control" maxlength="12" value="#{personalAccountBean.accountBean.account_Password_1}" required="true"  requiredMessage="Şifrenizi yazınız"></h:inputSecret>
+                                        <h:message class="message-f" for="corporateAccountPassword"></h:message>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <h:outputLabel id="corporateAccountConfirmPasswordLabel" for="corporateAccountConfirmPassword" class="col-form-label font-weight-bold">Şifre Tekrar</h:outputLabel>
+                                        <h:inputSecret  id="corporateAccountConfirmPassword" class="form-control"  maxlength="12" value="#{personalAccountBean.accountBean.account_Password_2}"  required="true" requiredMessage="Şifrenizi tekrar yazınız"></h:inputSecret>
+                                        <h:message class="message-f" for="corporateAccountConfirmPassword"></h:message>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <h:panelGroup id="df5g4564f">
+                                            <h:panelGroup id="cdd" rendered="#{corporateAccountBean.addCompany==true}">
+                                                <div class="add-corporate" id="addCorporate" >
+                                                    <div class="row">
+                                                        <div class="col-md-12 mb-3 d-flex align-items-center justify-content-between ">
+                                                            <p class="col-form-label font-weight-bold mb-0">Firma Detayları</p>
+                                                            <b>
+                                                                <h:commandLink action="#{corporateAccountBean.addCompanyStatusChange(false)}" value="Vazgeç" immediate="true" style="color: #F49C46">
+                                                                <f:ajax render="df5g4564f"></f:ajax>
+                                                                </h:commandLink>
+                                                            </b>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label for="companyActivityAreaSelectOneMenu" class="col-form-label font-weight-bold">Faliyet Alanı</label>
+                                                            <h:selectOneMenu id="companyActivityAreaSelectOneMenu" 
+                                                                             style="height: 40px;"
+                                                                             value="#{corporateAccountBean.company_ActivityArea}"    
+                                                                             class="form-control" required="#{corporateAccountBean.addCompany==true? 'true' : 'false'}"   
+                                                                             requiredMessage="Faliyet alanınızı seçiniz">
+                                                               <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                                               <f:selectItems value="#{selectItemsBean.selectItemList('corporateActivityArea')}"  var="o"  itemLabel="#{o.selectItem_Label_Tr}"  itemValue="#{o.selectItem_Value}" ></f:selectItems> 
+                                                            </h:selectOneMenu> 
+                                                            <h:message class="message-f" for="companyActivityAreaSelectOneMenu" ></h:message>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <label for="corporateAccountCompanyTypeRadio" class="col-form-label font-weight-bold">İşletme Türü</label>
+                                                            <h:selectOneMenu id="corporateAccountCompanyTypeRadio" 
+                                                                             style="height: 40px;"
+                                                                             value="#{corporateAccountBean.company_Type}"    
+                                                                             class="form-control" required="#{corporateAccountBean.addCompany==true? 'true' : 'false'}"   
+                                                                             requiredMessage="Lütfen işletme türünü seçiniz">
+                                                                <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                                                <f:selectItem itemValue = "Şahıs Şirketi" itemLabel = "Şahıs Şirketi" /> 
+                                                                <f:selectItem itemValue = "Limited Şirketi" itemLabel = "Limited Şirketi" /> 
+                                                                <f:selectItem itemValue = "Anonim Şirketi" itemLabel = "Anonim Şirketi" />
+                                                            </h:selectOneMenu> 
+                                                            <h:message class="message-f" for="corporateAccountCompanyTypeRadio" ></h:message>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <h:outputLabel id="corporateAccountCommercialTitleLabel"   for="corporateAccountCommercialTitleInput" class="col-form-label font-weight-bold">Firma Kısa Adı</h:outputLabel>
+                                                            <h:inputText id="corporateAccountCommercialTitleInput" class="form-control"   value="#{corporateAccountBean.company_Name}"  required="#{corporateAccountBean.addCompany==true? 'true' : 'false'}" requiredMessage="Lütfen işletmenizin ünvanını yazınız"> </h:inputText>
+                                                            <h:message class="message-f" for="corporateAccountCommercialTitleInput"></h:message>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <h:outputLabel id="corporateAccountCommercialTitleLabelx"  for="corporateAccountCommercialTitleInputx"  class="col-form-label font-weight-bold">Ticari Ünvan</h:outputLabel>
+                                                            <h:inputText id="corporateAccountCommercialTitleInputx" class="form-control" value="#{corporateAccountBean.company_FullName}" required="#{corporateAccountBean.addCompany==true? 'true' : 'false'}"  requiredMessage="Lütfen işletmenizin ticari ünvanını yazınız"> </h:inputText>
+                                                            <h:message class="message-f" for="corporateAccountCommercialTitleInputx" ></h:message>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <h:outputLabel id="corporateAccountAddressCitySelectOneMenuLabel" for="corporateAccountAddressCitySelectOneMenu" class="col-form-label font-weight-bold">İl</h:outputLabel>
+                                                            <h:selectOneMenu id="corporateAccountAddressCitySelectOneMenu" value="#{corporateAccountBean.addressBean.address_CityId}" class="form-control"  required="#{corporateAccountBean.addCompany==true? 'true' : 'false'}" requiredMessage="İl Seçiniz">
+                                                                <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                                                <f:selectItems value="#{corporateAccountBean.allCityWithDetail()}"  var="o"  itemLabel="#{o.cityName}" itemValue="#{o.cityID}" ></f:selectItems> 
+                                                                <f:ajax event="change" render="corporateAccountAddressTownSelectOneMenu"></f:ajax>
+                                                            </h:selectOneMenu> 
+                                                            <h:message class="message-f" for="corporateAccountAddressCitySelectOneMenu"></h:message>
+                                                        </div>
+                                                        <div class="col-md-6 mb-3">
+                                                            <h:outputLabel id="corporateAccountAddressTownSelectOneMenuLabel" for="corporateAccountAddressTownSelectOneMenu" class="col-form-label font-weight-bold">İlçe</h:outputLabel>
+                                                            <h:selectOneMenu id="corporateAccountAddressTownSelectOneMenu"   value="#{corporateAccountBean.addressBean.address_TownId}"  class="form-control"  required="#{corporateAccountBean.addCompany==true? 'true' : 'false'}"  requiredMessage="İlçe Seçiniz">
+                                                                <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                                                <f:selectItems value="#{corporateAccountBean.allTownDetailWithCity()}"  var="o"  itemLabel="#{o.townName}"   itemValue="#{o.townID}" ></f:selectItems> 
+                                                            </h:selectOneMenu> 
+                                                            <h:message class="message-f" for="corporateAccountAddressTownSelectOneMenu" ></h:message>
+                                                        </div>
+                                                        <div class="col-md-12 mb-3">
+                                                            <h:outputLabel id="corporateAccountaddressLabel"  for="corporateAccountaddressInput" class="col-form-label font-weight-bold">Adres</h:outputLabel>
+                                                            <h:inputTextarea id="corporateAccountaddressInput" class="form-control m-input"  value="#{corporateAccountBean.addressBean.address}" rows="5" required="#{corporateAccountBean.addCompany==true? 'true' : 'false'}"  requiredMessage="Lütfen adresi yazınız"> </h:inputTextarea>
+                                                            <h:message class="message-f" for="corporateAccountaddressInput" ></h:message>
+                                                        </div>  
+
+                                                    </div>
+                                                </div>
+                                            </h:panelGroup>   
+                                        </h:panelGroup>    
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <div class="col-form-label"></div>
+                                        <div class="form-check p-0 d-flex align-items-center">
+                                            <style>
+                                                .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {background-color: #FFF;background-image: none;-webkit-box-shadow: none;box-shadow: none;}
+                                                .ui-chkbox .ui-chkbox-box {border: 1px solid #dde2e5;border-radius: 4px;width: 20px;height: 20px;display: inline-block;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;transition: all 0.3s;background: none;font-weight: 400;font-size: 1rem;color: #575962;}
+                                            </style>
+                                            <p:selectBooleanCheckbox   id="corporateAccountTermsAccepted" value="#{corporateAccountBean.accountBean.account_TermsAccepted}" requiredMessage="Hizmet şartlarını onaylamadan üye olamazsınız"><f:validator validatorId="requiredCheckboxValidator" /></p:selectBooleanCheckbox>
+                                            <label for="corporateAccountTermsAccepted">&nbsp;&nbsp;<a style="font-weight: 500" href="/uyelik-sozlesmesi">Üyelik sözleşmesini</a> ve <a style="font-weight: 500" href="/gizlilik-politikasi">gizlilik politikasını</a>  kabul ediyorum.</label><br/>
+                                        </div>
+                                        <h:message class="message-f" for="corporateAccountTermsAccepted" style="color: red"></h:message>
+                                    </div>
+                                    <div class="col-md-12 mb-5">
+                                        <script>
+                                            $(document).ready(function () { $("#createPersonalAccountButton").on("click", function() { $(this).attr("disabled", "true"); doWork(); }); });
+                                            function doWork() { $("#ddd").css("display", "block"); $("#createPersonalAccountButton").css("display", "none"); setTimeout('$("#createPersonalAccountButton").removeAttr("disabled")', 1500); } 
+                                        </script> 
+                                        <div style="width: 100%; text-align: center;margin-top: 10px;"> 
+                                            <div id="ddd" style="display: none; cursor: default; width: 300px; " class="btn btn-first p-12-70"><i class="fa fa-exclamation-triangle"></i>&nbsp;Lütfen Bekleyin..</div>
+                                        </div>
+                                        <div style="width: 100%; text-align: center;margin-top: 10px;">
+                                        <h:commandLink style="width: 300px;" id="createPersonalAccountButton" 
+                                                       class="btn btn-first p-12-70" 
+                                                       action="#{corporateAccountBean.createCorporateAccount()}">
+                                            Kaydet Ve Devam Et
+                                        </h:commandLink>                          
+                                        </div>
+                                    </div>   
+                                    <div class="col-md-12 mb-5">
+                                        <p class="title-bold ">Bir Hesabın mı var?</p>
+                                        <p >Hemen <a style="font-weight: 500" href="/login">giriş yaparak</a> üyelerimize özel hizmetlerden faydalan</p>
+                                    </div>                                        
+                                </div>                     
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="login-wrap p-0">
+                                <div class="register-list">
+                                    <div class="list-item">
+                                        <p class="title-bold">Bilgilerinizi Eksiksiz Girin</p>
+                                        <p>Gsm numaranızın doğru oldugundan emin olun</p>
+                                    </div>
+
+                                    <div class="list-item">
+                                        <p class="title-bold">Veri Güvenliği</p>
+                                        <p>Tasimacilar.com, bilgilerinizi asla 3. kişilere paylaşmaz.</p>
+                                    </div>
+
+                                    <div class="list-item">
+                                        <p class="title-bold">Yasal Uyarılar</p>
+                                        <p>Bilgileriniz KVKK’YA UYGUN OLARAK SAKLANMAKTADIR.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </main>
+        <!-- Start footer -->
+        <ui:insert name="footer" ><ui:include src="../footer.xhtml" /></ui:insert>
+        <!-- End footer -->
+        <!-- Start global scripts -->
+        <ui:insert name="scripts" ><ui:include src="../scripts.xhtml" /></ui:insert>
+        <!-- End global scripts -->
+        <script type="text/javascript">
+            function registerLink(dest) {
+                if (document.accountForm.registerLinkNm)
+                    if (dest == 'bireysel') {
+                        location = '/kayit/bireysel'
+                    }
+                if (dest == 'kurumsal') {
+                    location = '/kayit/kurumsal'
+                }
+            }
+            
+            function ltr(element) {
+                if (element.setSelectionRange) {
+                    element.setSelectionRange(0, 0);
+                }
+            }
+
+       </script>
+    </h:body>
+</html>
+

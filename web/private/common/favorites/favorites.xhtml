@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition>
+            <div class="favorite-list-title table-title row no-gutters mx-2 mb-3 d-none d-md-flex">
+                <div class="col-3 box" ></div>
+                <div class="col-1 fav"></div>
+                <div class="col id">İLAN ID</div>
+                <div class="col date">İLAN TARİHİ</div>
+                <div class="col add-favorite">FAVORİYE ALMA TARİHİ</div>
+                <div class="col-1 delete" style="text-align: right;"></div>
+                
+            </div>
+
+           
+                <h:form class="m-form m-form--label-align-left- m-form--state-" id="m_form" >
+                    <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                    <p:growl id="growl" showDetail="true" life="4000"  sticky="false"/>    
+                    <h:panelGroup id="fyert54er">
+                        <div class="favorite-list list-group">
+                            <ui:repeat var="m" value="#{favoritesBean.favoritesList}">
+                                <div class="list-group-item">
+                                    <div class="favorite-list-item row no-gutters">
+                                        <div class="col-3 box d-flex pr-2">
+                                            <div class="h-box orange mr-2"></div><div class="h-box-text"><span class="orange">#{m.adBean.ad_Category_Name}</span></div>
+                                        </div>
+                                        <div class="col-1 fav"><ui:include src="/resources/image/ikon_yildiz.svg" /></div>
+                                        <div class="col id pr-2"><p>#{m.adBean.ad_Id2}</p></div>
+                                        <div class="col date pr-2"><p><h:outputText value="#{m.adBean.ad_CreateTime}" ><f:convertDateTime pattern="dd.MM.YYYY"></f:convertDateTime></h:outputText></p></div>
+
+                                        
+
+                                        <div class="col add-favorite pr-2">
+                                            <p><h:outputText value="#{m.favorites_Created}" ><f:convertDateTime pattern="dd.MM.YYYY"></f:convertDateTime></h:outputText></p>
+                                        </div>
+                                       
+                                        <div class="col-1 delete text-right">                                    
+                                            <h:panelGroup rendered="#{m.adBean.ad_Category_Name.equals('İşim var araç arıyorum') }"><a target="_blank" class="mr-2" href="/ad/isim-var-arac-ariyorum/#{m.adBean.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>
+                                            <h:panelGroup rendered="#{m.adBean.ad_Category_Name.equals('Aracım var iş arıyorum') }"><a target="_blank" class="mr-2" href="/ad/aracim-var-is-ariyorum/#{m.adBean.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>
+                                            <h:panelGroup rendered="#{m.adBean.ad_Category_Name.equals('Aracim var şöför arıyorum') }"><a target="_blank" class="mr-2" href="/ad/aracim-var-sofor-ariyorum/#{m.adBean.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup> 
+                                            <h:panelGroup rendered="#{m.adBean.ad_Category_Name.equals('Aracim var hostes arıyorum') }"><a target="_blank" class="mr-2" href="/ad/aracim-var-hostes-ariyorum/#{m.adBean.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup> 
+                                            <h:panelGroup rendered="#{m.adBean.ad_Category_Name.equals('Hostesim iş arıyorum') }"><a target="_blank" class="mr-2" href="/ad/hostesim-is-ariyorum/#{m.adBean.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup> 
+                                            <h:panelGroup rendered="#{m.adBean.ad_Category_Name.equals('Şöförüm iş arıyorum') }"><a target="_blank" class="mr-2" href="/ad/soforum-is-ariyorum/#{m.adBean.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup> 
+                                            <h:panelGroup rendered="#{m.adBean.ad_Category_Name.equals('Plakamı satıyorum') }"><a target="_blank" class="mr-2" href="/ad/plakami-satiyorum/#{m.adBean.ad_Id}" title="İlanı GÖR"><ui:include src="/resources/image/ikon_gor.svg" /></a></h:panelGroup>                                     
+
+                                            <h:commandLink title="İlanı Favorilerden Çıkart" action="#{favoritesBean.deleteFavoriteAd(m.favorites_Id)}">
+                                                <ui:include src="/resources/image/ikon_sil.svg" />
+                                                <f:ajax render="@form"></f:ajax>
+                                            </h:commandLink>                                     
+                                        </div>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+                        </div>    
+                    </h:panelGroup>    
+
+
+
+                </h:form>    
+            
+        </ui:composition>
+    </h:body>
+</html>
+

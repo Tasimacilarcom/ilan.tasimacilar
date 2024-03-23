@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition>
+            <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Aracım var iş arıyorum' }">
+                <div class="col-md-12"  style="border: 1px solid #ddd; border-top: none; padding: 10px; ">
+                    <div class="row" style="margin-left: 0; margin-right: 0;">
+                        <div class="col-md-1"><span style="font-weight: 500; ">Araç Resimi</span></div>
+                        <div class="col-md-1">
+                            <h:panelGroup rendered="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_1_Url == null}">
+                                <img class="img-thumbnail" style="opacity: .5; margin-bottom: 0;" src="/resources/img/img-placeholder.png" alt="Resim1"/>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_1_Url != null}">
+                                <p:commandLink  oncomplete="PF('dlg1').show()" update=":dfwer3wq:uyr55">
+                                    <img class="img-thumbnail" style="margin-bottom: 0;" src="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_1_Url}" alt="Resim1"/>
+                                    <f:setPropertyActionListener value="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_1_Url}" target="#{adBean.selectedImagesUrl}" />
+                                </p:commandLink>
+                            </h:panelGroup>
+                        </div>   
+                        <div class="col-md-1">
+                            <h:panelGroup rendered="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_2_Url == null}">
+                                <img class="img-thumbnail" style="opacity: .5; margin-bottom: 0;" src="/resources/img/img-placeholder.png" alt="Resim2"/>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_2_Url != null}">
+                                <p:commandLink  oncomplete="PF('dlg1').show()" update=":dfwer3wq:uyr55">
+                                    <img class="img-thumbnail" style="margin-bottom: 0;" src="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_2_Url}" alt="Resim2"/>
+                                    <f:setPropertyActionListener value="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_2_Url}" target="#{adBean.selectedImagesUrl}" />
+                                    <f:ajax render="dfwer3wq:uyr55"></f:ajax>
+                                </p:commandLink>
+                            </h:panelGroup>
+                        </div>
+                        <div class="col-md-1">
+                            <h:panelGroup rendered="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_3_Url == null}">
+                                <img class="img-thumbnail" style="opacity: 0.5; margin-bottom: 0;" src="/resources/img/img-placeholder.png" alt="Resim3"/>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_3_Url != null}">
+                                <p:commandLink  oncomplete="PF('dlg1').show()" update=":dfwer3wq:uyr55">
+                                    <img class="img-thumbnail" style="margin-bottom: 0;" src="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_3_Url}" alt="Resim3"/>
+                                    <f:setPropertyActionListener value="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_3_Url}" target="#{adBean.selectedImagesUrl}" />
+                                    <f:ajax render="dfwer3wq:uyr55"></f:ajax>
+                                </p:commandLink>
+                            </h:panelGroup>
+                        </div>
+                        <div class="col-md-1">
+                            <h:panelGroup rendered="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_4_Url == null}">
+                                <img class="img-thumbnail" style="opacity: 0.5; margin-bottom: 0;" src="/resources/img/img-placeholder.png" alt="Resim4"/>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_4_Url != null}">
+                                <p:commandLink  oncomplete="PF('dlg1').show()" update=":dfwer3wq:uyr55">
+                                    <img class="img-thumbnail" style="margin-bottom: 0;" src="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_4_Url}" alt="Resim4"/>
+                                    <f:setPropertyActionListener value="#{adx.adAracimVarIsAriyorum_vehicle.vehicleImages.vehicleImage_GalleryPtoho_4_Url}" target="#{adBean.selectedImagesUrl}" />
+                                    <f:ajax render="dfwer3wq:uyr55"></f:ajax>
+                                </p:commandLink>
+                            </h:panelGroup>
+                        </div>                      
+                    </div>
+                </div> 
+            </h:panelGroup>    
+        </ui:composition>
+    </h:body>
+</html>
+

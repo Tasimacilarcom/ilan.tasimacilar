@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition>
+            <table cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <h:commandLink class="btn btn-outline-success btn-sm" 
+                                           style="margin-bottom: 6px;width: 100%" 
+                                           action="#{adBean.adConfirmAndPublish(adx.ad_Id)}"  
+                                           title="Onayla">
+                                Onayla
+                                <f:ajax execute="@form" render="dfwer3wq:dfdwfewq"></f:ajax>
+                            </h:commandLink>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Şöförüm iş arıyorum') }">
+                                <p:commandLink  class="btn btn-outline-info btn-sm" 
+                                                style="margin-bottom: 6px;width: 100%" 
+                                                oncomplete="PF('dlg3').show()" update="dfwer3wq:i76tur">
+                                    Hızlı Düzenle
+                                    <f:setPropertyActionListener value="#{adx}" target="#{adBean.selectedAd}"  />
+                                </p:commandLink>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('İşim var araç arıyorum') }">
+                                <p:commandLink  class="btn btn-outline-info btn-sm" 
+                                                style="margin-bottom: 6px;width: 100%" 
+                                                oncomplete="PF('dlg4').show()" update="dfwer3wq:dsfe45">
+                                    Hızlı Düzenle
+                                    <f:setPropertyActionListener value="#{adx}" target="#{adBean.selectedAd}"  />
+                                </p:commandLink>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracım var iş arıyorum') }">
+                                <p:commandLink  class="btn btn-outline-info btn-sm" 
+                                                style="margin-bottom: 6px;width: 100%" 
+                                                oncomplete="PF('dlg5').show()" update="dfwer3wq:gfdts4">
+                                    Hızlı Düzenle
+                                    <f:setPropertyActionListener value="#{adx}" target="#{adBean.selectedAd}"  />
+                                </p:commandLink>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracim var şöför arıyorum') }">
+                                <p:commandLink  class="btn btn-outline-info btn-sm" 
+                                                style="margin-bottom: 6px;width: 100%" 
+                                                oncomplete="PF('dlg6').show()" update="dfwer3wq:xcv4w">
+                                    Hızlı Düzenle
+                                    <f:setPropertyActionListener value="#{adx}" target="#{adBean.selectedAd}"  />
+                                </p:commandLink>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracim var hostes arıyorum') }">
+                                <p:commandLink  class="btn btn-outline-info btn-sm" 
+                                                style="margin-bottom: 6px;width: 100%" 
+                                                oncomplete="PF('dlg7').show()" update="dfwer3wq:hjkhgf5x">
+                                    Hızlı Düzenle
+                                    <f:setPropertyActionListener value="#{adx}" target="#{adBean.selectedAd}"  />
+                                </p:commandLink>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Hostesim iş arıyorum') }">
+                                <p:commandLink  class="btn btn-outline-info btn-sm" 
+                                                style="margin-bottom: 6px;width: 100%" 
+                                                oncomplete="PF('dlg8').show()" update="dfwer3wq:dsf89d">
+                                    Hızlı Düzenle
+                                    <f:setPropertyActionListener value="#{adx}" target="#{adBean.selectedAd}"  />
+                                </p:commandLink>
+                            </h:panelGroup>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('İşim var araç arıyorum') }">
+                                <a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/ilanlar/isim-var-arac-ariyorum/duzenle/#{adx.ad_Id}?aId=#{adx.accountBean.account_Id}" title="Düzenle">Tam Düzenle</a>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracım var iş arıyorum') }">
+                                <a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/ilanlar/aracim-var-is-ariyorum/duzenle/#{adx.ad_Id}?aId=#{adx.accountBean.account_Id}" title="Düzenle">Tam Düzenle</a>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracim var şöför arıyorum') }">
+                                <a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/ilanlar/aracim-var-sofor-ariyorum/duzenle/#{adx.ad_Id}?aId=#{adx.accountBean.account_Id}" title="Düzenle">Tam Düzenle</a>
+                            </h:panelGroup> 
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracim var hostes arıyorum') }">
+                                <a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/ilanlar/aracim-var-hostes-ariyorum/duzenle/#{adx.ad_Id}?aId=#{adx.accountBean.account_Id}" title="Düzenle">Tam Düzenle</a>
+                            </h:panelGroup> 
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Hostesim iş arıyorum') }">
+                                <a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/ilanlar/hostesim-is-ariyorum/duzenle/#{adx.ad_Id}?aId=#{adx.accountBean.account_Id}" title="Düzenle">Tam Düzenle</a>
+                            </h:panelGroup> 
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Şöförüm iş arıyorum') }">
+                                <a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/ilanlar/soforum-is-ariyorum/duzenle/#{adx.ad_Id}?aId=#{adx.accountBean.account_Id}" title="Düzenle">Tam Düzenle</a>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Plakamı satıyorum') }">
+                                <a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/ilanlar/plakami-satiyorum/duzenle/#{adx.ad_Id}?aId=#{adx.accountBean.account_Id}" title="Düzenle">Tam Düzenle</a>
+                            </h:panelGroup>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('İşim var araç arıyorum') }">
+                                <a class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/ad/isim-var-arac-ariyorum/#{adx.ad_Id}" title="İlanı Gör">Gör</a>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracım var iş arıyorum') }">
+                                <a class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/ad/aracim-var-is-ariyorum/#{adx.ad_Id}" title="İlanı Gör">Gör</a>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracim var şöför arıyorum') }">
+                                <a class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/ad/aracim-var-sofor-ariyorum/#{adx.ad_Id}" title="İlanı Gör">Gör</a>
+                            </h:panelGroup> 
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracim var hostes arıyorum') }">
+                                <a class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/ad/aracim-var-hostes-ariyorum/#{adx.ad_Id}" title="İlanı Gör">Gör</a>
+                            </h:panelGroup> 
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Hostesim iş arıyorum') }">
+                                <a class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/ad/hostesim-is-ariyorum/#{adx.ad_Id}" title="İlanı Gör">Gör</a>
+                            </h:panelGroup> 
+                            <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Şöförüm iş arıyorum') }">
+                                <a class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/ad/soforum-is-ariyorum/#{adx.ad_Id}" title="İlanı Gör">Gör</a>
+                            </h:panelGroup> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:commandLink class="btn btn-outline-danger btn-sm" 
+                                           style="margin-bottom: 6px;width: 100%"
+                                           action="#{adBean.disableAd(adx.ad_Id)}" 
+                                           title="Sil">
+                                Sil
+                                <f:ajax execute="@form" render="dfwer3wq:dfdwfewq"></f:ajax>
+                            </h:commandLink>
+                        </td>
+                    </tr>
+                    <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Aracım var iş arıyorum' }">
+                        <tr><td><hr/></td></tr>
+                        <tr><td style="text-align: center;padding-bottom: 5px;"><span style="font-weight: 500">ARAÇ</span></td></tr>
+                        <tr>
+                            <td style="text-align: center;">
+                                <a class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/arac-detay/#{adx.adAracimVarIsAriyorum_vehicle.vehicle_Id}" title="Aracı Gör">Gör</a>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td style="text-align: center;">
+                                <a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/vehicles/edit_vehicle_s1.xhtml?vId=#{adx.adAracimVarIsAriyorum_vehicle.vehicle_Id}&amp;vParam2=ad" title="Araç Düzenle">Düzenle</a>
+                            </td>
+                        </tr> 
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Aracim var şöför arıyorum' }">
+                        <tr><td><hr/></td></tr>
+                        <tr><td style="text-align: center;padding-bottom: 5px;"><span style="font-weight: 500">ARAÇ</span></td></tr>
+                        <tr>
+                            <td style="text-align: center;">
+                                <a class="btn btn-outline-primary btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/arac-detay/#{adx.adAracimVarSoforAriyorum_vehicle.vehicle_Id}" title="Aracı Gör">Gör</a>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td style="text-align: center;">
+                                <a class="btn btn-outline-info btn-sm" style="margin-bottom: 6px;width: 100%" target="_blank" href="/private/director/vehicles/edit_vehicle_s1.xhtml?vId=#{adx.adAracimVarSoforAriyorum_vehicle.vehicle_Id}&amp;vParam2=ad" title="Araç Düzenle">Düzenle</a>
+                            </td>
+                        </tr> 
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{adx.ad_Category_Name eq 'Aracim var hostes arıyorum' }">
+                        &nbsp;
+                    </h:panelGroup>
+
+                </tbody>
+            </table>
+        </ui:composition>
+    </h:body>
+</html>
+

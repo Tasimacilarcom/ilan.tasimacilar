@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <ui:insert name="head" ><ui:include src="../../head.xhtml" /></ui:insert>
+    </h:head>
+    <h:body>
+        <ui:insert name="header" ><ui:include src="../../header2.xhtml" /></ui:insert>
+        <main class="mt-5 mb-5">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-lg-12">
+                         <div class="login-form  " >
+                            <div class="container pt-3 pb-2 mt-3 mb-3" style="background-color: #f5f0ebbd;border-radius: 10px">
+
+                                <div class=" row ">
+                                    <style>
+                                       body > main > div > div > div.col-lg-12 > div > div > div > div > .active {background: linear-gradient(180deg, rgba(243, 148, 55, 0.81) 0%, #f39437 100%);  color: white;}
+                                    </style>
+                                    <h:panelGroup rendered="#{AccountType=='personal'}">
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/profilim" class="btn btn-home-light2  #{pagesBean.onPage eq 'profile_settings' ? 'active' : ''} ">Profilim</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'personal_my_ads' ? 'active' : ''} ">İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/araclarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'personal_my_vehicles' ? 'active' : ''} ">Araçlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/ilan-mesajlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'messages_ads' ? 'active' : ''} ">İlan Mesajları<h:panelGroup rendered="#{accountBean.isExistUserMessageNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/favori-ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'personal_my_favorites' ? 'active' : ''} ">Favori İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/bireysel/destek" class="btn btn-home-light2  #{pagesBean.onPage eq 'support' ? 'active' : ''} ">Destek<h:panelGroup rendered="#{accountBean.isExistUserSupportNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>
+                                        
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{AccountType=='corporate'}">
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/profilim/s1" class="btn btn-home-light2  #{pagesBean.onPage eq 'profile_settings_s1' ? 'active' : ''}">Profilim</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'corporate_my_ads' ? 'active' : ''}">İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/araclarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'corporate_my_vehicles' ? 'active' : ''} ">Araçlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/ilan-mesajlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'messages_ads' ? 'active' : ''} ">İlan Mesajları<h:panelGroup rendered="#{accountBean.isExistUserMessageNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/favori-ilanlarim" class="btn btn-home-light2  #{pagesBean.onPage eq 'corporate_my_favorites' ? 'active' : ''} ">Favori İlanlarım</a>
+                                        </div>
+                                        <div class="col-6 col-sm-6 col-lg-2 mb-2">
+                                            <a href="/private/kurumsal/destek" class="btn btn-home-light2  #{pagesBean.onPage eq 'support' ? 'active' : ''} ">Destek<h:panelGroup rendered="#{accountBean.isExistUserSupportNotification()}"><span class="badge badge-warning badge-orange "><i title="Yeni Bildiriminiz Var" style="font-weight: 500;font-size: 1.2em" class="fa fa-bell"></i></span></h:panelGroup></a>
+                                        </div>    
+                                       
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{AccountType=='director'}">
+                                        <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                            <a href="#" class="btn btn-home-light2 ">&nbsp;</a>
+                                        </div> 
+                                        <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                             <a href="#" class="btn btn-home-light2 ">&nbsp;</a>
+                                        </div> 
+                                        <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                            <a href="#" class="btn btn-home-light2 ">&nbsp;</a>
+                                        </div> 
+                                        <div class="col-6 col-sm-6 col-lg-3 mb-2">
+                                            <a href="/private/director/index.xhtml" class="btn btn-home-light2 ">Yönetim Paneli</a>
+                                        </div> 
+                                    </h:panelGroup>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--<ui:insert name="left_menu" ><ui:include src="../common/menu/left_menu.xhtml" /></ui:insert>-->               
+                    <div class="col-lg-12">
+                        <ui:insert name="form" ></ui:insert>     
+                    </div>     
+                </div>
+            </div>
+        </main>
+        <ui:insert name="footer" ><ui:include src="../../footer.xhtml" /></ui:insert>
+        <ui:insert name="scripts" ><ui:include src="../../scripts.xhtml" /></ui:insert>
+<!--                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6vPNP3SNe0SQC8yM-9Si_hcxRypKdRMQ&amp;sensor=false&amp;libraries=places"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6vPNP3SNe0SQC8yM-9Si_hcxRypKdRMQ&amp;libraries=places&amp;callback=initAutocomplete" async="true" defer="true"></script>
+        <script src="/resources/js/GMapAutoComplate.js" type="text/javascript"></script>-->
+        
+        <script type="text/javascript">
+            
+             function referancesPanelShowHide(elem) {
+                var y = document.getElementById("dgret4tr");
+                var x = elem.value;
+                if (x === "true") { y.style.display = "block"; } 
+                else {  y.style.display = "none"; };         
+            };
+            
+              function cvPanelShowHide() {
+                var x = document.getElementById("kjeofkjew");
+                if (x.style.display === "none") {
+                  x.style.display = "block";
+                } else {
+                  x.style.display = "none";
+                };
+               
+              };
+              
+             function addStationPanelShowHide() {
+                var x = document.getElementById("ytytry45et");
+                if (x.style.display === "none") {x.style.display = "block";} 
+                else {x.style.display = "none"; };
+            };
+            function mapShowHide() {
+                var x = document.getElementById("gfdt45er4rse");
+                if (x.style.display === "none") {x.style.display = "block";} 
+                else {x.style.display = "none"; };
+            };
+            function mapShowHide2() {
+                var x = document.getElementById("gfdt45er4rsex");
+                if (x.style.display === "none") {x.style.display = "block"; } 
+                else { x.style.display = "none"; };
+            };
+            function mapShowHide3() {
+                var x = document.getElementById("gfdt45er4rsexx");
+                if (x.style.display === "none") {x.style.display = "block"; } 
+                else {x.style.display = "none";};
+            };
+            function mapHide() {
+                var x = document.getElementById("gfdt45er4rse");
+                x.style.display = "none";   
+                document.getElementById("location").value = null;
+                document.getElementById("lat").value = null;
+                document.getElementById("lng").value = null;
+            }  ;
+            function mapHide2() {
+                var x = document.getElementById("gfdt45er4rsex");
+                x.style.display = "none";   
+                document.getElementById("location2").value = null;
+                document.getElementById("lat2").value = null;
+                document.getElementById("lng2").value = null;
+            };
+            function mapHide3() {
+                var x = document.getElementById("gfdt45er4rsexx");
+                x.style.display = "none";   
+                document.getElementById("location3").value = null;
+                document.getElementById("lat3").value = null;
+                document.getElementById("lng3").value = null;
+            };
+            
+            google.maps.event.addDomListener(window, 'load', initializeGMAP1);
+            google.maps.event.addDomListener(window, 'load', initializeGMAP2);
+            google.maps.event.addDomListener(window, 'load', initializeGMAP3);
+        </script>
+        
+    </h:body>
+</html>
+
+
+
+
+
+
+
+
+

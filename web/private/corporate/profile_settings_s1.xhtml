@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="/private/templates/myPagesLayout.xhtml">
+            <ui:define name="content">
+               
+                    <div class="profile-card">
+                     
+                        <div class="btn-group">
+                            <a href="/private/kurumsal/profilim/s1" class="btn btn-outline-secondary active" aria-current="page">Kullanıcı Bilgileri</a>
+                            <a href="/private/kurumsal/profilim/s2" class="btn btn-outline-secondary">İşletme Bilgileri</a>
+                       </div>
+
+                        <br/><br/><br/>        
+                        <h:form id="corporateAccountForm" prependId="false">
+                            <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                            <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/>  
+                            <div >
+                                <div class="form-row" style=" padding-bottom: 25px;">
+                                    <h:outputLabel id="companyIdLabel" class="col-xl-3 col-lg-3 col-form-label"  for="companyIdSelectOneMenu">Firmanız *</h:outputLabel>
+                                    <div class="form-group col-lg-9">
+                                        <p:autoComplete id="companyIdSelectOneMenu"  
+                                                        value="#{corporateAccountBean.selectedCompany}"
+                                                        panelStyle="width:233px;" converter="corporateAccountBeanConverter"
+                                                        style="height: 40px;cursor: pointer;margin-bottom: 10px;background: none;background-color: #fff;border-radius: 0;border-color: #ebedf2;width: 100%;    "
+                                                        inputStyle="height: 40px;border-radius: 8px;font-weight: 300;cursor: pointer;background: none;background-color: #fff;font-size: 1rem;line-height: 1.20; padding: .60rem 1.10rem;color: #575962;width: 100%; "
+                                                        scrollHeight="120" dropdown="true" 
+                                                        completeMethod="#{corporateAccountBean.allCorporateAccountWithDetailForAutoComplete}"
+                                                        var="o" itemLabel="#{o.company_Name}" itemValue="#{o}"
+                                                        placeholder="Firma seçin veya yazın"  >
+                                        </p:autoComplete>
+                                        <h:message for="companyIdSelectOneMenu" style="color: red"></h:message>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-lg-6">
+                                        <h:outputLabel id="corporateAccountFirstNameLabel"  for="corporateAccountFirstNameInput">Adınız *</h:outputLabel>
+                                        <h:inputText id="corporateAccountFirstNameInput" class="form-control"  value="#{corporateAccountBean.accountBean.account_FirstName}" required="true" requiredMessage="Lütfen adınızı yazınız"></h:inputText>
+                                        <h:message for="corporateAccountFirstNameInput" style="color: red"></h:message>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <h:outputLabel id="corporateAccountLastNameLabel" for="corporateAccountLastNameInput"> Soyadınız *</h:outputLabel>
+                                        <h:inputText id="corporateAccountLastNameInput" class="form-control m-input"  value="#{corporateAccountBean.accountBean.account_LastName}"  required="true"  requiredMessage="Lütfen soyadınızı yazınız"></h:inputText>
+                                        <h:message for="corporateAccountLastNameInput" style="color: red"></h:message>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-lg-6">
+                                        <h:outputLabel id="corporateAccountEmailAddressLabel" for="corporateAccountEmailAddressInput">E-Mail Adresiniz </h:outputLabel>
+                                        <div class="input-group ">
+                                            <div class="input-group-prepend">
+                                                <h:panelGroup rendered="#{corporateAccountBean.accountBean.account_EmailAddressActivated}">
+                                                    <h:panelGroup rendered="#{corporateAccountBean.accountBean.account_EmailAddress ne ''}">
+                                                        <span class="input-group-text" title="Doğrulanmış E-Mail Adresi" ><i style="font-size: 1.4rem; color: green" class="far fa-check-circle"></i></span>
+                                                    </h:panelGroup>
+
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{corporateAccountBean.accountBean.account_EmailAddressActivated==false || corporateAccountBean.accountBean.account_EmailAddress eq ''}">
+                                                    <span class="input-group-text" title="Doğrulanmamış E-Mail Adresi" ><i style="font-size: 1.4rem; color: orange" class="fas fa-minus-circle"></i></span>
+                                                </h:panelGroup>
+                                            </div>
+                                            <h:inputText id="corporateAccountEmailAddressInput" class="form-control m-input"  value="#{corporateAccountBean.accountBean.account_EmailAddress}"  validatorMessage="Geçersiz E-Mail adresi formatı"><f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" /></h:inputText>
+                                            <h:panelGroup rendered="#{corporateAccountBean.accountBean.account_EmailAddressActivated==false and corporateAccountBean.accountBean.account_EmailAddress ne ''}">
+                                                <div class="input-group-append">
+                                                    <h:commandLink class="btn btn-secondary" style="width:100%;" onclick="PF('dlg3').show();" title="E-Mail Adresini Doğrula" >
+                                                        Doğrula
+                                                        <f:ajax execute="@this" ></f:ajax>
+                                                    </h:commandLink>
+                                                </div>
+                                            </h:panelGroup>
+                                            <h:message for="corporateAccountEmailAddressInput" style="color: red"> </h:message>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <h:outputLabel id="corporateAccountMobilePhoneNumberLabel"  for="corporateAccountMobilePhoneNumberInput"> GSM Numaranız *</h:outputLabel>
+                                       <div class="input-group ">
+                                           <div class="input-group-prepend">
+                                                <span class="input-group-text" title="Doğrulanmış GSM Numarası" ><i style="font-size: 1.4rem; color: green" class="far fa-check-circle"></i></span>
+                                           </div>
+                                           <p:inputMask id="corporateAccountMobilePhoneNumberInput"  class=" form-control m-input" value="#{corporateAccountBean.accountBean.account_MobilePhoneNumber}" required="true" requiredMessage="Lütfen Cep telefon numaranızı yazınız" mask="0(599)-999-9999"> </p:inputMask>
+                                            <h:message for="corporateAccountMobilePhoneNumberInput" style="color: red"></h:message>
+                                        </div>
+                                                                           
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12">
+                                        <h:outputLabel id="corporateAccountAddressLabel"  for="corporateAccountAddressInput">Adres</h:outputLabel>
+                                        <h:inputTextarea id="corporateAccountAddressInput" class="form-control m-input"  rows="2" value="#{corporateAccountBean.addressBean.address}"></h:inputTextarea>
+                                        <h:message for="corporateAccountAddressInput" style="color: red"></h:message>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-lg-6">
+                                        <h:outputLabel id="corporateAccountAddressCitySelectOneMenuLabel" for="corporateAccountAddressCitySelectOneMenu"> İl *</h:outputLabel>
+                                        <h:selectOneMenu id="corporateAccountAddressCitySelectOneMenu"  value="#{corporateAccountBean.addressBean.address_CityId}"   class="form-control m-input m-input--square">
+                                            <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                            <f:selectItems value="#{corporateAccountBean.allCityWithDetail()}"  var="o"  itemLabel="#{o.cityName}"  itemValue="#{o.cityID}" ></f:selectItems> 
+                                            <f:ajax event="change" render="corporateAccountAddressTownSelectOneMenu"></f:ajax>
+                                        </h:selectOneMenu> 
+                                        <h:message for="corporateAccountAddressCitySelectOneMenu" style="color: red"></h:message>
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <h:outputLabel id="corporateAccountAddressTownSelectOneMenuLabel" for="corporateAccountAddressTownSelectOneMenu"> İlçe *</h:outputLabel>
+                                        <h:selectOneMenu id="corporateAccountAddressTownSelectOneMenu"  value="#{corporateAccountBean.addressBean.address_TownId}"   class="form-control m-input m-input--square">
+                                            <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                            <f:selectItems value="#{corporateAccountBean.allTownDetailWithCity()}"   var="o"   itemLabel="#{o.townName}"  itemValue="#{o.townID}" ></f:selectItems> 
+                                        </h:selectOneMenu> 
+                                        <h:message for="corporateAccountAddressTownSelectOneMenu" style="color: red"></h:message>
+                                    </div>
+                                </div>
+                                <h:panelGroup id="alertPanelxxx" rendered="#{corporateAccountBean.accountBean.account_passwordNotChange}">
+                                    <div class="form-row" >
+<!--                                                    <div class="form-group col-lg-6">
+                                            <h:outputLabel id="corporateAccountOldPasswordLabelx" for="corporateAccountOldPasswordx"> Mevcut Şifreniz *</h:outputLabel>
+                                            <h:inputSecret  id="corporateAccountOldPasswordx" class="form-control m-input" disabled="true" maxlength="12" value="#{corporateAccountBean.accountBean.account_oldPassword}"></h:inputSecret>
+                                            <h:message for="corporateAccountOldPasswordx" style="color: red"></h:message>
+                                        </div>-->
+                                        <div class="form-group col-lg-4">
+                                            <h:outputLabel id="corporateAccountNewPasswordLabelx" for="corporateAccountNewPasswordx">Şifreniz *</h:outputLabel>
+                                            <h:inputText  id="corporateAccountNewPasswordx" class="form-control m-input" disabled="true" maxlength="12" value="#{corporateAccountBean.accountBean.account_newPassword}"> </h:inputText>
+                                            <h:message for="corporateAccountNewPassword" style="color: red"></h:message>
+                                        </div>
+                                        <div class="form-group col-lg-12" style="margin-top: 15px; margin-bottom: 0; ">
+                                            <p><b style="color: red; font-size: 1.3rem">!</b>&nbsp;&nbsp;<em style="font-size: 1rem; color: #cc6600">Şifrenizi değiştirmeniz sistem tarafından engellenmiştir.</em></p>  
+                                        </div>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup id="alertPanelxx" rendered="#{!corporateAccountBean.accountBean.account_passwordNotChange}">
+                                    <div class="form-row" >
+<!--                                                    <div class="form-group col-lg-6">
+                                            <h:outputLabel id="corporateAccountOldPasswordLabel" for="corporateAccountOldPassword"> Mevcut Şifreniz *</h:outputLabel>
+                                            <h:inputSecret  id="corporateAccountOldPassword" class="form-control m-input" maxlength="12"  value="#{corporateAccountBean.accountBean.account_oldPassword}"></h:inputSecret>
+                                            <h:message for="corporateAccountOldPassword" style="color: red"></h:message>
+                                        </div>-->
+                                        <div class="form-group col-lg-4">
+                                            <h:outputLabel id="corporateAccountNewPasswordLabel" for="corporateAccountNewPassword">Şifreniz * </h:outputLabel>
+                                            <h:inputText  id="corporateAccountNewPassword" class="form-control m-input" maxlength="12" value="#{corporateAccountBean.accountBean.account_newPassword}"></h:inputText>
+                                            <h:message for="corporateAccountNewPassword" style="color: red"></h:message>
+                                        </div>
+                                        <div class="col-lg-8" style="margin-top: 15px; margin-bottom: 0; ">
+                                            <h:outputLabel >&nbsp;</h:outputLabel>
+                                            <p><b style="color: red; font-size: 1.3rem">!</b>&nbsp;&nbsp;<em style="font-size: 1rem; color: #cc6600">
+                                                    <!--Eğer şifrenizi değiştirmek isterseniz ilgili alanlara mevcut ve yeni şifrenizi mutlaka yazmalısınız.<br/>-->
+                                                     Şifrenizi değiştirmek istemiyorsanız bu alanı boş bırakınız.</em></p>  
+                                        </div>
+                                    </div>
+                                </h:panelGroup>
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12">
+                                        <h:panelGroup id="alertPanel" rendered="#{corporateAccountBean.gsmChanged}">
+                                            <div >
+                                                <div ><i class="la la-warning"></i></div>
+                                                <div >
+                                                    <strong>Dikkat!</strong> GSM Numaranız BAŞARILI bir şekilde değişmiştir.<br/>
+                                                    GSM numarası değişikliği yeniden GSM aktivasyonu işlemi gerektirir. 
+                                                    Yeni GSM numaranıza aktivasyon kodunuz gönderilmiştir. Yandaki "Aktivasyon"
+                                                    düğmesine tıklatarak gerekli aktivasyon işlemini yapınız.<br/><br/>
+                                                    <strong>Yeni aktivasyon işlemine kadar hesabınız kilitlenmiştir.</strong> 
+                                                </div>
+                                                <div  style="width: 200px;">
+                                                    <a href="/activation" class="btn btn-brand btn-sm m-btn m-btn--pill m-btn--wide">Aktivasyon</a>
+                                                    <a class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide" data-dismiss="alert" aria-label="Close" style="color: #fff">X</a>
+                                                </div>
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup id="alertPanel2" rendered="#{corporateAccountBean.emailChanged}">
+                                            <div >
+                                                <div > <i class="la la-warning"></i></div>
+                                                <div >
+                                                    <strong>Dikkat!</strong> E-Mail adresiniz BAŞARILI bir şekilde değişmiştir.<br/>
+                                                    E-Mail değişikliği yeniden E-Mail aktivasyonu işlemi gerektirir. 
+                                                    Yeni E-Mail adresinize aktivasyon kodunuz gönderilmiştir. Yandaki "Aktivasyon"
+                                                    düğmesine tıklatarak gerekli aktivasyon işlemini yapınız.<br/><br/>
+                                                </div>
+                                                <div style="width: 200px;">
+                                                    <a href="/email-activation" class="btn btn-brand btn-sm m-btn m-btn--pill m-btn--wide">Aktivasyon</a>
+                                                    <a class="btn btn-danger btn-sm m-btn m-btn--pill m-btn--wide" data-dismiss="alert" aria-label="Close" style="color: #fff">X</a>
+                                                </div>
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup id="alertPanel22" rendered="#{corporateAccountBean.companyChanged}">
+                                            <div style=" background-color: #e9ff00;margin-top: 40px;" >
+                                                <div class="m-alert__icon"> <i class="la la-warning"></i></div>
+                                                <div class="m-alert__text">
+                                                    <strong>Dikkat!</strong> Firmanızı değiştiriyorsunuz.<br/>
+                                                    Firmanızı değiştirdiğiniz zaman değiştirdiğiniz firma adıyla verdiğiniz tüm ilanlar silinecektir.<br/><br/>
+                                                </div>
+                                                <div class="m-alert__actions" style="width: 300px;">
+                                                    <h:commandLink action="#{corporateAccountBean.updateAccount2()}" class="btn btn-success btn-sm ">Onaylıyorum</h:commandLink>
+                                                    <a href="/private/kurumsal/profil-ayarlari/s1" class="btn btn-danger btn-sm m-btn "  style="color: #fff">İptal</a>
+                                                </div>
+                                            </div>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+
+                            </div><br/><br/>
+                            <div >
+                                <h:panelGroup id="alertPanel222" rendered="#{!corporateAccountBean.companyChanged}">
+                                    <div class="m-form__actions">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-lg-4 m--align-left">
+                                                <h:commandLink class="btn btn-outline-danger " onclick="PF('dlg2').show();"  title="Hesabı Kullanıma Kapat" ><i class="far fa-times-circle"></i>&nbsp;&nbsp;Kullanıcı hesabını kapat<f:ajax execute="@this"></f:ajax></h:commandLink>
+                                            </div>
+                                            <div class="col-sm-12 col-lg-2 ">  &nbsp; </div>
+                                            <div class="col-sm-12 col-lg-6 m--align-right">
+                                                <h:commandLink class="btn btn-form w-100"  title="Güncelle" style="width: 49%;"  action="#{corporateAccountBean.updateAccount()}">Bilgileri Güncelle<f:ajax execute="@form" render="@form"></f:ajax></h:commandLink>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </h:panelGroup>
+                            </div>
+                            <p:dialog header="Hesap Kapatma" widgetVar="dlg2" modal="true"  resizable="false" responsive="true" style="max-width: 550px;">
+                                <div class="row">
+                                    <div class="col-md-12" style="margin-bottom: 25px;"><p style="font-size: 1.2em"><b>Dikkat !</b>&nbsp;Hesabınızı kullanıma kapatmak istediğinize eminmisiniz ? </p></div>
+                                    <br/>
+                                    <div class="col-md-6">
+                                        <h:commandLink class="btn btn-danger" style="width: 100%" action="#{corporateAccountBean.disableAccout()}"   title="Hesabı Kullanıma Kapat" >EVET<f:ajax execute="corporateAccountForm" render="corporateAccountForm"> </f:ajax></h:commandLink>
+                                    </div>
+                                    <div class="col-md-6"><a href="#"  style="width: 100%" onclick="PF('dlg2').hide();" class="btn btn-info">HAYIR</a></div>
+                                </div>
+                            </p:dialog> 
+                            <p:dialog header="E-Mail Doğrulama" widgetVar="dlg3" modal="true"  resizable="false" responsive="true" style="max-width: 600px;">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12" style="margin-bottom: 25px;">
+                                        <p style="font-size: 1.2em"><b>Dikkat !</b>&nbsp;Girmiş olduğunuz E-Mail adresinin kullanılabilmesi için E-Mail doğrulanması gerekmektedir. 
+                                            <br/><br/>
+                                            <p:commandLink update="dfdsf" action="#{corporateAccountBean.emailChange()}" style="color: red">
+                                                Burayı
+
+                                            </p:commandLink> tıkladıgınızda E-Mail adresinize doğrulama kodu gönderilecektir. 
+                                            <br/><br/>Gönderilen doğrulama kodunu aşağıdaki alana girerek E-Mail adresinizi doğrulatabilirsiniz.</p>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h:outputLabel id="accountEmailActivationIdLabel" for="accountEmailActivationIdInput"> E-Mail Aktivasyon Kodu </h:outputLabel>
+                                        <div class="input-group">
+                                            <p:inputText id="accountEmailActivationIdInput"   value="#{corporateAccountBean.account_EmailActivationId}"> </p:inputText>
+                                            <div class="input-group-append" >
+                                                <h:commandLink id="accountEmailActivationIdButton" 
+                                                               action="#{corporateAccountBean.emailActivationIdCheck()}" 
+                                                               class="btn btn-success">
+                                                    Onay 
+                                                    <f:ajax execute="corporateAccountForm" render="corporateAccountForm"></f:ajax>
+                                                </h:commandLink>
+                                            </div>
+                                        </div>
+                                        <h:message for="accountEmailActivationIdInput" style="color: red"></h:message>
+                                    </div>
+                                    <div class="col-md-6" >
+                                        <h:outputLabel >&nbsp;</h:outputLabel>
+                                        <div class="input-group" style="padding-left: 10px;"><a href="#" onclick="PF('dlg3').hide();" class="btn btn-warning">Vazgeç</a> </div>
+
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: 25px; margin-bottom: 25px;">
+                                        <p:messages id="dfdsf" globalOnly="false" showDetail="true" closable="true">
+                                            <p:autoUpdate />
+                                        </p:messages>
+                                    </div>
+                                </div>
+                            </p:dialog> 
+                        </h:form>
+
+                    </div>
+              
+            </ui:define>
+        </ui:composition>    
+    </h:body>
+</html>

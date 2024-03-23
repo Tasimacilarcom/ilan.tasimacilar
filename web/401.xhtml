@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <!-- Start global head -->
+        <ui:insert name="head" ><ui:include src="head.xhtml" /></ui:insert>
+        <!-- End global head -->
+    </h:head>
+
+    <h:body>
+        <!-- Start header -->
+        <ui:insert name="header" ><ui:include src="header.xhtml" /></ui:insert>
+        <!-- End header -->
+        <main role="main" >
+            <div class="container" style="margin-top: 30px; padding: 20px; background-color: #fff; margin-bottom: 20px;-webkit-box-shadow: 0px 3px 11px 0 rgba(0,0,0,0.13); -moz-box-shadow: 0px 3px 11px 0 rgba(0,0,0,0.13); box-shadow: 0px 3px 11px 0 rgba(0,0,0,0.13);">
+                <div style="border-bottom:1px solid #ddd; padding-bottom: 20px;"><h2 class="post-title">401-Error</h2></div> 
+                <div style="padding: 0px;">
+                    <div class="row" style="margin: 0; min-height: 450px;">
+                        <div class="col-md-12" style="padding: 20px; ">
+                            <br/><br/>
+                            <h3 style="color: red; text-align: center; background-color: #ffffff ">Üzgünüz bu sayfaya giriş yetkiniz yok !!
+                                <br/><br/><br/>
+                                <img src="/resources/img/401-Error.png" width="300px;" alt="401-Error"/>
+                                <br/><br/><br/>
+                                <b style="font-size: medium; color: #0060aa"><i class="fa fa-undo" aria-hidden="true"></i><a href="/" style="color: #0060aa"> Ana Sayfaya dönebilirsin</a></b>
+                                <br/><br/>
+                            </h3>
+                        </div>                                               
+                    </div>
+                </div> 
+            </div>
+        </main>
+        <!-- Start footer -->
+        <ui:insert name="footer" ><ui:include src="footer.xhtml" /></ui:insert>
+        <!-- End footer -->       
+        <!-- Start global scripts -->
+        <ui:insert name="scripts" ><ui:include src="scripts.xhtml" /></ui:insert>
+        <!-- End global scripts -->
+    </h:body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:body>
+        <ui:composition template="../director-page-layout.xhtml">
+            <ui:define name="head-title">
+                <h3 class="m-portlet__head-text">
+                    <i class="fas fa-users-cog"></i>&nbsp;Site Yöneticisi Sayfası 
+                    <small><i class="la la-angle-right"></i>&nbsp;Firmalar&nbsp;
+                        <i class="la la-angle-right"></i>&nbsp;Yeni Firma Ekle
+                    </small>
+                </h3>
+            </ui:define>
+            <ui:define name="form">        
+                <div class=" col-md-12">
+
+                    <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd">
+                        <i style="  float:left; font-size: 2rem; margin-bottom: .5rem; font-weight: 500; line-height: 1.2; color: inherit;"   class="m-nav__link-icon la la-building">  </i> <h2 >&nbsp;Firma Duzenle</h2><i ></i>
+                    </div>
+                    <ui:insert name="yeni_firma_ekle_body" ><ui:include src="firma_ekle-duzenle_body.xhtml" /></ui:insert>
+                    
+                </div>         
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

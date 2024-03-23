@@ -1,0 +1,308 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <ui:composition template="/public/templates/adPageLayout.xhtml">
+            <ui:define name="ad_main">
+                <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.adBean.ad_IsActive eq false or adLookingForVehicleForWorkBean.accountBean == null or adLookingForVehicleForWorkBean.accountBean.account_IsActive eq false}">
+                    <ui:insert name="adAvailabilityAlert" ><ui:include src="../../templates/adAvailabilityAlert.xhtml" /></ui:insert>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.adBean.ad_IsActive eq true and adLookingForVehicleForWorkBean.accountBean != null and adLookingForVehicleForWorkBean.accountBean.account_IsActive eq true}">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-8">
+                            <div class="profile-card background-green mb-3 py-3 px-1" style="padding: 5px !important">
+                                <div class="d-flex ad-detail-header">
+                                    
+                                    <div class="col"><div class="title">İlan Tarihi</div><p><h:outputText value="#{adLookingForVehicleForWorkBean.adBean.ad_CreateTime}"><f:convertDateTime pattern=" dd.MM.YYYY HH:mm"></f:convertDateTime></h:outputText></p></div>
+                                    <div class="col"><div class="title">İlan No</div><p>#{adLookingForVehicleForWorkBean.adBean.ad_Id2}</p></div>
+                                </div>
+                            </div>
+                            <div class="box-style p-3 mb-4">
+                               <div class="box-content">
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                           <div class="box-style w-auto d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3 mb-1">Servis Türü</div>
+                                                <span>
+                                                    <ui:repeat varStatus="vs" var="" value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceTypes}">
+                                                        <span class="tag mr-2 mb-2" style="padding: 0 !important;"><h:outputText value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceTypes[vs.index]}" /> </span>
+                                                    </ui:repeat>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <div class="box-style w-100 d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3">Aranan Araç</div>
+                                                <h:outputText value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_Typ}" />&nbsp;-&nbsp;
+                                                <span>
+                                                    <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.vehicle.vehicle_BrandNotMatter == true}">Farketmez</h:panelGroup>
+                                                    <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.vehicle.vehicle_BrandNotMatter == false}">
+                                                        <h:outputText value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_Brand}" />&nbsp;&nbsp;
+                                                        <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.vehicleBrandsLength==1}">
+                                                        <h:outputText value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_Model eq 'Farketmez'? 'Model Farketmez' :adLookingForVehicleForWorkBean.vehicle.vehicle_Model }" />
+                                                        </h:panelGroup>
+                                                    </h:panelGroup>
+                                                </span>
+                                           </div>
+                                        </div>
+                                    </div>
+                                   <div class="row">
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3  mb-1">Aranan Araç Yılı</div>
+                                                <span>
+                                                    <h:panelGroup rendered="#{!adLookingForVehicleForWorkBean.vehicle.vehicle_ModelYearNotMatter}">
+                                                        <h:outputText value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_ModelYear == 0?'Farketmez':adLookingForVehicleForWorkBean.vehicle.vehicle_ModelYear}" />&nbsp;
+                                                        <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.vehicle.vehicle_ModelYearAndOver}">
+                                                            <h:outputText value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_ModelYearAndOver?'Ve Üzeri':''}" />
+                                                        </h:panelGroup>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.vehicle.vehicle_ModelYearNotMatter}">
+                                                        <h:outputText value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_ModelYearNotMatter?'Farketmez':''}" />
+                                                    </h:panelGroup>
+                                                </span>
+                                            </div>
+                                         </div>
+                                         <div class="col-sm-12 col-md-6 ">
+                                             <div class="box-style w-auto d-flex align-items-center p-1 mb-3 ">
+                                                <div class="title-sm-orange mr-3  mb-1">Kapasite</div>
+                                                <span><h:outputText value="#{adLookingForVehicleForWorkBean.vehicle.vehicle_NumberOfSeats eq ''?'Farketmez':adLookingForVehicleForWorkBean.vehicle.vehicle_NumberOfSeats}" /></span>
+                                            </div>
+                                         </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6  ">
+                                            <div class="box-style w-auto d-flex align-items-center p-1 mb-3">
+                                                <div class="title-sm-orange mr-3">Toplam</div>
+                                                <span><h:outputText value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Km} KM" /></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-1 mb-3">
+                                                <div class="title-sm-orange mr-3">Servis Süresi</div>
+                                                <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceTime}">
+                                                    <span><h:outputText value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceTime} Dak." /></span>
+                                                </h:panelGroup>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-1 mb-3">
+                                                <div class="title-sm-orange mr-3">Yolcu Sayısı</div>
+                                                <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_NumberOfPassengers} ne '0' ">
+                                                    <span><h:outputText value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_NumberOfPassengers}" ><f:convertNumber></f:convertNumber></h:outputText></span>
+                                                </h:panelGroup>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-1 mb-3">
+                                                <div class="title-sm-orange mr-3">Ücret</div>
+                                                <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Cost != 0}">
+                                                    <span><b><h:outputText value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Cost}" > <f:convertNumber></f:convertNumber></h:outputText>&nbsp;TL</b></span>
+                                                </h:panelGroup>
+                                                
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 ">
+                                            <div class="box-style w-auto d-flex align-items-center p-1 ">
+                                                <div class="title-sm-orange mr-3">Çalışacak Gün Sayısı</div>
+                                                <span><h:outputText value="#{adLookingForVehicleForWorkBean.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_DayToWork} Gün" /></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 ">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                 
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-4">
+                            <div class="ad-owner box-style mb-2">
+                               
+                              <div class="other my-3 mx-4">
+                                <div class="box-style mb-2">
+                                  <div class="font-weight-bold text-center ">
+                                        <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.accountBean.account_MembershipType eq 'corporate'}">
+                                             <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.corporateAccountBean.company_LogoUrl ne ''}">
+                                                    <div>
+                                                        <a href="/firma/companyName=#{adLookingForVehicleForWorkBean.corporateAccountBean.company_UrlName}">
+                                                            <img style="width: 80%" src="#{adLookingForVehicleForWorkBean.corporateAccountBean.company_LogoUrl}" alt=""/>
+                                                        </a>
+                                                    </div>
+                                                    <div style="padding-top: 5px;padding-bottom: 5px;">
+                                                        <a href="/firma/companyName=#{adLookingForVehicleForWorkBean.corporateAccountBean.company_UrlName}">
+                                                            <span style="font-size: 1.4em; font-weight: 500">#{adLookingForVehicleForWorkBean.corporateAccountBean.company_Name}</span>
+                                                        </a>
+                                                    </div>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.corporateAccountBean.company_LogoUrl eq ''}">
+                                                    <div style="padding-top: 5px;padding-bottom: 10px;">
+                                                        <a href="/firma/companyName=#{adLookingForVehicleForWorkBean.corporateAccountBean.company_UrlName}">
+                                                            <span style="font-size: 1.4em; font-weight: 500">#{adLookingForVehicleForWorkBean.corporateAccountBean.company_Name}</span>
+                                                        </a>    
+                                                    </div>
+                                                </h:panelGroup>
+                                            <span style="font-size: 1.1em; font-weight: 400">#{adLookingForVehicleForWorkBean.accountBean.account_FirstName}&nbsp;#{adLookingForVehicleForWorkBean.accountBean.account_LastName}</span><br/>
+                                            <span ><em>#{adLookingForVehicleForWorkBean.corporateAccountBean.company_ActivityArea}</em></span>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{adLookingForVehicleForWorkBean.accountBean.account_MembershipType eq 'personal'}">
+                                           #{adLookingForVehicleForWorkBean.accountBean.account_FirstName}&nbsp;#{adLookingForVehicleForWorkBean.accountBean.account_LastName}
+                                        </h:panelGroup>
+                                  </div>
+                                    <div class="font-weight-light text-center " style="font-size: 0.8rem">
+                                        Üyelik Tarihi : 
+                                        <h:outputText value="#{adLookingForVehicleForWorkBean.accountBean.account_CreateTime}">
+                                            <f:convertDateTime pattern="dd.MM.YYYY"></f:convertDateTime>
+                                        </h:outputText> 
+                                    </div>
+                                </div>
+                                
+                                <div class="box-style mb-2">
+                                  <div class="text-center "><h:outputText style="font-size: 1.8rem" value="#{adLookingForVehicleForWorkBean.accountBean.account_MobilePhoneNumber}"/></div>
+                                </div>
+                              </div>
+                             
+                            </div>
+                            <div class="box-style mb-2">
+                                <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/login"> 
+                                        <div class="title-orange text-center p-1 m-0">İlan sahibine soru sor</div>
+                                    </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'corporate'}">
+                                     <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/private/kurumsal/mesajlar/detay/yeni/#{adLookingForVehicleForWorkBean.adBean.ad_Id}"> 
+                                         <div class="title-orange text-center p-1 m-0">İlan sahibine soru sor</div>
+                                     </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/private/bireysel/mesajlar/detay/yeni/#{adLookingForVehicleForWorkBean.adBean.ad_Id}">
+                                        <div class="title-orange text-center p-1 m-0">İlan sahibine soru sor</div>
+                                    </a>
+                                </h:panelGroup>
+                            </div>
+                            
+                            <div class="box-style mb-2">
+                                <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                    <a style="text-decoration: none; font-size: 1.1em; font-weight: 500"  href="/login"> 
+                                        <div class="title-orange text-center p-1 m-0">Favorilere Ekle <i class="far fa-heart" aria-hidden="true"></i></div>
+                                    </a>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{accountMembershipType eq 'corporate' or accountMembershipType eq 'personal'}">
+                                    <h:form id="sfdsfdsf" prependId="false">
+                                        <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                                        <p:growl id="growl" showDetail="true" life="2000"  sticky="false"/>  
+                                        <h:commandLink action="#{adLookingForVehicleForWorkBean.createFavoritesAd()}" class="link" title="Bu İlanı Favorilerime Ekle">
+                                            <div class="title-orange text-center p-1 m-0">Favorilere Ekle <i class="far fa-heart" aria-hidden="true"></i></div>
+                                            <f:ajax execute="sfdsfdsf" render="sfdsfdsf"></f:ajax>
+                                        </h:commandLink>
+                                    </h:form>
+                                </h:panelGroup>    
+                            </div>
+                          
+                            <h:panelGroup rendered="#{accountMembershipType ne 'corporate' and accountMembershipType ne 'personal'}">
+                                <div class="box-style mb-2">
+                                    <a href="/login" class="link" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-1 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{accountMembershipType eq 'personal'}">
+                                <div class="box-style mb-2">
+                                    <a href="/private/bireysel/destek" class="link" target="_blank" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-1 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{accountMembershipType eq 'corporate'}">
+                                <div class="box-style mb-2">
+                                    <a href="/private/kurumsal/destek" class="link" target="_blank" title="Bu İlan İçin Destek İste" ><div class="title-red text-center p-1 m-0">İlanı Bildir</div></a>
+                                </div>
+                            </h:panelGroup>
+                            <div class="box-style mb-2 p-1 text-center" style="color: #f39437;">
+                                <h:form id="counterForm" prependId="false">
+                                    <p:remoteCommand name="myRemote" update="adViewCountX" actionListener="#{adCountersBean.execute()}"/>
+                                </h:form>
+                                <script>window.onload = function() {myRemote(); };</script>
+                                Bu ilan <b><h:outputText id="adViewCountX" value="#{adCountersBean.ad_ViewCount}" /></b>  kere görüntülendi
+                            </div>
+                          
+               
+                        </div>
+                        <div class="col-12">
+                            <div class="guzergah-list p-4 route-wrap d-block mb-3">
+                                
+                                 <div class="table-responsive">
+                                <table class="table " >
+                                    <thead>
+                                        <tr>
+                                            <th width="20%" style="text-align: center; background: #f3f3f3d1; border-style: none;"><span class="title" style="color: #e19c73;" >Başlangıç Saati</span></th>
+                                            <th style="text-align: center; background: #f3f3f3d1; border-style: none;"><span class="title"  style="color: #e19c73;">Başlangıç Yeri</span></th>
+                                            <th style="text-align: center; background: #f3f3f3d1; border-style: none;"><span class="title"  style="color: #e19c73;">Bitiş Yeri</span></th>
+                                            <th width="20%" style="text-align: center; background: #f3f3f3d1; border-style: none;"><span class="title"  style="color: #e19c73;">Bitiş Saati</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat var="x" value="#{adLookingForVehicleForWorkBean.locationInfoFromMap.locationList}">
+                                            <tr style="color: #434b5a">
+                                               <td style=" vertical-align: middle; text-align: center"><span class="text"><h:outputText value="#{x.adRoute_StartTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                               <td style="vertical-align: middle; text-align: center;">
+                                                    <div class="text">
+                                                        <h:outputText value="#{x.adRoute_StartPosition_Neighborhood}" style="display: block"></h:outputText>
+                                                        <h:outputText value="#{x.adRoute_StartPosition_Town}" style="display: block; font-size: 80%;font-weight: 500;line-height: 22px;" ></h:outputText>
+                                                        <h:outputText value="#{x.adRoute_StartPosition_City}" style="display: block; font-size: 60%;font-weight: 400;line-height: 20px;" ></h:outputText>
+                                                    </div>
+                                                </td>
+                                               <td style="vertical-align: middle; text-align: center;">
+                                                    <div class="text">
+                                                        <h:outputText value="#{x.adRoute_EndPosition_Neighborhood}" style="display: block"></h:outputText>
+                                                        <h:outputText value="#{x.adRoute_EndPosition_Town}" style="display: block; font-size: 80%;font-weight: 500;line-height: 22px;" ></h:outputText>
+                                                        <h:outputText value="#{x.adRoute_EndPosition_City}" style="display: block; font-size: 60%;font-weight: 400;line-height: 20px;" ></h:outputText>
+                                                    </div>
+                                                </td>
+                                                <td style=" vertical-align: middle; text-align: center"><span class="text"><h:outputText value="#{x.adRoute_EndTime}"><f:convertDateTime pattern="HH:mm"/></h:outputText></span> </td>
+                                            </tr>
+                                        </ui:repeat>     
+                                    </tbody>
+                                </table>     
+                                </div>                               
+                            </div>
+                            <div class="box-style">
+                                <div class="box-content p-3">
+                                    <div class="title-sm-orange mb-2">Açıklama</div>
+                                    <h:outputText style="font-size: 1.2rem" value="#{adLookingForVehicleForWorkBean.adBean.ad_Comment}" escape="false"/>
+                                </div>
+                            </div>
+                            
+                            
+                            <!--usersAds-->                        
+                            <div class="col-12 p-0 mt-5">
+                                <div class="home-list" style="width: 100%">
+                                    <p class="mb-4" 
+                                       style="font-weight: 700; font-size: 16px; line-height: 20px; color: #212429; padding-bottom: 0.25rem;  border-bottom: 2px solid #de904e;">
+                                        #{adLookingForVehicleForWorkBean.accountBean.account_FirstName}&nbsp;#{adLookingForVehicleForWorkBean.accountBean.account_LastName} <span style="font-weight: 500">tarafından oluşturulmuş en yeni ilanlar</span>
+                                    </p>
+
+                                    <p:scrollPanel mode="native" style="max-height:360px; padding: 20px">             
+                                        <ui:repeat var="a" value="#{adLookingForVehicleForWorkBean.adList}">
+                                            <!--Ilan-->
+                                                 <ui:insert name="usersAds" ><ui:include src="../common/usersAds.xhtml" /></ui:insert>
+                                            <!--Ilan-->
+                                        </ui:repeat>    
+                                    </p:scrollPanel>
+                                </div>    
+                            </div>
+                            <!--/usersAds-->
+                            
+                        </div>
+                    </div>
+                </h:panelGroup>    
+	    </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

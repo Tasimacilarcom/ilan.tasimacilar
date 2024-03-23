@@ -1,0 +1,283 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:sf="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition>         
+            <h:form id="m_form"  prependId="false"  enctype="multipart/form-data">
+                <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                <p:growl id="growl" globalOnly="true" showDetail="true" life="4000"  sticky="false"/>  
+                
+                <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.param1 == null}" >
+                    <div class="profile-card mb-3 background-pink"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Hostesim İş Arıyorum</li></ol></div>
+                </h:panelGroup>    
+                <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.param1 != null}" >       
+                    <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.param1 eq 'ekle'}" >
+                        <div class="profile-card mb-3 background-pink"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">Yeni İlan Ekle</a></li><li class="breadcrumb-item active" aria-current="page">Hostesim İş Arıyorum</li></ol></div>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.param1 ne 'ekle'}" >
+                        <div class="profile-card mb-3 background-pink"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="#">İlanlarım</a></li><li class="breadcrumb-item"><a href="#">İlan Düzenle</a></li><li class="breadcrumb-item active" aria-current="page">Hostesim İş Arıyorum</li></ol></div>
+                    </h:panelGroup>      
+                </h:panelGroup>   
+                    
+                <div class="profile-card mb-3">
+                    <div class="list-title d-flex align-items-center"><div class="message-title"><div class="title-bold m-0">İlan Detayları</div></div></div>
+                    <div class="arac-bilgi">
+                        <div class="form mt-3">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-4">
+                                    <h:outputLabel id="hostessBirthDateLabel" for="hostessBirthDate" class="col-form-label font-weight-bold">Doğum Tarihi</h:outputLabel>
+                                    <h:inputText id="hostessBirthDate" class="form-control" 
+                                                 required="true" requiredMessage="Bu alan gereklidir" value="#{AdHostesimIsAriyorumBean.hostess.hostess_BirthDate}" >
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:inputText>
+                                    <h:message id="dsft45" for="hostessBirthDate" class="message-f"></h:message>
+                                    <script>$(function(){ $('input[id$="hostessBirthDate"]').inputmask("date",{ "placeholder": "_" }); });</script>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="hostessPlaceOfBirthInput" class="col-form-label font-weight-bold">Doğum Yeri</label>
+                                    <h:inputText id="hostessPlaceOfBirthInput"  
+                                                 class="form-control"  
+                                                 value="#{AdHostesimIsAriyorumBean.hostess.hostess_PlaceOfBirth}"  
+                                                 required="true" 
+                                                 requiredMessage="Bu alan gereklidir">
+                                    </h:inputText>
+                                    <h:message id="fdghut786" for="hostessPlaceOfBirthInput" class="message-f"></h:message>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="hostessEducationSelectOneMenu" class="col-form-label font-weight-bold">Egitim Durumu</label>
+                                    <h:selectOneMenu id="hostessEducationSelectOneMenu" 
+                                                     value="#{AdHostesimIsAriyorumBean.hostess.hostess_Education}" 
+                                                     class="form-control"
+                                                     style="height: 40px;"
+                                                     required="true" 
+                                                     requiredMessage="Bu alan gereklidir">
+                                        <f:selectItem itemEscaped="" itemLabel="Seçiniz"></f:selectItem>
+                                        <f:selectItem itemValue="İlk Okul" itemLabel="İlk Okul"></f:selectItem>
+                                        <f:selectItem itemValue="Orta Okul" itemLabel="Orta Okul"></f:selectItem>
+                                        <f:selectItem itemValue="Lise" itemLabel="Lise"></f:selectItem>
+                                        <f:selectItem itemValue="Üniversite" itemLabel="Üniversite"></f:selectItem>
+                                    </h:selectOneMenu> 
+                                    <h:message id="yfutryt5e" for="hostessEducationSelectOneMenu" class="message-f"></h:message>
+                                </div>
+                                 <div class="form-group col-md-12">
+                                    <label class="col-form-label font-weight-bold">Bilinen Yabancı Diller</label>
+                                    <style>
+                                        .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {background-color: #FFF;background-image: none;-webkit-box-shadow: none;box-shadow: none; }
+                                        .ui-chkbox .ui-chkbox-box { border: 1px solid #bdc3d4; width: 18px; height: 18px; display: inline-block;-moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; transition: all 0.3s; background: none; font-weight: 400; font-size: 1rem;color: #575962; }
+                                    </style>
+                                    <p:selectManyCheckbox id="foreignLanguage"  layout="responsive"  columns="4"  value="#{AdHostesimIsAriyorumBean.hostess.hostess_ForeignLanguagesList}">
+                                        <f:selectItems value="#{selectItemsBean.selectItemList('ForeignLanguage')}"  var="o"   itemLabel="#{o.selectItem_Label_Tr}"   itemValue="#{o.selectItem_Value}" ></f:selectItems> 
+                                    </p:selectManyCheckbox>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label font-weight-bold">Servis Taşımacılığı Deneyimi</label>
+                                    <p:selectOneRadio id="hostessServiceTransportationExperience" 
+                                                    onchange="referancesPanelShowHide(this)" 
+                                                    value="#{AdHostesimIsAriyorumBean.hostess.hostess_ServiceTransportationExperience}"  
+                                                    required="true"  
+                                                    requiredMessage="Lütfen hostes bilgisi seçiniz"> 
+                                      <f:selectItem itemValue = "true" itemLabel = "Var&nbsp;&nbsp;&nbsp;" /> 
+                                      <f:selectItem itemValue = "false" itemLabel = "Yok" />  
+                                    </p:selectOneRadio> 
+                                  <h:message id="tyrt4ew" for="hostessServiceTransportationExperience" class="message-f"></h:message>
+                                </div>                          
+                                <div id="dgret4tr" style="width: 100%;#{AdHostesimIsAriyorumBean.hostessReferencesList.size() >0 ?'':'display: none'}     ">
+                                   <h:panelGroup id="fdsfdsfvds">
+                                            <div class="m-form__section m-form__section--first">
+                                                <label class="col-form-label font-weight-bold">Önceden Çalışılan Okulları Ekle</label>
+                                                <div class="form-row">
+                                                    <div class="form-group col-lg-4">
+                                                        <h:outputLabel id="hostessReferencesCompanySelectOneMenuLabel" 
+                                                                       for="hostessReferencesCompanySelectOneMenu">
+                                                            Firma
+                                                        </h:outputLabel>
+                                                        <h:inputText id="hostessReferencesCompanySelectOneMenu" 
+                                                                     value="#{AdHostesimIsAriyorumBean.hostessReferencesBean.hostessReferences_Company}" 
+                                                                     class="form-control" >
+                                                        </h:inputText>
+                                                        <h:message for="hostessReferencesCompanySelectOneMenu" class="message-f"></h:message>
+                                                    </div>
+                                                    <div class="form-group col-lg-4">
+                                                        <h:outputLabel id="hostessReferencesProjectInputLabel" 
+                                                                       for="hostessReferencesProjectInput">
+                                                            Okul Adı
+                                                        </h:outputLabel>
+                                                        <h:inputText id="hostessReferencesProjectInput"  
+                                                                     class="form-control"  
+                                                                     value="#{AdHostesimIsAriyorumBean.hostessReferencesBean.hostessReferences_Project}"  >
+                                                        </h:inputText>
+                                                        <h:message for="hostessReferencesProjectInput" class="message-f"></h:message>
+                                                     </div>
+                                                    <div class="form-group col-lg-2">
+                                                        <h:outputLabel id="hostessReferencesProjectWorkingYearInputLabel" 
+                                                                       for="hostessReferencesProjectWorkingYearInput">
+                                                            Kaç Yıl Çalıştınız
+                                                        </h:outputLabel>
+                                                        
+                                                        <p:inputNumber id="hostessReferencesProjectWorkingYearInput"  
+                                                                       style="padding: 0px;width:75% " 
+                                                                       inputStyleClass="form-control" 
+                                                                       maxValue="50"  
+                                                                       minValue="0"  
+                                                                       value="#{AdHostesimIsAriyorumBean.hostessReferencesBean.hostessReferences_ProjectWorkingYear}">
+                                                        </p:inputNumber>
+                                                        <h:message for="hostessReferencesProjectWorkingYearInput" class="message-f"></h:message>
+                                                    </div>
+                                                    <div class="form-group col-lg-2 ml-auto d-flex align-items-end">
+                                                        <h:commandLink  class="btn btn-darkblue rounded-8"
+                                                                        style="width: 100%"
+                                                                        action="#{AdHostesimIsAriyorumBean.createHostessReference()}">
+                                                            Ekle
+                                                            <f:ajax execute="fdsfdsfvds" render="dghfjfgdxf growl fdsfdsfvds  gf65y5tr"></f:ajax>
+                                                        </h:commandLink>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:panelGroup>
+                                    <h:panelGroup id="dghfjfgdxf">                               
+                                    <h:panelGroup id="gf65y5tr" rendered="#{AdHostesimIsAriyorumBean.hostessReferencesList.size() > 0}">
+                                        <br/>
+                                        <style> .ui-column-title{float: left} </style>
+                                        <h:outputLabel ><b>Çalışılan Okullar</b></h:outputLabel>
+                                        <p:dataTable id="dfgdg3" var="r" value="#{AdHostesimIsAriyorumBean.hostessReferencesList}" reflow="true" >
+                                            <p:column headerText="Firma">
+                                                <h:outputText value="#{r.hostessReferences_Company}"/>
+                                            </p:column>
+
+                                            <p:column headerText="Okul">
+                                                <h:outputText value="#{r.hostessReferences_Project}"/>
+                                            </p:column>
+
+                                            <p:column headerText="Kaç Yıl Çalışıldı" width="130">
+                                                <h:outputText value="#{r.hostessReferences_ProjectWorkingYear}"/>
+                                            </p:column>
+
+                                             <p:column headerText="İşlem" width="70" >
+                                                <h:commandLink action="#{AdHostesimIsAriyorumBean.deleteHostessReference(r.hostessReferences_Id)}" 
+                                                                value="Sil">
+                                                     <f:ajax execute="gf65y5tr" render="gf65y5tr dfgdg3 dgret4tr dghfjfgdxf"></f:ajax>
+                                                 </h:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                                                                     
+                                            <br/>
+                                        </h:panelGroup>
+                                   </h:panelGroup>  
+                                </div>
+                                <div class="detay-form col-12" style="margin-top: 10px;">
+                                    <div class="message-title"><div class="title-bold m-0">İlan Detayı</div></div>
+                                    <div class="form-group mt-3">
+                                        <style>
+                                            #AdHostesimIsAriyorumBeanadBeanadCommentInput_editor > div.ql-editor > p{font-size: 1.2rem}
+                                        </style>
+                                        <p:textEditor height="150" 
+                                                    required="true" 
+                                                    requiredMessage="Bu alan gereklidir" 
+                                                    id ="AdHostesimIsAriyorumBeanadBeanadCommentInput" 
+                                                    value="#{AdHostesimIsAriyorumBean.adBean.ad_Comment}" 
+                                                    widgetVar="editor2">
+                                            <f:facet name="toolbar">
+                                                <span class="ql-formats"><button class="ql-bold"></button><button class="ql-italic"></button><button class="ql-underline"></button><button class="ql-strike"></button></span>
+                                                <span class="ql-formats"><select class="ql-font"></select><select class="ql-size"></select></span>
+                                            </f:facet>
+                                        </p:textEditor>
+                                        <h:message for="AdHostesimIsAriyorumBeanadBeanadCommentInput" style="color: red"></h:message>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="profile-card mb-3">
+                    <ui:insert name="routePart" ><ui:include src="routePart.xhtml" /></ui:insert>
+                </div>
+                <div class="profile-card mb-3">
+                    <div class="d-flex align-items-center"><div class="message-title"><div class="title-bold m-0">Kişisel Bilgiler</div></div></div>
+                    <div class="profile-form">
+                        <div class="form mt-3">
+                            <div class="form-row">
+                               
+
+                                <div class="form-group col-md-3">
+                                    <div class="arac-image">
+                                        <h:panelGroup id="llkkffkkd">
+                                            <h:panelGroup id="frsfesr43refes" rendered="#{AdHostesimIsAriyorumBean.hostess.hostess_ProfilePictureUrl == null}">
+                                                <div class="img-add">
+                                                    <ui:include src="/resources/image/ikon_insan2.svg" />
+                                                </div>
+                                            </h:panelGroup>
+                                            <h:panelGroup id="cxvdsfsa" rendered="#{AdHostesimIsAriyorumBean.hostess.hostess_ProfilePictureUrl != null}">
+                                                <div class="img-add">
+                                                    <img class="img-thumbnail" style="border: none"  id="sfdsf4tr4rf" src="#{AdHostesimIsAriyorumBean.hostess.hostess_ProfilePictureUrl}" alt="hostessImg"/>                                          
+                                                </div>    
+                                            </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-md-9">
+                                    <div class="aciklama" style="margin-bottom: 15px;">Maximum dosya boyutu <b>20MB</b> büyüklüğünde olmalıdır<br/>Kabul edilen formatlar; <b>JPEG, PNG, GIF</b></div>
+                                    <h:panelGroup id="vhjgyhhf" >
+                                    <h:inputFile  id="hostessInputFile"  
+                                                  onchange="prg2()" 
+                                                  value="#{AdHostesimIsAriyorumBean.hostessPhotoFile}"   
+                                                  validator="#{AdHostesimIsAriyorumBean.validateFile}">
+                                        <f:ajax event="change"  
+                                                listener="#{AdHostesimIsAriyorumBean.fileUpload('hostess')}"  
+                                                execute="vhjgyhhf"
+                                                render="uploadProgress2 llkkffkkd"/>
+                                    </h:inputFile>  
+                                    <h:message for="hostessInputFile" class="message-f"></h:message>
+                                    </h:panelGroup>
+                                    <div style="padding-top: 30px;">
+                                        <label class="m-checkbox">
+                                            <h:selectBooleanCheckbox id="driverProfilePicturePublishCheckbox" 
+                                                                     value="#{AdHostesimIsAriyorumBean.hostess.hostess_ProfilePicturePublish}"> 
+                                            </h:selectBooleanCheckbox> Fotoğrafım sitede yayınlanmasın
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="col-md-12" style="margin-top: 20px;">
+                                        <h:panelGroup id="uploadProgress2" style="display:none ; height: 25px; ">
+                                            <div  class="progress  m-progress--lg" style=" height: 25px;">
+                                                <div class="progress-bar progress-bar-striped progress-bar-animated "  role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"  style="font-size: .90rem; height: 25px; width: 100%"> Lütfen bekleyiniz dosyanız yükleniyor..</div>
+                                            </div>
+                                        </h:panelGroup>
+                                        <script> function prg2() { var x = document.getElementById("uploadProgress2"); x.style.display = "block"; }; </script>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.param1.equals('ekle')}">
+                        <h:commandLink class="btn btn-orange px-5" action="#{AdHostesimIsAriyorumBean.createHostesimIsAriyorumAd()}">
+                            <b>+</b> İlanı Kaydet ve Yayınla
+                          <f:ajax execute="m_form" render="m_form growl" ></f:ajax>
+                        </h:commandLink>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{AdHostesimIsAriyorumBean.param1.equals('duzenle')}">
+                        <h:commandLink class="btn btn-orange px-5"  action="#{AdHostesimIsAriyorumBean.updateHostesimIsAriyorumAd()}">
+                            Güncelle
+                           <f:ajax execute="m_form" render="growl" ></f:ajax>
+                        </h:commandLink>
+                    </h:panelGroup>
+                </div>
+
+            </h:form>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="../director-page-layout.xhtml">
+            <ui:define name="head-title">
+                <h3 class="m-portlet__head-text">
+                    <i class="fas fa-users-cog"></i>&nbsp;Site Yöneticisi Sayfası 
+                    <small><i class="la la-angle-right"></i>&nbsp;Yorumlar&nbsp;
+                            <i class="la la-angle-right"></i>&nbsp;Yorum Yönetimi
+                    </small>
+                </h3>
+            </ui:define>
+            <ui:define name="form">        
+                <div class=" col-md-12">
+
+                    <div class="m-form__heading" style="padding-bottom: 10px; margin-bottom: 30px; border-bottom: 1px solid #ddd">
+                        <i style="  float:left; font-size: 2rem; margin-bottom: .5rem; font-weight: 500; line-height: 1.2;  color: inherit;"  class="m-nav__link-icon la la-comment-o"></i> <h2 >&nbsp;Yorum Yönetimi&nbsp;<small>(Yayında Olan Yorumlar)</small></h2>
+                    </div>                          
+                    <h:form id="dfwer3wq" >
+                        <style>  .ui-growl-item {  margin-top: 100px;}  </style>
+                        <p:growl id="growl" showDetail="true" life="2000"  sticky="false"/>  
+                        <h:panelGroup id="dfdwfewq">
+                            <style type="text/css">
+                                .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{ color: #555; cursor: default; background-color: #ffffff; background-image: none; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border-color: #e6e6e6 #e6e6e6 #bfbfbf; border-bottom-color: #b3b3b3;}
+                                .ui-datatable thead th, .ui-datatable tfoot td { text-align: left; }
+                                .ui-paginator.ui-paginator-bottom { border: 1px solid #ddd;  border-top: 0px;}
+                                .ui-widget-header { background: none; color: #555; font-weight: normal; }
+                            </style>
+                            <p:dataTable var="c"  id="fdsfcew" value="#{AdCommentsBean.commentsList2}" 
+                                         widgetVar="dataTable" filteredValue="#{AdCommentsBean.filteredCommentsList2}"
+                                         style="font-size: small"   rows="10"  rowsPerPageTemplate="10,20,50,100"
+                                         paginator="true" paginatorPosition="bottom"
+                                         emptyMessage="Aradığınız kritere uygun kayıt bulunamadı"
+                                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} ">
+                                <f:facet name="header">
+                                    <p:outputPanel style="text-align: right">
+                                        <h:outputText value="Ara: " />
+                                        <p:inputText id="globalFilter" onkeyup="PF('dataTable').filter()" style="width:150px; border: 1px #ddd solid " />
+                                    </p:outputPanel>
+                                </f:facet>
+
+                                <!-- <p:column headerText="Id" width="100" sortBy="#{c.adComment_Id}" filterMatchMode="contains" filterBy="#{c.adComment_Id}" filterable="false">
+                                    <h:outputText  value="#{c.adComment_Id}" />
+                                </p:column>-->
+                                <p:column headerText="Oluşturma Zamanı" width="160" sortBy="#{c.adComment_Created}" filterMatchMode="contains" filterBy="#{c.adComment_Created}" filterable="false">
+                                    <h:outputText value="#{c.adComment_Created}" >
+                                        <f:convertDateTime pattern="dd.MM.YYYY HH.mm"></f:convertDateTime>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Yorum Sahibi" width="160" sortBy="#{u.ad_Id}" filterMatchMode="contains" filterBy="#{u.ad_Id}" filterable="false">
+                                    <h:outputText value="#{c.accountBean.account_FirstName}&nbsp;#{c.accountBean.account_LastName}" /><br/>
+                                    <h:outputText value="#{c.accountBean.account_MobilePhoneNumber}" />
+                                </p:column>
+                                <p:column headerText="İlan" width="380" sortBy="#{c.adBean.ad_Category_Name} #{c.adBean.ad_CreateTime} #{c.adBean.ad_Title}" filterMatchMode="contains" filterBy="#{c.adBean.ad_Category_Name} #{c.adBean.ad_CreateTime} #{c.adBean.ad_Title}" filterable="false">
+                                    Kategori : <h:outputText value="#{c.adBean.ad_Category_Name}" />&nbsp;&nbsp;|&nbsp;&nbsp;
+                                    Tarih : <h:outputText value="#{c.adBean.ad_CreateTime}" ><f:convertDateTime pattern="dd.MM.YYYY"></f:convertDateTime></h:outputText><br/>
+                                    <a href="/ad/aracim-var-is-ariyorum/#{c.adComment_ItemId}" target="_blank"><b><h:outputText value="#{c.adBean.ad_Title}"></h:outputText></b></a>
+                                </p:column>  
+                                <p:column headerText="Yorum"  sortBy="#{c.adComment_Comment}" filterMatchMode="contains" filterBy="#{c.adComment_Comment}" filterable="false">
+                                    <h:inputTextarea  disabled="true" rows="2" style="background-color: #fff; border: none; width: 100%; font-size: 0.9em" value="#{c.adComment_Comment}"  />
+                                </p:column>
+                                <p:column headerText="Durum" width="150" style="text-align: center" sortBy="#{c.adComment_IsActive}" filterMatchMode="contains" filterBy="#{c.adComment_IsActive}" filterable="false">
+                                    <h:outputText  value="#{c.adComment_IsActive?'Aktif':'Silinmiş'}" />
+                                </p:column>
+
+                                <p:column headerText="İşlem" width="100"  filterable="false" style="text-align: center">
+                                    <h:panelGroup rendered="#{c.adComment_IsActive == true}">
+                                        <h:commandLink action="#{AdCommentsBean.enableDisablePublishAdComment('disable',c.adComment_Id)}" title="Sil">
+                                            <i class="fa fa-trash-alt"></i>
+                                            <f:ajax execute="@form" render="dfwer3wq:growl dfwer3wq:fdsfcew"></f:ajax>
+                                        </h:commandLink>
+                                    </h:panelGroup>
+                                    <h:panelGroup rendered="#{c.adComment_IsActive == false}">
+                                        <h:commandLink action="#{AdCommentsBean.enableDisablePublishAdComment('enable',c.adComment_Id)}" title="Geri Al">
+                                            <i class="fa fa-redo"></i>
+                                            <f:ajax execute="@form" render="dfwer3wq:growl dfwer3wq:fdsfcew"></f:ajax>
+                                        </h:commandLink>
+                                    </h:panelGroup>
+                                    &nbsp;&nbsp;<b>|</b>&nbsp;
+                                    <h:commandLink action="#{AdCommentsBean.selectedAdCommentIdSet(c.adComment_Id)}"  
+                                                   onclick="PF('dlg2').show();"
+                                                   title="Düzenle">
+                                        <i class="fa fa-edit"></i>
+                                        <f:ajax execute="@this" render="dfwer3wq:fdyt45e"></f:ajax>
+                                    </h:commandLink>
+                                </p:column>
+
+
+                            </p:dataTable>
+                        </h:panelGroup>
+                        <p:dialog header="Yorum'u Düzenle" widgetVar="dlg2" modal="true"  width="500">
+                            <p:ajax event="close" listener="#{adBean.handleCloseSector}" />
+                            <h:panelGroup id="fdyt45e">
+                                <label>Yorum</label>
+                                <h:inputTextarea rows="3"   value="#{AdCommentsBean.selectedAdCommentComment}"   style="width: 100%"  onkeyup="countChar(this)"> </h:inputTextarea>
+                                <script>
+                                    function countChar(val) {
+                                        var len = val.value.length;
+                                        if (len >= 301) {val.value = val.value.substring(0, 301);} 
+                                        else { $('#charNum').text(0 + len);}
+                                    };
+                                </script>
+                                <div style="font-size: small; color: #bbb">Max. karakter sayısı : 300 / Yazdığınız karakter sayısı : <span id="charNum"></span></div>
+                                <br/><br/>
+                                <h:commandButton class="btn btn-outline-primary"  value="KAYDET"  action="#{AdCommentsBean.updateAdComment()}"  style="width: 100%"> </h:commandButton><br/><br/>                                                       
+                            </h:panelGroup>
+                        </p:dialog>     
+                    </h:form>
+                    
+                </div>         
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

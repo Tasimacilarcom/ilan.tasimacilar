@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition>
+            <div style="padding: 10px; width: 100%">
+                <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracim var hostes arıyorum') }">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{adx.adAracimVarHostesAriyorum.ad_AracimVarHostesAriyorum_Cost}"><f:convertNumber/></h:outputText>&nbsp;TL</td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Okul Adı : </span></td><td><h:outputText value="#{adx.adAracimVarHostesAriyorum.ad_AracimVarHostesAriyorum_school}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></td></tr>
+                        </tbody>
+                    </table>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Hostesim iş arıyorum') }">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr><td width="50%"><span style="font-weight: 500">Doğum Yeri : </span></td><td><h:outputText value="#{adx.adHostesimIsAriyorumBean.hostess.hostess_PlaceOfBirth}"><f:convertNumber/></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Doğum Tarihi : </span></td><td><h:outputText value="#{adx.adHostesimIsAriyorumBean.hostess.hostess_BirthDate}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></td></tr>
+                            <tr><td colspan="2" ><span style="font-weight: 500">Resim : </span>
+                                    <div style="padding: 10px;">
+                                        <h:panelGroup rendered="#{adx.adHostesimIsAriyorumBean.hostess.hostess_ProfilePictureUrl != null}">
+                                            <img style="width: 100%;border: 1px solid #ddd; border-radius: 10px;" src="#{adx.adHostesimIsAriyorumBean.hostess.hostess_ProfilePictureUrl}" alt="hostessProfilePicture"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{adx.adHostesimIsAriyorumBean.hostess.hostess_ProfilePictureUrl == null}">
+                                            <img style="opacity: .3;width: 100%;border: 1px solid #ddd; border-radius: 10px;" src="/resources/img/user.png" alt="hostessProfilePicture"/>
+                                        </h:panelGroup>
+                                    </div>    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Şöförüm iş arıyorum') }">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr><td width="50%"><span style="font-weight: 500">Doğum Yeri : </span></td><td><h:outputText value="#{adx.adSoforumIsAriyorumBean.driver.driver_PlaceOfBirth}"><f:convertNumber/></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Doğum Tarihi : </span></td><td><h:outputText value="#{adx.adSoforumIsAriyorumBean.driver.driver_BirthDate}"><f:convertDateTime pattern="dd.MM.YYYY" /></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{adx.adSoforumIsAriyorumBean.driver.driver_Fee}"><f:convertNumber /></h:outputText>&nbsp;TL</td></tr>
+                            <tr><td colspan="2" ><span style="font-weight: 500">Resim : </span>
+                                    <div style="padding: 10px;">
+                                        <h:panelGroup rendered="#{adx.adSoforumIsAriyorumBean.driver.driver_ProfilePictureUrl != null}">
+                                            <img style="width: 100%;border: 1px solid #ddd; border-radius: 10px;" src="#{adx.adSoforumIsAriyorumBean.driver.driver_ProfilePictureUrl}" alt="soforProfilePicture"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{adx.adSoforumIsAriyorumBean.driver.driver_ProfilePictureUrl == null}">
+                                            <img style="opacity: .3;width: 100%;border: 1px solid #ddd; border-radius: 10px;" src="/resources/img/user.png" alt="hostessProfilePicture"/>
+                                        </h:panelGroup>
+                                    </div>    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracim var şöför arıyorum') }">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_Cost}"><f:convertNumber/></h:outputText>&nbsp;TL</td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Servis Süresi : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_ServiceTime}"></h:outputText>&nbsp;Dak.</td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Yolcu Sayısı : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_NumberOfPassengers}"></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">KM : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_Km}"></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Çalışılacak gün : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_DayToWork}"></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Servis Tipi : </span></td><td><h:outputText value="#{adx.ad_AracimVarSoforAriyorum.ad_AracimVarSoforAriyorum_ServiceType.substring(1)}"></h:outputText></td></tr>
+                        </tbody>
+                    </table>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{adx.ad_Category_Name.equals('İşim var araç arıyorum') }">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{adx.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Cost}"><f:convertNumber/></h:outputText>&nbsp;TL</td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Servis Süresi : </span></td><td><h:outputText value="#{adx.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceTime}"></h:outputText>&nbsp;Dak.</td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Yolcu Sayısı : </span></td><td><h:outputText value="#{adx.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_NumberOfPassengers}"></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">KM : </span></td><td><h:outputText value="#{adx.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_Km}"></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Çalışılacak gün : </span></td><td><h:outputText value="#{adx.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_DayToWork}"></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Servis Tipi : </span></td><td><h:outputText value="#{adx.adIsimVarAracAriyorum.ad_LookingForVehicleForWork_ServiceType.substring(1)}"></h:outputText></td></tr>
+                        </tbody>
+                    </table>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Aracım var iş arıyorum') }">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr><td width="50%"><span style="font-weight: 500">Marka : </span></td><td><h:outputText value="#{adx.adAracimVarIsAriyorum_vehicle.vehicle_Brand}"><f:convertNumber/></h:outputText></td></tr>
+                            <tr>
+                                <td width="50%"><span style="font-weight: 500">Plaka : </span></td>
+                                <td><h:outputText value="#{adx.adAracimVarIsAriyorum_vehicle.vehicle_PlateProvinceCode}"><f:convertNumber/></h:outputText>&nbsp;
+                                    <h:outputText value="#{adx.adAracimVarIsAriyorum_vehicle.vehicle_PlateLatterCode}"></h:outputText>&nbsp;
+                                    <h:outputText value="#{adx.adAracimVarIsAriyorum_vehicle.vehicle_PlateNumberCode}"></h:outputText>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </h:panelGroup>   
+                <h:panelGroup rendered="#{adx.ad_Category_Name.equals('Plakamı satıyorum') }">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="50%"><span style="font-weight: 500">Plaka : </span></td>
+                                <td><h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateProvinceCode}"><f:convertNumber/></h:outputText>&nbsp;
+                                    <h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateLatterCode}"></h:outputText>&nbsp;
+                                    <h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_PlateNumberCode}"></h:outputText>
+                                </td>
+                            </tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Ücret : </span></td><td><h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_ucret}"><f:convertNumber/></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Araçla Birlikte : </span></td><td><h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_AraçlaBirliktemi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Yol Belgesi Var : </span></td><td><h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_YolBelgesiVarmi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Noter Satışlı : </span></td><td><h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_NoterSatislimi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                            <tr><td width="50%"><span style="font-weight: 500">Hisseli : </span></td><td><h:outputText value="#{adx.adPlakamiSatiyorum.ad_PlakamiSatiyorum_Hisselimi eq 'true' ? 'Evet':'Hayır'}"></h:outputText></td></tr>
+                        </tbody>
+                    </table>
+                </h:panelGroup> 
+            </div>
+        </ui:composition>
+    </h:body>
+</html>
+

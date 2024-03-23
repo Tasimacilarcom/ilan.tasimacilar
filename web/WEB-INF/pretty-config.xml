@@ -1,0 +1,470 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+    
+<!-- PUBLIC SAYFALAR ======================================================= -->    
+    <url-mapping id="test">
+        <pattern value="/test" />
+        <view-id value="/test.xhtml" />
+    </url-mapping>
+    <url-mapping id="login">
+        <pattern value="/login" />
+        <view-id value="/public/account_login.xhtml" />
+    </url-mapping>
+    <url-mapping id="logout">
+        <pattern value="/logout" />
+        <view-id value="/logout" />
+    </url-mapping>
+    <url-mapping id="register">
+        <pattern value="/kayit/bireysel" />
+        <view-id value="/public/account_register_Personal.xhtml" />
+    </url-mapping>
+     <url-mapping id="register">
+        <pattern value="/kayit/kurumsal" />
+        <view-id value="/public/account_register_Corporate.xhtml" />
+    </url-mapping>
+    <url-mapping id="activation">
+        <pattern value="/activation" />
+        <view-id value="/public/account_activation.xhtml" />
+    </url-mapping>
+    <url-mapping id="email-activation">
+        <pattern value="/email-activation" />
+        <view-id value="/public/account_email_activation.xhtml" />
+    </url-mapping>
+    <url-mapping id="reset-password">
+        <pattern value="/reset-password" />
+        <view-id value="/public/reset_password.xhtml" />
+    </url-mapping>
+     <url-mapping id="hakkimizda">
+        <pattern value="/hakkimizda" />
+        <view-id value="/public/p_aboutUs.xhtml" />
+    </url-mapping>
+    <url-mapping id="nasilIsliyor">
+        <pattern value="/nasil-isliyor" />
+        <view-id value="/public/p_howItWorks.xhtml" />
+    </url-mapping>
+    <url-mapping id="sss">
+        <pattern value="/s-s-s" />
+        <view-id value="/public/p_frequentlyAskedQuestions.xhtml" />
+    </url-mapping>
+    <url-mapping id="iletisim">
+        <pattern value="/iletisim" />
+        <view-id value="/public/p_contact.xhtml" />
+    </url-mapping>
+    <url-mapping id="kunye">
+        <pattern value="/kunye" />
+        <view-id value="/public/p_kunye.xhtml" />
+    </url-mapping>
+    <url-mapping id="gizlilik">
+        <pattern value="/gizlilik-politikasi" />
+        <view-id value="/public/p_privacyPolicy.xhtml" />
+    </url-mapping>
+    <url-mapping id="uyelik">
+        <pattern value="/uyelik-sozlesmesi" />
+        <view-id value="/public/p_membershipAgreement.xhtml" />
+    </url-mapping>
+    <url-mapping id="firma">
+        <pattern value="/firma/companyId=#{CompId}" />
+        <view-id value="/public/firma/index.xhtml" />
+    </url-mapping>
+    <url-mapping id="firma">
+        <pattern value="/firma/companyName=#{CompName}" />
+        <view-id value="/public/firma/index.xhtml" />
+    </url-mapping>
+    <!--aracim var hostes ariyorum-->
+    <url-mapping id="aracimVarHostesAriyorum2">
+        <pattern value="/aracim-var-hostes-ariyorum/" />
+        <view-id value="/?pCatId=4" />
+    </url-mapping>
+    <url-mapping id="aracimVarHostesAriyorum">
+        <pattern value="/ad/aracim-var-hostes-ariyorum/#{adId}" />
+        <view-id value="/public/ad/aracim-var-hostes-ariyorum/ad_index.xhtml" />
+    </url-mapping>
+    <!--aracim var sofor ariyorum-->
+    <url-mapping id="aracimVarSoforAriyorum2">
+        <pattern value="/aracim-var-sofor-ariyorum/" />
+        <view-id value="/?pCatId=3" />
+    </url-mapping>
+    <url-mapping id="aracimVarSoforAriyorum">
+        <pattern value="/ad/aracim-var-sofor-ariyorum/#{adId}" />
+        <view-id value="/public/ad/aracim-var-sofor-ariyorum/ad_index.xhtml" />
+    </url-mapping>
+     <!--aracim var is ariyorum-->
+     <url-mapping id="aracimVarIsAriyorum2">
+        <pattern value="/aracim-var-is-ariyorum/" />
+        <view-id value="/?pCatId=2" />
+    </url-mapping>
+    <url-mapping id="aracimVarIsAriyorum">
+        <pattern value="/ad/aracim-var-is-ariyorum/#{adId}" />
+        <view-id value="/public/ad/aracim-var-is-ariyorum/ad_index.xhtml" />
+    </url-mapping>
+    <!--isim var arac ariyorum-->
+    <url-mapping id="isimVarAracAriyorum2">
+        <pattern value="/isim-var-arac-ariyorum/" />
+        <view-id value="/?pCatId=1" />
+    </url-mapping>
+    <url-mapping id="isimVarAracAriyorum">
+        <pattern value="/ad/isim-var-arac-ariyorum/#{adId}" />
+        <view-id value="/public/ad/isim-var-arac-ariyorum/ad_index.xhtml" />
+    </url-mapping>
+    <!--hostesim is ariyorum-->
+    <url-mapping id="hostesimIsAriyorum2">
+        <pattern value="/hostesim-is-ariyorum/" />
+        <view-id value="/?pCatId=5" />
+    </url-mapping>
+    <url-mapping id="hostesimIsAriyorum">
+        <pattern value="/ad/hostesim-is-ariyorum/#{adId}" />
+        <view-id value="/public/ad/hostesim-is-ariyorum/ad_index.xhtml" />
+    </url-mapping>
+     <!--soforum is ariyorum-->
+     <url-mapping id="soforumIsAriyorum2">
+        <pattern value="/soforum-is-ariyorum/" />
+        <view-id value="/?pCatId=6" />
+    </url-mapping>
+    <url-mapping id="soforumIsAriyorum">
+        <pattern value="/ad/soforum-is-ariyorum/#{adId}" />
+        <view-id value="/public/ad/soforum-is-ariyorum/ad_index.xhtml" />
+    </url-mapping>
+    <!--plakami satiyorum-->
+    <url-mapping id="plakamiSatiyorum2">
+        <pattern value="/plakami-satiyorum/" />
+        <view-id value="/?pCatId=7" />
+    </url-mapping>
+    <url-mapping id="plakamiSatiyorum">
+        <pattern value="/ad/plakami-satiyorum/#{adId}" />
+        <view-id value="/public/ad/plakami-satiyorum/ad_index.xhtml" />
+    </url-mapping>
+    <!--arac detay-->
+    <url-mapping id="aracDetay">
+        <pattern value="/arac-detay/#{vId}" />
+        <view-id value="/public/arac/arac_index.xhtml" />
+    </url-mapping>
+<!-- /PUBLIC SAYFALAR ====================================================== -->    
+    
+<!-- PROFIL ================================================================ -->
+    <url-mapping id="personal_profile_settings">      
+        <pattern value="/private/bireysel/profilim" />
+        <view-id value="/private/personal/profile_settings.xhtml" />
+    </url-mapping>
+    <url-mapping id="corporate_profile_settings">      
+        <pattern value="/private/kurumsal/profilim/s1" />
+        <view-id value="/private/corporate/profile_settings_s1.xhtml" />
+    </url-mapping>
+    <url-mapping id="corporate_profile_settings">      
+        <pattern value="/private/kurumsal/profilim/s2" />
+        <view-id value="/private/corporate/profile_settings_s2.xhtml" />
+    </url-mapping>  
+<!-- /PROFIL =============================================================== -->    
+   
+<!-- ILANLAR =============================================================== -->
+    <!-- Yeni İlan olustur-->
+    <url-mapping id="personal_add_ad">      
+        <pattern value="/private/bireysel/ilanlar/yeni" />
+        <view-id value="/private/personal/add_ad.xhtml" />
+    </url-mapping>
+    <url-mapping id="corporate_add_ad">      
+        <pattern value="/private/kurumsal/ilanlar/yeni" />
+        <view-id value="/private/corporate/add_ad.xhtml" />
+    </url-mapping>
+    <!-- ilanlarim-->
+    <url-mapping id="personal_my_ads">      
+        <pattern value="/private/bireysel/ilanlarim" />
+        <view-id value="/private/personal/ad/personal_my_ads.xhtml" />
+    </url-mapping>
+    <url-mapping id="corporate_my_ads">      
+        <pattern value="/private/kurumsal/ilanlarim" />
+        <view-id value="/private/corporate/ad/corporate_my_ads.xhtml" />
+    </url-mapping>
+    <!-- ilan Ekleme Sonucu-->
+    <url-mapping id="ilan_sonucSayfasi">      
+        <pattern value="/ad/sonuc/#{cat}/#{adId}" />
+        <view-id value="/private/common/ilanlar/sonucSayfasi.xhtml" />
+    </url-mapping>
+    <!-- ilan Guncelleme Sonucu-->
+    <url-mapping id="ilan_sonucSayfasi2">      
+        <pattern value="/ad/sonuc2/#{cat}/#{adId}" />
+        <view-id value="/private/common/ilanlar/sonucSayfasi2.xhtml" />
+    </url-mapping>
+    <url-mapping id="ilan_sonucSayfasi2_2">      
+        <pattern value="/private/director/ilanlar/sonuc2/" />
+        <view-id value="/private/director/ads/ilan_duzenle/ad-sonuc2.xhtml" />
+    </url-mapping>
+<!-- /ILANLAR ============================================================== -->
+    
+<!-- ARACLAR =============================================================== -->
+    <!-- Yeni arac ekle -->
+    <url-mapping id="bireysel_add_vehicle">
+        <pattern value="/private/bireysel/arac-ekle" />
+        <view-id value="/private/personal/vehicle/personal_add_vehicle.xhtml" />
+    </url-mapping> 
+    <url-mapping id="kurumsal_add_vehicle">
+        <pattern value="/private/kurumsal/arac-ekle" />
+        <view-id value="/private/corporate/vehicle/corporate_add_vehicle.xhtml" />
+    </url-mapping> 
+    <url-mapping id="bireysel_edit_vehicle">
+        <pattern value="/private/bireysel/arac-duzenle/#{vId}" />
+        <view-id value="/private/personal/vehicle/personal_edit_vehicle.xhtml" />
+    </url-mapping> 
+    <url-mapping id="kurumsal_edit_vehicle">
+        <pattern value="/private/kurumsal/arac-duzenle/#{vId}" />
+        <view-id value="/private/corporate/vehicle/corporate_edit_vehicle.xhtml" />
+    </url-mapping> 
+     <!-- Araclarim -->
+    <url-mapping id="bireysel_my_vehicles">
+        <pattern value="/private/bireysel/araclarim" />
+        <view-id value="/private/personal/vehicle/personal_my_vehicles.xhtml" />
+    </url-mapping>  
+    <url-mapping id="kurumsal_my_vehicles">
+        <pattern value="/private/kurumsal/araclarim" />
+        <view-id value="/private/corporate/vehicle/corporate_my_vehicles.xhtml" />
+    </url-mapping>  
+<!-- /ARACLAR ============================================================== -->
+    
+<!-- MESAJLAR ============================================================== -->    
+     <!-- Ilan mesajlari -->
+    <url-mapping id="personal_messages_detail">
+        <pattern value="/private/bireysel/mesajlar/detay/#{param2}/#{param1}" />
+        <view-id value="/private/common/messages/messages_detail.xhtml" />
+    </url-mapping>
+    <url-mapping id="corporate_messages_detail">
+        <pattern value="/private/kurumsal/mesajlar/detay/#{param2}/#{param1}" />
+        <view-id value="/private/common/messages/messages_detail.xhtml" />
+    </url-mapping>
+    <!-- Ilan mesajlari -->
+    <url-mapping id="personal_messages_ad">
+        <pattern value="/private/bireysel/ilan-mesajlarim" />
+        <view-id value="/private/common/messages/messages_ads.xhtml" />
+    </url-mapping>
+    <url-mapping id="corporate_messages_ad">
+        <pattern value="/private/kurumsal/ilan-mesajlarim" />
+        <view-id value="/private/common/messages/messages_ads.xhtml" />
+    </url-mapping>
+    <!-- Bildirim mesajları -->
+    <url-mapping id="personal_notifications">
+        <pattern value="/private/bireysel/mesajlar/bildirimlerim" />
+        <view-id value="/private/common/messages/messages_notifications.xhtml" />
+    </url-mapping>
+    <url-mapping id="corporate_notifications">
+        <pattern value="/private/kurumsal/mesajlar/bildirimlerim" />
+        <view-id value="/private/common/messages/messages_notifications.xhtml" />
+    </url-mapping>
+   
+<!-- /MESAJLAR ============================================================= -->     
+    
+<!-- FAVORI ILANLARIM ====================================================== -->   
+    <url-mapping id="personal_my_favorites">
+        <pattern value="/private/bireysel/favori-ilanlarim" />
+        <view-id value="/private/personal/personal_my_favorites.xhtml" />
+    </url-mapping>
+    <url-mapping id="corporate_my_favorites">
+        <pattern value="/private/kurumsal/favori-ilanlarim" />
+        <view-id value="/private/corporate/corporate_my_favorites.xhtml" />
+    </url-mapping>             
+<!-- /FAVORI ILANLARIM ===================================================== -->     
+    
+<!-- DESTEK ================================================================ -->   
+    <url-mapping id="personal_support">
+        <pattern value="/private/bireysel/destek" />
+        <view-id value="/private/common/support/support.xhtml" />
+    </url-mapping> 
+    <url-mapping id="corporate_support">
+        <pattern value="/private/kurumsal/destek" />
+        <view-id value="/private/common/support/support.xhtml" />
+    </url-mapping>    
+    <url-mapping id="personal_support_questionAndAnswer">
+        <pattern value="/private/bireysel/destek/soru-cevap/#{sId}" />
+        <view-id value="/private/common/support/support_questionAndAnswer.xhtml" />
+    </url-mapping> 
+    <url-mapping id="corporate_support_questionAndAnswer">
+        <pattern value="/private/kurumsal/destek/soru-cevap/#{sId}" />
+        <view-id value="/private/common/support/support_questionAndAnswer.xhtml" />
+    </url-mapping>        
+<!-- /DESTEK =============================================================== -->                                            
+                
+<!-- YENİ İLAN OLUSTUR ===================================================== -->               
+    <!-- isim var arac ariyorum -->
+    <url-mapping id="bireysel_isim_var_arac_ariyorum">
+        <pattern value="/private/bireysel/ilanlar/isim-var-arac-ariyorum/yeni/#{param1}" />
+        <view-id value="/private/personal/ad/isim_var_arac_ariyorum/personal_yeni.xhtml" />
+    </url-mapping>
+    <url-mapping id="kurumsal_isim_var_arac_ariyorum">
+        <pattern value="/private/kurumsal/ilanlar/isim-var-arac-ariyorum/yeni/#{param1}" />
+        <view-id value="/private/corporate/ad/isim_var_arac_ariyorum/corporate_yeni.xhtml" />
+    </url-mapping> 
+    <!-- aracim var is ariyorum -->
+    <url-mapping id="bireyse_aracim_var_is_ariyorum">
+        <pattern value="/private/bireysel/ilanlar/aracim-var-is-ariyorum/yeni/#{param1}" />
+        <view-id value="/private/personal/ad/aracim_var_is_ariyorum/personal_yeni.xhtml" />
+    </url-mapping>
+    <url-mapping id="kurumsal_aracim_var_is_ariyorum">
+        <pattern value="/private/kurumsal/ilanlar/aracim-var-is-ariyorum/yeni/#{param1}" />
+        <view-id value="/private/corporate/ad/aracim_var_is_ariyorum/corporate_yeni.xhtml" />
+    </url-mapping>
+    <!-- aracim var sofor ariyorum -->
+    <url-mapping id="bireysel_aracim_ver_sofor_ariyorum">
+        <pattern value="/private/bireysel/ilanlar/aracim-var-sofor-ariyorum/yeni/#{param1}" />
+        <view-id value="/private/personal/ad/aracim_var_sofor_ariyorum/personal_yeni.xhtml" />
+    </url-mapping>
+    <url-mapping id="kurumsal_aracim_ver_sofor_ariyorum">
+        <pattern value="/private/kurumsal/ilanlar/aracim-var-sofor-ariyorum/yeni/#{param1}" />
+        <view-id value="/private/corporate/ad/aracim_var_sofor_ariyorum/corporate_yeni.xhtml" />
+    </url-mapping>
+    <!-- aracim var hostes ariyorum -->
+    <url-mapping id="bireysel_aracim_var_hostes_ariyorum">
+        <pattern value="/private/bireysel/ilanlar/aracim-var-hostes-ariyorum/yeni/#{param1}" />
+        <view-id value="/private/personal/ad/aracim_var_hostes_ariyorum/personal_yeni.xhtml" />
+    </url-mapping>
+    <url-mapping id="kurumsal_aracim_var_hostes_ariyorum">
+        <pattern value="/private/kurumsal/ilanlar/aracim-var-hostes-ariyorum/yeni/#{param1}" />
+        <view-id value="/private/corporate/ad/aracim_var_hostes_ariyorum/corporate_yeni.xhtml" />
+    </url-mapping>
+    <!-- plakami satiyorum -->
+    <url-mapping id="bireysel_plakami_satiyorum">
+        <pattern value="/private/bireysel/ilanlar/plakami-satiyorum/yeni/#{param1}" />
+        <view-id value="/private/personal/ad/plakami_satiyorum/personal_yeni.xhtml" />
+    </url-mapping>
+    <url-mapping id="kurumsal_plakami_satiyorum">
+        <pattern value="/private/kurumsal/ilanlar/plakami-satiyorum/yeni/#{param1}" />
+        <view-id value="/private/corporate/ad/plakami_satiyorum/corporate_yeni.xhtml" />
+    </url-mapping>
+    <!-- soforum is ariyorum -->
+    <url-mapping id="bireysel_soforum_is_ariyorum">
+        <pattern value="/private/bireysel/ilanlar/soforum-is-ariyorum/yeni/#{param1}" />
+        <view-id value="/private/personal/ad/soforum_is_ariyorum/personal_yeni.xhtml" />
+    </url-mapping>   
+    <!-- hostesim is ariyorum -->
+    <url-mapping id="bireysel_hostesim_is_ariyorum">
+        <pattern value="/private/bireysel/ilanlar/hostesim-is-ariyorum/yeni/#{param1}" />
+        <view-id value="/private/personal/ad/hostesim_is_ariyorum/personal_yeni.xhtml" />
+    </url-mapping>
+
+<!-- /YENİ İLAN OLUSTUR ==================================================== -->  
+
+<!-- İLAN DUZENLE ========================================================== -->               
+    <!-- isim var arac ariyorum -->
+    <url-mapping id="bireysel_isim_var_arac_ariyorum_duzenle">
+        <pattern value="/private/bireysel/ilanlar/isim-var-arac-ariyorum/#{param1}/#{adId}" />
+        <view-id value="/private/personal/ad/isim_var_arac_ariyorum/personal_duzenle.xhtml" />
+    </url-mapping>
+     <url-mapping id="kurumsal_isim_var_arac_ariyorum_duzenle">
+        <pattern value="/private/kurumsal/ilanlar/isim-var-arac-ariyorum/#{param1}/#{adId}" />
+        <view-id value="/private/corporate/ad/isim_var_arac_ariyorum/corporate_duzenle.xhtml" />
+    </url-mapping>
+    <url-mapping id="director_isim_var_arac_ariyorum_duzenle">
+        <pattern value="/private/director/ilanlar/isim-var-arac-ariyorum/#{param1}/#{adId}" />
+        <!--<view-id value="/private/common/ilanlar/isim_var_arac_ariyorum/duzenle.xhtml" />-->
+        <view-id value="/private/director/ads/ilan_duzenle/ad-isim-var-arac-ariyorum.xhtml" />
+    </url-mapping>
+       <!-- aracim var is ariyorum -->
+    <url-mapping id="bireysel_aracim_var_is_ariyorum_duzenle">
+        <pattern value="/private/bireysel/ilanlar/aracim-var-is-ariyorum/#{param1}/#{adId}" />
+        <view-id value="/private/personal/ad/aracim_var_is_ariyorum/personal_duzenle.xhtml" />
+    </url-mapping>
+        <url-mapping id="kurumsal_aracim_var_is_ariyorum_duzenle">
+        <pattern value="/private/kurumsal/ilanlar/aracim-var-is-ariyorum/#{param1}/#{adId}" />
+        <view-id value="/private/corporate/ad/aracim_var_is_ariyorum/corporate_duzenle.xhtml" />
+    </url-mapping>
+    <url-mapping id="director_aracim_var_is_ariyorum_duzenle">
+        <pattern value="/private/director/ilanlar/aracim-var-is-ariyorum/#{param1}/#{adId}" />
+        <!--<view-id value="/private/common/ilanlar/aracim_var_is_ariyorum/duzenle.xhtml" />-->
+        <view-id value="/private/director/ads/ilan_duzenle/ad-aracim-var-is-ariyorum.xhtml" />
+    </url-mapping>
+    <!-- aracim var sofor ariyorum -->
+    <url-mapping id="bireysel_aracim_ver_sofor_ariyorum_duzenle">
+        <pattern value="/private/bireysel/ilanlar/aracim-var-sofor-ariyorum/#{param1}/#{adId}" />
+        <view-id value="/private/personal/ad/aracim_var_sofor_ariyorum/personal_duzenle.xhtml" />
+    </url-mapping>
+    <url-mapping id="kurumsal_aracim_ver_sofor_ariyorum_duzenle">
+        <pattern value="/private/kurumsal/ilanlar/aracim-var-sofor-ariyorum/#{param1}/#{adId}" />
+        <view-id value="/private/corporate/ad/aracim_var_sofor_ariyorum/corporate_duzenle.xhtml" />
+    </url-mapping>
+    <url-mapping id="director_aracim_ver_sofor_ariyorum_duzenle">
+        <pattern value="/private/director/ilanlar/aracim-var-sofor-ariyorum/#{param1}/#{adId}" />
+        <!--<view-id value="/private/common/ilanlar/aracim_var_sofor_ariyorum/duzenle.xhtml" />-->
+        <view-id value="/private/director/ads/ilan_duzenle/ad-aracim-var-sofor-ariyorum.xhtml" />
+    </url-mapping>
+    <!-- aracim var hostes ariyorum -->
+    <url-mapping id="bireysel_aracim_var_hostes_ariyorum_duzenle">
+        <pattern value="/private/bireysel/ilanlar/aracim-var-hostes-ariyorum/#{param1}/#{adId}" />
+        <view-id value="/private/personal/ad/aracim_var_hostes_ariyorum/personal_duzenle.xhtml" />
+    </url-mapping>
+    <url-mapping id="kurumsal_aracim_var_hostes_ariyorum_duzenle">
+        <pattern value="/private/kurumsal/ilanlar/aracim-var-hostes-ariyorum/#{param1}/#{adId}" />
+        <view-id value="/private/corporate/ad/aracim_var_hostes_ariyorum/corporate_duzenle.xhtml" />
+    </url-mapping>
+    <url-mapping id="director_aracim_var_hostes_ariyorum_duzenle">
+        <pattern value="/private/director/ilanlar/aracim-var-hostes-ariyorum/#{param1}/#{adId}" />
+        <!--<view-id value="/private/common/ilanlar/aracim_var_hostes_ariyorum/duzenle.xhtml" />-->
+        <view-id value="/private/director/ads/ilan_duzenle/ad-aracim-var-hostes-ariyorum.xhtml" />
+    </url-mapping>
+    <!-- soforum is ariyorum -->
+    <url-mapping id="bireysel_soforum_is_ariyorum_duzenle">
+        <pattern value="/private/bireysel/ilanlar/soforum-is-ariyorum/#{param1}/#{adId}" />
+        <view-id value="/private/personal/ad/soforum_is_ariyorum/personal_duzenle.xhtml" />
+    </url-mapping> 
+    <url-mapping id="director_soforum_is_ariyorum_duzenle">
+        <pattern value="/private/director/ilanlar/soforum-is-ariyorum/#{param1}/#{adId}" />
+        <!--<view-id value="/private/common/ilanlar/soforum_is_ariyorum/duzenle.xhtml" />-->
+        <view-id value="/private/director/ads/ilan_duzenle/ad-soforum-is-ariyorum.xhtml" />
+    </url-mapping>   
+    <!-- hostesim is ariyorum -->
+    <url-mapping id="bireysel_hostesim_is_ariyorum_duzenle">
+        <pattern value="/private/bireysel/ilanlar/hostesim-is-ariyorum/#{param1}/#{adId}" />
+        <view-id value="/private/personal/ad/hostesim_is_ariyorum/personal_duzenle.xhtml" />
+    </url-mapping>
+    <url-mapping id="director_hostesim_is_ariyorum_duzenle">
+        <pattern value="/private/director/ilanlar/hostesim-is-ariyorum/#{param1}/#{adId}" />
+        <!--<view-id value="/private/common/ilanlar/hostesim_is_ariyorum/duzenle.xhtml" />-->
+        <view-id value="/private/director/ads/ilan_duzenle/ad-hostesim-is-ariyorum.xhtml" />
+    </url-mapping>
+    <!-- plakami satiyorum -->
+    <url-mapping id="bireysel_plakami_satiyorum_duzenle">
+        <pattern value="/private/bireysel/ilanlar/plakami-satiyorum/#{param1}/#{adId}" />
+        <view-id value="/private/personal/ad/plakami_satiyorum/personal_duzenle.xhtml" />
+    </url-mapping>
+    <url-mapping id="kurumsal_plakami_satiyorum_duzenle">
+        <pattern value="/private/kurumsal/ilanlar/plakami-satiyorum/#{param1}/#{adId}" />
+        <view-id value="/private/corporate/ad/plakami_satiyorum/corporate_duzenle.xhtml" />
+    </url-mapping>
+    <url-mapping id="director_plakami_satiyorum_duzenle">
+        <pattern value="/private/director/ilanlar/plakami-satiyorum/#{param1}/#{adId}" />
+        <!--<view-id value="/private/common/ilanlar/plakami_satiyorum/duzenle.xhtml" />-->
+         <view-id value="/private/director/ads/ilan_duzenle/ad-plakami-satiyorum.xhtml" />
+    </url-mapping>
+<!-- /İLAN DUZENLE ========================================================== -->                           
+    
+<!-- ERROR PAGE ============================================================ -->               
+    <url-mapping id="expired">
+        <pattern value="/expired" />
+        <view-id value="expired.xhtml" />
+    </url-mapping>
+    <url-mapping id="error">
+        <pattern value="/error.xhtml" />
+        <view-id value="error.xhtml" />
+    </url-mapping>
+    <url-mapping id="401">
+        <pattern value="/401.xhtml" />
+        <view-id value="401.xhtml" />
+    </url-mapping>
+    <url-mapping id="404">
+        <pattern value="/404.xhtml" />
+        <view-id value="404.xhtml" />
+    </url-mapping>
+    <url-mapping id="500">
+        <pattern value="/500.xhtml" />
+        <view-id value="500.xhtml" />
+    </url-mapping>
+<!-- /ERROR PAGE =========================================================== -->               
+
+<!--/error-page-->     
+    
+<!--pages
+    <url-mapping id="page">
+        <pattern value="/#{contentBean.pageParam}" />
+        <view-id value="#{contentBean.getViewPath}" />
+    </url-mapping>
+/pages-->         
+   
+    
+</pretty-config>

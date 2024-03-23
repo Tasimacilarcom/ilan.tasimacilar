@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        
+        <ui:composition>
+            <div class="container" >       
+                <div class="row" id="row-main">  
+
+                    <div class="full-image mb-3">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!--<img src="/resources/image/homepage-image.jpg" class="img-fluid" alt="full image"/>-->
+                                    <!-- Ust tam banner alani-->
+                                        <h:outputText escape="false" value="#{bannersBean.getBannerCodeWithLocation('ust-tam')}"></h:outputText>
+                                    <!--/Ust tam banner alani-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <shiro:guest> 
+                        <div class="looking-buttons mb-4" style="width: 100%">
+                            
+                            <div class="row" style="padding-left: 20px; padding-right: 20px;">  
+                                    <div class="col-md-12">
+                                        <div class="row"> 
+                                            <style>
+                                        .looking-button2{padding: 8px !important;height: 80% !important;border-radius: 10px !important;}
+                                        .sf-jhsj{font-size: 14px !important; line-height: 24px !important; font-weight: 500 !important; }
+                                    </style>
+                                    <div class="col-6 col-sm-4 col-md-4 col-lg-2 mb-2 mb-lg-0 pl-2 pr-2">
+                                        <a href="/isim-var-arac-ariyorum/">
+                                            <div class="looking-button looking-button2 green text-center" >
+                                                <!--<ui:include src="/resources/image/ikon_arac_araniyor.svg" />-->
+                                                <span class="sf-jhsj">İşim var araç arıyorum</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-md-4 col-lg-2 mb-2 mb-lg-0 pl-2 pr-2">
+                                        <a href="/aracim-var-is-ariyorum/">
+                                            <div class="looking-button looking-button2 orange text-center">
+                                                <!--<ui:include src="/resources/image/ikon_aracina_is_ariyor.svg" />-->
+                                                <span class="sf-jhsj">Aracım var iş arıyorum</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-md-4 col-lg-2 mb-2 mb-lg-0 pl-2 pr-2">
+                                        <a href="/aracim-var-sofor-ariyorum/">
+                                            <div class="looking-button looking-button2 yellow text-center">
+                                                <!--<ui:include src="/resources/image/ikon_sofor_araniyor.svg" />-->
+                                                <span class="sf-jhsj">Şöför arıyorum</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-md-4 col-lg-2 mb-2 mb-lg-0 pl-2 pr-2">
+                                        <a href="/aracim-var-hostes-ariyorum/">
+                                            <div class="looking-button looking-button2 purple text-center">
+                                                <!--<ui:include src="/resources/image/ikon_hostes_ariyorum.svg" />-->
+                                                <span class="sf-jhsj">Hostes arıyorum</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-md-4 col-lg-2 mb-2 mb-lg-0 pl-2 pr-2">
+                                        <a href="/hostesim-is-ariyorum/">
+                                            <div class="looking-button looking-button2 pink text-center">
+                                                <!--<ui:include src="/resources/image/ikon_hostesim_is_ariyorum.svg" />-->
+                                                <span class="sf-jhsj">Hostesim iş arıyorum</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-6 col-sm-4 col-md-4 col-lg-2 mb-2 mb-lg-0 pl-2 pr-2">
+                                        <a href="/soforum-is-ariyorum/">
+                                            <div class="looking-button looking-button2 blue text-center">
+                                                <!--<ui:include src="/resources/image/ikon_soforum_is_ariyorum.svg" />-->
+                                                <span class="sf-jhsj">Şöförüm iş arıyorum</span>
+                                            </div>
+                                        </a>
+                                    </div>  
+                                        </div>
+                                    </div>
+                                       
+                                </div>
+                         
+                        </div>
+                    </shiro:guest>     
+                </div>
+            </div>
+
+        </ui:composition>
+    </h:body>
+</html>
+
